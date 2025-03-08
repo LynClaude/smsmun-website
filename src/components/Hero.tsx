@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto h-full flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full px-4">
           {/* 左侧图片展示 */}
-          <div className="relative h-[400px] md:h-[600px] rounded-xl overflow-hidden shadow-2xl">
+          <div className="relative w-full max-w-[500px] mx-auto aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
             {images.map((image, index) => (
               <div
                 key={image}
@@ -53,9 +53,9 @@ export default function Hero() {
           </div>
 
           {/* 右侧文字内容 */}
-          <div className="text-white space-y-6 md:pl-8">
+          <div className="text-white space-y-8 md:pl-8">
             <h1 
-              className="text-4xl md:text-6xl font-bold text-right" 
+              className="text-5xl md:text-7xl font-bold text-right" 
               style={{ 
                 fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
                 fontWeight: '700',
@@ -65,7 +65,7 @@ export default function Hero() {
               深圳中学模拟联合国协会欢迎您
             </h1>
             <p 
-              className="text-lg md:text-xl text-right leading-relaxed"
+              className="text-sm md:text-base text-right leading-relaxed max-w-[600px] ml-auto opacity-90"
               style={{
                 fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
               }}
