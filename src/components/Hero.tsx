@@ -15,6 +15,13 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
+  const scrollToNextSection = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className="relative h-screen overflow-hidden">
       {/* 背景图片 */}
@@ -75,6 +82,28 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* 向下滚动指引按钮 */}
+      <button 
+        onClick={scrollToNextSection}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
+      >
+        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+          <svg 
+            className="w-6 h-6 text-white" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+            />
+          </svg>
+        </div>
+      </button>
     </div>
   )
 } 
