@@ -9,10 +9,10 @@ export default function Hero() {
       {/* 背景图片 */}
       <div className="absolute inset-0">
         <Image
-          src="/background.jpg"
+          src="/bg.png"
           alt="Background"
           fill
-          className="object-cover rotate-90 scale-150"
+          className="object-cover"
           priority
         />
       </div>
