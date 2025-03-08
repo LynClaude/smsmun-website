@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0)
+  const [showArrow, setShowArrow] = useState(false)
   const images = ['/123.jpg', '/456.jpg']
 
   useEffect(() => {
@@ -12,7 +13,18 @@ export default function Hero() {
       setCurrentImage((prev) => (prev === 0 ? 1 : 0))
     }, 5000) // 每5秒切换一次
 
-    return () => clearInterval(timer)
+    const handleMouseMove = (e: MouseEvent) => {
+      const windowHeight = window.innerHeight
+      const mouseY = e.clientY
+      setShowArrow(mouseY > windowHeight / 2)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      clearInterval(timer)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
   }, [])
 
   const scrollToNextSection = () => {
@@ -86,7 +98,9 @@ export default function Hero() {
       {/* 向下滚动指引按钮 */}
       <button 
         onClick={scrollToNextSection}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce transition-opacity duration-300 ${
+          showArrow ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
           <svg 
