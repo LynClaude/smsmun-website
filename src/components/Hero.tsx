@@ -4,41 +4,16 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 export default function Hero() {
-  const [currentImage, setCurrentImage] = useState(0)
-  const [nextImage, setNextImage] = useState(1)
-  const images = ['/123.jpg', '/456.jpg']
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNextImage((currentImage + 1) % images.length)
-      setTimeout(() => {
-        setCurrentImage(nextImage)
-      }, 1000)
-    }, 6000) // 每6秒切换一次
-
-    return () => clearInterval(timer)
-  }, [currentImage, nextImage, images.length])
-
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* 当前图片 */}
-      <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out">
+      {/* 背景图片 */}
+      <div className="absolute inset-0">
         <Image
-          src={images[currentImage]}
+          src="/background.jpg"
           alt="Background"
           fill
-          className="object-cover"
+          className="object-cover rotate-90 scale-150"  // 添加旋转和缩放以补偿旋转后的空白
           priority
-        />
-      </div>
-
-      {/* 下一张图片 */}
-      <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0">
-        <Image
-          src={images[nextImage]}
-          alt="Next Background"
-          fill
-          className="object-cover"
         />
       </div>
 
