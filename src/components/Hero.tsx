@@ -12,7 +12,7 @@ export default function Hero() {
           src="/background.jpg"
           alt="Background"
           fill
-          className="object-cover rotate-90 scale-150"  // 添加旋转和缩放以补偿旋转后的空白
+          className="object-cover rotate-90 scale-150"
           priority
         />
       </div>
