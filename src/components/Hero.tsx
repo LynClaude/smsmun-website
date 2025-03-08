@@ -98,7 +98,7 @@ export default function Hero() {
       {/* 向下滚动指引按钮 */}
       <button 
         onClick={scrollToNextSection}
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce transition-opacity duration-300 ${
+        className={`absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 animate-bounce transition-opacity duration-300 ${
           showArrow ? 'opacity-100' : 'opacity-0'
         }`}
       >
