@@ -150,44 +150,65 @@ export default function PPRDMUNPage() {
               
               {/* 英文特殊委员会 */}
               <div className="bg-gray-50 p-8 rounded-xl shadow-lg space-y-6">
-                <h3 className="text-3xl font-bold text-primary">英文特殊委员会</h3>
+                <h3 className="text-3xl font-bold text-primary">英文特殊委员会 - 美国宪法第十九修正案</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <h4 className="text-xl font-semibold">委员会介绍</h4>
+                    <h4 className="text-xl font-semibold">议题背景</h4>
                     <p className="text-gray-600">
-                      本委员会将以全英文形式进行，为具有出色英语能力的代表提供国际化的交流平台。委员会将模拟处理重要的国际议题，要求代表具备扎实的英语表达能力和专业的外交素养。
+                      1920年，美国宪法第十九修正案的通过标志着美国女性争取选举权运动的重大胜利。这一修正案禁止联邦政府和各州以性别为由剥夺或限制公民的投票权。本委员会将重现这一历史性时刻，探讨当时的社会背景、政治博弈以及对现代民主制度的深远影响。
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-xl font-semibold">学术要求</h4>
-                    <ul className="list-disc list-inside text-gray-600 space-y-2">
-                      <li>熟练的英语口语和写作能力</li>
-                      <li>深入的国际关系知识储备</li>
-                      <li>出色的临场应变能力</li>
-                      <li>良好的团队协作精神</li>
-                    </ul>
+                    <h4 className="text-xl font-semibold">委员会设置</h4>
+                    <div className="text-gray-600">
+                      <p className="font-semibold mb-2">美国参议院</p>
+                      <p className="text-sm opacity-90">模拟1920年美国参议院就第十九修正案进行的历史性辩论与表决，重现这一改变美国政治格局的关键时刻。</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* 中文委员会 */}
               <div className="bg-gray-50 p-8 rounded-xl shadow-lg space-y-6">
-                <h3 className="text-3xl font-bold text-primary">中文委员会 - 加泰罗尼亚公投专题</h3>
+                <h3 className="text-3xl font-bold text-primary">中文委员会 - 加泰罗尼亚公投</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
                     <h4 className="text-xl font-semibold">议题背景</h4>
                     <p className="text-gray-600">
-                      本委员会将聚焦加泰罗尼亚独立公投这一重要历史事件，探讨民族自决、领土完整与国家统一等深刻议题。代表们将扮演各方角色，深入探讨这一复杂的政治问题。
+                      2017年加泰罗尼亚独立公投是西班牙近代史上最具争议性的政治事件之一。这次公投不仅挑战了西班牙的宪法秩序，也引发了关于民族自决、地区自治与国家统一的深刻讨论。本委员会将重点关注公投前后的谈判过程，探讨地区政府与中央政府之间的权力博弈，以及这一事件对欧洲地区政治格局的影响。
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-xl font-semibold">重点议题</h4>
-                    <ul className="list-disc list-inside text-gray-600 space-y-2">
-                      <li>民族自决权与国家主权</li>
-                      <li>地区自治与中央权力</li>
-                      <li>经济影响与社会稳定</li>
-                      <li>国际社会的态度与立场</li>
-                    </ul>
+                    <h4 className="text-xl font-semibold">委员会设置</h4>
+                    <div className="text-gray-600 space-y-4">
+                      <div>
+                        <p className="font-semibold mb-2">1. 双边谈判会场</p>
+                        <p className="text-sm opacity-90">2017加泰罗尼亚独立公投协调机制</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold mb-2">2. 加泰罗尼亚执行委员会会场</p>
+                        <p className="text-sm opacity-90">2017加泰罗尼亚独立公投协调机制</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 主新闻中心 */}
+              <div className="bg-gray-50 p-8 rounded-xl shadow-lg space-y-6">
+                <h3 className="text-3xl font-bold text-primary">主新闻中心</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold">中文新闻中心</h4>
+                    <p className="text-gray-600">
+                      负责报道加泰罗尼亚公投进程中的重要事件，深入分析各方立场，为代表提供及时、准确的中文新闻报道，助力委员会讨论的深入开展。
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold">英文新闻中心</h4>
+                    <p className="text-gray-600">
+                      专注于美国宪法第十九修正案相关的历史事件报道，通过英文媒体视角，还原20世纪初美国女性争取选举权的重要时刻。
+                    </p>
                   </div>
                 </div>
               </div>
@@ -227,14 +248,21 @@ export default function PPRDMUNPage() {
                 </div>
               </div>
 
-              {/* 报名按钮 */}
-              <div className="text-center mt-12">
+              {/* 文件下载 */}
+              <div className="flex justify-center gap-8">
                 <a 
-                  href="/docs/泛珠三角高中生模拟联合国大会策划案.docx" 
+                  href="/docs/泛珠模联2025风纪与行为条例.pdf" 
                   download
                   className="inline-block bg-primary text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-primary/90 transition-colors"
                 >
-                  下载大会策划案
+                  下载会议守则
+                </a>
+                <a 
+                  href="/docs/PPRDMUN2025+学术团队申请表.docx" 
+                  download
+                  className="inline-block bg-primary text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-primary/90 transition-colors"
+                >
+                  下载申请表
                 </a>
               </div>
             </motion.div>
