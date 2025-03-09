@@ -6,62 +6,66 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white">
       <div className="container mx-auto py-16 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        {/* 主要内容区域 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
           {/* 社交媒体 */}
-          <div className="flex flex-col items-center text-center">
-            <h3 className="text-3xl font-bold mb-6">社交媒体</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-xl mb-2">深中模联公众号</h4>
-                <p className="text-gray-300 text-sm">关注获取最新活动资讯</p>
-              </div>
-              <div>
-                <h4 className="text-xl mb-2">泛珠模联公众号</h4>
-                <p className="text-gray-300 text-sm">了解大会动态与报名信息</p>
-              </div>
-            </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6">社交媒体</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="hover:text-gray-300 transition-colors">
+                  深中模联公众号
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-gray-300 transition-colors">
+                  泛珠模联公众号
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* 获取帮助 */}
-          <div className="flex flex-col items-center text-center">
-            <h3 className="text-3xl font-bold mb-6">获取帮助</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-xl mb-2">社团高层联系方式</h4>
-                <p className="text-gray-300 text-sm">邮箱：contact@szmun.org</p>
-              </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6">获取帮助</h3>
+            <div>
+              <p className="text-gray-300 mb-2">社团高层联系方式</p>
+              <a href="mailto:contact@szmun.org" className="hover:text-gray-300 transition-colors">
+                contact@szmun.org
+              </a>
             </div>
           </div>
 
           {/* 其他链接 */}
-          <div className="flex flex-col items-center text-center">
-            <h3 className="text-3xl font-bold mb-6">其他链接</h3>
-            <div className="space-y-4">
-              <div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6">其他链接</h3>
+            <ul className="space-y-4">
+              <li>
                 <a 
                   href="https://www.shenzhong.net" 
                   target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-xl hover:text-gray-300 transition-colors block mb-2"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-300 transition-colors"
                 >
                   深圳中学官网
                 </a>
-                <a 
-                  href="#" 
-                  className="text-xl hover:text-gray-300 transition-colors block mb-2"
-                >
+              </li>
+              <li>
+                <a href="#" className="hover:text-gray-300 transition-colors">
                   深圳中学公众号
                 </a>
+              </li>
+              <li>
                 <a 
                   href="https://www.un.org" 
                   target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-xl hover:text-gray-300 transition-colors block"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-300 transition-colors"
                 >
                   联合国官网
                 </a>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
 
