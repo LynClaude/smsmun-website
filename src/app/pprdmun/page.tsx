@@ -155,14 +155,14 @@ export default function PPRDMUNPage() {
                   <div className="space-y-4">
                     <h4 className="text-xl font-semibold">议题背景</h4>
                     <p className="text-gray-600">
-                      1920年，美国宪法第十九修正案的通过标志着美国女性争取选举权运动的重大胜利。这一修正案禁止联邦政府和各州以性别为由剥夺或限制公民的投票权。本委员会将重现这一历史性时刻，探讨当时的社会背景、政治博弈以及对现代民主制度的深远影响。
+                      1919年，美国宪法第十九修正案的通过标志着美国女性争取选举权运动的重大胜利。这一修正案禁止联邦政府和各州以性别为由剥夺或限制公民的投票权。本委员会将重现这一历史性时刻，探讨当时的社会背景、政治博弈以及对现代民主制度的深远影响。
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-xl font-semibold">委员会设置</h4>
                     <div className="text-gray-600">
                       <p className="font-semibold mb-2">美国参议院</p>
-                      <p className="text-sm opacity-90">模拟1920年美国参议院就第十九修正案进行的历史性辩论与表决，重现这一改变美国政治格局的关键时刻。</p>
+                      <p className="text-sm opacity-90">模拟1919年美国参议院就第十九修正案进行的历史性辩论与表决，重现这一改变美国政治格局的关键时刻。</p>
                     </div>
                   </div>
                 </div>
@@ -255,14 +255,14 @@ export default function PPRDMUNPage() {
                   download
                   className="inline-block bg-primary text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-primary/90 transition-colors"
                 >
-                  下载会议守则
+                  泛珠模联2025风纪与行为条例
                 </a>
                 <a 
                   href="/docs/PPRDMUN2025+学术团队申请表.docx" 
                   download
                   className="inline-block bg-primary text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-primary/90 transition-colors"
                 >
-                  下载申请表
+                  PPRDMUN2025学术团队申请表
                 </a>
               </div>
             </motion.div>
