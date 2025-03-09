@@ -42,11 +42,11 @@ export default function Hero() {
           src="/IMG_1832.jpg"
           alt="Background"
           fill
-          className="object-cover"
+          className="object-cover brightness-75"
           priority
         />
-        {/* 深蓝色蒙版 */}
-        <div className="absolute inset-0 bg-primary/30" />
+        {/* 深色蒙版 */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* 内容区域 */}
