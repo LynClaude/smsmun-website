@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Hero from '@/components/Hero'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -22,10 +23,17 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="bg-white rounded-lg shadow-lg overflow-hidden"
             >
-              <div className="h-48 bg-gray-200" />
+              <div className="relative h-48">
+                <Image
+                  src="/WechatIMG110.jpg"
+                  alt="PPRDMUN 2025"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">PPRDMUN 2024 报名开始</h3>
-                <p className="text-gray-600 mb-4">第十二届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与...</p>
+                <h3 className="text-xl font-semibold mb-2">PPRDMUN 2025 报名开始</h3>
+                <p className="text-gray-600 mb-4">第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与...</p>
                 <Link href="/pprdmun" className="text-primary hover:text-secondary">
                   了解更多 →
                 </Link>
