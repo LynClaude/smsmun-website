@@ -6,13 +6,12 @@ import Image from 'next/image'
 
 const navigation = [
   { name: '主页', href: '/' },
+  { name: '关于我们', href: '/about' },
   { name: '历届高层', href: '/alumni-leadership' },
-  { name: '捐赠通道', href: '/donation' },
   { name: 'PPRDMUN', href: '/pprdmun' },
   { name: '活动与项目', href: '/events' },
   { name: '校友交流', href: '/alumni-network' },
   { name: '资源中心', href: '/resources' },
-  { name: '关于我们', href: '/about' },
 ]
 
 export default function Navbar() {
@@ -53,7 +52,7 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12 lg:ml-32">
+        <div className="hidden lg:flex lg:gap-x-8 lg:ml-32">
           {navigation.map((item) => (
             <Link
               key={item.name}

@@ -19,12 +19,13 @@ export default function LeadershipCard({ position, name, contact }: LeadershipCa
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
     >
       {/* 照片区域 */}
-      <div className="relative h-48 bg-gray-200">
+      <div className="relative h-48 bg-gray-100 flex items-center justify-center">
         <Image
-          src="/placeholder.jpg"
+          src="/logo.png"
           alt={name}
-          fill
-          className="object-cover"
+          width={120}
+          height={120}
+          className="object-contain"
         />
       </div>
 
