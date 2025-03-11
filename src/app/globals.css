@@ -8,6 +8,31 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 防止滚动条渗入到页眉 */
+.fixed {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
