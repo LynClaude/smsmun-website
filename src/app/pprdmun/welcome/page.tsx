@@ -2,28 +2,28 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import PageTransition from '@/components/PageTransition'
 
 export default function WelcomePage() {
-  useEffect(() => {
-    const scrollPosition = sessionStorage.getItem('pprdmunScrollPosition')
-    if (scrollPosition) {
-      sessionStorage.removeItem('pprdmunScrollPosition')
-    }
-  }, [])
+  const router = useRouter()
 
-  const handleBack = () => {
+  const handleBack = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
     const currentScroll = window.scrollY
     sessionStorage.setItem('pprdmunScrollPosition', currentScroll.toString())
-  }
+    requestAnimationFrame(() => {
+      router.back()
+    })
+  }, [router])
 
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* 返回按钮 */}
-          <Link 
+          <a 
             href="/pprdmun" 
             onClick={handleBack}
             className="fixed top-28 left-8 md:left-12 z-50 bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg hover:bg-white transition-colors flex items-center group"
@@ -42,7 +42,7 @@ export default function WelcomePage() {
               />
             </svg>
             返回
-          </Link>
+          </a>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

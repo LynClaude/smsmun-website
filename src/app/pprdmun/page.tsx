@@ -4,12 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import PageTransition from '@/components/PageTransition'
 
 export default function PPRDMUNPage() {
   const [showArrow, setShowArrow] = useState(false)
   const { scrollY } = useScroll()
-  const hasScrolledRef = useRef(false)
+  const router = useRouter()
+  const mounted = useRef(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,17 +23,17 @@ export default function PPRDMUNPage() {
   }, [])
 
   useEffect(() => {
-    if (!hasScrolledRef.current) {
+    if (!mounted.current) {
+      mounted.current = true
       const scrollPosition = sessionStorage.getItem('pprdmunScrollPosition')
       if (scrollPosition) {
-        setTimeout(() => {
+        requestAnimationFrame(() => {
           window.scrollTo({
             top: parseInt(scrollPosition),
-            behavior: 'instant'
+            behavior: 'auto'
           })
           sessionStorage.removeItem('pprdmunScrollPosition')
-        }, 100)
-        hasScrolledRef.current = true
+        })
       }
     }
   }, [])
