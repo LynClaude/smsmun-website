@@ -2,22 +2,29 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import PageTransition from '@/components/PageTransition'
 
 export default function PPRDMUNPage() {
   const [showArrow, setShowArrow] = useState(false)
+  const { scrollY } = useScroll()
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const windowHeight = window.innerHeight
-      const mouseY = e.clientY
-      setShowArrow(mouseY > windowHeight / 2)
+    const handleScroll = () => {
+      setShowArrow(window.scrollY > 100)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const scrollPosition = sessionStorage.getItem('pprdmunScrollPosition')
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition))
+      sessionStorage.removeItem('pprdmunScrollPosition')
+    }
   }, [])
 
   const scrollToNextSection = () => {
@@ -89,7 +96,6 @@ export default function PPRDMUNPage() {
                     <li>举办时间：2025年7月中旬</li>
                     <li>举办地点：深圳中学（泥岗校区）</li>
                     <li>会议语言：中文/英文</li>
-                    <li>参会规模：预计500人</li>
                     <li>主办方：深圳中学模拟联合国协会</li>
                   </ul>
                 </motion.div>

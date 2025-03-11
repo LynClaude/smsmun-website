@@ -2,15 +2,29 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useEffect } from 'react'
 import PageTransition from '@/components/PageTransition'
 
 export default function AcademicTeamPage() {
+  useEffect(() => {
+    const scrollPosition = sessionStorage.getItem('pprdmunScrollPosition')
+    if (scrollPosition) {
+      sessionStorage.removeItem('pprdmunScrollPosition')
+    }
+  }, [])
+
+  const handleBack = () => {
+    const currentScroll = window.scrollY
+    sessionStorage.setItem('pprdmunScrollPosition', currentScroll.toString())
+  }
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link 
             href="/pprdmun" 
+            onClick={handleBack}
             className="fixed top-28 left-8 md:left-12 z-50 bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg hover:bg-white transition-colors flex items-center group"
           >
             <svg 
