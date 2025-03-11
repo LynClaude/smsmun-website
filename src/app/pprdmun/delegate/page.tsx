@@ -1,49 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import PageTransition from '@/components/PageTransition'
 
 export default function DelegatePage() {
-  const router = useRouter()
-
-  const handleBack = useCallback((e: React.MouseEvent) => {
-    e.preventDefault()
-    const currentScroll = window.scrollY
-    sessionStorage.setItem('pprdmunScrollPosition', currentScroll.toString())
-    requestAnimationFrame(() => {
-      router.back()
-    })
-  }, [router])
-
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <a 
-            href="/pprdmun" 
-            onClick={handleBack}
-            className="fixed top-28 left-8 md:left-12 z-50 bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg hover:bg-white transition-colors flex items-center group"
-          >
-            <svg 
-              className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M10 19l-7-7m0 0l7-7m-7 7h18" 
-              />
-            </svg>
-            返回
-          </a>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

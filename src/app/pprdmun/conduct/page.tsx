@@ -1,48 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useEffect } from 'react'
 import PageTransition from '@/components/PageTransition'
 
 export default function ConductPage() {
-  useEffect(() => {
-    const scrollPosition = sessionStorage.getItem('pprdmunScrollPosition')
-    if (scrollPosition) {
-      sessionStorage.removeItem('pprdmunScrollPosition')
-    }
-  }, [])
-
-  const handleBack = () => {
-    const currentScroll = window.scrollY
-    sessionStorage.setItem('pprdmunScrollPosition', currentScroll.toString())
-  }
-
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
-            href="/pprdmun" 
-            onClick={handleBack}
-            className="fixed top-28 left-8 md:left-12 z-50 bg-white/80 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg hover:bg-white transition-colors flex items-center group"
-          >
-            <svg 
-              className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M10 19l-7-7m0 0l7-7m-7 7h18" 
-              />
-            </svg>
-            返回
-          </Link>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,13 +27,9 @@ export default function ConductPage() {
               </div>
 
               <div className="flex justify-center">
-                <a 
-                  href="/docs/泛珠模联2025风纪与行为条例.pdf" 
-                  download
-                  className="bg-primary text-white px-8 py-3 rounded-md hover:bg-primary/90 transition-colors text-lg"
-                >
+                <button className="bg-primary text-white px-8 py-3 rounded-md hover:bg-primary/90 transition-colors text-lg">
                   下载风纪与行为条例
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>

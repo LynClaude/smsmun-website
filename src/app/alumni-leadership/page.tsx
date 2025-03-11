@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
 import LeadershipCard from '@/components/LeadershipCard'
 
@@ -21,12 +20,33 @@ interface LeadershipData {
 }
 
 export default function AlumniLeadershipPage() {
-  const [selectedYear, setSelectedYear] = useState('2024')
-  
-  const years = Array.from({ length: 20 }, (_, i) => (2024 - i).toString())
-  
+  const [selectedYear, setSelectedYear] = useState('2024-2025')
+
+  const years = [
+    '2024-2025',
+    '2023-2024',
+    '2022-2023',
+    '2021-2022',
+    '2020-2021',
+    '2019-2020',
+    '2018-2019',
+    '2017-2018',
+    '2016-2017',
+    '2015-2016',
+    '2014-2015',
+    '2013-2014',
+    '2012-2013',
+    '2011-2012',
+    '2010-2011',
+    '2009-2010',
+    '2008-2009',
+    '2007-2008',
+    '2006-2007',
+    '2005-2006',
+  ]
+
   const leadershipData: LeadershipData = {
-    '2024': {
+    '2024-2025': {
       secretariat: [
         { position: '协会秘书长', name: '甘楚涵', contact: '13631563505' },
         { position: '常务秘书长', name: '伍宣静', contact: '13829900066' },
@@ -35,6 +55,8 @@ export default function AlumniLeadershipPage() {
         { position: '学术事务部副秘书长', name: '黎启诚', contact: '14739916283' },
         { position: '公共关系事务部副秘书长', name: '庞棕雨', contact: '13411868050' },
         { position: '公共关系事务部副秘书长', name: '汤峤', contact: '13760284223' },
+        { position: '行政关系事务部副秘书长', name: '李艺涵', contact: '13538278700' },
+        { position: '技术关系事务部副秘书长', name: '王钰淇', contact: '15118021935' }
       ],
       advisors: [
         { position: '学术事务部高级顾问', name: '柳知好', contact: '19926542029' },
@@ -44,75 +66,77 @@ export default function AlumniLeadershipPage() {
         { position: '公共关系事务部高级顾问', name: '林卓烨', contact: '13316832860' },
         { position: '行政关系事务部高级顾问', name: '姚羽宸', contact: '15013890406' },
       ],
-    },
+    }
   }
-
-  const currentData = leadershipData[selectedYear]
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gray-50 py-20">
+      <div className="min-h-screen bg-gray-50 pt-24 pb-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-12">历届高层</h1>
-          
-          <div className="flex gap-8">
+          <div className="flex flex-col md:flex-row gap-8">
             {/* 左侧年份导航 */}
-            <div className="hidden lg:block w-48 flex-shrink-0">
-              <div className="sticky top-24 bg-white rounded-lg shadow-lg p-4">
-                <h2 className="text-lg font-semibold mb-4">年份</h2>
-                <div className="space-y-2">
-                  {years.map((year) => (
-                    <button
-                      key={year}
-                      onClick={() => setSelectedYear(year)}
-                      className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
-                        selectedYear === year
-                          ? 'bg-primary text-white'
-                          : 'hover:bg-gray-100'
-                      }`}
-                    >
-                      {year}年
-                    </button>
-                  ))}
-                </div>
+            <div className="md:w-64 space-y-2">
+              <h2 className="text-xl font-bold mb-4">历届高层</h2>
+              <div className="bg-white rounded-lg shadow-md p-4 space-y-2">
+                {years.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`w-full text-left px-4 py-2 rounded-md transition-colors ${
+                      selectedYear === year
+                        ? 'bg-primary text-white'
+                        : 'hover:bg-gray-100'
+                    }`}
+                  >
+                    {year}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* 右侧内容 */}
+            {/* 右侧内容区域 */}
             <div className="flex-1">
-              {currentData && (
-                <div className="space-y-12">
-                  {/* 秘书处成员 */}
-                  <section>
-                    <h2 className="text-2xl font-bold mb-6">第二十届秘书处成员</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {currentData.secretariat.map((member: Member, index: number) => (
-                        <LeadershipCard
-                          key={index}
-                          position={member.position}
-                          name={member.name}
-                          contact={member.contact}
-                        />
-                      ))}
+              <div className="bg-white rounded-lg shadow-md p-8">
+                <h2 className="text-2xl font-bold mb-8">{selectedYear} 高层成员</h2>
+                
+                {leadershipData[selectedYear] ? (
+                  <>
+                    {/* 秘书处 */}
+                    <div className="mb-12">
+                      <h3 className="text-xl font-semibold mb-6">秘书处</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {leadershipData[selectedYear].secretariat.map((member, index) => (
+                          <LeadershipCard
+                            key={index}
+                            position={member.position}
+                            name={member.name}
+                            contact={member.contact}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </section>
 
-                  {/* 高级顾问成员 */}
-                  <section>
-                    <h2 className="text-2xl font-bold mb-6">第二十届高级顾问成员</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {currentData.advisors.map((member: Member, index: number) => (
-                        <LeadershipCard
-                          key={index}
-                          position={member.position}
-                          name={member.name}
-                          contact={member.contact}
-                        />
-                      ))}
+                    {/* 高级顾问 */}
+                    <div>
+                      <h3 className="text-xl font-semibold mb-6">高级顾问</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {leadershipData[selectedYear].advisors.map((member, index) => (
+                          <LeadershipCard
+                            key={index}
+                            position={member.position}
+                            name={member.name}
+                            contact={member.contact}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </section>
-                </div>
-              )}
+                  </>
+                ) : (
+                  <div className="text-center text-gray-500">
+                    该年份的数据暂未收录
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
