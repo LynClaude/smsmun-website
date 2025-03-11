@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import PageTransition from '@/components/PageTransition'
-import LeadershipCard from '@/components/LeadershipCard'
+import { LeadershipCard } from '@/components/LeadershipCard'
 
 interface Member {
   position: string
@@ -56,7 +56,7 @@ export default function AlumniLeadershipPage() {
         { position: '公共关系事务部副秘书长', name: '庞棕雨', contact: '13411868050' },
         { position: '公共关系事务部副秘书长', name: '汤峤', contact: '13760284223' },
         { position: '行政关系事务部副秘书长', name: '李艺涵', contact: '13538278700' },
-        { position: '技术关系事务部副秘书长', name: '王钰淇', contact: '15118021935' }
+        { position: '技术关系事务部副秘书长', name: '王钰淇', contact: '15118021935' },
       ],
       advisors: [
         { position: '学术事务部高级顾问', name: '柳知好', contact: '19926542029' },
