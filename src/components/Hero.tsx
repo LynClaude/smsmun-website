@@ -93,7 +93,7 @@ export default function Hero() {
             >
               <span className="block mb-2">深圳中学</span>
               <span className="block">模拟联合国协会欢迎您</span>
-            </h1>
+        </h1>
             <p 
               className="text-base md:text-lg leading-relaxed opacity-90"
               style={{

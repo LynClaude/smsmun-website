@@ -15,7 +15,7 @@ export default function Footer() {
               <li>泛珠模联公众号</li>
             </ul>
           </div>
-
+          
           {/* 关于我们 */}
           <div>
             <h3 className="text-xl font-bold mb-4">关于我们</h3>
@@ -35,7 +35,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
+          
           {/* 相关链接 */}
           <div>
             <h3 className="text-xl font-bold mb-4">相关链接</h3>

@@ -176,56 +176,39 @@ export default function PPRDMUNPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* 风纪与行为条例 */}
               <Link href="/pprdmun/conduct">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="p-8">
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow h-full">
+                  <div className="p-8 flex flex-col h-full">
                     <h3 className="text-2xl font-bold mb-4 text-primary hover:text-blue-500 transition-colors">风纪与行为条例</h3>
-                    <p className="text-gray-600 mb-6">大会安全政策、代表风纪与行为守则、学术团队成员行为守则等重要规定。</p>
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open('/docs/泛珠模联2025风纪与行为条例.pdf', '_blank');
-                      }}
-                      className="inline-block bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 transition-colors"
-                    >
-                      下载条例
-                    </button>
+                    <p className="text-gray-600 mb-6 flex-grow">大会安全政策、代表风纪与行为守则、学术团队成员行为守则等重要规定。</p>
+                    <Link href="/pprdmun/conduct" className="text-blue-600 hover:text-blue-800 font-semibold">
+                      了解详情 →
+                    </Link>
                   </div>
                 </div>
               </Link>
 
               {/* 学术团队预报名 */}
               <Link href="/pprdmun/academic-team">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="p-8">
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow h-full">
+                  <div className="p-8 flex flex-col h-full">
                     <h3 className="text-2xl font-bold mb-4 text-primary hover:text-blue-500 transition-colors">学术团队预报名</h3>
-                    <p className="text-gray-600 mb-6">提前开放学术团队成员报名，获得优先面试机会。</p>
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open('/docs/PPRDMUN2025+学术团队申请表.docx', '_blank');
-                      }}
-                      className="inline-block bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 transition-colors"
-                    >
-                      下载申请表
-                    </button>
+                    <p className="text-gray-600 mb-6 flex-grow">提前开放学术团队成员报名，获得优先面试机会。</p>
+                    <Link href="/pprdmun/academic-team" className="text-blue-600 hover:text-blue-800 font-semibold">
+                      了解详情 →
+                    </Link>
                   </div>
                 </div>
               </Link>
 
-              {/* 大会代表预报名 */}
+              {/* 大会代表报名 */}
               <Link href="/pprdmun/delegate">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold mb-4 text-primary hover:text-blue-500 transition-colors">大会代表预报名</h3>
-                    <p className="text-gray-600 mb-6">填写意愿信息，帮助我们更好地安排会议。</p>
-                    <div className="relative w-32 h-32 mx-auto">
-                      <Image
-                        src="/qrcode.png"
-                        alt="预报名二维码"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow h-full">
+                  <div className="p-8 flex flex-col h-full">
+                    <h3 className="text-2xl font-bold mb-4 text-primary hover:text-blue-500 transition-colors">大会代表报名</h3>
+                    <p className="text-gray-600 mb-6 flex-grow">查看大会报名方式、下载申请表及了解各会场信息。</p>
+                    <Link href="/pprdmun/delegate" className="text-blue-600 hover:text-blue-800 font-semibold">
+                      了解详情 →
+                    </Link>
                   </div>
                 </div>
               </Link>

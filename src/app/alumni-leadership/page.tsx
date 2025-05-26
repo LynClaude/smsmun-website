@@ -66,6 +66,106 @@ export default function AlumniLeadershipPage() {
         { position: '公共关系事务部高级顾问', name: '林卓烨', contact: '13316832860' },
         { position: '行政关系事务部高级顾问', name: '姚羽宸', contact: '15013890406' },
       ],
+    },
+    '2023-2024': {
+      secretariat: [
+        { position: '协会秘书长', name: '汪熙宸', contact: '13430485110' },
+        { position: '常务秘书长', name: '徐欣姸', contact: '13267238676' },
+        { position: '学术事务部副秘书长', name: '欧阳蓝豆', contact: '188202048521' },
+        { position: '学术事务部副秘书长', name: '聂卓远', contact: '18620390907' },
+        { position: '公共关系事务部副秘书长', name: '朱楚嫣', contact: '15815571058' },
+        { position: '公共关系事务部副秘书长', name: '官宸', contact: '18923883282' },
+        { position: '行政管理事务部副秘书长', name: '罗雨杰', contact: '15712077161' },
+        { position: '技术宣传事务部副秘书长', name: '曾雅淇', contact: '15989471606' },
+        { position: '技术宣传事务部副秘书长', name: '郭法诺', contact: '13528720595' },
+      ],
+      advisors: [
+        { position: '学术事务部高级顾问', name: '陆丽雅', contact: '18127082913' },
+        { position: '学术事务部高级顾问', name: '熊邦凯', contact: '18681520858' },
+        { position: '学术事务部高级顾问', name: '金溪言', contact: '13414135356' },
+        { position: '行政事务部高级顾问', name: '陈熠轩', contact: '13613032322' },
+        { position: '行政事务部高级顾问', name: '唐子奕', contact: '18126339644' },
+      ],
+    },
+    '2022-2023': {
+      secretariat: [
+        { position: '协会秘书长', name: '邓筌心', contact: '13501571621' },
+        { position: '常务秘书长', name: '李轶辰', contact: '18098904131' },
+        { position: '学术事务部副秘书长', name: '陈烁宇', contact: '137602470531' },
+        { position: '公共关系事务部副秘书长', name: '钟文畅', contact: '15112613183' },
+        { position: '公共关系事务部副秘书长', name: '吕偌涵', contact: '14775965969' },
+        { position: '行政管理事务部副秘书长', name: '魏琪臻', contact: '18098938989' },
+        { position: '技术宣传事务部副秘书长', name: '刘羽琪', contact: '159153044286' },
+      ],
+      advisors: [
+        { position: '学术事务部高级顾问', name: '赵宇轩', contact: '18682024821' },
+        { position: '学术事务部高级顾问', name: '张语倢', contact: '14774936035' },
+        { position: '公共关系事务部高级顾问', name: '许骞月', contact: '18344256961' },
+        { position: '公共关系事务部高级顾问', name: '何俊睿', contact: '15814016822' },
+        { position: '行政管理事务部高级顾问', name: '卫一凡', contact: '13418771644' },
+        { position: '行政管理事务部高级顾问', name: '王海琳', contact: '13713979063' },
+        { position: '技术宣传事务部高级顾问', name: '陈宇浩', contact: '18718569031' },
+        { position: '技术宣传事务部高级顾问', name: '陈诗漫', contact: '17302668563' },
+        { position: '技术宣传事务部高级顾问', name: '卓裕凯', contact: '13928492947' },
+        { position: '技术宣传事务部高级顾问', name: '余锦萱', contact: '18802686114' },
+        { position: '技术宣传事务部高级顾问', name: '陈晓晴', contact: '13430830148' },
+      ],
+    },
+    '2021-2022': {
+      secretariat: [
+        { position: '协会秘书长', name: '李安之', contact: '13310856680' },
+        { position: '常务秘书长', name: '许可臻', contact: '18680678549' },
+        { position: '学术事务部副秘书长', name: '张赫楠', contact: '13500066979' },
+        { position: '学术事务部副秘书长', name: '陈星润', contact: '13723445233' },
+        { position: '学术事务部副秘书长', name: '郑卓雅', contact: '19928790748' },
+        { position: '公共关系事务部副秘书长', name: '陈钟毓', contact: '13392864859' },
+        { position: '行政管理事务部副秘书长', name: '郑家豪', contact: '14774853137' },
+        { position: '技术宣传事务部副秘书长', name: '符慧子', contact: '18002527243' },
+      ],
+      advisors: [
+        { position: '学术事务部高级顾问', name: '王玺', contact: '13430489972' },
+        { position: '学术事务部高级顾问', name: '谢蕊希', contact: '13570816160' },
+        { position: '公共关系事务部高级顾问', name: '刘欣怡', contact: '13686415316' },
+        { position: '行政管理事务部高级顾问', name: '叶文骏', contact: '13684989336' },
+        { position: '行政管理事务部高级顾问', name: '尹嘉妮', contact: '13825255839' },
+        { position: '技术宣传事务部高级顾问', name: '花蓉', contact: '18028700809' },
+        { position: '技术宣传事务部高级顾问', name: '黄俊然', contact: '13612912528' },
+      ],
+    },
+    '2020-2021': {
+      secretariat: [
+        { position: '协会秘书长', name: '熊绍邵', contact: '13316953516' },
+        { position: '常务秘书长', name: '马静怡', contact: '18820901911' },
+        { position: '学术事务部副秘书长', name: '于诗暄', contact: '18902843124' },
+        { position: '公共关系事务部副秘书长', name: '张俊莹', contact: '18025856621' },
+        { position: '行政管理事务部副秘书长', name: '吴钰杰', contact: '13430748715' },
+        { position: '技术宣传事务部副秘书长', name: '叶馨', contact: '13620926279' },
+      ],
+      advisors: []
+    },
+    '2019-2020': {
+      secretariat: [
+        { position: '协会秘书长', name: '彭咏梅', contact: '13922813950' },
+        { position: '常务秘书长', name: '陈子意', contact: '18126295151' },
+        { position: '学术事务部副秘书长', name: '丁琳真', contact: '13609619136' },
+        { position: '行政管理事务部副秘书长', name: '肖继涵', contact: '118218809908' },
+        { position: '公共关系事务部副秘书长', name: '江坤彤', contact: '15815549583' },
+        { position: '公共关系事务部副秘书长', name: '魏雨熹', contact: '13612879225' },
+        { position: '技术宣传事务部副秘书长', name: '汪科', contact: '13682621702' },
+      ],
+      advisors: []
+    },
+    '2018-2019': {
+      secretariat: [
+        { position: '协会秘书长', name: '阙俊洁', contact: '13715107060' },
+        { position: '常务秘书长', name: '周可欣', contact: '15817337780' },
+        { position: '学术事务部副秘书长', name: '何思哲', contact: '15889573659' },
+        { position: '学术事务部副秘书长', name: '熊小语', contact: '13510258618' },
+        { position: '公共关系事务部副秘书长', name: '马骏祺', contact: '13828756244' },
+        { position: '行政管理事务部副秘书长', name: '邹励涵', contact: '13691874139' },
+        { position: '技术宣传事务部副秘书长', name: '伍奕峰', contact: '13699780920' },
+      ],
+      advisors: []
     }
   }
 

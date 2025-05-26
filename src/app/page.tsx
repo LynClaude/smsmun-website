@@ -39,14 +39,14 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 报名开始</h3>
-                <p className="text-gray-600 mb-4">泛珠三角模拟联合国大会2025年会现已开放报名，欢迎各位代表参加。</p>
+                <p className="text-gray-600 mb-4">第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与。请下载相关申请表，并于截止日期前提交。</p>
                 <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold">
                   了解更多 →
                 </Link>
               </div>
             </motion.div>
 
-            {/* 深中模联第二十届 */}
+            {/* PPRDMUN 2025 一轮通告 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -55,22 +55,27 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/logo.png"
-                  alt="深中模联第二十届"
+                  src="/announcement.jpg"
+                  alt="PPRDMUN 2025 一轮通告"
                   fill
-                  className="object-contain p-4 opacity-50"
+                  className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">暂未更新</h3>
-                <p className="text-gray-600 mb-4">敬请期待</p>
-                <span className="text-gray-400 font-semibold">
-                  即将发布 →
-                </span>
+                <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 一轮通告</h3>
+                <p className="text-gray-600 mb-4">2025PPRD一轮通告🇺🇳 内含大会会议设置、学术团队报名、学校及个人报名/学测</p>
+                <a 
+                  href="https://mp.weixin.qq.com/s/kLnpjWeEY6tQwvBIVlm0bw" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-blue-600 hover:text-blue-800 font-semibold"
+                >
+                  了解更多 →
+                </a>
               </div>
             </motion.div>
 
-            {/* 新一届学术团队招募 */}
+            {/* PPRDMUN 2025 会场组委专访 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -79,18 +84,23 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/logo.png"
-                  alt="新一届学术团队招募"
+                  src="/interview.jpg"
+                  alt="PPRDMUN 2025 会场组委专访"
                   fill
-                  className="object-contain p-4 opacity-50"
+                  className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">暂未更新</h3>
-                <p className="text-gray-600 mb-4">敬请期待</p>
-                <span className="text-gray-400 font-semibold">
-                  即将发布 →
-                </span>
+                <h3 className="text-2xl font-bold mb-2">2025PPRDMUN会场｜组委专访</h3>
+                <p className="text-gray-600 mb-4">"行远自迩，踵事增华。"为更好地介绍PPRDMUN2025，"泛珠模联"公众号特别推出专访栏目，邀请大会组委会对PPRDMUN2025的会议设计理念进行阐述。他们将对大会学术设计进行总体介绍。让我们一起看看吧~</p>
+                <a 
+                  href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-blue-600 hover:text-blue-800 font-semibold"
+                >
+                  了解详情 →
+                </a>
               </div>
             </motion.div>
           </div>
