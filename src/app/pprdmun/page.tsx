@@ -135,12 +135,10 @@ export default function PPRDMUNPage() {
                     <h4 className="text-xl font-semibold">委员会设置</h4>
                     <div className="text-gray-600 space-y-4">
                       <div>
-                        <p className="font-semibold mb-2">1. 双边谈判会场</p>
-                        <p className="text-sm opacity-90">2017加泰罗尼亚独立公投协调机制</p>
+                        <p className="font-semibold mb-2">1. 2017加泰罗尼亚独立公投协调机制双边会谈（BTCI）</p>
                       </div>
                       <div>
-                        <p className="font-semibold mb-2">2. 加泰罗尼亚执行委员会会场</p>
-                        <p className="text-sm opacity-90">2017加泰罗尼亚独立公投协调机制</p>
+                        <p className="font-semibold mb-2">2. 2017加泰罗尼亚独立公投协调机制加泰罗尼亚政府会场（CGM）</p>
                       </div>
                     </div>
                   </div>
