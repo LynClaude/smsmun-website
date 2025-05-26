@@ -166,6 +166,182 @@ export default function AlumniLeadershipPage() {
         { position: '技术宣传事务部副秘书长', name: '伍奕峰', contact: '13699780920' },
       ],
       advisors: []
+    },
+    '2017-2018': {
+      secretariat: [
+        { position: '协会秘书长', name: '廖宸婕', contact: '' },
+        { position: '协会秘书长', name: '胡熙祥', contact: '' },
+        { position: '学术总监', name: '王袁雨婷', contact: '' },
+        { position: '学术事务副秘书长', name: '刘羽丰', contact: '' },
+        { position: '学术事务副秘书长', name: '刘子沛', contact: '' },
+        { position: '行政管理副秘书长', name: '秦玥', contact: '' },
+        { position: '公共关系副秘书长', name: '程方舟', contact: '' },
+        { position: '技术宣传副秘书长', name: '胡天瑞', contact: '' },
+        { position: '赞助总监', name: '贺博', contact: '' },
+        { position: '英文组组长', name: '高睿', contact: '' },
+        { position: 'MPC组组长', name: '黄熙熹', contact: '' }
+      ],
+      advisors: []
+    },
+    '2016-2017': {
+      secretariat: [
+        { position: '协会秘书长', name: '陈晖瑶', contact: '' },
+        { position: '协会秘书长', name: '王袁雨婷', contact: '' },
+        { position: '学术总监', name: '邵卓涵', contact: '' },
+        { position: '学术事务副秘书长', name: '闭钰', contact: '' },
+        { position: '学术事务副秘书长', name: '廖泽威', contact: '' },
+        { position: '行政管理副秘书长', name: '刘贞均', contact: '' },
+        { position: '公共关系副秘书长', name: '蔡欣妮', contact: '' },
+        { position: '技术宣传副秘书长', name: '张续', contact: '' },
+        { position: '赞助总监', name: '乔小洋', contact: '' },
+        { position: '赞助总监', name: '史琮琪', contact: '' }
+      ],
+      advisors: []
+    },
+    '2015-2016': {
+      secretariat: [
+        { position: '协会秘书长', name: '姚天希', contact: '' },
+        { position: '协会秘书长', name: '邵卓涵', contact: '' },
+        { position: '学术总监', name: '李泽远', contact: '' },
+        { position: '学术事务副秘书长', name: '杨环', contact: '' },
+        { position: '学术事务副秘书长', name: '黄海依', contact: '' },
+        { position: '学术副总监', name: '周艺', contact: '' },
+        { position: '行政管理副秘书长', name: '丁明语', contact: '' },
+        { position: '公共关系副秘书长', name: '赵斯妤', contact: '' },
+        { position: '技术宣传副秘书长', name: '李俊辰', contact: '' },
+        { position: '赞助总监', name: '周雨萱', contact: '' }
+      ],
+      advisors: []
+    },
+    '2014-2015': {
+      secretariat: [
+        { position: '协会秘书长', name: '许雅', contact: '' },
+        { position: '协会秘书长', name: '李泽远', contact: '' },
+        { position: '学术总监', name: '潘星合', contact: '' },
+        { position: '学术事务副秘书长', name: '吕宇澄', contact: '' },
+        { position: '学术事务副秘书长', name: '吴泳瑱', contact: '' },
+        { position: '学术事务部英文组组长', name: '汤浩明', contact: '' },
+        { position: '行政管理副秘书长', name: '王逸宁', contact: '' },
+        { position: '公共关系副秘书长', name: '陈悦琳', contact: '' },
+        { position: '技术宣传副秘书长', name: '罗予希', contact: '' },
+        { position: '赞助总监', name: '林可欢', contact: '' }
+      ],
+      advisors: []
+    },
+    '2013-2014': {
+      secretariat: [
+        { position: '协会秘书长', name: '谢凌', contact: '' },
+        { position: '协会秘书长', name: '胡宇鹏', contact: '' },
+        { position: '学术总监', name: '夏侯佐瀚', contact: '' },
+        { position: '学术事务副秘书长', name: '冯昱善', contact: '' },
+        { position: '学术事务副秘书长', name: '林伟长', contact: '' },
+        { position: '行政管理副秘书长', name: '张一令', contact: '' },
+        { position: '公共关系副秘书长', name: '徐伊钒', contact: '' },
+        { position: '技术宣传副秘书长', name: '胡明玥', contact: '' }
+      ],
+      advisors: []
+    },
+    '2012-2013': {
+      secretariat: [
+        { position: '协会秘书长', name: '周苡宁', contact: '' },
+        { position: '学术总监', name: '罗善文', contact: '' },
+        { position: '学术事务副秘书长', name: '夏侯佐瀚', contact: '' },
+        { position: '学术事务副秘书长', name: '陈亮', contact: '' },
+        { position: '行政管理副秘书长', name: '廖锦怡', contact: '' },
+        { position: '公共关系副秘书长', name: '郑欣', contact: '' },
+        { position: '技术宣传副秘书长', name: '杨沛琦', contact: '' }
+      ],
+      advisors: []
+    },
+    '2011-2012': {
+      secretariat: [
+        { position: '协会秘书长', name: '周静月', contact: '' },
+        { position: '学术总监', name: '刘俣豪', contact: '' }
+      ],
+      advisors: []
+    },
+    '2010-2011': {
+      secretariat: [
+        { position: '协会秘书长', name: '孔天柔', contact: '' }
+      ],
+      advisors: []
+    },
+    '2009-2010': {
+      secretariat: [
+        { position: '协会秘书长', name: '潘韵竹', contact: '' },
+        { position: '行政事务副秘书长', name: '黄李鸣翠', contact: '' },
+        { position: '公共事务副秘书长', name: '朱尚然', contact: '' },
+        { position: '学术总监', name: '曹雨', contact: '' },
+        { position: '学术总监', name: '罗广彦', contact: '' },
+        { position: '财政总监', name: '陈文强', contact: '' },
+        { position: '协调总监', name: '杜宇昊', contact: '' },
+        { position: '精英资源司', name: '罗广彦', contact: '' },
+        { position: '精英资源司', name: '邢福珩', contact: '' },
+        { position: '内政事务司', name: '李惠康', contact: '' },
+        { position: '内政事务司', name: '石潘瑾欣', contact: '' },
+        { position: '公共关系司', name: '陈璐', contact: '' },
+        { position: '公共关系司', name: '赵武汉', contact: '' },
+        { position: '监督协调司', name: '刘竞佳', contact: '' },
+        { position: '技术宣传司', name: '彭俊熙', contact: '' },
+        { position: '技术宣传司', name: '曾洋洋', contact: '' }
+      ],
+      advisors: []
+    },
+    '2008-2009': {
+      secretariat: [
+        { position: '协会秘书长', name: '陈俊澎', contact: '' },
+        { position: '协会秘书长', name: '柳恋桃', contact: '' },
+        { position: '行政管理副秘书长', name: '郑伟杰', contact: '' },
+        { position: '公共事务副秘书长', name: '金晶', contact: '' },
+        { position: '公共关系总监', name: '柳恋桃', contact: '' },
+        { position: '行政管理总监', name: '郑伟杰', contact: '' },
+        { position: '学术总监', name: '李煜东', contact: '' },
+        { position: '学术总监', name: '刘国威', contact: '' },
+        { position: '艺术总监', name: '金晶', contact: '' },
+        { position: '社团总监', name: '杨璇', contact: '' },
+        { position: '公共关系司', name: '刘玮', contact: '' },
+        { position: '行政信息司', name: '郑筝', contact: '' },
+        { position: '精英资源司', name: '刘国威', contact: '' },
+        { position: '内政事务司', name: '郑伟杰', contact: '' },
+        { position: '技术资源司', name: '金晶', contact: '' }
+      ],
+      advisors: []
+    },
+    '2007-2008': {
+      secretariat: [
+        { position: '协会秘书长', name: '潘芳迪', contact: '' },
+        { position: '协会秘书长', name: '陈奕霖', contact: '' },
+        { position: '常务副秘书长', name: '万梦奇', contact: '' },
+        { position: '公共关系总监', name: '金小异', contact: '' },
+        { position: '公共关系司', name: '刘怿文', contact: '' },
+        { position: '公共关系司', name: '刘新', contact: '' },
+        { position: '行政管理司', name: '盛任之', contact: '' },
+        { position: '行政管理司', name: '古威鹏', contact: '' },
+        { position: '会议筹备司', name: '吴海成', contact: '' },
+        { position: '会议筹备司', name: '张炜昊', contact: '' },
+        { position: '会议筹备司', name: '陈恺丹', contact: '' },
+        { position: '培训事务司', name: '任其然', contact: '' },
+        { position: '社团负责人', name: '高文卿', contact: '' }
+      ],
+      advisors: [
+        { position: '顾问', name: '莫一夫', contact: '' },
+        { position: '顾问', name: '孔薇', contact: '' }
+      ]
+    },
+    '2005-2007': {
+      secretariat: [
+        { position: '秘书长', name: '莫一夫', contact: '' },
+        { position: '行政总监', name: '张演善', contact: '' },
+        { position: '公共关系总监', name: '马斯晓', contact: '' },
+        { position: '行政管理常务副秘书长', name: '杨泽华', contact: '' },
+        { position: '公共关系常务副秘书长', name: '顾正澄', contact: '' },
+        { position: '行政管理司司长', name: '陈奕霖', contact: '' },
+        { position: '宣传事务司司长', name: '潘芳迪', contact: '' },
+        { position: '对外联络司司长', name: '赵学思', contact: '' },
+        { position: '议程规划处理事', name: '吴海成', contact: '' },
+        { position: '申请事务处理事', name: '张炜昊', contact: '' }
+      ],
+      advisors: []
     }
   }
 
