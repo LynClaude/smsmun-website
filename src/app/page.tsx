@@ -43,7 +43,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 二轮通告</h3>
                   <p className="text-gray-600 mb-4">PPRDMUN2025第二轮通告🇺🇳 内含组委信息、主席团名单、学测提交提醒</p>
                   <a 
-                    href="https://mp.weixin.qq.com/s/kLnpjWeEY6tQwvBIVlm0bw" 
+                    href="https://mp.weixin.qq.com/s/GN_dAI6kytvnNq-pd3U-5A" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-blue-600 hover:text-blue-800 font-semibold"
