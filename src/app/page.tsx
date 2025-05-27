@@ -36,6 +36,7 @@ export default function Home() {
                     alt="PPRDMUN 2025 二轮通告"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
                 <div className="p-6">
@@ -52,7 +53,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* PPRDMUN 2025 报名开始 */}
+              {/* PPRDMUN 2025 会场组委专访 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -61,18 +62,23 @@ export default function Home() {
               >
                 <div className="relative h-48">
                   <Image
-                    src="/WechatIMG110.jpg"
-                    alt="PPRDMUN 2025"
+                    src="/interview.jpg"
+                    alt="PPRDMUN 2025 会场组委专访"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 报名开始</h3>
-                  <p className="text-gray-600 mb-4">第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与。请下载相关申请表，并于截止日期前提交。</p>
-                  <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold">
-                    了解更多 →
-                  </Link>
+                  <h3 className="text-2xl font-bold mb-2">2025PPRDMUN会场｜组委专访</h3>
+                  <p className="text-gray-600 mb-4">"行远自迩，踵事增华。"为更好地介绍PPRDMUN2025，"泛珠模联"公众号特别推出专访栏目，邀请大会组委会对PPRDMUN2025的会议设计理念进行阐述。他们将对大会学术设计进行总体介绍。让我们一起看看吧~</p>
+                  <a 
+                    href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-blue-600 hover:text-blue-800 font-semibold"
+                  >
+                    了解详情 →
+                  </a>
                 </div>
               </motion.div>
 
@@ -105,7 +111,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* PPRDMUN 2025 会场组委专访 */}
+              {/* PPRDMUN 2025 报名开始 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -114,23 +120,18 @@ export default function Home() {
               >
                 <div className="relative h-48">
                   <Image
-                    src="/interview.jpg"
-                    alt="PPRDMUN 2025 会场组委专访"
+                    src="/WechatIMG110.jpg"
+                    alt="PPRDMUN 2025"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">2025PPRDMUN会场｜组委专访</h3>
-                  <p className="text-gray-600 mb-4">"行远自迩，踵事增华。"为更好地介绍PPRDMUN2025，"泛珠模联"公众号特别推出专访栏目，邀请大会组委会对PPRDMUN2025的会议设计理念进行阐述。他们将对大会学术设计进行总体介绍。让我们一起看看吧~</p>
-                  <a 
-                    href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold"
-                  >
-                    了解详情 →
-                  </a>
+                  <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 报名开始</h3>
+                  <p className="text-gray-600 mb-4">第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与。请下载相关申请表，并于截止日期前提交。</p>
+                  <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold">
+                    了解更多 →
+                  </Link>
                 </div>
               </motion.div>
             </div>
