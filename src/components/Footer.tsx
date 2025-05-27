@@ -40,7 +40,16 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">相关链接</h3>
             <ul className="space-y-2">
-              <li>深圳中学公众号</li>
+              <li>
+                <a 
+                  href="https://www.shenzhong.net/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-primary transition-colors"
+                >
+                  深圳中学官网
+                </a>
+              </li>
             </ul>
           </div>
         </div>
