@@ -114,8 +114,8 @@ export default function PPRDMUNPage() {
                   <div className="space-y-4">
                     <h4 className="text-xl font-semibold">委员会设置</h4>
                     <div className="text-gray-600">
-                      <p className="font-semibold mb-2">美国参议院</p>
-                      <p className="text-sm opacity-90">模拟1919年美国参议院就第十九修正案进行的历史性辩论与表决，重现这一改变美国政治格局的关键时刻。</p>
+                      <p className="font-semibold mb-2">1919年美国第66届参议院司法委员会</p>
+                      <p className="text-sm opacity-90">模拟1919年美国第66届参议院司法委员会就第十九修正案进行的历史性辩论与表决，重现这一改变美国政治格局的关键时刻。</p>
                     </div>
                   </div>
                 </div>
