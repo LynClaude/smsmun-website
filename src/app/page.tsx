@@ -34,10 +34,10 @@ export default function Home() {
                   <Image
                     src="/二轮通告.jpg"
                     alt="PPRDMUN 2025 二轮通告"
-                    fill
-                    className="object-cover"
+                    width={400}
+                    height={192}
+                    className="object-cover w-full h-full"
                     priority
-                    unoptimized
                   />
                 </div>
                 <div className="p-6">
