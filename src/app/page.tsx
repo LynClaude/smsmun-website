@@ -32,7 +32,7 @@ export default function Home() {
               >
                 <div className="relative h-48">
                   <Image
-                    src="/二轮通告.jpg"
+                    src="/2025年泛珠三角高中生模拟联合国大会 (192 x 108 mm).png"
                     alt="PPRDMUN 2025 二轮通告"
                     width={400}
                     height={192}
