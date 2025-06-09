@@ -31,13 +31,10 @@ export default function Home() {
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
               >
                 <div className="relative h-48">
-                  <Image
+                  <img
                     src="/2025年泛珠三角高中生模拟联合国大会 (192 x 108 mm).png"
                     alt="PPRDMUN 2025 二轮通告"
-                    width={400}
-                    height={192}
-                    className="object-cover w-full h-full"
-                    priority
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-6">
