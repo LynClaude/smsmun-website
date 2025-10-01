@@ -1,16 +1,16 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About Us",
-    "alumni_leadership": "Alumni Leadership",
+    "about": "About",
+    "alumni_leadership": "Leadership",
     "pprdmun": "PPRDMUN",
-    "events": "Events & Projects",
-    "alumni_network": "Alumni Network",
+    "events": "Events",
+    "alumni_network": "Alumni",
     "resources": "Resources",
     "login": "Login",
-    "open_menu": "Open main menu",
+    "open_menu": "Open menu",
     "close_menu": "Close menu",
-    "select_language": "Select Language"
+    "select_language": "Language"
   },
   "site": {
     "title": "Shenzhen Middle School Model United Nations",
@@ -20,13 +20,13 @@
   },
   "hero": {
     "title_line1": "Shenzhen Middle School",
-    "title_line2": "Model United Nations Association Welcomes You",
-    "description": "As one of the most influential student organizations at Shenzhen Middle School, we are committed to cultivating young talents with international perspectives, outstanding leadership, and profound humanistic literacy. Through Model United Nations conferences and international exchanges, we provide students with a professional platform to explore international affairs and exercise diplomatic skills."
+    "title_line2": "Model UN Association Welcomes You",
+    "description": "As one of the most influential student organizations at Shenzhen Middle School, we are committed to cultivating young talents with international perspectives, outstanding leadership, and profound humanistic literacy. Through Model UN conferences and international exchanges, we provide students with a professional platform to explore international affairs and exercise diplomatic skills."
   },
   "home": {
     "latest_news": "Latest News",
     "learn_more": "Learn More",
-    "learn_details": "Learn Details",
+    "learn_details": "Details",
     "news1_title": "PPRDMUN 2025 Second Announcement",
     "news1_desc": "PPRDMUN 2025 Second Announcement 🇺🇳 Contains organizing committee information, chair list, and academic test submission reminder",
     "news2_title": "PPRDMUN 2025 Committee Interview",
@@ -41,10 +41,53 @@
     "szmun_wechat": "SMSMUN WeChat",
     "pprdmun_wechat": "PPRDMUN WeChat",
     "about_us": "About Us",
-    "club_intro": "Club Introduction",
+    "club_intro": "Introduction",
     "contact": "Contact",
     "join_us": "Join Us (Coming Soon)",
-    "related_links": "Related Links",
-    "sms_website": "Shenzhen Middle School Official Website"
+    "related_links": "Links",
+    "sms_website": "SMS Official Website"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "SMSMUN, United for a Better World",
+    "intro_title": "Introduction",
+    "intro_content": "SMSMUN is one of the most influential student organizations at Shenzhen Middle School. We are committed to cultivating young talents with international perspectives, outstanding leadership, and profound humanistic literacy. Through Model UN conferences and international exchanges, we provide students with a professional platform to explore international affairs and exercise diplomatic skills."
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "The 16th Pan-Pearl River Delta Model United Nations Conference is one of the most influential MUN conferences in South China. This conference will continue to uphold the philosophy of \"peace, development, cooperation, and win-win\" to provide students with a professional platform to demonstrate diplomatic talents and enhance international understanding.",
+    "conference_info": "Conference Information",
+    "time": "Time: Mid-July 2025",
+    "location": "Location: Shenzhen Middle School (Nigang Campus)",
+    "language": "Language: Chinese/English",
+    "organizer": "Organizer: SMSMUN Association",
+    "welcome_letter": "Welcome Letter",
+    "click_open": "Click to Open",
+    "committees": "Committees",
+    "english_committee": "English Committee - 19th Amendment",
+    "chinese_committee": "Chinese Committee - Catalonia Referendum",
+    "topic_background": "Background",
+    "committee_setup": "Setup",
+    "press_center": "Press Center",
+    "chinese_press": "Chinese Press",
+    "english_press": "English Press",
+    "related_docs": "Documents",
+    "conduct_rules": "Code of Conduct",
+    "conduct_desc": "Conference safety policies, delegate code of conduct, and academic team member behavior guidelines.",
+    "academic_team": "Academic Team",
+    "academic_desc": "Early registration for academic team members with priority interview opportunities.",
+    "delegate_registration": "Registration",
+    "delegate_desc": "View registration methods, download application forms, and learn about committee information."
+  },
+  "alumni": {
+    "title": "Leadership",
+    "select_year": "Select Year",
+    "leadership_members": "Members",
+    "secretariat": "Secretariat",
+    "advisors": "Advisors",
+    "no_data": "No data available for this year",
+    "position": "Position",
+    "name": "Name",
+    "contact": "Contact"
   }
 } 

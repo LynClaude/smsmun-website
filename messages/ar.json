@@ -1,16 +1,16 @@
 {
   "nav": {
     "home": "الرئيسية",
-    "about": "من نحن",
-    "alumni_leadership": "قيادة الخريجين",
+    "about": "عنا",
+    "alumni_leadership": "القيادة",
     "pprdmun": "PPRDMUN",
-    "events": "الفعاليات والمشاريع",
-    "alumni_network": "شبكة الخريجين",
+    "events": "الفعاليات",
+    "alumni_network": "الخريجون",
     "resources": "الموارد",
-    "login": "تسجيل الدخول",
-    "open_menu": "فتح القائمة الرئيسية",
-    "close_menu": "إغلاق القائمة",
-    "select_language": "اختر اللغة"
+    "login": "دخول",
+    "open_menu": "فتح",
+    "close_menu": "إغلاق",
+    "select_language": "اللغة"
   },
   "site": {
     "title": "نموذج الأمم المتحدة لمدرسة شنتشن الثانوية",
@@ -44,7 +44,26 @@
     "club_intro": "مقدمة النادي",
     "contact": "اتصل بنا",
     "join_us": "انضم إلينا (قريباً)",
-    "related_links": "روابط ذات صلة",
-    "sms_website": "الموقع الرسمي لمدرسة شنتشن الثانوية"
+    "related_links": "روابط",
+    "sms_website": "موقع SMS الرسمي"
+  },
+  "about": {
+    "title": "عنا",
+    "subtitle": "SMSMUN، متحدون من أجل عالم أفضل",
+    "intro_title": "مقدمة",
+    "intro_content": "SMSMUN هي واحدة من أكثر المنظمات الطلابية تأثيراً. نحن نُنمي المواهب الشابة بآفاق دولية وقيادة متميزة وثقافة إنسانية عميقة."
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "المؤتمر السادس عشر هو أحد أكثر المؤتمرات تأثيراً في جنوب الصين.",
+    "conference_info": "معلومات",
+    "committees": "اللجان",
+    "related_docs": "وثائق"
+  },
+  "alumni": {
+    "title": "القيادة",
+    "secretariat": "الأمانة",
+    "advisors": "المستشارون",
+    "leadership_members": "الأعضاء"
   }
 } 

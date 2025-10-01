@@ -1,16 +1,16 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre nosotros",
-    "alumni_leadership": "Liderazgo de exalumnos",
+    "about": "Acerca",
+    "alumni_leadership": "Liderazgo",
     "pprdmun": "PPRDMUN",
-    "events": "Eventos y proyectos",
-    "alumni_network": "Red de exalumnos",
+    "events": "Eventos",
+    "alumni_network": "Exalumnos",
     "resources": "Recursos",
-    "login": "Iniciar sesión",
-    "open_menu": "Abrir menú principal",
-    "close_menu": "Cerrar menú",
-    "select_language": "Seleccionar idioma"
+    "login": "Entrar",
+    "open_menu": "Abrir",
+    "close_menu": "Cerrar",
+    "select_language": "Idioma"
   },
   "site": {
     "title": "Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen",
@@ -44,7 +44,26 @@
     "club_intro": "Presentación del club",
     "contact": "Contacto",
     "join_us": "Únete a nosotros (Próximamente)",
-    "related_links": "Enlaces relacionados",
-    "sms_website": "Sitio web oficial de la Escuela Secundaria de Shenzhen"
+    "related_links": "Enlaces",
+    "sms_website": "Sitio oficial SMS"
+  },
+  "about": {
+    "title": "Acerca",
+    "subtitle": "SMSMUN, Unidos por un mundo mejor",
+    "intro_title": "Presentación",
+    "intro_content": "SMSMUN es una de las organizaciones estudiantiles más influyentes. Cultivamos jóvenes talentos con perspectivas internacionales, liderazgo excepcional y cultura humanística profunda."
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "La 16ª Conferencia es una de las más influyentes en el sur de China.",
+    "conference_info": "Información",
+    "committees": "Comités",
+    "related_docs": "Documentos"
+  },
+  "alumni": {
+    "title": "Liderazgo",
+    "secretariat": "Secretaría",
+    "advisors": "Asesores",
+    "leadership_members": "Miembros"
   }
 } 

@@ -2,15 +2,15 @@
   "nav": {
     "home": "Главная",
     "about": "О нас",
-    "alumni_leadership": "Руководство выпускников",
+    "alumni_leadership": "Руководство",
     "pprdmun": "PPRDMUN",
-    "events": "События и проекты",
-    "alumni_network": "Сеть выпускников",
+    "events": "События",
+    "alumni_network": "Выпускники",
     "resources": "Ресурсы",
     "login": "Войти",
-    "open_menu": "Открыть главное меню",
-    "close_menu": "Закрыть меню",
-    "select_language": "Выбрать язык"
+    "open_menu": "Открыть",
+    "close_menu": "Закрыть",
+    "select_language": "Язык"
   },
   "site": {
     "title": "Модель ООН средней школы Шэньчжэня",
@@ -44,7 +44,26 @@
     "club_intro": "Презентация клуба",
     "contact": "Контакты",
     "join_us": "Присоединяйтесь к нам (Скоро)",
-    "related_links": "Связанные ссылки",
-    "sms_website": "Официальный сайт средней школы Шэньчжэня"
+    "related_links": "Ссылки",
+    "sms_website": "Сайт SMS"
+  },
+  "about": {
+    "title": "О нас",
+    "subtitle": "SMSMUN, Объединены ради лучшего мира",
+    "intro_title": "Презентация",
+    "intro_content": "SMSMUN - одна из самых влиятельных студенческих организаций. Мы воспитываем молодые таланты с международными перспективами, выдающимся лидерством и глубокой гуманистической культурой."
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "16-я Конференция - одна из самых влиятельных в Южном Китае.",
+    "conference_info": "Информация",
+    "committees": "Комитеты",
+    "related_docs": "Документы"
+  },
+  "alumni": {
+    "title": "Руководство",
+    "secretariat": "Секретариат",
+    "advisors": "Советники",
+    "leadership_members": "Члены"
   }
 } 

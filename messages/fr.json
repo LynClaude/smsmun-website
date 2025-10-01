@@ -2,15 +2,15 @@
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "alumni_leadership": "Direction des anciens",
+    "alumni_leadership": "Direction",
     "pprdmun": "PPRDMUN",
-    "events": "Événements et projets",
-    "alumni_network": "Réseau des anciens",
+    "events": "Événements",
+    "alumni_network": "Anciens",
     "resources": "Ressources",
     "login": "Connexion",
-    "open_menu": "Ouvrir le menu principal",
-    "close_menu": "Fermer le menu",
-    "select_language": "Choisir la langue"
+    "open_menu": "Ouvrir",
+    "close_menu": "Fermer",
+    "select_language": "Langue"
   },
   "site": {
     "title": "Modèle des Nations Unies du Collège de Shenzhen",
@@ -44,7 +44,26 @@
     "club_intro": "Présentation du club",
     "contact": "Contact",
     "join_us": "Rejoignez-nous (Bientôt disponible)",
-    "related_links": "Liens connexes",
-    "sms_website": "Site officiel du Collège de Shenzhen"
+    "related_links": "Liens",
+    "sms_website": "Site officiel SMS"
+  },
+  "about": {
+    "title": "À propos",
+    "subtitle": "SMSMUN, Unis pour un monde meilleur",
+    "intro_title": "Présentation",
+    "intro_content": "SMSMUN est l'une des organisations étudiantes les plus influentes. Nous cultivons de jeunes talents avec perspectives internationales, leadership exceptionnel et culture humaniste profonde."
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "La 16e Conférence est l'une des plus influentes en Chine du Sud.",
+    "conference_info": "Informations",
+    "committees": "Comités",
+    "related_docs": "Documents"
+  },
+  "alumni": {
+    "title": "Direction",
+    "secretariat": "Secrétariat",
+    "advisors": "Conseillers",
+    "leadership_members": "Membres"
   }
 } 

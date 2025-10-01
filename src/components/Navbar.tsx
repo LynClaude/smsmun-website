@@ -55,12 +55,12 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-8 lg:ml-32">
+        <div className="hidden lg:flex lg:gap-x-4 xl:gap-x-6 lg:ml-8 xl:ml-16">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
+              className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
             >
               {item.name}
             </Link>

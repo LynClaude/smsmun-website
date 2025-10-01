@@ -53,6 +53,25 @@ interface Messages {
     related_links: string
     sms_website: string
   }
+  about: {
+    title: string
+    subtitle: string
+    intro_title: string
+    intro_content: string
+  }
+  pprdmun: {
+    title: string
+    description: string
+    conference_info: string
+    committees: string
+    related_docs: string
+  }
+  alumni: {
+    title: string
+    secretariat: string
+    advisors: string
+    leadership_members: string
+  }
 }
 
 interface I18nContextType {

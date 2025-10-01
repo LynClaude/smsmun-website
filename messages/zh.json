@@ -46,5 +46,48 @@
     "join_us": "加入我们（敬请期待）",
     "related_links": "相关链接",
     "sms_website": "深圳中学官网"
+  },
+  "about": {
+    "title": "关于我们",
+    "subtitle": "深中模联，为更美好之世界而联合",
+    "intro_title": "社团简介",
+    "intro_content": "深圳中学模拟联合国协会是深圳中学最具影响力的学生组织之一。我们致力于培养具有国际视野、卓越领导力和深厚人文素养的青年人才。通过模拟联合国会议、国际交流等活动，为学生提供探索国际事务、锻炼外交能力的专业平台。"
+  },
+  "pprdmun": {
+    "title": "PPRDMUN 2025",
+    "description": "第十六届泛珠三角模拟联合国大会是华南地区最具影响力的模联会议之一。本届大会将继续秉承\"和平、发展、合作、共赢\"的理念，为各校学生提供一个展示外交才能、增进国际理解的专业平台。",
+    "conference_info": "大会信息",
+    "time": "举办时间：2025年7月中旬",
+    "location": "举办地点：深圳中学（泥岗校区）",
+    "language": "会议语言：中文/英文",
+    "organizer": "主办方：深圳中学模拟联合国协会",
+    "welcome_letter": "欢迎信",
+    "click_open": "点击打开欢迎信",
+    "committees": "委员会设置",
+    "english_committee": "英文特殊委员会 - 美国宪法第十九修正案",
+    "chinese_committee": "中文委员会 - 加泰罗尼亚公投",
+    "topic_background": "议题背景",
+    "committee_setup": "委员会设置",
+    "press_center": "主新闻中心",
+    "chinese_press": "中文新闻中心",
+    "english_press": "英文新闻中心",
+    "related_docs": "相关文件",
+    "conduct_rules": "风纪与行为条例",
+    "conduct_desc": "大会安全政策、代表风纪与行为守则、学术团队成员行为守则等重要规定。",
+    "academic_team": "学术团队预报名",
+    "academic_desc": "提前开放学术团队成员报名，获得优先面试机会。",
+    "delegate_registration": "大会代表报名",
+    "delegate_desc": "查看大会报名方式、下载申请表及了解各会场信息。"
+  },
+  "alumni": {
+    "title": "历届高层",
+    "select_year": "选择年份",
+    "leadership_members": "高层成员",
+    "secretariat": "秘书处",
+    "advisors": "高级顾问",
+    "no_data": "该年份的数据暂未收录",
+    "position": "职位",
+    "name": "姓名",
+    "contact": "联系方式"
   }
 } 
