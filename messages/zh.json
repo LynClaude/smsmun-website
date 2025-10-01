@@ -17,5 +17,34 @@
     "description": "深圳中学模拟联合国协会官方网站",
     "name_full": "深圳中学模拟联合国协会",
     "name_short": "深中模联"
+  },
+  "hero": {
+    "title_line1": "深圳中学",
+    "title_line2": "模拟联合国协会欢迎您",
+    "description": "作为深圳中学最具影响力的学生组织之一，我们致力于培养具有国际视野、卓越领导力和深厚人文素养的青年人才。通过模拟联合国会议、国际交流等活动，为学生提供探索国际事务、锻炼外交能力的专业平台。"
+  },
+  "home": {
+    "latest_news": "最新动态",
+    "learn_more": "了解更多",
+    "learn_details": "了解详情",
+    "news1_title": "PPRDMUN 2025 二轮通告",
+    "news1_desc": "PPRDMUN2025第二轮通告🇺🇳 内含组委信息、主席团名单、学测提交提醒",
+    "news2_title": "2025PPRDMUN会场｜组委专访",
+    "news2_desc": "\"行远自迩，踵事增华。\"为更好地介绍PPRDMUN2025，\"泛珠模联\"公众号特别推出专访栏目，邀请大会组委会对PPRDMUN2025的会议设计理念进行阐述。他们将对大会学术设计进行总体介绍。让我们一起看看吧~",
+    "news3_title": "PPRDMUN 2025 一轮通告",
+    "news3_desc": "2025PPRD一轮通告🇺🇳 内含大会会议设置、学术团队报名、学校及个人报名/学测",
+    "news4_title": "PPRDMUN 2025 报名开始",
+    "news4_desc": "第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与。请下载相关申请表，并于截止日期前提交。"
+  },
+  "footer": {
+    "social_media": "社交媒体",
+    "szmun_wechat": "深中模联公众号",
+    "pprdmun_wechat": "泛珠模联公众号",
+    "about_us": "关于我们",
+    "club_intro": "社团简介",
+    "contact": "联系方式",
+    "join_us": "加入我们（敬请期待）",
+    "related_links": "相关链接",
+    "sms_website": "深圳中学官网"
   }
 } 

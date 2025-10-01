@@ -15,7 +15,36 @@
   "site": {
     "title": "Shenzhen Middle School Model United Nations",
     "description": "Official website of Shenzhen Middle School Model United Nations Association",
-    "name_full": "SZMUN Association",
-    "name_short": "SZMUN"
+    "name_full": "SMSMUN Association",
+    "name_short": "SMSMUN"
+  },
+  "hero": {
+    "title_line1": "Shenzhen Middle School",
+    "title_line2": "Model United Nations Association Welcomes You",
+    "description": "As one of the most influential student organizations at Shenzhen Middle School, we are committed to cultivating young talents with international perspectives, outstanding leadership, and profound humanistic literacy. Through Model United Nations conferences and international exchanges, we provide students with a professional platform to explore international affairs and exercise diplomatic skills."
+  },
+  "home": {
+    "latest_news": "Latest News",
+    "learn_more": "Learn More",
+    "learn_details": "Learn Details",
+    "news1_title": "PPRDMUN 2025 Second Announcement",
+    "news1_desc": "PPRDMUN 2025 Second Announcement 🇺🇳 Contains organizing committee information, chair list, and academic test submission reminder",
+    "news2_title": "PPRDMUN 2025 Committee Interview",
+    "news2_desc": "\"Progress comes from persistence.\" To better introduce PPRDMUN 2025, we specially launched an interview series, inviting the organizing committee to elaborate on the conference design concept and provide an overall introduction to the academic design.",
+    "news3_title": "PPRDMUN 2025 First Announcement",
+    "news3_desc": "PPRDMUN 2025 First Announcement 🇺🇳 Contains conference setup, academic team registration, school and individual registration/academic test",
+    "news4_title": "PPRDMUN 2025 Registration Open",
+    "news4_desc": "The 16th Pan-Pearl River Delta Model United Nations Conference is now open for registration. Students from all schools are welcome to participate. Please download the relevant application forms and submit them before the deadline."
+  },
+  "footer": {
+    "social_media": "Social Media",
+    "szmun_wechat": "SMSMUN WeChat",
+    "pprdmun_wechat": "PPRDMUN WeChat",
+    "about_us": "About Us",
+    "club_intro": "Club Introduction",
+    "contact": "Contact",
+    "join_us": "Join Us (Coming Soon)",
+    "related_links": "Related Links",
+    "sms_website": "Shenzhen Middle School Official Website"
   }
 } 

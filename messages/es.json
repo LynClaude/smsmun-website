@@ -15,7 +15,36 @@
   "site": {
     "title": "Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen",
     "description": "Sitio web oficial de la Asociación del Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen",
-    "name_full": "Asociación SZMUN",
-    "name_short": "SZMUN"
+    "name_full": "Asociación SMSMUN",
+    "name_short": "SMSMUN"
+  },
+  "hero": {
+    "title_line1": "Escuela Secundaria de Shenzhen",
+    "title_line2": "La Asociación del Modelo de Naciones Unidas le da la bienvenida",
+    "description": "Como una de las organizaciones estudiantiles más influyentes de la Escuela Secundaria de Shenzhen, nos comprometemos a cultivar jóvenes talentos con perspectivas internacionales, liderazgo excepcional y profunda cultura humanística. A través de conferencias del Modelo de Naciones Unidas e intercambios internacionales, proporcionamos a los estudiantes una plataforma profesional para explorar asuntos internacionales y ejercitar habilidades diplomáticas."
+  },
+  "home": {
+    "latest_news": "Últimas noticias",
+    "learn_more": "Saber más",
+    "learn_details": "Ver detalles",
+    "news1_title": "PPRDMUN 2025 Segundo anuncio",
+    "news1_desc": "PPRDMUN 2025 Segundo anuncio 🇺🇳 Contiene información del comité organizador, lista de presidentes y recordatorio de presentación de prueba académica",
+    "news2_title": "PPRDMUN 2025 Entrevista al comité",
+    "news2_desc": "Para presentar mejor PPRDMUN 2025, lanzamos una serie de entrevistas, invitando al comité organizador a explicar el concepto de diseño de la conferencia y proporcionar una introducción general al diseño académico.",
+    "news3_title": "PPRDMUN 2025 Primer anuncio",
+    "news3_desc": "PPRDMUN 2025 Primer anuncio 🇺🇳 Contiene la configuración de la conferencia, inscripción del equipo académico, inscripción de escuelas e individuos/prueba académica",
+    "news4_title": "PPRDMUN 2025 Inscripción abierta",
+    "news4_desc": "La 16ª Conferencia del Modelo de Naciones Unidas del Delta del Río de las Perlas ya está abierta para inscripciones. Los estudiantes de todas las escuelas son bienvenidos a participar. Descargue los formularios de solicitud relevantes y envíelos antes de la fecha límite."
+  },
+  "footer": {
+    "social_media": "Redes sociales",
+    "szmun_wechat": "WeChat SMSMUN",
+    "pprdmun_wechat": "WeChat PPRDMUN",
+    "about_us": "Sobre nosotros",
+    "club_intro": "Presentación del club",
+    "contact": "Contacto",
+    "join_us": "Únete a nosotros (Próximamente)",
+    "related_links": "Enlaces relacionados",
+    "sms_website": "Sitio web oficial de la Escuela Secundaria de Shenzhen"
   }
 } 

@@ -24,6 +24,35 @@ interface Messages {
     name_full: string
     name_short: string
   }
+  hero: {
+    title_line1: string
+    title_line2: string
+    description: string
+  }
+  home: {
+    latest_news: string
+    learn_more: string
+    learn_details: string
+    news1_title: string
+    news1_desc: string
+    news2_title: string
+    news2_desc: string
+    news3_title: string
+    news3_desc: string
+    news4_title: string
+    news4_desc: string
+  }
+  footer: {
+    social_media: string
+    szmun_wechat: string
+    pprdmun_wechat: string
+    about_us: string
+    club_intro: string
+    contact: string
+    join_us: string
+    related_links: string
+    sms_website: string
+  }
 }
 
 interface I18nContextType {
@@ -62,12 +91,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }
 
   if (!messages) {
-    return null // 或者显示加载中状态
+    return <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-pulse text-gray-400">Loading...</div>
+    </div>
   }
 
   return (
     <I18nContext.Provider value={{ locale, messages, setLocale }}>
-      {children}
+      <div dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        {children}
+      </div>
     </I18nContext.Provider>
   )
 }

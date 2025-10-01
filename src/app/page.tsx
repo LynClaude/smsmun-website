@@ -5,8 +5,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
 import PageTransition from '@/components/PageTransition'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Home() {
+  const { messages } = useI18n()
   return (
     <PageTransition>
       <Hero />
@@ -16,10 +18,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold mb-12 text-center"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center"
             style={{ fontFamily: "'Noto Serif SC', serif" }}
           >
-            最新动态
+            {messages.home.latest_news}
           </motion.h2>
           <div className="overflow-x-auto pb-4">
             <div className="flex space-x-8 min-w-max px-4">
@@ -38,15 +40,15 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 二轮通告</h3>
-                  <p className="text-gray-600 mb-4">PPRDMUN2025第二轮通告🇺🇳 内含组委信息、主席团名单、学测提交提醒</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news1_title}</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news1_desc}</p>
                   <a 
                     href="https://mp.weixin.qq.com/s/GN_dAI6kytvnNq-pd3U-5A" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold"
+                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
                   >
-                    了解更多 →
+                    {messages.home.learn_more} →
                   </a>
                 </div>
               </motion.div>
@@ -67,15 +69,15 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">2025PPRDMUN会场｜组委专访</h3>
-                  <p className="text-gray-600 mb-4">"行远自迩，踵事增华。"为更好地介绍PPRDMUN2025，"泛珠模联"公众号特别推出专访栏目，邀请大会组委会对PPRDMUN2025的会议设计理念进行阐述。他们将对大会学术设计进行总体介绍。让我们一起看看吧~</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news2_title}</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news2_desc}</p>
                   <a 
                     href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold"
+                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
                   >
-                    了解详情 →
+                    {messages.home.learn_details} →
                   </a>
                 </div>
               </motion.div>
@@ -96,15 +98,15 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 一轮通告</h3>
-                  <p className="text-gray-600 mb-4">2025PPRD一轮通告🇺🇳 内含大会会议设置、学术团队报名、学校及个人报名/学测</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news3_title}</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news3_desc}</p>
                   <a 
                     href="https://mp.weixin.qq.com/s/kLnpjWeEY6tQwvBIVlm0bw" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold"
+                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
                   >
-                    了解更多 →
+                    {messages.home.learn_more} →
                   </a>
                 </div>
               </motion.div>
@@ -125,10 +127,10 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">PPRDMUN 2025 报名开始</h3>
-                  <p className="text-gray-600 mb-4">第十六届泛珠三角模拟联合国大会现已开放报名，欢迎各校学生参与。请下载相关申请表，并于截止日期前提交。</p>
-                  <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold">
-                    了解更多 →
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news4_title}</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news4_desc}</p>
+                  <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base">
+                    {messages.home.learn_more} →
                   </Link>
                 </div>
               </motion.div>

@@ -15,7 +15,36 @@
   "site": {
     "title": "Modèle des Nations Unies du Collège de Shenzhen",
     "description": "Site officiel de l'Association du Modèle des Nations Unies du Collège de Shenzhen",
-    "name_full": "Association SZMUN",
-    "name_short": "SZMUN"
+    "name_full": "Association SMSMUN",
+    "name_short": "SMSMUN"
+  },
+  "hero": {
+    "title_line1": "Collège de Shenzhen",
+    "title_line2": "L'Association du Modèle des Nations Unies vous souhaite la bienvenue",
+    "description": "En tant que l'une des organisations étudiantes les plus influentes du Collège de Shenzhen, nous nous engageons à cultiver de jeunes talents dotés de perspectives internationales, d'un leadership exceptionnel et d'une profonde culture humaniste. À travers les conférences du Modèle des Nations Unies et les échanges internationaux, nous offrons aux étudiants une plateforme professionnelle pour explorer les affaires internationales et exercer leurs compétences diplomatiques."
+  },
+  "home": {
+    "latest_news": "Dernières nouvelles",
+    "learn_more": "En savoir plus",
+    "learn_details": "Détails",
+    "news1_title": "PPRDMUN 2025 Deuxième annonce",
+    "news1_desc": "PPRDMUN 2025 Deuxième annonce 🇺🇳 Contient les informations du comité d'organisation, la liste des présidents et le rappel de soumission du test académique",
+    "news2_title": "PPRDMUN 2025 Entretien avec le comité",
+    "news2_desc": "Pour mieux présenter PPRDMUN 2025, nous avons lancé une série d'entretiens, invitant le comité d'organisation à présenter le concept de conception de la conférence et à fournir une introduction générale à la conception académique.",
+    "news3_title": "PPRDMUN 2025 Première annonce",
+    "news3_desc": "PPRDMUN 2025 Première annonce 🇺🇳 Contient la configuration de la conférence, l'inscription de l'équipe académique, l'inscription des écoles et des individus/test académique",
+    "news4_title": "PPRDMUN 2025 Inscription ouverte",
+    "news4_desc": "La 16e Conférence du Modèle des Nations Unies du Delta de la Rivière des Perles est maintenant ouverte aux inscriptions. Les étudiants de toutes les écoles sont les bienvenus. Veuillez télécharger les formulaires de demande pertinents et les soumettre avant la date limite."
+  },
+  "footer": {
+    "social_media": "Médias sociaux",
+    "szmun_wechat": "WeChat SMSMUN",
+    "pprdmun_wechat": "WeChat PPRDMUN",
+    "about_us": "À propos de nous",
+    "club_intro": "Présentation du club",
+    "contact": "Contact",
+    "join_us": "Rejoignez-nous (Bientôt disponible)",
+    "related_links": "Liens connexes",
+    "sms_website": "Site officiel du Collège de Shenzhen"
   }
 } 

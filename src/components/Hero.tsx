@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Hero() {
+  const { messages } = useI18n()
   const [currentImage, setCurrentImage] = useState(0)
   const [showArrow, setShowArrow] = useState(true)
   const images = ['/123.jpg', '/456.jpg']
@@ -84,23 +86,23 @@ export default function Hero() {
             className="text-white space-y-8"
           >
             <h1 
-              className="text-4xl md:text-6xl font-bold leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight"
               style={{ 
                 fontFamily: "'Noto Serif SC', serif",
                 fontWeight: '700',
                 textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
               }}
             >
-              <span className="block mb-2">深圳中学</span>
-              <span className="block">模拟联合国协会欢迎您</span>
-        </h1>
+              <span className="block mb-2">{messages.hero.title_line1}</span>
+              <span className="block">{messages.hero.title_line2}</span>
+            </h1>
             <p 
-              className="text-base md:text-lg leading-relaxed opacity-90"
+              className="text-sm md:text-base lg:text-lg leading-relaxed opacity-90"
               style={{
                 fontFamily: "'Noto Serif SC', serif"
               }}
             >
-              作为深圳中学最具影响力的学生组织之一，我们致力于培养具有国际视野、卓越领导力和深厚人文素养的青年人才。通过模拟联合国会议、国际交流等活动，为学生提供探索国际事务、锻炼外交能力的专业平台。
+              {messages.hero.description}
             </p>
           </motion.div>
         </div>
