@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre nosotros",
+    "alumni_leadership": "Liderazgo de exalumnos",
+    "pprdmun": "PPRDMUN",
+    "events": "Eventos y proyectos",
+    "alumni_network": "Red de exalumnos",
+    "resources": "Recursos",
+    "login": "Iniciar sesión",
+    "open_menu": "Abrir menú principal",
+    "close_menu": "Cerrar menú",
+    "select_language": "Seleccionar idioma"
+  },
+  "site": {
+    "title": "Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen",
+    "description": "Sitio web oficial de la Asociación del Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen",
+    "name_full": "Asociación SZMUN",
+    "name_short": "SZMUN"
+  }
+} 

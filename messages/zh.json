@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "主页",
+    "about": "关于我们",
+    "alumni_leadership": "历届高层",
+    "pprdmun": "PPRDMUN",
+    "events": "活动与项目",
+    "alumni_network": "校友交流",
+    "resources": "资源中心",
+    "login": "登录",
+    "open_menu": "打开主菜单",
+    "close_menu": "关闭菜单",
+    "select_language": "选择语言"
+  },
+  "site": {
+    "title": "深圳中学模拟联合国协会",
+    "description": "深圳中学模拟联合国协会官方网站",
+    "name_full": "深圳中学模拟联合国协会",
+    "name_short": "深中模联"
+  }
+} 

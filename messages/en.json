@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "alumni_leadership": "Alumni Leadership",
+    "pprdmun": "PPRDMUN",
+    "events": "Events & Projects",
+    "alumni_network": "Alumni Network",
+    "resources": "Resources",
+    "login": "Login",
+    "open_menu": "Open main menu",
+    "close_menu": "Close menu",
+    "select_language": "Select Language"
+  },
+  "site": {
+    "title": "Shenzhen Middle School Model United Nations",
+    "description": "Official website of Shenzhen Middle School Model United Nations Association",
+    "name_full": "SZMUN Association",
+    "name_short": "SZMUN"
+  }
+} 

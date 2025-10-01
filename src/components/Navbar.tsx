@@ -4,19 +4,21 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Image from 'next/image'
 import LanguageSwitcher from './LanguageSwitcher'
-
-const navigation = [
-  { name: '主页', href: '/' },
-  { name: '关于我们', href: '/about' },
-  { name: '历届高层', href: '/alumni-leadership' },
-  { name: 'PPRDMUN', href: '/pprdmun' },
-  { name: '活动与项目', href: '/events' },
-  { name: '校友交流', href: '/alumni-network' },
-  { name: '资源中心', href: '/resources' },
-]
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { messages } = useI18n()
+
+  const navigation = [
+    { name: messages.nav.home, href: '/' },
+    { name: messages.nav.about, href: '/about' },
+    { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
+    { name: messages.nav.pprdmun, href: '/pprdmun' },
+    { name: messages.nav.events, href: '/events' },
+    { name: messages.nav.alumni_network, href: '/alumni-network' },
+    { name: messages.nav.resources, href: '/resources' },
+  ]
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md">
@@ -34,10 +36,10 @@ export default function Navbar() {
               />
             </div>
             <span className="text-lg font-bold text-primary hidden md:inline whitespace-nowrap">
-              深圳中学模拟联合国协会
+              {messages.site.name_full}
             </span>
             <span className="text-lg font-bold text-primary md:hidden">
-              深中模联
+              {messages.site.name_short}
             </span>
           </Link>
         </div>
@@ -47,7 +49,7 @@ export default function Navbar() {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <span className="sr-only">打开主菜单</span>
+            <span className="sr-only">{messages.nav.open_menu}</span>
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
@@ -67,7 +69,7 @@ export default function Navbar() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
           <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-            登录 <span aria-hidden="true">&rarr;</span>
+            {messages.nav.login} <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>
@@ -89,14 +91,14 @@ export default function Navbar() {
                     priority
                   />
                 </div>
-                <span className="text-lg font-bold text-primary">深中模联</span>
+                <span className="text-lg font-bold text-primary">{messages.site.name_short}</span>
               </Link>
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="sr-only">关闭菜单</span>
+                <span className="sr-only">{messages.nav.close_menu}</span>
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -125,7 +127,7 @@ export default function Navbar() {
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    登录
+                    {messages.nav.login}
                   </Link>
                 </div>
               </div>

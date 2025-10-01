@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "О нас",
+    "alumni_leadership": "Руководство выпускников",
+    "pprdmun": "PPRDMUN",
+    "events": "События и проекты",
+    "alumni_network": "Сеть выпускников",
+    "resources": "Ресурсы",
+    "login": "Войти",
+    "open_menu": "Открыть главное меню",
+    "close_menu": "Закрыть меню",
+    "select_language": "Выбрать язык"
+  },
+  "site": {
+    "title": "Модель ООН средней школы Шэньчжэня",
+    "description": "Официальный сайт Ассоциации модели ООН средней школы Шэньчжэня",
+    "name_full": "Ассоциация SZMUN",
+    "name_short": "SZMUN"
+  }
+} 

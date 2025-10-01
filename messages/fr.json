@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "alumni_leadership": "Direction des anciens",
+    "pprdmun": "PPRDMUN",
+    "events": "Événements et projets",
+    "alumni_network": "Réseau des anciens",
+    "resources": "Ressources",
+    "login": "Connexion",
+    "open_menu": "Ouvrir le menu principal",
+    "close_menu": "Fermer le menu",
+    "select_language": "Choisir la langue"
+  },
+  "site": {
+    "title": "Modèle des Nations Unies du Collège de Shenzhen",
+    "description": "Site officiel de l'Association du Modèle des Nations Unies du Collège de Shenzhen",
+    "name_full": "Association SZMUN",
+    "name_short": "SZMUN"
+  }
+} 

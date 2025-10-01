@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "alumni_leadership": "قيادة الخريجين",
+    "pprdmun": "PPRDMUN",
+    "events": "الفعاليات والمشاريع",
+    "alumni_network": "شبكة الخريجين",
+    "resources": "الموارد",
+    "login": "تسجيل الدخول",
+    "open_menu": "فتح القائمة الرئيسية",
+    "close_menu": "إغلاق القائمة",
+    "select_language": "اختر اللغة"
+  },
+  "site": {
+    "title": "نموذج الأمم المتحدة لمدرسة شنتشن الثانوية",
+    "description": "الموقع الرسمي لجمعية نموذج الأمم المتحدة لمدرسة شنتشن الثانوية",
+    "name_full": "جمعية SZMUN",
+    "name_short": "SZMUN"
+  }
+} 

@@ -2,29 +2,23 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { FiGlobe, FiChevronDown } from 'react-icons/fi'
+import { useI18n } from '@/lib/i18n-context'
 
 export const languages = [
-  { code: 'zh', name: '中文', nativeName: '中文' },
-  { code: 'en', name: 'English', nativeName: 'English' },
-  { code: 'fr', name: 'French', nativeName: 'Français' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español' },
-  { code: 'ru', name: 'Russian', nativeName: 'Русский' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+  { code: 'zh' as const, name: '中文', nativeName: '中文' },
+  { code: 'en' as const, name: 'English', nativeName: 'English' },
+  { code: 'fr' as const, name: 'French', nativeName: 'Français' },
+  { code: 'es' as const, name: 'Spanish', nativeName: 'Español' },
+  { code: 'ru' as const, name: 'Russian', nativeName: 'Русский' },
+  { code: 'ar' as const, name: 'Arabic', nativeName: 'العربية' },
 ]
 
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState(languages[0])
+  const { locale, setLocale, messages } = useI18n()
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    // 从localStorage读取保存的语言
-    const savedLang = localStorage.getItem('language')
-    if (savedLang) {
-      const lang = languages.find(l => l.code === savedLang)
-      if (lang) setCurrentLanguage(lang)
-    }
-  }, [])
+  const currentLanguage = languages.find(l => l.code === locale) || languages[0]
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -38,11 +32,8 @@ export default function LanguageSwitcher() {
   }, [])
 
   const handleLanguageChange = (language: typeof languages[0]) => {
-    setCurrentLanguage(language)
-    localStorage.setItem('language', language.code)
+    setLocale(language.code)
     setIsOpen(false)
-    // 这里可以添加实际的语言切换逻辑
-    console.log('Language changed to:', language.code)
   }
 
   return (
@@ -50,7 +41,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-        aria-label="选择语言"
+        aria-label={messages.nav.select_language}
       >
         <FiGlobe className="w-5 h-5 text-gray-700" />
         <span className="hidden md:inline text-sm font-medium text-gray-700">
@@ -66,12 +57,12 @@ export default function LanguageSwitcher() {
               key={language.code}
               onClick={() => handleLanguageChange(language)}
               className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${
-                currentLanguage.code === language.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                locale === language.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
               }`}
             >
               <div className="flex items-center justify-between">
                 <span className="font-medium">{language.nativeName}</span>
-                {currentLanguage.code === language.code && (
+                {locale === language.code && (
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
