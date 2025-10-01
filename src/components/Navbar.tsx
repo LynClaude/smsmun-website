@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Image from 'next/image'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const navigation = [
   { name: '主页', href: '/' },
@@ -63,7 +64,8 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <LanguageSwitcher />
           <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
             登录 <span aria-hidden="true">&rarr;</span>
           </Link>
@@ -114,7 +116,10 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
-                <div className="py-6">
+                <div className="py-6 space-y-2">
+                  <div className="px-3">
+                    <LanguageSwitcher />
+                  </div>
                   <Link
                     href="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
