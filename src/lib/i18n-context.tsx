@@ -72,6 +72,49 @@ interface Messages {
     advisors: string
     leadership_members: string
   }
+  departments: {
+    title: string
+    academic: {
+      name: string
+      description: string
+    }
+    administrative: {
+      name: string
+      description: string
+    }
+    pr: {
+      name: string
+      description: string
+    }
+    tech: {
+      name: string
+      description: string
+    }
+  }
+  history: {
+    title: string
+    event1_year: string
+    event1_title: string
+    event1_desc: string
+    event2_year: string
+    event2_title: string
+    event2_desc: string
+    event3_year: string
+    event3_title: string
+    event3_desc: string
+    event4_year: string
+    event4_title: string
+    event4_desc: string
+    event5_year: string
+    event5_title: string
+    event5_desc: string
+    event6_year: string
+    event6_title: string
+    event6_desc: string
+  }
+  common: {
+    dept_intro: string
+  }
 }
 
 interface I18nContextType {

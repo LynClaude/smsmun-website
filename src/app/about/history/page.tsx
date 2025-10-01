@@ -2,41 +2,44 @@
 
 import { motion } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
-
-const timeline = [
-  {
-    year: '2005',
-    title: '深中模联成立',
-    description: '深圳中学模拟联合国协会正式成立，以"公民责任，青年使命"为宗旨，开启了培养国际视野青年人才的新篇章。'
-  },
-  {
-    year: '2007-2008',
-    title: '深圳市高中生模拟联合国大会',
-    description: '率先自主举办第一届、第二届深圳市高中生模拟联合国大会，秉持"标新立异，引领创新"的理念，开创了深圳地区高中模联的先河。'
-  },
-  {
-    year: '2009',
-    title: '北京大学全国中学生模拟联合国大会华南分会',
-    description: '与北京大学合作举办了北京大学全国中学生模拟联合国大会华南地区分会，以"云程发轫，共书华章"为主题，进一步扩大了深中模联的影响力。'
-  },
-  {
-    year: '2010',
-    title: '首届PPRDMUN',
-    description: '承办泛珠三角高中生模拟联合国大会，以"行远自迩，踵事增华"为理念，开创了华南地区高中模联的新时代。'
-  },
-  {
-    year: '2024',
-    title: 'PPRDMUN十五周年',
-    description: '泛珠三角高中生模拟联合国大会迎来第十五个年头，见证了一代又一代模联人的成长。'
-  },
-  {
-    year: '2025',
-    title: '二十周年庆典',
-    description: '深圳中学模拟联合国协会成立二十周年，继续为培养国际化人才而努力。'
-  }
-]
+import { useI18n } from '@/lib/i18n-context'
 
 export default function HistoryPage() {
+  const { messages } = useI18n()
+  
+  const timeline = [
+    {
+      year: messages.history.event1_year,
+      title: messages.history.event1_title,
+      description: messages.history.event1_desc
+    },
+    {
+      year: messages.history.event2_year,
+      title: messages.history.event2_title,
+      description: messages.history.event2_desc
+    },
+    {
+      year: messages.history.event3_year,
+      title: messages.history.event3_title,
+      description: messages.history.event3_desc
+    },
+    {
+      year: messages.history.event4_year,
+      title: messages.history.event4_title,
+      description: messages.history.event4_desc
+    },
+    {
+      year: messages.history.event5_year,
+      title: messages.history.event5_title,
+      description: messages.history.event5_desc
+    },
+    {
+      year: messages.history.event6_year,
+      title: messages.history.event6_title,
+      description: messages.history.event6_desc
+    }
+  ]
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-32 pb-20">
@@ -44,9 +47,9 @@ export default function HistoryPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-center mb-16"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
           >
-            深中模联发展历程
+            {messages.history.title}
           </motion.h1>
           
           <div className="relative">
@@ -72,9 +75,9 @@ export default function HistoryPage() {
                     }`}
                   >
                     <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
-                      <h3 className="text-2xl font-bold text-primary mb-2">{item.year}</h3>
-                      <h4 className="text-xl font-semibold mb-3">{item.title}</h4>
-                      <p className="text-gray-600">{item.description}</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">{item.year}</h3>
+                      <h4 className="text-lg md:text-xl font-semibold mb-3">{item.title}</h4>
+                      <p className="text-sm md:text-base text-gray-600">{item.description}</p>
                     </div>
                   </div>
                   {/* 时间点 */}

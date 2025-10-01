@@ -89,5 +89,48 @@
     "position": "Position",
     "name": "Name",
     "contact": "Contact"
+  },
+  "departments": {
+    "title": "Departments",
+    "academic": {
+      "name": "Academic",
+      "description": "Provides academic training for members and guidance for delegates. Explore international affairs and develop academic literacy together."
+    },
+    "administrative": {
+      "name": "Administrative",
+      "description": "Manages daily activities, finances, and resources. Plays a crucial role from training to PPRD preparation."
+    },
+    "pr": {
+      "name": "Public Relations",
+      "description": "Manages external public relations, coordination and planning. Includes information release, recruitment, and sponsor liaison."
+    },
+    "tech": {
+      "name": "Technology",
+      "description": "Creates promotional materials and merchandise. From poster design to video production, creates unique visual language."
+    }
+  },
+  "history": {
+    "title": "SMSMUN History",
+    "event1_year": "2005",
+    "event1_title": "SMSMUN Founded",
+    "event1_desc": "Shenzhen Middle School Model UN Association officially established with the mission of \"Civic Responsibility, Youth Mission\".",
+    "event2_year": "2007-2008",
+    "event2_title": "Shenzhen High School MUN Conference",
+    "event2_desc": "Pioneered the first and second Shenzhen High School MUN Conference with innovation and leadership.",
+    "event3_year": "2009",
+    "event3_title": "PKU National MUN South China Branch",
+    "event3_desc": "Partnered with Peking University to host the South China Branch, expanding SMSMUN's influence.",
+    "event4_year": "2010",
+    "event4_title": "First PPRDMUN",
+    "event4_desc": "Hosted the Pan-Pearl River Delta MUN Conference, opening a new era for South China high school MUN.",
+    "event5_year": "2024",
+    "event5_title": "PPRDMUN 15th Anniversary",
+    "event5_desc": "The conference celebrates its 15th year, witnessing generations of MUN delegates grow.",
+    "event6_year": "2025",
+    "event6_title": "20th Anniversary",
+    "event6_desc": "SMSMUN celebrates 20 years, continuing to cultivate international talents."
+  },
+  "common": {
+    "dept_intro": "Department Introduction"
   }
 } 
