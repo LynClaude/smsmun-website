@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Image from 'next/image'
 import LanguageSwitcher from './LanguageSwitcher'
+import PPRDYearSelector from './PPRDYearSelector'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function Navbar() {
@@ -14,7 +15,7 @@ export default function Navbar() {
     { name: messages.nav.home, href: '/' },
     { name: messages.nav.about, href: '/about' },
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
-    { name: messages.nav.pprdmun, href: '/pprdmun' },
+    { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
     { name: messages.nav.events, href: '/events' },
     { name: messages.nav.alumni_network, href: '/alumni-network' },
     { name: messages.nav.resources, href: '/resources' },
@@ -57,13 +58,17 @@ export default function Navbar() {
         </div>
         <div className="hidden lg:flex lg:gap-x-4 xl:gap-x-6 lg:ml-8 xl:ml-16">
           {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
-            >
-              {item.name}
-            </Link>
+            item.isDropdown ? (
+              <PPRDYearSelector key={item.name} />
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
@@ -108,14 +113,32 @@ export default function Navbar() {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
+                    item.isDropdown ? (
+                      <div key={item.name} className="-mx-3 px-3 py-2">
+                        <div className="text-base font-semibold text-gray-900 mb-2">{messages.nav.pprdmun}</div>
+                        <div className="ml-4 space-y-1">
+                          {Array.from({ length: 11 }, (_, i) => 2025 - i).map((year) => (
+                            <Link
+                              key={year}
+                              href={year === 2025 ? '/pprdmun' : `/pprdmun/${year}`}
+                              className="block text-sm text-gray-600 hover:text-primary"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              PPRDMUN {year}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )
                   ))}
                 </div>
                 <div className="py-6 space-y-2">

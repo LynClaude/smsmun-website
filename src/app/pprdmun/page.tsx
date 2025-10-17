@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -9,51 +8,10 @@ import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUNPage() {
   const { messages } = useI18n()
-  const [selectedYear, setSelectedYear] = useState(2025)
   
-  const years = Array.from({ length: 11 }, (_, i) => 2025 - i) // 2015-2025
-
-  const handleYearChange = (year: number) => {
-    setSelectedYear(year)
-    // 这里可以添加路由跳转逻辑
-    if (year === 2025) {
-      // 当前页面就是2025
-      return
-    }
-    // 其他年份可以跳转到不同的页面
-    // router.push(`/pprdmun/${year}`)
-  }
-
   return (
     <PageTransition>
       <div>
-        {/* 年份选择器 */}
-        <div className="bg-white py-8 shadow-sm">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-primary">
-              {messages.pprdmun.select_year}
-            </h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              {years.map((year) => (
-                <button
-                  key={year}
-                  onClick={() => handleYearChange(year)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                    selectedYear === year
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  PPRDMUN {year}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 2025年内容 */}
-        {selectedYear === 2025 && (
-          <>
             {/* 第一页 */}
             <div className="relative">
               {/* 背景图片 */}
@@ -245,22 +203,6 @@ export default function PPRDMUNPage() {
                 </div>
               </div>
             </section>
-          </>
-        )}
-
-        {/* 其他年份的内容占位符 */}
-        {selectedYear !== 2025 && (
-          <div className="py-20 bg-gray-50">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-3xl font-bold mb-8 text-primary">
-                PPRDMUN {selectedYear}
-              </h2>
-              <p className="text-gray-600 text-lg">
-                {selectedYear}年的PPRDMUN内容正在整理中，敬请期待...
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* 欢迎信区域 */}
         <div className="bg-gray-50 py-24">
