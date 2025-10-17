@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
 import { useI18n } from '@/lib/i18n-context'
 
@@ -91,21 +91,26 @@ export default function PPRDMUN2015Page() {
 
                 {/* 右侧图片展示 - 自动轮播 */}
                 <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
-                  <motion.div
-                    key={currentImageIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative w-full h-full"
-                  >
-                    <Image
-                      src={images[currentImageIndex]}
-                      alt={`PPRDMUN 2015 Photo ${currentImageIndex + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.6,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={images[currentImageIndex]}
+                        alt={`PPRDMUN 2015 Photo ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
                   
                   {/* 图片指示器 */}
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -113,8 +118,8 @@ export default function PPRDMUN2015Page() {
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-colors ${
-                          index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
                         }`}
                       />
                     ))}
