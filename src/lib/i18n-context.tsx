@@ -65,6 +65,24 @@ interface Messages {
     conference_info: string
     committees: string
     related_docs: string
+    welcome_title: string
+    welcome_greeting: string
+    welcome_opening: string
+    welcome_invitation: string
+    welcome_2025: string
+    welcome_15_years: string
+    welcome_concept: string
+    welcome_gratitude: string
+    welcome_ending: string
+    welcome_signature: string
+    academic_team_title: string
+    academic_team_desc: string
+    academic_team_priority: string
+    academic_team_wechat: string
+    academic_team_contact: string
+    academic_team_secretary: string
+    academic_team_vice_secretary: string
+    download_form: string
   }
   alumni: {
     title: string
@@ -77,10 +95,47 @@ interface Messages {
     academic: {
       name: string
       description: string
+      intro: string
+      responsibilities: string
+      benefits: string
+      requirements: string
+      resp1: string
+      resp2: string
+      resp3: string
+      resp4: string
+      resp5: string
+      benefit1: string
+      benefit2: string
+      benefit3: string
+      benefit4: string
+      benefit5: string
+      req1: string
+      req2: string
+      req3: string
+      req4: string
     }
     administrative: {
       name: string
       description: string
+      intro: string
+      work_stages: string
+      training_period: string
+      training_desc: string
+      carnival_prep: string
+      carnival_desc: string
+      sponsorship: string
+      sponsorship_desc: string
+      pprd_prep: string
+      pprd_desc: string
+      benefit1: string
+      benefit2: string
+      benefit3: string
+      benefit4: string
+      benefit5: string
+      req1: string
+      req2: string
+      req3: string
+      req4: string
     }
     pr: {
       name: string

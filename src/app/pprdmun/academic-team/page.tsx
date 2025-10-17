@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function AcademicTeamPage() {
+  const { messages } = useI18n()
+  
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
@@ -14,24 +17,24 @@ export default function AcademicTeamPage() {
             transition={{ duration: 0.8 }}
             className="bg-white rounded-lg shadow-xl p-8 md:p-12"
           >
-            <h1 className="text-3xl font-bold text-center mb-8">学术团队预报名</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-center mb-8">{messages.pprdmun.academic_team_title}</h1>
             <div className="prose prose-lg max-w-none">
-              <p className="mb-6">本次会议将提前开放学术团队成员报名。请有意愿申请成为大会学术团队成员者，下载"学术团队预申请表"，并按要求于 2025年3月21日23:59 前将此申请表及邮件主题命名为"[姓名]PPRDMUN2025 学术团队预申请表"以 word 文档的附件形式发送至 PPRDMUN2025@163.com。</p>
+              <p className="mb-6 text-sm md:text-base">{messages.pprdmun.academic_team_desc}</p>
               
-              <p className="mb-6">凡在此期限前提交预申请表的申请者将有机会提前选择学术团队志愿，优先安排学术团队面试时间。大会组委会将会对申请学术团队者进行电话面试，届时将会提前以短信的形式通知。</p>
+              <p className="mb-6 text-sm md:text-base">{messages.pprdmun.academic_team_priority}</p>
               
-              <p className="mb-6">欢迎各位关注大会官方微信公众号"泛珠模联"，以及时了解会议最新动态。其他会议相关信息(包括但不限于会场具体设置、主席团信息、席位分配)将在后续通告中告知，敬请留意。</p>
+              <p className="mb-6 text-sm md:text-base">{messages.pprdmun.academic_team_wechat}</p>
               
-              <p className="mb-6">如有任何问题或者意见，欢迎与我们联系:</p>
+              <p className="mb-6 text-sm md:text-base">{messages.pprdmun.academic_team_contact}</p>
               
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                <p className="mb-2">大会秘书长: 甘楚涵 136-3156-3505</p>
-                <p>大会常务秘书长: 伍宣静 138-2990-0066</p>
+                <p className="mb-2 text-sm md:text-base">{messages.pprdmun.academic_team_secretary}</p>
+                <p className="text-sm md:text-base">{messages.pprdmun.academic_team_vice_secretary}</p>
               </div>
 
               <div className="flex justify-center">
-                <button className="bg-primary text-white px-8 py-3 rounded-md hover:bg-primary/90 transition-colors text-lg">
-                  下载学术团队预申请表
+                <button className="bg-primary text-white px-6 md:px-8 py-3 rounded-md hover:bg-primary/90 transition-colors text-sm md:text-base">
+                  {messages.pprdmun.download_form}
                 </button>
               </div>
             </div>
