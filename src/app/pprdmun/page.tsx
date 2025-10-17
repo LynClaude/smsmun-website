@@ -1,76 +1,266 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUNPage() {
+  const { messages } = useI18n()
+  const [selectedYear, setSelectedYear] = useState(2025)
+  
+  const years = Array.from({ length: 11 }, (_, i) => 2025 - i) // 2015-2025
+
+  const handleYearChange = (year: number) => {
+    setSelectedYear(year)
+    // 这里可以添加路由跳转逻辑
+    if (year === 2025) {
+      // 当前页面就是2025
+      return
+    }
+    // 其他年份可以跳转到不同的页面
+    // router.push(`/pprdmun/${year}`)
+  }
+
   return (
     <PageTransition>
       <div>
-        {/* 第一页 */}
-        <div className="relative">
-          {/* 背景图片 */}
-          <div className="relative h-screen">
-            <Image
-              src="/pprdbg.png"
-              alt="PPRDMUN Background"
-              fill
-              className="object-cover brightness-75"
-              priority
-            />
-            {/* 深色蒙版 */}
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-
-          {/* 内容区域 */}
-          <div className="absolute inset-0">
-            <div className="container mx-auto h-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full px-4 py-24">
-                {/* 左侧文字内容 */}
-                <div className="text-white space-y-8">
-                  <h1 
-                    className="text-4xl md:text-6xl font-bold" 
-                    style={{ 
-                      fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
-                      fontWeight: '700',
-                      textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-                    }}
-                  >
-                    PPRDMUN 2025
-                  </h1>
-                  <p 
-                    className="text-lg md:text-xl leading-relaxed opacity-90"
-                    style={{
-                      fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
-                    }}
-                  >
-                    第十六届泛珠三角模拟联合国大会是华南地区最具影响力的模联会议之一。本届大会将继续秉承"和平、发展、合作、共赢"的理念，为各校学生提供一个展示外交才能、增进国际理解的专业平台。
-                  </p>
-                  <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">大会信息</h2>
-                    <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>举办时间：2025年7月中旬</li>
-                      <li>举办地点：深圳中学（泥岗校区）</li>
-                      <li>会议语言：中文/英文</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* 右侧图片展示 */}
-                <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/深中模联活动照.pic(1).jpg"
-                    alt="PPRDMUN"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+        {/* 年份选择器 */}
+        <div className="bg-white py-8 shadow-sm">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-primary">
+              {messages.pprdmun.select_year}
+            </h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              {years.map((year) => (
+                <button
+                  key={year}
+                  onClick={() => handleYearChange(year)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                    selectedYear === year
+                      ? 'bg-primary text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  PPRDMUN {year}
+                </button>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* 2025年内容 */}
+        {selectedYear === 2025 && (
+          <>
+            {/* 第一页 */}
+            <div className="relative">
+              {/* 背景图片 */}
+              <div className="relative h-screen">
+                <Image
+                  src="/pprdbg.png"
+                  alt="PPRDMUN Background"
+                  fill
+                  className="object-cover brightness-75"
+                  priority
+                />
+                {/* 深色蒙版 */}
+                <div className="absolute inset-0 bg-black/50" />
+              </div>
+
+              {/* 内容区域 */}
+              <div className="absolute inset-0">
+                <div className="container mx-auto h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full px-4 py-24">
+                    {/* 左侧文字内容 */}
+                    <div className="text-white space-y-8">
+                      <h1 
+                        className="text-4xl md:text-6xl font-bold" 
+                        style={{ 
+                          fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
+                          fontWeight: '700',
+                          textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                        }}
+                      >
+                        PPRDMUN 2025
+                      </h1>
+                      <p 
+                        className="text-lg md:text-xl leading-relaxed opacity-90"
+                        style={{
+                          fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
+                        }}
+                      >
+                        {messages.pprdmun.description}
+                      </p>
+                      <div className="space-y-4">
+                        <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
+                        <ul className="list-disc list-inside space-y-2 opacity-90">
+                          <li>{messages.pprdmun.time}</li>
+                          <li>{messages.pprdmun.location}</li>
+                          <li>{messages.pprdmun.language}</li>
+                          <li>{messages.pprdmun.organizer}</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* 右侧图片展示 */}
+                    <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/深中模联活动照.pic(1).jpg"
+                        alt="PPRDMUN"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Latest News 部分 - 从主页移过来 */}
+            <section className="py-20 bg-gray-50">
+              <div className="container mx-auto px-4">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center"
+                  style={{ fontFamily: "'Noto Serif SC', serif" }}
+                >
+                  {messages.home.latest_news}
+                </motion.h2>
+                <div className="overflow-x-auto pb-4">
+                  <div className="flex space-x-8 min-w-max px-4">
+                    {/* PPRDMUN 2025 二轮通告 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
+                    >
+                      <div className="relative h-48">
+                        <img
+                          src="/2025年泛珠三角高中生模拟联合国大会 (192 x 108 mm).png"
+                          alt="PPRDMUN 2025 二轮通告"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news1_title}</h3>
+                        <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news1_desc}</p>
+                        <a 
+                          href="https://mp.weixin.qq.com/s/GN_dAI6kytvnNq-pd3U-5A" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                        >
+                          {messages.home.learn_more} →
+                        </a>
+                      </div>
+                    </motion.div>
+
+                    {/* PPRDMUN 2025 会场组委专访 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
+                    >
+                      <div className="relative h-48">
+                        <Image
+                          src="/interview.jpg"
+                          alt="PPRDMUN 2025 会场组委专访"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news2_title}</h3>
+                        <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news2_desc}</p>
+                        <a 
+                          href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                        >
+                          {messages.home.learn_details} →
+                        </a>
+                      </div>
+                    </motion.div>
+
+                    {/* PPRDMUN 2025 一轮通告 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
+                    >
+                      <div className="relative h-48">
+                        <Image
+                          src="/announcement.jpg"
+                          alt="PPRDMUN 2025 一轮通告"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news3_title}</h3>
+                        <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news3_desc}</p>
+                        <a 
+                          href="https://mp.weixin.qq.com/s/kLnpjWeEY6tQwvBIVlm0bw" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                        >
+                          {messages.home.learn_more} →
+                        </a>
+                      </div>
+                    </motion.div>
+
+                    {/* PPRDMUN 2025 报名开始 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
+                    >
+                      <div className="relative h-48">
+                        <Image
+                          src="/WechatIMG110.jpg"
+                          alt="PPRDMUN 2025"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news4_title}</h3>
+                        <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news4_desc}</p>
+                        <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base">
+                          {messages.home.learn_more} →
+                        </Link>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+
+        {/* 其他年份的内容占位符 */}
+        {selectedYear !== 2025 && (
+          <div className="py-20 bg-gray-50">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-8 text-primary">
+                PPRDMUN {selectedYear}
+              </h2>
+              <p className="text-gray-600 text-lg">
+                {selectedYear}年的PPRDMUN内容正在整理中，敬请期待...
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* 欢迎信区域 */}
         <div className="bg-gray-50 py-24">

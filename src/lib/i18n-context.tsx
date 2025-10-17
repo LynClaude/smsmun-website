@@ -31,6 +31,7 @@ interface Messages {
   }
   home: {
     latest_news: string
+    important_events: string
     learn_more: string
     learn_details: string
     news1_title: string
@@ -41,6 +42,18 @@ interface Messages {
     news3_desc: string
     news4_title: string
     news4_desc: string
+    event1_title: string
+    event1_desc: string
+    event2_title: string
+    event2_desc: string
+    event3_title: string
+    event3_desc: string
+    event4_title: string
+    event4_desc: string
+    event5_title: string
+    event5_desc: string
+    event6_title: string
+    event6_desc: string
   }
   footer: {
     social_media: string
@@ -62,7 +75,12 @@ interface Messages {
   pprdmun: {
     title: string
     description: string
+    select_year: string
     conference_info: string
+    time: string
+    location: string
+    language: string
+    organizer: string
     committees: string
     related_docs: string
     welcome_title: string

@@ -12,6 +12,8 @@ export default function Home() {
   return (
     <PageTransition>
       <Hero />
+      
+      {/* 重要事件部分 */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.h2
@@ -21,120 +23,201 @@ export default function Home() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center"
             style={{ fontFamily: "'Noto Serif SC', serif" }}
           >
-            {messages.home.latest_news}
+            {messages.home.important_events}
           </motion.h2>
-          <div className="overflow-x-auto pb-4">
-            <div className="flex space-x-8 min-w-max px-4">
-              {/* PPRDMUN 2025 二轮通告 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
-              >
-                <div className="relative h-48">
-                  <img
-                    src="/2025年泛珠三角高中生模拟联合国大会 (192 x 108 mm).png"
-                    alt="PPRDMUN 2025 二轮通告"
-                    className="w-full h-full object-cover"
-                  />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 泛珠模联大会 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/pprdbg.png"
+                  alt="PPRDMUN"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    PPRDMUN
+                  </h3>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news1_title}</h3>
-                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news1_desc}</p>
-                  <a 
-                    href="https://mp.weixin.qq.com/s/GN_dAI6kytvnNq-pd3U-5A" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
-                  >
-                    {messages.home.learn_more} →
-                  </a>
-                </div>
-              </motion.div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event1_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event1_desc}</p>
+                <Link 
+                  href="/pprdmun" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
 
-              {/* PPRDMUN 2025 会场组委专访 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src="/interview.jpg"
-                    alt="PPRDMUN 2025 会场组委专访"
-                    fill
-                    className="object-cover"
-                  />
+            {/* 学术培训 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/深中模联活动照.pic(1).jpg"
+                  alt="学术培训"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    学术培训
+                  </h3>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news2_title}</h3>
-                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news2_desc}</p>
-                  <a 
-                    href="https://mp.weixin.qq.com/s/u6gDHGuv_gBx2GzQdkwiKQ" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
-                  >
-                    {messages.home.learn_details} →
-                  </a>
-                </div>
-              </motion.div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event2_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event2_desc}</p>
+                <Link 
+                  href="/about/departments/academic" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
 
-              {/* PPRDMUN 2025 一轮通告 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src="/announcement.jpg"
-                    alt="PPRDMUN 2025 一轮通告"
-                    fill
-                    className="object-cover"
-                  />
+            {/* 国际交流 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/background.jpg"
+                  alt="国际交流"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    国际交流
+                  </h3>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news3_title}</h3>
-                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news3_desc}</p>
-                  <a 
-                    href="https://mp.weixin.qq.com/s/kLnpjWeEY6tQwvBIVlm0bw" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
-                  >
-                    {messages.home.learn_more} →
-                  </a>
-                </div>
-              </motion.div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event3_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event3_desc}</p>
+                <Link 
+                  href="/events" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
 
-              {/* PPRDMUN 2025 报名开始 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[400px] flex-shrink-0"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src="/WechatIMG110.jpg"
-                    alt="PPRDMUN 2025"
-                    fill
-                    className="object-cover"
-                  />
+            {/* 社团招新 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/announcement.jpg"
+                  alt="社团招新"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    社团招新
+                  </h3>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.news4_title}</h3>
-                  <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.news4_desc}</p>
-                  <Link href="/pprdmun" className="text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base">
-                    {messages.home.learn_more} →
-                  </Link>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event4_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event4_desc}</p>
+                <Link 
+                  href="/about" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* 校友网络 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/interview.jpg"
+                  alt="校友网络"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    校友网络
+                  </h3>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event5_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event5_desc}</p>
+                <Link 
+                  href="/alumni-network" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* 历史传承 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48">
+                <Image
+                  src="/bg.png"
+                  alt="历史传承"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    历史传承
+                  </h3>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event6_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event6_desc}</p>
+                <Link 
+                  href="/about/history" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                >
+                  {messages.home.learn_more} →
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -34,7 +34,20 @@
     "news3_title": "PPRDMUN 2025 First Announcement",
     "news3_desc": "PPRDMUN 2025 First Announcement 🇺🇳 Contains conference setup, academic team registration, school and individual registration/academic test",
     "news4_title": "PPRDMUN 2025 Registration Open",
-    "news4_desc": "The 16th Pan-Pearl River Delta Model United Nations Conference is now open for registration. Students from all schools are welcome to participate. Please download the relevant application forms and submit them before the deadline."
+    "news4_desc": "The 16th Pan-Pearl River Delta Model United Nations Conference is now open for registration. Students from all schools are welcome to participate. Please download the relevant application forms and submit them before the deadline.",
+    "important_events": "Important Events",
+    "event1_title": "PPRDMUN Conference",
+    "event1_desc": "One of the most influential MUN conferences in South China, providing students with a professional platform to showcase diplomatic talents and enhance international understanding.",
+    "event2_title": "Academic Training",
+    "event2_desc": "Regular academic training activities to enhance members' academic literacy and international affairs analysis capabilities.",
+    "event3_title": "International Exchange",
+    "event3_desc": "Maintaining close contact with excellent MUN organizations at home and abroad to promote academic exchange and cooperation.",
+    "event4_title": "Club Recruitment",
+    "event4_desc": "Annual recruitment for all students, welcoming those interested in international affairs to join our big family.",
+    "event5_title": "Alumni Network",
+    "event5_desc": "Building a strong alumni network to provide continuous support and career development guidance for members.",
+    "event6_title": "Historical Heritage",
+    "event6_desc": "Inheriting the excellent traditions of SMSMUN and cultivating young leaders with international vision."
   },
   "footer": {
     "social_media": "Social Media",
@@ -133,6 +146,7 @@
   "pprdmun": {
     "title": "PPRDMUN 2025",
     "description": "The 16th Pan-Pearl River Delta Model United Nations Conference is one of the most influential MUN conferences in South China. This conference will continue to uphold the philosophy of \"peace, development, cooperation, and win-win\" to provide students with a professional platform to demonstrate diplomatic talents and enhance international understanding.",
+    "select_year": "Select Year",
     "conference_info": "Conference Information",
     "time": "Time: Mid-July 2025",
     "location": "Location: Shenzhen Middle School (Nigang Campus)",
