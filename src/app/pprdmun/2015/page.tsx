@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -8,6 +9,32 @@ import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUN2015Page() {
   const { messages } = useI18n()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
+  // 2015年的照片数组
+  const images = [
+    '/PPRD2015/20151.jpeg',
+    '/PPRD2015/20152.jpeg',
+    '/PPRD2015/20153.jpeg',
+    '/PPRD2015/20154.jpeg',
+    '/PPRD2015/20155.jpeg',
+    '/PPRD2015/20156.jpeg',
+    '/PPRD2015/20157.jpeg',
+    '/PPRD2015/20158.jpeg',
+    '/PPRD2015/20159.jpeg',
+    '/PPRD2015/201510.jpeg',
+    '/PPRD2015/201511.jpeg',
+    '/PPRD2015/201512.jpeg'
+  ]
+
+  // 自动轮播图片
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 3000) // 每3秒切换一张图片
+
+    return () => clearInterval(interval)
+  }, [images.length])
   
   return (
     <PageTransition>
@@ -17,7 +44,7 @@ export default function PPRDMUN2015Page() {
           {/* 背景图片 */}
           <div className="relative h-screen">
             <Image
-              src="/pprdbg.png"
+              src="/PPRD2015/2015.png"
               alt="PPRDMUN 2015 Background"
               fill
               className="object-cover brightness-75"
@@ -62,14 +89,36 @@ export default function PPRDMUN2015Page() {
                   </div>
                 </div>
 
-                {/* 右侧图片展示 */}
+                {/* 右侧图片展示 - 自动轮播 */}
                 <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/深中模联活动照.pic(1).jpg"
-                    alt="PPRDMUN 2015"
-                    fill
-                    className="object-cover"
-                  />
+                  <motion.div
+                    key={currentImageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={images[currentImageIndex]}
+                      alt={`PPRDMUN 2015 Photo ${currentImageIndex + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                  
+                  {/* 图片指示器 */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
