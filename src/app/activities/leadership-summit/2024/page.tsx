@@ -13,10 +13,10 @@ export default function LeadershipSummit2024Page() {
   
   // 2024年领袖峰会的照片数组
   const images = [
-    '/领袖峰会/茶歇.jpeg',
+    '/领袖峰会/领袖峰会全员合照.jpeg',
     '/领袖峰会/领袖峰会staff合照.jpeg',
     '/领袖峰会/领袖峰会会中主席团照片.jpeg',
-    '/领袖峰会/领袖峰会全员合照.jpeg',
+    '/领袖峰会/茶歇.jpeg',
     '/领袖峰会/领袖峰会常秘发言.jpeg'
   ]
 
