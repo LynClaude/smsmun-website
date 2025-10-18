@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
 import InvitationLetter from '@/components/InvitationLetter'
@@ -10,7 +11,8 @@ import { useI18n } from '@/lib/i18n-context'
 export default function PPRDMUN2019Page() {
   const { messages } = useI18n()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
+  
+  // 2019年的照片数组 - 使用PPRD2019文件夹中的所有图片
   const images = [
     '/PPRD2019/20191.jpeg',
     '/PPRD2019/20192.jpeg',
@@ -20,9 +22,7 @@ export default function PPRDMUN2019Page() {
     '/PPRD2019/20196.jpeg',
     '/PPRD2019/20197.jpeg',
     '/PPRD2019/20198.jpeg',
-    '/PPRD2019/20199.jpeg',
-    '/PPRD2019/201910.jpeg',
-    '/PPRD2019/201911.jpeg'
+    '/PPRD2019/20199.jpeg'
   ]
 
   // 自动轮播图片
@@ -33,11 +33,13 @@ export default function PPRDMUN2019Page() {
 
     return () => clearInterval(interval)
   }, [images.length])
-
+  
   return (
     <PageTransition>
       <div>
+        {/* 第一页 */}
         <div className="relative">
+          {/* 背景图片 */}
           <div className="relative h-screen">
             <Image
               src="/pprd-common-bg.webp"
@@ -76,7 +78,7 @@ export default function PPRDMUN2019Page() {
           </div>
         </div>
 
-        {/* 照片轮播区域 */}
+        {/* 第二页 - 图片轮播 */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <motion.h2
@@ -126,7 +128,7 @@ export default function PPRDMUN2019Page() {
           </div>
         </section>
 
-        {/* 邀请函区域 */}
+        {/* 第三页 - 邀请函 */}
         <div className="bg-gray-50 py-24">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -142,7 +144,7 @@ export default function PPRDMUN2019Page() {
           </div>
         </div>
 
-        {/* 委员会设置区域 */}
+        {/* 第四页 - 委员会设置 */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <motion.h2
