@@ -1,51 +1,81 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react'
+import { supabase } from './supabase'
 
-export interface User {
+// 用户类型定义
+interface User {
   id: string
   username: string
-  email?: string
-  isAlumni: boolean
-  graduationYear?: string
-  isAdmin: boolean
-  joinDate: string
+  email: string
+  is_alumni: boolean
+  graduation_year?: string
+  is_admin: boolean
+  join_date: string
 }
 
+// 认证上下文类型
 interface AuthContextType {
   user: User | null
   isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
-  loginWithWechat: () => Promise<boolean>
   register: (username: string, email: string, password: string, isAlumni: boolean, graduationYear?: string) => Promise<boolean>
-  logout: () => void
+  logout: () => Promise<void>
   adminLogin: (username: string, password: string) => Promise<boolean>
 }
 
+// 创建认证上下文
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+// 认证提供者组件
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // 检查本地存储的用户信息
-    const savedUser = localStorage.getItem('smsmun_user')
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
+    // 检查本地存储的用户数据（用于向后兼容）
+    const checkLocalStorage = () => {
+      try {
+        const localUser = localStorage.getItem('smsmun_user')
+        if (localUser) {
+          const parsedUser = JSON.parse(localUser)
+          // 转换字段名以匹配新的类型定义
+          setUser({
+            id: parsedUser.id || 'local',
+            username: parsedUser.username,
+            email: parsedUser.email,
+            is_alumni: parsedUser.isAlumni || false,
+            graduation_year: parsedUser.graduationYear,
+            is_admin: parsedUser.isAdmin || false,
+            join_date: parsedUser.joinDate || new Date().toISOString(),
+          })
+        }
+      } catch (error) {
+        console.error('Error checking localStorage:', error)
+      }
+      setIsLoading(false)
     }
-    setIsLoading(false)
+
+    checkLocalStorage()
   }, [])
 
+  // 登录函数
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // 从共享存储中查找用户
+      // 先尝试从本地存储查找用户
       const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
       const foundUser = users.find((u: any) => u.email === email && u.password === password)
       
       if (foundUser) {
-        const userData = { ...foundUser }
-        delete userData.password // 不保存密码到状态中
+        const userData = {
+          id: foundUser.id || 'local',
+          username: foundUser.username,
+          email: foundUser.email,
+          is_alumni: foundUser.isAlumni || false,
+          graduation_year: foundUser.graduationYear,
+          is_admin: foundUser.isAdmin || false,
+          join_date: foundUser.joinDate || new Date().toISOString(),
+        }
         setUser(userData)
         localStorage.setItem('smsmun_user', JSON.stringify(userData))
         return true
@@ -57,50 +87,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const loginWithWechat = async (): Promise<boolean> => {
-    try {
-      // 模拟微信登录
-      const mockUser: User = {
-        id: 'wechat_' + Date.now(),
-        username: '微信用户',
-        isAlumni: false,
-        isAdmin: false,
-        joinDate: new Date().toISOString()
-      }
-      setUser(mockUser)
-      localStorage.setItem('smsmun_user', JSON.stringify(mockUser))
-      return true
-    } catch (error) {
-      console.error('WeChat login error:', error)
-      return false
-    }
-  }
-
+  // 注册函数
   const register = async (username: string, email: string, password: string, isAlumni: boolean, graduationYear?: string): Promise<boolean> => {
     try {
-      // 使用共享的存储键，这样所有用户都能看到所有注册用户
       const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
       
       // 检查邮箱是否已存在
-      if (users.find((u: any) => u.email === email)) {
+      const existingUser = users.find((u: any) => u.email === email)
+      if (existingUser) {
         return false
       }
 
-      const newUser: User = {
-        id: 'user_' + Date.now(),
+      // 创建新用户
+      const newUser = {
+        id: Date.now().toString(),
         username,
         email,
+        password,
         isAlumni,
         graduationYear,
         isAdmin: false,
-        joinDate: new Date().toISOString()
+        joinDate: new Date().toISOString(),
       }
 
-      users.push({ ...newUser, password })
+      users.push(newUser)
       localStorage.setItem('smsmun_shared_users', JSON.stringify(users))
-      
-      setUser(newUser)
-      localStorage.setItem('smsmun_user', JSON.stringify(newUser))
       return true
     } catch (error) {
       console.error('Register error:', error)
@@ -108,21 +119,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  // 登出函数
+  const logout = async () => {
+    try {
+      setUser(null)
+      localStorage.removeItem('smsmun_user')
+    } catch (error) {
+      console.error('Logout error:', error)
+    }
+  }
+
+  // 管理员登录函数
   const adminLogin = async (username: string, password: string): Promise<boolean> => {
     try {
-      // 管理员账号验证
-      const adminCredentials = {
-        username: 'admin',
-        password: 'smsmun2025'
-      }
-
-      if (username === adminCredentials.username && password === adminCredentials.password) {
+      if (username === 'admin' && password === 'smsmun2025') {
         const adminUser: User = {
           id: 'admin',
           username: '管理员',
-          isAlumni: true,
-          isAdmin: true,
-          joinDate: new Date().toISOString()
+          email: 'admin@smsmun.com',
+          is_alumni: true,
+          is_admin: true,
+          join_date: new Date().toISOString(),
         }
         setUser(adminUser)
         localStorage.setItem('smsmun_user', JSON.stringify(adminUser))
@@ -135,26 +152,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const logout = () => {
-    setUser(null)
-    localStorage.removeItem('smsmun_user')
-  }
-
   return (
-    <AuthContext.Provider value={{
-      user,
-      isLoading,
-      login,
-      loginWithWechat,
-      register,
-      logout,
-      adminLogin
-    }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, adminLogin }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
+// 使用认证上下文的钩子
 export function useAuth() {
   const context = useContext(AuthContext)
   if (context === undefined) {

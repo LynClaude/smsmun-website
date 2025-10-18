@@ -66,7 +66,7 @@ export default function AlumniForumPage() {
       router.push('/auth/login')
       return
     }
-    if (!user.isAlumni) {
+    if (!user.is_alumni) {
       router.push('/')
       return
     }
@@ -149,7 +149,7 @@ export default function AlumniForumPage() {
       name: advisorForm.name,
       email: advisorForm.email,
       phone: advisorForm.phone,
-      graduationYear: user.graduationYear || '未知',
+      graduationYear: user.graduation_year || '未知',
       message: advisorForm.message,
       timestamp: new Date().toISOString()
     }
@@ -161,7 +161,7 @@ export default function AlumniForumPage() {
     alert('申请提交成功！我们会尽快联系您。')
   }
 
-  if (!user || !user.isAlumni) {
+  if (!user || !user.is_alumni) {
     return (
       <PageTransition>
         <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">

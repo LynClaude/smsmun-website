@@ -65,7 +65,7 @@ export default function Navbar() {
               <PPRDYearSelector key={item.name} />
             ) : item.isActivitiesDropdown ? (
               <ActivitiesSelector key={item.name} />
-            ) : item.isAlumniOnly && (!user || !user.isAlumni) ? null : (
+            ) : item.isAlumniOnly && (!user || !user.is_alumni) ? null : (
               <Link
                 key={item.name}
                 href={item.href}
@@ -95,10 +95,10 @@ export default function Navbar() {
                   <div className="px-4 py-2 border-b border-gray-200">
                     <p className="text-sm font-medium text-gray-900">{user.username}</p>
                     <p className="text-xs text-gray-500">
-                      {user.isAdmin ? '管理员' : user.isAlumni ? '深中模联校友' : '访客用户'}
+                      {user.is_admin ? '管理员' : user.is_alumni ? '深中模联校友' : '访客用户'}
                     </p>
                   </div>
-                  {user.isAdmin && (
+                  {user.is_admin && (
                     <Link
                       href="/admin/dashboard"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
@@ -107,7 +107,7 @@ export default function Navbar() {
                       管理员面板
                     </Link>
                   )}
-                  {user.isAlumni && (
+                  {user.is_alumni && (
                     <Link
                       href="/alumni-forum"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"

@@ -1,0 +1,8 @@
+# 请将此文件重命名为 .env.local 并填入您的 Supabase 配置信息
+
+NEXT_PUBLIC_SUPABASE_URL=your_project_url_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+
+# 示例：
+# NEXT_PUBLIC_SUPABASE_URL=https://abcdefgh.supabase.co
+# NEXT_PUBLIC_SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...

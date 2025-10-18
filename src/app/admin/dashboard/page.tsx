@@ -61,7 +61,7 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     // 检查管理员权限
-    if (!user || !user.isAdmin) {
+    if (!user || !user.is_admin) {
       router.push('/admin/login')
       return
     }
@@ -93,7 +93,7 @@ export default function AdminDashboardPage() {
     router.push('/admin/login')
   }
 
-  if (!user || !user.isAdmin) {
+  if (!user || !user.is_admin) {
     return null
   }
 
