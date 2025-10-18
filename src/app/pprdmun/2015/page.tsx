@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
+import InvitationLetter from '@/components/InvitationLetter'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUN2015Page() {
