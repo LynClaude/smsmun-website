@@ -1,7 +1,7 @@
 # SMSMUN Website
 
 ## Latest Update
-Updated user authentication system with admin panel navigation and improved registration flow.
+Updated user authentication system with admin panel navigation and improved registration flow. All build issues resolved.
 
 ## Features
 - User authentication system
