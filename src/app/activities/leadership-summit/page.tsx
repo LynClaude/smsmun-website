@@ -110,14 +110,6 @@ export default function LeadershipSummitPage() {
                     <li><span className="font-semibold">会议地点：</span>深圳中学（泥岗校区）</li>
                     <li><span className="font-semibold">会议主题：</span>深圳地区线下模联活动的重振与发展&模联社团创新与传承</li>
                   </ul>
-                  <div className="pt-6">
-                    <Link
-                      href="/activities/leadership-summit/2024"
-                      className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                    >
-                      查看详细信息 →
-                    </Link>
-                  </div>
                 </div>
 
                 {/* 右侧图片展示 - 自动轮播 */}

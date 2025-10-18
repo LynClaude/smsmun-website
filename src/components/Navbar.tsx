@@ -189,20 +189,6 @@ export default function Navbar() {
                 >
                   领袖峰会
                 </Link>
-                <Link
-                  href="/activities/school-mun"
-                  className="block text-sm text-gray-600 hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  深圳中学校内会
-                </Link>
-                <Link
-                  href="/activities"
-                  className="block text-sm text-gray-600 hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  其他活动
-                </Link>
               </div>
             </div>
                     ) : (

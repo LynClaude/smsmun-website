@@ -83,7 +83,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">活动与项目</h3>
                 <p className="text-sm md:text-base text-gray-600 mb-4">丰富多样的模联活动与创新项目</p>
                 <Link 
-                  href="/activities" 
+                  href="/activities/leadership-summit" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
                 >
                   {messages.home.learn_more} →

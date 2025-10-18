@@ -10,9 +10,7 @@ export default function ActivitiesSelector() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   
   const activities = [
-    { name: '领袖峰会', href: '/activities/leadership-summit' },
-    { name: '深圳中学校内会', href: '/activities/school-mun' },
-    { name: '其他活动', href: '/activities' }
+    { name: '领袖峰会', href: '/activities/leadership-summit' }
   ]
 
   const handleMouseEnter = () => {
