@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: '深圳中学模拟联合国协会',
-  description: '深圳中学模拟联合国协会官方网站',
+  description: '深圳中学模拟联合国协会官方网站 - 最新更新：完善用户认证系统',
 }
 
 export default function RootLayout({
