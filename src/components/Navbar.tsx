@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import LanguageSwitcher from './LanguageSwitcher'
 import PPRDYearSelector from './PPRDYearSelector'
+import ActivitiesSelector from './ActivitiesSelector'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function Navbar() {
@@ -16,6 +17,7 @@ export default function Navbar() {
     { name: messages.nav.about, href: '/about' },
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
     { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
+    { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目下拉菜单
     { name: messages.nav.events, href: '/events' },
     { name: messages.nav.alumni_network, href: '/alumni-network' },
     { name: messages.nav.resources, href: '/resources' },
@@ -60,6 +62,8 @@ export default function Navbar() {
           {navigation.map((item) => (
             item.isDropdown ? (
               <PPRDYearSelector key={item.name} />
+            ) : item.isActivitiesDropdown ? (
+              <ActivitiesSelector key={item.name} />
             ) : (
               <Link
                 key={item.name}
@@ -127,6 +131,33 @@ export default function Navbar() {
                               PPRDMUN {year}
                             </Link>
                           ))}
+                        </div>
+                      </div>
+                    ) : item.isActivitiesDropdown ? (
+                      <div key={item.name} className="-mx-3 px-3 py-2">
+                        <div className="text-base font-semibold text-gray-900 mb-2">活动与项目</div>
+                        <div className="ml-4 space-y-1">
+                          <Link
+                            href="/activities/leadership-summit"
+                            className="block text-sm text-gray-600 hover:text-primary"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            领袖峰会
+                          </Link>
+                          <Link
+                            href="/activities/school-mun"
+                            className="block text-sm text-gray-600 hover:text-primary"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            深圳中学校内会
+                          </Link>
+                          <Link
+                            href="/activities"
+                            className="block text-sm text-gray-600 hover:text-primary"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            其他活动
+                          </Link>
                         </div>
                       </div>
                     ) : (
