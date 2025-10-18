@@ -137,13 +137,18 @@ export default function Navbar() {
                       <div key={item.name} className="-mx-3 px-3 py-2">
                         <div className="text-base font-semibold text-gray-900 mb-2">活动与项目</div>
                         <div className="ml-4 space-y-1">
-                          <Link
-                            href="/activities/leadership-summit"
-                            className="block text-sm text-gray-600 hover:text-primary"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            领袖峰会
-                          </Link>
+                          <div className="space-y-1">
+                            <div className="text-sm font-medium text-gray-700">领袖峰会</div>
+                            <div className="ml-4 space-y-1">
+                              <Link
+                                href="/activities/leadership-summit/2024"
+                                className="block text-sm text-gray-600 hover:text-primary"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                领袖峰会 2024
+                              </Link>
+                            </div>
+                          </div>
                           <Link
                             href="/activities/school-mun"
                             className="block text-sm text-gray-600 hover:text-primary"

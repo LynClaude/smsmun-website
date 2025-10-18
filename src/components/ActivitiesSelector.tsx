@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import LeadershipSummitSelector from './LeadershipSummitSelector'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function ActivitiesSelector() {
@@ -10,7 +11,7 @@ export default function ActivitiesSelector() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   
   const activities = [
-    { name: '습袖峰会', href: '/activities/leadership-summit' },
+    { name: 'leadership-summit', href: '/activities/leadership-summit', isLeadershipSummit: true },
     { name: '深圳中学校内会', href: '/activities/school-mun' },
     { name: '其他活动', href: '/activities' }
   ]
@@ -62,13 +63,19 @@ export default function ActivitiesSelector() {
         >
           <div className="max-h-80 overflow-y-auto">
             {activities.map((activity) => (
-              <Link
-                key={activity.name}
-                href={activity.href}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors"
-              >
-                {activity.name}
-              </Link>
+              activity.isLeadershipSummit ? (
+                <div key={activity.name} className="px-4 py-2">
+                  <LeadershipSummitSelector />
+                </div>
+              ) : (
+                <Link
+                  key={activity.name}
+                  href={activity.href}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors"
+                >
+                  {activity.name}
+                </Link>
+              )
             ))}
           </div>
         </div>
