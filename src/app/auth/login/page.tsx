@@ -19,7 +19,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
-  const { login, register, loginWithWechat } = useAuth()
+  const { login, register } = useAuth()
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -62,21 +62,6 @@ export default function LoginPage() {
     setIsLoading(false)
   }
 
-  const handleWechatLogin = async () => {
-    setIsLoading(true)
-    setError('')
-
-    const success = await loginWithWechat()
-    if (success) {
-      setSuccess('微信登录成功！')
-      setTimeout(() => {
-        router.push('/')
-      }, 1000)
-    } else {
-      setError('微信登录失败')
-    }
-    setIsLoading(false)
-  }
 
   return (
     <PageTransition>
