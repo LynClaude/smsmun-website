@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
     { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
     { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目链接
+    { name: 'alumni-forum', href: '/alumni-forum', isAlumniOnly: true }, // 仅校友可访问
   ]
 
   return (
@@ -64,7 +65,7 @@ export default function Navbar() {
               <PPRDYearSelector key={item.name} />
             ) : item.isActivitiesDropdown ? (
               <ActivitiesSelector key={item.name} />
-            ) : (
+            ) : item.isAlumniOnly && (!user || !user.isAlumni) ? null : (
               <Link
                 key={item.name}
                 href={item.href}
