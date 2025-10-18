@@ -53,6 +53,11 @@ export default function Footer() {
                   {messages.footer.sms_website}
                 </a>
               </li>
+              <li>
+                <Link href="/admin/login" className="hover:text-primary transition-colors text-gray-400">
+                  管理员登录
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
