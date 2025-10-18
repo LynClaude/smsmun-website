@@ -1,14 +1,40 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
 import InvitationLetter from '@/components/InvitationLetter'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUN2017Page() {
   const { messages } = useI18n()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
+  // 2017年的照片数组
+  const images = [
+    '/PPRD2017/20171.jpeg',
+    '/PPRD2017/20172.jpeg',
+    '/PPRD2017/20173.jpeg',
+    '/PPRD2017/20174.jpeg',
+    '/PPRD2017/20175.jpeg',
+    '/PPRD2017/20176.jpeg',
+    '/PPRD2017/20177.jpeg',
+    '/PPRD2017/20178.jpeg',
+    '/PPRD2017/20179.jpeg',
+    '/PPRD2017/201710.jpeg',
+    '/PPRD2017/201711.jpeg'
+  ]
+
+  // 自动轮播图片
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 3000) // 每3秒切换一张图片
+
+    return () => clearInterval(interval)
+  }, [images.length])
   
   return (
     <PageTransition>
@@ -63,14 +89,41 @@ export default function PPRDMUN2017Page() {
                   </div>
                 </div>
 
-                {/* 右侧图片展示 */}
+                {/* 右侧图片展示 - 自动轮播 */}
                 <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/深中模联活动照.pic(1).jpg"
-                    alt="PPRDMUN 2017"
-                    fill
-                    className="object-cover"
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.6,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={images[currentImageIndex]}
+                        alt={`PPRDMUN 2017 Photo ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                  
+                  {/* 图片指示器 */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
