@@ -1,7 +1,7 @@
 # SMSMUN Website
 
 ## Latest Update
-Updated user authentication system with admin panel navigation and improved registration flow. All build issues resolved.
+Updated user authentication system with admin panel navigation and improved registration flow. All build issues resolved. Supabase environment variables configured.
 
 ## Features
 - User authentication system
