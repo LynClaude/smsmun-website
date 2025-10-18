@@ -71,7 +71,7 @@ export default function AdminDashboardPage() {
 
   const loadData = () => {
     // 加载所有数据
-    const savedUsers = JSON.parse(localStorage.getItem('smsmun_users') || '[]')
+    const savedUsers = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
     const savedMessages = JSON.parse(localStorage.getItem('smsmun_messages') || '[]')
     const savedQuestions = JSON.parse(localStorage.getItem('smsmun_questions') || '[]')
     const savedAdvisors = JSON.parse(localStorage.getItem('smsmun_honor_advisors') || '[]')

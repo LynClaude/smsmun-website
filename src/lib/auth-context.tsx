@@ -39,8 +39,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // 模拟登录验证
-      const users = JSON.parse(localStorage.getItem('smsmun_users') || '[]')
+      // 从共享存储中查找用户
+      const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
       const foundUser = users.find((u: any) => u.email === email && u.password === password)
       
       if (foundUser) {
@@ -78,7 +78,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const register = async (username: string, email: string, password: string, isAlumni: boolean, graduationYear?: string): Promise<boolean> => {
     try {
-      const users = JSON.parse(localStorage.getItem('smsmun_users') || '[]')
+      // 使用共享的存储键，这样所有用户都能看到所有注册用户
+      const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
       
       // 检查邮箱是否已存在
       if (users.find((u: any) => u.email === email)) {
@@ -96,7 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       users.push({ ...newUser, password })
-      localStorage.setItem('smsmun_users', JSON.stringify(users))
+      localStorage.setItem('smsmun_shared_users', JSON.stringify(users))
       
       setUser(newUser)
       localStorage.setItem('smsmun_user', JSON.stringify(newUser))
