@@ -100,7 +100,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/background.jpg"
+                  src="/历届合照.jpg"
                   alt="校友网络"
                   fill
                   className="object-cover"
