@@ -48,108 +48,87 @@ export default function PPRDMUN2019Page() {
               className="object-cover brightness-75"
               priority
             />
+            {/* 深色蒙版 */}
             <div className="absolute inset-0 bg-black/50" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
-              <motion.h1
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-4xl md:text-6xl font-extrabold mb-4"
-              >
-                PPRDMUN 2019
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-lg md:text-xl max-w-3xl"
-              >
-                泛珠三角高中生模拟联合国大会
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-sm md:text-base mt-4 opacity-90"
-              >
-                2019年7月24日至27日 · 深圳中学
-              </motion.p>
-            </div>
           </div>
-        </div>
 
-        {/* 第二页 - 会议信息和图片轮播 */}
-        <div className="bg-white py-24">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col lg:flex-row items-center lg:space-x-12">
-              {/* 左侧会议信息 */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="lg:w-1/2 mb-12 lg:mb-0"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">会议信息</h2>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  2019年泛珠三角高中生模拟联合国大会，深中模联恰历十五春秋，泛珠模联也将迎来它的十度绽放。作为模联人，我们始终怀着希望，这希望源于我们独立的精神、自由的激情。因为我们肩负着公民之责任，怀着青年之使命，所以我们不曾退缩。
-                </p>
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold">大会信息</h2>
-                  <ul className="list-disc list-inside space-y-2 opacity-90">
-                    <li>举办时间：2019年7月24日-27日</li>
-                    <li>举办地点：深圳中学</li>
-                    <li>会议语言：中文/英文</li>
-                    <li>主办方：深圳中学模拟联合国协会</li>
-                  </ul>
-                </div>
-              </motion.div>
-
-              {/* 右侧图片展示 - 自动轮播 */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative lg:w-1/2 w-full aspect-[16/9] rounded-xl overflow-hidden shadow-2xl"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentImageIndex}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.4, 0.0, 0.2, 1]
+          {/* 内容区域 */}
+          <div className="absolute inset-0">
+            <div className="container mx-auto h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full px-4 py-24">
+                {/* 左侧文字内容 */}
+                <div className="text-white space-y-8">
+                  <h1 
+                    className="text-4xl md:text-6xl font-bold" 
+                    style={{ 
+                      fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
+                      fontWeight: '700',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
                     }}
-                    className="absolute inset-0"
                   >
-                    <Image
-                      src={images[currentImageIndex]}
-                      alt={`PPRDMUN 2019 Photo ${currentImageIndex + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-                
-                {/* 图片指示器 */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
-                      }`}
-                    />
-                  ))}
+                    PPRDMUN 2019
+                  </h1>
+                  <p 
+                    className="text-lg md:text-xl leading-relaxed opacity-90"
+                    style={{
+                      fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
+                    }}
+                  >
+                    二零一九年是意义非凡的一年，深中模联恰历十五春秋，泛珠模联也将迎来它的十度绽放。作为模联人，我们始终怀着希望，这希望源于我们独立的精神、自由的激情。
+                  </p>
+                  <div className="space-y-4">
+                    <h2 className="text-2xl font-bold">大会信息</h2>
+                    <ul className="list-disc list-inside space-y-2 opacity-90">
+                      <li>举办时间：2019年7月24日-27日</li>
+                      <li>举办地点：深圳中学</li>
+                      <li>会议语言：中文/英文</li>
+                      <li>主办方：深圳中学模拟联合国协会</li>
+                    </ul>
+                  </div>
                 </div>
-              </motion.div>
+
+                {/* 右侧图片展示 - 自动轮播 */}
+                <div className="relative w-full mx-auto aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.6,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={images[currentImageIndex]}
+                        alt={`PPRDMUN 2019 Photo ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                  
+                  {/* 图片指示器 */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 第三页 - 邀请函 */}
+        {/* 邀请函区域 */}
         <div className="bg-gray-50 py-24">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
