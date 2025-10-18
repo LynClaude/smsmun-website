@@ -26,7 +26,7 @@ export default function Home() {
             {messages.home.important_events}
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* 泛珠模联大会 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/pprdbg.png"
+                  src="/background.jpg"
                   alt="PPRDMUN"
                   fill
                   className="object-cover"
@@ -68,7 +68,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/深中模联活动照.pic(1).jpg"
+                  src="/background.jpg"
                   alt="活动与项目"
                   fill
                   className="object-cover"
@@ -100,7 +100,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/interview.jpg"
+                  src="/background.jpg"
                   alt="校友网络"
                   fill
                   className="object-cover"
@@ -132,7 +132,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/bg.png"
+                  src="/background.jpg"
                   alt="历史传承"
                   fill
                   className="object-cover"
