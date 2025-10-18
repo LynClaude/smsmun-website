@@ -62,38 +62,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 登录函数
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // 使用 Supabase 认证
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      // 从 users 表中查找用户
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email)
+        .eq('password', password)
+        .single()
 
       if (error) {
-        console.error('Supabase login error:', error.message)
+        console.error('Login error:', error.message)
         return false
       }
 
-      if (data.user) {
-        // 获取用户详细信息
-        const { data: profile, error: profileError } = await supabase
-          .from('users')
-          .select('*')
-          .eq('email', email)
-          .single()
-
-        if (profileError) {
-          console.error('Error fetching profile:', profileError.message)
-          return false
-        }
-
+      if (data) {
         const userData = {
-          id: data.user.id,
-          username: profile.username,
-          email: profile.email,
-          is_alumni: profile.is_alumni,
-          graduation_year: profile.graduation_year,
-          is_admin: profile.is_admin,
-          join_date: profile.join_date,
+          id: data.id,
+          username: data.username,
+          email: data.email,
+          is_alumni: data.is_alumni,
+          graduation_year: data.graduation_year,
+          is_admin: data.is_admin,
+          join_date: data.join_date,
         }
 
         setUser(userData)
@@ -110,39 +100,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 注册函数
   const register = async (username: string, email: string, password: string, isAlumni: boolean, graduationYear?: string): Promise<boolean> => {
     try {
-      // 使用 Supabase 注册
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      })
+      // 直接插入到 users 表中（简化版本）
+      const { data, error } = await supabase
+        .from('users')
+        .insert([
+          {
+            id: Date.now().toString(), // 使用时间戳作为 ID
+            username,
+            email,
+            password: password, // 注意：在生产环境中不应该存储明文密码
+            is_alumni: isAlumni,
+            graduation_year: graduationYear,
+            is_admin: false,
+            join_date: new Date().toISOString(),
+          }
+        ])
+        .select()
 
       if (error) {
-        console.error('Supabase registration error:', error.message)
+        console.error('Error inserting user:', error.message)
         return false
       }
 
-      if (data.user) {
-        // 在 users 表中创建用户记录
-        const { error: insertError } = await supabase
-          .from('users')
-          .insert([
-            {
-              id: data.user.id,
-              username,
-              email,
-              password: password, // 注意：在生产环境中不应该存储明文密码
-              is_alumni: isAlumni,
-              graduation_year: graduationYear,
-              is_admin: false,
-              join_date: new Date().toISOString(),
-            }
-          ])
-
-        if (insertError) {
-          console.error('Error inserting user profile:', insertError.message)
-          return false
-        }
-
+      if (data && data.length > 0) {
+        console.log('User registered successfully:', data[0])
         return true
       }
       return false
