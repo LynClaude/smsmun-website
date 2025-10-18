@@ -62,20 +62,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 登录函数
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // 先尝试从本地存储查找用户
-      const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
-      const foundUser = users.find((u: any) => u.email === email && u.password === password)
-      
-      if (foundUser) {
-        const userData = {
-          id: foundUser.id || 'local',
-          username: foundUser.username,
-          email: foundUser.email,
-          is_alumni: foundUser.isAlumni || false,
-          graduation_year: foundUser.graduationYear,
-          is_admin: foundUser.isAdmin || false,
-          join_date: foundUser.joinDate || new Date().toISOString(),
+      // 使用 Supabase 认证
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (error) {
+        console.error('Supabase login error:', error.message)
+        return false
+      }
+
+      if (data.user) {
+        // 获取用户详细信息
+        const { data: profile, error: profileError } = await supabase
+          .from('users')
+          .select('*')
+          .eq('email', email)
+          .single()
+
+        if (profileError) {
+          console.error('Error fetching profile:', profileError.message)
+          return false
         }
+
+        const userData = {
+          id: data.user.id,
+          username: profile.username,
+          email: profile.email,
+          is_alumni: profile.is_alumni,
+          graduation_year: profile.graduation_year,
+          is_admin: profile.is_admin,
+          join_date: profile.join_date,
+        }
+
         setUser(userData)
         localStorage.setItem('smsmun_user', JSON.stringify(userData))
         return true
@@ -90,29 +110,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 注册函数
   const register = async (username: string, email: string, password: string, isAlumni: boolean, graduationYear?: string): Promise<boolean> => {
     try {
-      const users = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
-      
-      // 检查邮箱是否已存在
-      const existingUser = users.find((u: any) => u.email === email)
-      if (existingUser) {
+      // 使用 Supabase 注册
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      })
+
+      if (error) {
+        console.error('Supabase registration error:', error.message)
         return false
       }
 
-      // 创建新用户
-      const newUser = {
-        id: Date.now().toString(),
-        username,
-        email,
-        password,
-        isAlumni,
-        graduationYear,
-        isAdmin: false,
-        joinDate: new Date().toISOString(),
-      }
+      if (data.user) {
+        // 在 users 表中创建用户记录
+        const { error: insertError } = await supabase
+          .from('users')
+          .insert([
+            {
+              id: data.user.id,
+              username,
+              email,
+              password: password, // 注意：在生产环境中不应该存储明文密码
+              is_alumni: isAlumni,
+              graduation_year: graduationYear,
+              is_admin: false,
+              join_date: new Date().toISOString(),
+            }
+          ])
 
-      users.push(newUser)
-      localStorage.setItem('smsmun_shared_users', JSON.stringify(users))
-      return true
+        if (insertError) {
+          console.error('Error inserting user profile:', insertError.message)
+          return false
+        }
+
+        return true
+      }
+      return false
     } catch (error) {
       console.error('Register error:', error)
       return false
@@ -122,6 +155,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 登出函数
   const logout = async () => {
     try {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error('Supabase logout error:', error.message)
+      }
       setUser(null)
       localStorage.removeItem('smsmun_user')
     } catch (error) {
