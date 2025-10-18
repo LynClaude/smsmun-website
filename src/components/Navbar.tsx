@@ -7,10 +7,13 @@ import LanguageSwitcher from './LanguageSwitcher'
 import PPRDYearSelector from './PPRDYearSelector'
 import ActivitiesSelector from './ActivitiesSelector'
 import { useI18n } from '@/lib/i18n-context'
+import { useAuth } from '@/lib/auth-context'
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
   const { messages } = useI18n()
+  const { user, logout } = useAuth()
 
   const navigation = [
     { name: messages.nav.home, href: '/' },
@@ -20,6 +23,7 @@ export default function Navbar() {
     { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目下拉菜单
     { name: messages.nav.events, href: '/events' },
     { name: messages.nav.alumni_network, href: '/alumni-network' },
+    { name: 'alumni-forum', href: '/alumni-forum', isAlumniOnly: true }, // 仅校友可访问
     { name: messages.nav.resources, href: '/resources' },
   ]
 
@@ -64,22 +68,63 @@ export default function Navbar() {
               <PPRDYearSelector key={item.name} />
             ) : item.isActivitiesDropdown ? (
               <ActivitiesSelector key={item.name} />
-            ) : (
+            ) : item.isAlumniOnly && (!user || !user.isAlumni) ? null : (
               <Link
                 key={item.name}
                 href={item.href}
                 className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
               >
-                {item.name}
+                {item.name === 'alumni-forum' ? '校友交流' : item.name}
               </Link>
             )
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
-          <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-            {messages.nav.login} <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {user ? (
+            <div className="relative">
+              <button
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
+              >
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+                {user.username}
+              </button>
+              
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="px-4 py-2 border-b border-gray-200">
+                    <p className="text-sm font-medium text-gray-900">{user.username}</p>
+                    <p className="text-xs text-gray-500">{user.isAlumni ? '深中模联校友' : '访客用户'}</p>
+                  </div>
+                  {user.isAlumni && (
+                    <Link
+                      href="/alumni-forum"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      校友交流
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      logout()
+                      setUserMenuOpen(false)
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    退出登录
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/auth/login" className="text-sm font-semibold leading-6 text-gray-900">
+              登录 <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       
