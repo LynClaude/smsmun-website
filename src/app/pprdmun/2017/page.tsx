@@ -44,7 +44,7 @@ export default function PPRDMUN2017Page() {
           {/* 背景图片 */}
           <div className="relative h-screen">
             <Image
-              src="/pprdbg.png"
+              src="/pprd-common-bg.webp"
               alt="PPRDMUN 2017 Background"
               fill
               className="object-cover brightness-75"
