@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
 
 interface Message {
@@ -69,23 +70,63 @@ export default function AdminDashboardPage() {
     loadData()
   }, [user, router])
 
-  const loadData = () => {
-    // 加载所有数据
-    const savedUsers = JSON.parse(localStorage.getItem('smsmun_shared_users') || '[]')
-    const savedMessages = JSON.parse(localStorage.getItem('smsmun_messages') || '[]')
-    const savedQuestions = JSON.parse(localStorage.getItem('smsmun_questions') || '[]')
-    const savedAdvisors = JSON.parse(localStorage.getItem('smsmun_honor_advisors') || '[]')
-    
-    // 移除密码字段
-    const usersWithoutPassword = savedUsers.map((u: any) => {
-      const { password, ...userWithoutPassword } = u
-      return userWithoutPassword
-    })
-    
-    setUsers(usersWithoutPassword)
-    setMessages(savedMessages)
-    setQuestions(savedQuestions)
-    setHonorAdvisors(savedAdvisors)
+  const loadData = async () => {
+    try {
+      // 从 Supabase 加载用户数据
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('*')
+        .order('join_date', { ascending: false })
+
+      if (usersError) {
+        console.error('Error loading users:', usersError.message)
+      } else {
+        // 移除密码字段
+        const usersWithoutPassword = (usersData || []).map((u: any) => {
+          const { password, ...userWithoutPassword } = u
+          return userWithoutPassword
+        })
+        setUsers(usersWithoutPassword)
+      }
+
+      // 从 Supabase 加载留言数据
+      const { data: messagesData, error: messagesError } = await supabase
+        .from('messages')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (messagesError) {
+        console.error('Error loading messages:', messagesError.message)
+      } else {
+        setMessages(messagesData || [])
+      }
+
+      // 从 Supabase 加载问题数据
+      const { data: questionsData, error: questionsError } = await supabase
+        .from('questions')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (questionsError) {
+        console.error('Error loading questions:', questionsError.message)
+      } else {
+        setQuestions(questionsData || [])
+      }
+
+      // 从 Supabase 加载荣誉指导申请数据
+      const { data: advisorsData, error: advisorsError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (advisorsError) {
+        console.error('Error loading honor advisors:', advisorsError.message)
+      } else {
+        setHonorAdvisors(advisorsData || [])
+      }
+    } catch (error) {
+      console.error('Error loading data:', error)
+    }
   }
 
   const handleLogout = () => {

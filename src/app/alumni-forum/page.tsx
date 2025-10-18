@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
 
 interface Message {
@@ -75,90 +76,200 @@ export default function AlumniForumPage() {
     loadData()
   }, [user, router])
 
-  const loadData = () => {
-    // 从本地存储加载数据
-    const savedMessages = JSON.parse(localStorage.getItem('smsmun_messages') || '[]')
-    const savedQuestions = JSON.parse(localStorage.getItem('smsmun_questions') || '[]')
-    const savedAdvisors = JSON.parse(localStorage.getItem('smsmun_honor_advisors') || '[]')
-    
-    setMessages(savedMessages)
-    setQuestions(savedQuestions)
-    setHonorAdvisors(savedAdvisors)
+  const loadData = async () => {
+    try {
+      // 从 Supabase 加载留言
+      const { data: messagesData, error: messagesError } = await supabase
+        .from('messages')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (messagesError) {
+        console.error('Error loading messages:', messagesError.message)
+      } else {
+        setMessages(messagesData || [])
+      }
+
+      // 从 Supabase 加载问题
+      const { data: questionsData, error: questionsError } = await supabase
+        .from('questions')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (questionsError) {
+        console.error('Error loading questions:', questionsError.message)
+      } else {
+        // 为每个问题加载对应的回答
+        const questionsWithAnswers = await Promise.all(
+          (questionsData || []).map(async (question) => {
+            const { data: answersData, error: answersError } = await supabase
+              .from('answers')
+              .select('*')
+              .eq('question_id', question.id)
+              .order('timestamp', { ascending: true })
+
+            if (answersError) {
+              console.error('Error loading answers:', answersError.message)
+              return { ...question, answers: [] }
+            }
+
+            return { ...question, answers: answersData || [] }
+          })
+        )
+        setQuestions(questionsWithAnswers)
+      }
+
+      // 从 Supabase 加载荣誉指导申请
+      const { data: advisorsData, error: advisorsError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .order('timestamp', { ascending: false })
+
+      if (advisorsError) {
+        console.error('Error loading honor advisors:', advisorsError.message)
+      } else {
+        setHonorAdvisors(advisorsData || [])
+      }
+    } catch (error) {
+      console.error('Error loading data:', error)
+    }
   }
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!newMessage.trim() || !user) return
 
-    const message: Message = {
-      id: Date.now().toString(),
-      contact: user.email || '未提供',
-      content: newMessage,
-      timestamp: new Date().toISOString(),
-      author: user.username
-    }
+    try {
+      const { data, error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            author: user.username,
+            content: newMessage,
+            contact: user.email || '未提供',
+            timestamp: new Date().toISOString(),
+          }
+        ])
+        .select()
 
-    const updatedMessages = [message, ...messages]
-    setMessages(updatedMessages)
-    localStorage.setItem('smsmun_messages', JSON.stringify(updatedMessages))
-    setNewMessage('')
+      if (error) {
+        console.error('Error sending message:', error.message)
+        alert('发送留言失败，请重试')
+        return
+      }
+
+      if (data && data.length > 0) {
+        setMessages([data[0], ...messages])
+        setNewMessage('')
+      }
+    } catch (error) {
+      console.error('Error sending message:', error)
+      alert('发送留言失败，请重试')
+    }
   }
 
-  const handleAskQuestion = () => {
+  const handleAskQuestion = async () => {
     if (!newQuestion.trim() || !user) return
 
-    const question: Question = {
-      id: Date.now().toString(),
-      question: newQuestion,
-      answers: [],
-      timestamp: new Date().toISOString(),
-      author: user.username
-    }
+    try {
+      const { data, error } = await supabase
+        .from('questions')
+        .insert([
+          {
+            question: newQuestion,
+            author: user.username,
+            timestamp: new Date().toISOString(),
+          }
+        ])
+        .select()
 
-    const updatedQuestions = [question, ...questions]
-    setQuestions(updatedQuestions)
-    localStorage.setItem('smsmun_questions', JSON.stringify(updatedQuestions))
-    setNewQuestion('')
+      if (error) {
+        console.error('Error asking question:', error.message)
+        alert('提交问题失败，请重试')
+        return
+      }
+
+      if (data && data.length > 0) {
+        const newQuestionWithAnswers = { ...data[0], answers: [] }
+        setQuestions([newQuestionWithAnswers, ...questions])
+        setNewQuestion('')
+      }
+    } catch (error) {
+      console.error('Error asking question:', error)
+      alert('提交问题失败，请重试')
+    }
   }
 
-  const handleAnswerQuestion = (questionId: string) => {
+  const handleAnswerQuestion = async (questionId: string) => {
     if (!newAnswer.trim() || !user) return
 
-    const answer: Answer = {
-      id: Date.now().toString(),
-      answer: newAnswer,
-      timestamp: new Date().toISOString(),
-      author: user.username
-    }
+    try {
+      const { data, error } = await supabase
+        .from('answers')
+        .insert([
+          {
+            question_id: questionId,
+            answer: newAnswer,
+            author: user.username,
+            timestamp: new Date().toISOString(),
+          }
+        ])
+        .select()
 
-    const updatedQuestions = questions.map(q => 
-      q.id === questionId 
-        ? { ...q, answers: [...q.answers, answer] }
-        : q
-    )
-    setQuestions(updatedQuestions)
-    localStorage.setItem('smsmun_questions', JSON.stringify(updatedQuestions))
-    setNewAnswer('')
-    setAnsweringQuestion(null)
+      if (error) {
+        console.error('Error answering question:', error.message)
+        alert('提交回答失败，请重试')
+        return
+      }
+
+      if (data && data.length > 0) {
+        const updatedQuestions = questions.map(q => 
+          q.id === questionId 
+            ? { ...q, answers: [...q.answers, data[0]] }
+            : q
+        )
+        setQuestions(updatedQuestions)
+        setNewAnswer('')
+        setAnsweringQuestion(null)
+      }
+    } catch (error) {
+      console.error('Error answering question:', error)
+      alert('提交回答失败，请重试')
+    }
   }
 
-  const handleSubmitAdvisorApplication = () => {
+  const handleSubmitAdvisorApplication = async () => {
     if (!advisorForm.name || !advisorForm.email || !advisorForm.phone || !advisorForm.message || !user) return
 
-    const advisor: HonorAdvisor = {
-      id: Date.now().toString(),
-      name: advisorForm.name,
-      email: advisorForm.email,
-      phone: advisorForm.phone,
-      graduationYear: user.graduation_year || '未知',
-      message: advisorForm.message,
-      timestamp: new Date().toISOString()
-    }
+    try {
+      const { data, error } = await supabase
+        .from('honor_advisors')
+        .insert([
+          {
+            name: advisorForm.name,
+            email: advisorForm.email,
+            phone: advisorForm.phone,
+            graduation_year: user.graduation_year || '未知',
+            message: advisorForm.message,
+            timestamp: new Date().toISOString(),
+          }
+        ])
+        .select()
 
-    const updatedAdvisors = [advisor, ...honorAdvisors]
-    setHonorAdvisors(updatedAdvisors)
-    localStorage.setItem('smsmun_honor_advisors', JSON.stringify(updatedAdvisors))
-    setAdvisorForm({ name: '', email: '', phone: '', message: '' })
-    alert('申请提交成功！我们会尽快联系您。')
+      if (error) {
+        console.error('Error submitting advisor application:', error.message)
+        alert('提交申请失败，请重试')
+        return
+      }
+
+      if (data && data.length > 0) {
+        setHonorAdvisors([data[0], ...honorAdvisors])
+        setAdvisorForm({ name: '', email: '', phone: '', message: '' })
+        alert('申请提交成功！我们会尽快联系您。')
+      }
+    } catch (error) {
+      console.error('Error submitting advisor application:', error)
+      alert('提交申请失败，请重试')
+    }
   }
 
   if (!user || !user.is_alumni) {
