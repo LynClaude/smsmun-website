@@ -1,82 +1,161 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function LeadershipSummitPage() {
   const { messages } = useI18n()
   const [selectedYear, setSelectedYear] = useState('2024')
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const years = [
     '2024'
     // 未来可以添加更多年份
   ]
 
+  // 2024年领袖峰会的照片数组
+  const images2024 = [
+    '/领袖峰会/领袖峰会全员合照.jpeg',
+    '/领袖峰会/领袖峰会staff合照.jpeg',
+    '/领袖峰会/领袖峰会会中主席团照片.jpeg',
+    '/领袖峰会/茶歇.jpeg',
+    '/领袖峰会/领袖峰会常秘发言.jpeg'
+  ]
+
+  // 自动轮播图片
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images2024.length)
+    }, 3000) // 每3秒切换一张图片
+
+    return () => clearInterval(interval)
+  }, [images2024.length])
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* 左侧年份导航 */}
-            <div className="md:w-64 space-y-2">
-              <h2 className="text-xl font-bold mb-4">领袖峰会</h2>
-              <div className="bg-white rounded-lg shadow-md p-4 space-y-2">
-                {years.map((year) => (
-                  <button
-                    key={year}
-                    onClick={() => setSelectedYear(year)}
-                    className={`w-full text-left px-4 py-2 rounded-md transition-colors ${
-                      selectedYear === year
-                        ? 'bg-primary text-white'
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    {year}
-                  </button>
-                ))}
+        <div className="container mx-auto px-4 relative">
+          {/* 悬浮年份选择栏 */}
+          <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+            <div className="bg-white rounded-lg shadow-lg p-4 space-y-2 min-w-[120px]">
+              <h3 className="text-sm font-semibold text-gray-700 mb-2 text-center">选择年份</h3>
+              {years.map((year) => (
+                <button
+                  key={year}
+                  onClick={() => {
+                    setSelectedYear(year)
+                    if (year === '2024') {
+                      window.location.href = '/activities/leadership-summit/2024'
+                    }
+                  }}
+                  className={`w-full text-center px-3 py-2 rounded-md transition-colors text-sm ${
+                    selectedYear === year
+                      ? 'bg-primary text-white'
+                      : 'hover:bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 主要内容区域 */}
+          <div className="max-w-6xl mx-auto">
+            {/* Hero Section */}
+            <div className="relative h-96 mb-12 rounded-xl overflow-hidden">
+              <Image
+                src="/领袖峰会/领袖峰会2024_01.png"
+                alt="Leadership Summit 2024 Background"
+                fill
+                className="object-cover brightness-75"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+                <motion.h1
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-4xl md:text-6xl font-extrabold mb-4"
+                >
+                  深圳市模拟联合国领袖峰会 2024
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-lg md:text-xl max-w-3xl"
+                >
+                  Shenzhen Summit for Chief Leaders in Model United Nations
+                </motion.p>
               </div>
             </div>
 
-            {/* 右侧内容区域 */}
-            <div className="flex-1">
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold mb-8">领袖峰会 {selectedYear}</h2>
-                
-                {selectedYear === '2024' ? (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3">会议简介</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        深圳市模拟联合国领袖峰会是由深圳中学模拟联合国协会秘书处主办，面向全市各高中模联组织负责人及管理层成员的大会，旨在推动深圳市高中生模联活动的合作与发展。峰会通过深入友好的交流，加强区域内各模联协会的团结，建立合作互助平台，讨论深圳模联的发展和前景，为深圳市高中生模联活动的独立、专业、创新型发展探索良策。
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3">会议信息</h3>
-                      <ul className="text-gray-700 space-y-2">
-                        <li><span className="font-semibold">会议时间：</span>2024年12月7日（周六）14：30 -17：00</li>
-                        <li><span className="font-semibold">会议地点：</span>深圳中学（泥岗校区）</li>
-                        <li><span className="font-semibold">会议主题：</span>深圳地区线下模联活动的重振与发展&模联社团创新与传承</li>
-                        <li><span className="font-semibold">英文全称：</span>Shenzhen Summit for Chief Leaders in Model United Nations</li>
-                      </ul>
-                    </div>
-
-                    <div className="pt-4">
-                      <Link
-                        href="/activities/leadership-summit/2024"
-                        className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                      >
-                        查看详细信息 →
-                      </Link>
-                    </div>
+            {/* 会议简介和图片轮播 */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="flex flex-col lg:flex-row">
+                {/* 左侧会议简介 */}
+                <div className="lg:w-1/2 p-8">
+                  <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">会议简介</h2>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    深圳市模拟联合国领袖峰会是由深圳中学模拟联合国协会秘书处主办，面向全市各高中模联组织负责人及管理层成员的大会，旨在推动深圳市高中生模联活动的合作与发展。峰会通过深入友好的交流，加强区域内各模联协会的团结，建立合作互助平台，讨论深圳模联的发展和前景，为深圳市高中生模联活动的独立、专业、创新型发展探索良策。
+                  </p>
+                  <ul className="text-gray-700 space-y-3">
+                    <li><span className="font-semibold">会议时间：</span>2024年12月7日（周六）14：30 -17：00</li>
+                    <li><span className="font-semibold">会议地点：</span>深圳中学（泥岗校区）</li>
+                    <li><span className="font-semibold">会议主题：</span>深圳地区线下模联活动的重振与发展&模联社团创新与传承</li>
+                  </ul>
+                  <div className="pt-6">
+                    <Link
+                      href="/activities/leadership-summit/2024"
+                      className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      查看详细信息 →
+                    </Link>
                   </div>
-                ) : (
-                  <div className="text-center text-gray-500">
-                    该年份的数据暂未收录
+                </div>
+
+                {/* 右侧图片展示 - 自动轮播 */}
+                <div className="relative lg:w-1/2 aspect-[4/3]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{
+                        duration: 0.6,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={images2024[currentImageIndex]}
+                        alt={`Leadership Summit 2024 Photo ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* 图片指示器 */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {images2024.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                      />
+                    ))}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
