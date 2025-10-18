@@ -120,28 +120,6 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* 微信登录 */}
-            <div className="mb-6">
-              <button
-                onClick={handleWechatLogin}
-                disabled={isLoading}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-green-500 text-white font-medium hover:bg-green-600 transition-colors disabled:opacity-50"
-              >
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18 0 .659-.52 1.188-1.162 1.188-.642 0-1.162-.529-1.162-1.188 0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18 0 .659-.52 1.188-1.162 1.188-.642 0-1.162-.529-1.162-1.188 0-.651.52-1.18 1.162-1.18z"/>
-                </svg>
-                微信登录
-              </button>
-            </div>
-
-            <div className="relative mb-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">或</span>
-              </div>
-            </div>
 
             {activeTab === 'login' ? (
               <form onSubmit={handleLogin} className="space-y-4">
@@ -254,9 +232,9 @@ export default function LoginPage() {
                       onChange={(e) => setIsAlumni(e.target.checked)}
                       className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                     />
-                    <label htmlFor="isAlumni" className="ml-2 block text-sm text-gray-700">
-                      我是深中模联校友
-                    </label>
+                      <label htmlFor="isAlumni" className="ml-2 block text-sm text-gray-700">
+                        我是（曾是）深中模联成员
+                      </label>
                   </div>
 
                   {isAlumni && (
@@ -270,9 +248,14 @@ export default function LoginPage() {
                         onChange={(e) => setGraduationYear(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                       >
-                        <option value="">请选择毕业年份</option>
-                        {Array.from({ length: 20 }, (_, i) => 2024 - i).map((year) => (
-                          <option key={year} value={year}>{year}年</option>
+                        <option value="">请选择您所在的届别</option>
+                        {[
+                          '2024-2025', '2023-2024', '2022-2023', '2021-2022', '2020-2021',
+                          '2019-2020', '2018-2019', '2017-2018', '2016-2017', '2015-2016',
+                          '2014-2015', '2013-2014', '2012-2013', '2011-2012', '2010-2011',
+                          '2009-2010', '2008-2009', '2007-2008', '2006-2007', '2005-2006'
+                        ].map((year) => (
+                          <option key={year} value={year}>{year}</option>
                         ))}
                       </select>
                     </div>
@@ -300,6 +283,15 @@ export default function LoginPage() {
                 {success}
               </div>
             )}
+
+            <div className="mt-6 text-center">
+              <Link
+                href="/admin/login"
+                className="text-sm text-gray-600 hover:text-primary transition-colors"
+              >
+                管理员登录 →
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

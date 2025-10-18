@@ -97,8 +97,19 @@ export default function Navbar() {
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   <div className="px-4 py-2 border-b border-gray-200">
                     <p className="text-sm font-medium text-gray-900">{user.username}</p>
-                    <p className="text-xs text-gray-500">{user.isAlumni ? '深中模联校友' : '访客用户'}</p>
+                    <p className="text-xs text-gray-500">
+                      {user.isAdmin ? '管理员' : user.isAlumni ? '深中模联校友' : '访客用户'}
+                    </p>
                   </div>
+                  {user.isAdmin && (
+                    <Link
+                      href="/admin/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      管理员面板
+                    </Link>
+                  )}
                   {user.isAlumni && (
                     <Link
                       href="/alumni-forum"

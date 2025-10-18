@@ -167,7 +167,7 @@ export default function AlumniForumPage() {
         <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">访问受限</h1>
-            <p className="text-gray-600 mb-6">此页面仅限深中模联校友访问</p>
+            <p className="text-gray-600 mb-6">此页面仅限深中模联成员（包括在校生和校友）访问，请先登录您的深中模联账号</p>
             <button
               onClick={() => router.push('/')}
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
