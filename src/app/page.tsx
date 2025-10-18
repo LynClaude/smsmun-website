@@ -36,7 +36,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/background.jpg"
+                  src="/深中模联活动照.pic(1).jpg"
                   alt="PPRDMUN"
                   fill
                   className="object-cover"
@@ -68,7 +68,7 @@ export default function Home() {
             >
               <div className="relative h-48">
                 <Image
-                  src="/background.jpg"
+                  src="/领袖峰会/领袖峰会会中主席团照片.jpeg"
                   alt="活动与项目"
                   fill
                   className="object-cover"
