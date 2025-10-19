@@ -89,23 +89,30 @@ export default function AlumniForumPage() {
 
       if (messagesError) {
         console.error('Error loading messages:', messagesError.message)
+        setMessages([])
       } else {
         setMessages(messagesData || [])
         
         // 获取所有留言的用户名
         if (messagesData && messagesData.length > 0) {
-          const userIds = Array.from(new Set(messagesData.map(msg => msg.user_id)))
-          const { data: usersData } = await supabase
-            .from('users')
-            .select('id, username')
-            .in('id', userIds)
-          
-          if (usersData) {
-            const nameMap: {[key: string]: string} = {}
-            usersData.forEach(u => {
-              nameMap[u.id] = u.username
-            })
-            setUserNames(nameMap)
+          const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
+          if (userIds.length > 0) {
+            const { data: usersData, error: usersError } = await supabase
+              .from('users')
+              .select('id, username')
+              .in('id', userIds)
+            
+            if (usersError) {
+              console.error('Error loading usernames:', usersError.message)
+            } else if (usersData) {
+              const nameMap: {[key: string]: string} = {}
+              usersData.forEach(u => {
+                if (u.id && u.username) {
+                  nameMap[u.id] = u.username
+                }
+              })
+              setUserNames(nameMap)
+            }
           }
         }
       }
@@ -118,22 +125,28 @@ export default function AlumniForumPage() {
 
       if (questionsError) {
         console.error('Error loading questions:', questionsError.message)
+        setQuestions([])
       } else {
         // 为每个问题加载对应的回答
         const questionsWithAnswers = await Promise.all(
           (questionsData || []).map(async (question) => {
-            const { data: answersData, error: answersError } = await supabase
-              .from('answers')
-              .select('*')
-              .eq('question_id', question.id)
-              .order('created_at', { ascending: true })
+            try {
+              const { data: answersData, error: answersError } = await supabase
+                .from('answers')
+                .select('*')
+                .eq('question_id', question.id)
+                .order('created_at', { ascending: true })
 
-            if (answersError) {
-              console.error('Error loading answers:', answersError.message)
+              if (answersError) {
+                console.error('Error loading answers:', answersError.message)
+                return { ...question, answers: [] }
+              }
+
+              return { ...question, answers: answersData || [] }
+            } catch (error) {
+              console.error('Error processing question:', error)
               return { ...question, answers: [] }
             }
-
-            return { ...question, answers: answersData || [] }
           })
         )
         setQuestions(questionsWithAnswers)
@@ -388,7 +401,7 @@ export default function AlumniForumPage() {
                     <div key={message.id} className="border-l-4 border-primary pl-4 py-2">
                       <div className="flex justify-between items-start mb-2">
                         <span className="font-medium text-gray-900">
-                          {userNames[message.user_id] || `用户 ${message.user_id.substring(0, 8)}`}
+                          {userNames[message.user_id] || `用户 ${message.user_id ? message.user_id.substring(0, 8) : '未知'}`}
                         </span>
                         <span className="text-sm text-gray-500">
                           {new Date(message.created_at).toLocaleString()}
@@ -434,7 +447,7 @@ export default function AlumniForumPage() {
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        提问者：{userNames[question.user_id] || `用户 ${question.user_id.substring(0, 8)}`}
+                        提问者：{userNames[question.user_id] || `用户 ${question.user_id ? question.user_id.substring(0, 8) : '未知'}`}
                       </p>
                       
                       {/* 回答列表 */}
@@ -443,7 +456,7 @@ export default function AlumniForumPage() {
                           <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
                             <div className="flex justify-between items-start mb-2">
                               <span className="font-medium text-gray-900">
-                                {userNames[answer.user_id] || `用户 ${answer.user_id.substring(0, 8)}`}
+                                {userNames[answer.user_id] || `用户 ${answer.user_id ? answer.user_id.substring(0, 8) : '未知'}`}
                               </span>
                               <span className="text-sm text-gray-500">
                                 {new Date(answer.created_at).toLocaleString()}
