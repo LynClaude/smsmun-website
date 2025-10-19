@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
     { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
     { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目链接
+    { name: '深中模联顾问委员会', href: '/alumni-forum/honor-advisors/committee' }, // 访客可访问
     { name: 'alumni-forum', href: '/alumni-forum', isAlumniOnly: true }, // 仅校友可访问
   ]
 
@@ -116,7 +117,9 @@ export default function Navbar() {
                   <div className="px-4 py-2 border-b border-gray-200">
                     <p className="text-sm font-medium text-gray-900">{user.username}</p>
                     <p className="text-xs text-gray-500">
-                      {user.is_admin ? '管理员' : user.is_alumni ? '深中模联校友' : '访客用户'}
+                      {user.is_admin ? '管理员' : 
+                       user.is_honor_advisor ? '深中模联荣誉顾问' :
+                       user.is_alumni ? '深中模联校友' : '访客用户'}
                     </p>
                   </div>
                   <Link

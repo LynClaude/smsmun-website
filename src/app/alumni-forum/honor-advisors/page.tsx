@@ -49,22 +49,6 @@ export default function HonorAdvisorsPage() {
           graduation_year: '2026',
           position: '秘书长',
           created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-2',
-          name: '李华',
-          email: 'lihua@example.com',
-          graduation_year: '2024',
-          position: '副秘书长',
-          created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-3',
-          name: '王小明',
-          email: 'wangxiaoming@example.com',
-          graduation_year: '2023',
-          position: '学术部长',
-          created_at: new Date().toISOString()
         }
       ]
     setHonorAdvisors(testData)

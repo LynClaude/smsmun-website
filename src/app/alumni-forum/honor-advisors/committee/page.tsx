@@ -28,16 +28,7 @@ export default function HonorAdvisorCommitteePage() {
   const [members, setMembers] = useState<HonorAdvisorMember[]>([])
 
   useEffect(() => {
-    // 检查用户权限
-    if (!user) {
-      router.push('/auth/login')
-      return
-    }
-    if (!user.is_alumni) {
-      router.push('/')
-      return
-    }
-
+    // 访客也可以访问荣誉顾问委员会页面
     loadCommitteeMembers()
   }, [user, router])
 
@@ -57,30 +48,6 @@ export default function HonorAdvisorCommitteePage() {
           graduation_year: '2026',
           position: '秘书长',
           achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
-          created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-2',
-          user_id: 'test-user-2',
-          name: '李华',
-          email: 'lihua@example.com',
-          phone: '13800138001',
-          wechat: 'lihua_wechat',
-          graduation_year: '2024',
-          position: '副秘书长',
-          achievements: '在模联领域有丰富经验，多次获得最佳代表奖',
-          created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-3',
-          user_id: 'test-user-3',
-          name: '王小明',
-          email: 'wangxiaoming@example.com',
-          phone: '13800138002',
-          wechat: 'wangxiaoming_wechat',
-          graduation_year: '2023',
-          position: '学术部长',
-          achievements: '在学术研究方面有突出贡献，多次组织学术活动',
           created_at: new Date().toISOString()
         }
       ]
@@ -110,9 +77,7 @@ export default function HonorAdvisorCommitteePage() {
     }
   }
 
-  if (!user || !user.is_alumni) {
-    return null
-  }
+  // 移除访问限制，访客也可以查看
 
   if (loading) {
     return (
