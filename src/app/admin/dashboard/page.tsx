@@ -121,6 +121,7 @@ export default function AdminDashboardPage() {
       }
 
       // 从 Supabase 加载荣誉顾问申请数据
+      console.log('Loading honor advisors...')
       const { data: advisorsData, error: advisorsError } = await supabase
         .from('honor_advisors')
         .select('*')
@@ -128,7 +129,9 @@ export default function AdminDashboardPage() {
 
       if (advisorsError) {
         console.error('Error loading honor advisors:', advisorsError.message)
+        console.error('Full error:', advisorsError)
       } else {
+        console.log('Loaded honor advisors:', advisorsData)
         setHonorAdvisors(advisorsData || [])
       }
     } catch (error) {
@@ -432,6 +435,19 @@ export default function AdminDashboardPage() {
             {activeTab === 'advisors' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-bold mb-4">荣誉顾问申请管理</h2>
+                
+                {/* 调试信息 */}
+                <div className="mb-4 p-3 bg-gray-100 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    当前加载的申请数量: {honorAdvisors.length}
+                  </p>
+                  {honorAdvisors.length === 0 && (
+                    <p className="text-sm text-red-600 mt-1">
+                      没有找到荣誉顾问申请数据。请检查数据库连接和表结构。
+                    </p>
+                  )}
+                </div>
+
                 <div className="space-y-4">
                   {honorAdvisors.map((advisor) => (
                     <div key={advisor.id} className="border border-gray-200 rounded-lg p-4">
