@@ -40,15 +40,30 @@ export default function HonorAdvisorsPage() {
 
   const loadHonorAdvisors = async () => {
     try {
+      console.log('开始加载荣誉顾问数据...')
+      
+      // 首先检查所有数据
+      const { data: allData, error: allError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+      
+      console.log('所有荣誉顾问申请:', allData)
+      console.log('所有申请错误:', allError)
+      
+      // 然后查询已批准的数据
       const { data, error } = await supabase
         .from('honor_advisors')
         .select('*')
         .eq('status', 'approved')
         .order('created_at', { ascending: false })
 
+      console.log('已批准的荣誉顾问:', data)
+      console.log('查询错误:', error)
+
       if (error) {
         console.error('Error loading honor advisors:', error)
       } else {
+        console.log('设置荣誉顾问数据:', data || [])
         setHonorAdvisors(data || [])
       }
     } catch (error) {
@@ -174,6 +189,14 @@ export default function HonorAdvisorsPage() {
                     </div>
                   ) : honorAdvisors.length === 0 ? (
                     <div className="text-center py-8">
+                      <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+                        <p className="text-sm text-yellow-800">
+                          调试信息：当前加载的荣誉顾问数量为 {honorAdvisors.length}
+                        </p>
+                        <p className="text-xs text-yellow-600 mt-1">
+                          请检查浏览器控制台的详细日志
+                        </p>
+                      </div>
                       <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
