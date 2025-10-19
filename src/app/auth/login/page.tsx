@@ -52,7 +52,7 @@ export default function LoginPage() {
       setVerificationStatus('verified')
     } else {
       setVerificationStatus('failed')
-      setError('学号格式不正确，请输入深圳中学学号（格式：20XX年+7位数字）')
+      setError('学号格式不正确，请检查后重新输入')
     }
   }
 
@@ -220,7 +220,7 @@ export default function LoginPage() {
                   />
                   {isAlumni && (
                     <p className="text-xs text-gray-500 mt-1">
-                      深中模联成员身份验证：请使用smsmun开头邮箱进行验证，如无此邮箱，请提供深圳中学学号（格式：20XX年+7位数字）。
+                      深中模联成员身份验证：请使用smsmun开头邮箱进行验证，如无此邮箱，请提供深圳中学学号。
                     </p>
                   )}
                 </div>
@@ -303,10 +303,10 @@ export default function LoginPage() {
                               value={studentId}
                               onChange={(e) => setStudentId(e.target.value)}
                               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                              placeholder="请输入深圳中学学号（20XX年+7位数字）"
+                              placeholder="请输入深圳中学学号"
                             />
                             <p className="text-xs text-gray-500 mt-1">
-                              请输入您的深圳中学学号进行身份验证（格式：20XX年+7位数字）
+                              请输入您的深圳中学学号进行身份验证
                             </p>
                           </div>
                           <button
