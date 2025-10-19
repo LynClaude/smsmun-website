@@ -34,7 +34,7 @@ export default function HonorAdvisorCommitteePage() {
       router.push('/auth/login')
       return
     }
-    if (!user.is_honor_advisor) {
+    if (!user.is_alumni) {
       router.push('/')
       return
     }
@@ -123,7 +123,7 @@ export default function HonorAdvisorCommitteePage() {
     }
   }
 
-  if (!user || !user.is_honor_advisor) {
+  if (!user || !user.is_alumni) {
     return null
   }
 
