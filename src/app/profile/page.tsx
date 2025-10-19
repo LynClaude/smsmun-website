@@ -53,6 +53,9 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true)
   const [feedbackContent, setFeedbackContent] = useState('')
   const [submittingFeedback, setSubmittingFeedback] = useState(false)
+  const [showResignModal, setShowResignModal] = useState(false)
+  const [resignReason, setResignReason] = useState('')
+  const [submittingResign, setSubmittingResign] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -230,8 +233,8 @@ export default function ProfilePage() {
                 </h1>
                 <p className="text-gray-600">
                   {user?.is_admin ? '管理员' : 
-                   user?.is_alumni ? 
-                     (user?.is_honor_advisor ? '深中模联校友 · 荣誉顾问' : '深中模联校友') : 
+                   user?.is_honor_advisor ? '深中模联荣誉顾问' :
+                   user?.is_alumni ? '深中模联校友' : 
                    '访客用户'}
                 </p>
                 <p className="text-sm text-gray-500">{user?.email}</p>
@@ -259,15 +262,26 @@ export default function ProfilePage() {
                     <p className="text-gray-600">您已成为荣誉顾问委员会成员</p>
                   </div>
                 </div>
-                <Link
-                  href="/alumni-forum/honor-advisors/committee"
-                  className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                  进入委员会
-                </Link>
+                <div className="flex gap-3">
+                  <Link
+                    href="/alumni-forum/honor-advisors/committee"
+                    className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    进入委员会
+                  </Link>
+                  <button
+                    onClick={() => setShowResignModal(true)}
+                    className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    退出委员会
+                  </button>
+                </div>
               </div>
             </motion.div>
           )}
@@ -306,7 +320,7 @@ export default function ProfilePage() {
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
-                    荣誉指导 ({honorAdvisors.length})
+                    荣誉顾问 ({honorAdvisors.length})
                   </button>
                 </>
               ) : (
@@ -375,7 +389,7 @@ export default function ProfilePage() {
               {activeTab === 'honor' && user?.is_alumni && (
                 <div className="space-y-4">
                   {honorAdvisors.length === 0 ? (
-                    <p className="text-gray-500 text-center py-8">暂无荣誉指导申请</p>
+                    <p className="text-gray-500 text-center py-8">暂无荣誉顾问申请</p>
                   ) : (
                     honorAdvisors.map((advisor) => (
                       <div key={advisor.id} className="border border-gray-200 rounded-lg p-4">

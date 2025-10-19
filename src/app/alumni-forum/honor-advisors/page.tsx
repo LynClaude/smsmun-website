@@ -5,11 +5,23 @@ import Link from 'next/link'
 import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
 import PageTransition from '@/components/PageTransition'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+
+interface HonorAdvisorMember {
+  id: string
+  name: string
+  email: string
+  graduation_year: string
+  position: string
+  approved_at: string
+}
 
 export default function HonorAdvisorsPage() {
   const { user } = useAuth()
   const router = useRouter()
+  const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisorMember[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // 检查用户权限
@@ -21,7 +33,30 @@ export default function HonorAdvisorsPage() {
       router.push('/')
       return
     }
+
+    // 加载荣誉顾问列表
+    loadHonorAdvisors()
   }, [user, router])
+
+  const loadHonorAdvisors = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('status', 'approved')
+        .order('approved_at', { ascending: false })
+
+      if (error) {
+        console.error('Error loading honor advisors:', error)
+      } else {
+        setHonorAdvisors(data || [])
+      }
+    } catch (error) {
+      console.error('Error loading honor advisors:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   if (!user || !user.is_alumni) {
     return null
@@ -127,6 +162,52 @@ export default function HonorAdvisorsPage() {
                       </li>
                     </ul>
                   </div>
+                </div>
+
+                {/* 现有荣誉顾问 */}
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold text-primary mb-6">现有荣誉顾问</h2>
+                  {loading ? (
+                    <div className="text-center py-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+                      <p className="text-gray-600">加载中...</p>
+                    </div>
+                  ) : honorAdvisors.length === 0 ? (
+                    <div className="text-center py-8">
+                      <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">暂无荣誉顾问</h3>
+                      <p className="text-gray-600">荣誉顾问委员会正在建设中...</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {honorAdvisors.map((advisor) => (
+                        <div key={advisor.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                              {advisor.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-gray-900">{advisor.name}</h3>
+                              <p className="text-sm text-gray-600">{advisor.graduation_year}年毕业</p>
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-sm text-gray-600">
+                              <span className="font-medium">邮箱：</span>{advisor.email}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              <span className="font-medium">在协会职务：</span>{advisor.position}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              批准时间：{new Date(advisor.approved_at || '').toLocaleDateString()}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* 操作按钮 */}
