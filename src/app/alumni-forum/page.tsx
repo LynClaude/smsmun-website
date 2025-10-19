@@ -9,25 +9,26 @@ import PageTransition from '@/components/PageTransition'
 
 interface Message {
   id: string
-  contact: string
+  user_id: string
   content: string
-  timestamp: string
-  author: string
+  created_at: string
 }
 
 interface Question {
   id: string
-  question: string
+  user_id: string
+  title: string
+  content: string
   answers: Answer[]
-  timestamp: string
-  author: string
+  created_at: string
 }
 
 interface Answer {
   id: string
-  answer: string
-  timestamp: string
-  author: string
+  question_id: string
+  user_id: string
+  content: string
+  created_at: string
 }
 
 interface HonorAdvisor {
@@ -82,7 +83,7 @@ export default function AlumniForumPage() {
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (messagesError) {
         console.error('Error loading messages:', messagesError.message)
@@ -94,7 +95,7 @@ export default function AlumniForumPage() {
       const { data: questionsData, error: questionsError } = await supabase
         .from('questions')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (questionsError) {
         console.error('Error loading questions:', questionsError.message)
@@ -106,7 +107,7 @@ export default function AlumniForumPage() {
               .from('answers')
               .select('*')
               .eq('question_id', question.id)
-              .order('timestamp', { ascending: true })
+              .order('created_at', { ascending: true })
 
             if (answersError) {
               console.error('Error loading answers:', answersError.message)
@@ -123,7 +124,7 @@ export default function AlumniForumPage() {
       const { data: advisorsData, error: advisorsError } = await supabase
         .from('honor_advisors')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (advisorsError) {
         console.error('Error loading honor advisors:', advisorsError.message)
@@ -146,7 +147,7 @@ export default function AlumniForumPage() {
             author: user.username,
             content: newMessage,
             contact: user.email || '未提供',
-            timestamp: new Date().toISOString(),
+            created_at: new Date().toISOString(),
           }
         ])
         .select()
@@ -177,7 +178,7 @@ export default function AlumniForumPage() {
           {
             question: newQuestion,
             author: user.username,
-            timestamp: new Date().toISOString(),
+            created_at: new Date().toISOString(),
           }
         ])
         .select()
@@ -210,7 +211,7 @@ export default function AlumniForumPage() {
             question_id: questionId,
             answer: newAnswer,
             author: user.username,
-            timestamp: new Date().toISOString(),
+            created_at: new Date().toISOString(),
           }
         ])
         .select()
@@ -250,7 +251,7 @@ export default function AlumniForumPage() {
             phone: advisorForm.phone,
             graduation_year: user.graduation_year || '未知',
             message: advisorForm.message,
-            timestamp: new Date().toISOString(),
+            created_at: new Date().toISOString(),
           }
         ])
         .select()
@@ -367,9 +368,9 @@ export default function AlumniForumPage() {
                   {messages.map((message) => (
                     <div key={message.id} className="border-l-4 border-primary pl-4 py-2">
                       <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium text-gray-900">{message.author}</span>
+                        <span className="font-medium text-gray-900">用户 {message.user_id}</span>
                         <span className="text-sm text-gray-500">
-                          {new Date(message.timestamp).toLocaleString()}
+                          {new Date(message.created_at).toLocaleString()}
                         </span>
                       </div>
                       <p className="text-gray-700">{message.content}</p>
@@ -406,24 +407,24 @@ export default function AlumniForumPage() {
                   {questions.map((question) => (
                     <div key={question.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.question}</h3>
+                        <h3 className="font-medium text-gray-900">{question.title}</h3>
                         <span className="text-sm text-gray-500">
-                          {new Date(question.timestamp).toLocaleString()}
+                          {new Date(question.created_at).toLocaleString()}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">提问者：{question.author}</p>
+                      <p className="text-sm text-gray-600 mb-3">提问者：用户 {question.user_id}</p>
                       
                       {/* 回答列表 */}
                       <div className="space-y-3 mb-4">
                         {question.answers.map((answer) => (
                           <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
                             <div className="flex justify-between items-start mb-2">
-                              <span className="font-medium text-gray-900">{answer.author}</span>
+                              <span className="font-medium text-gray-900">用户 {answer.user_id}</span>
                               <span className="text-sm text-gray-500">
-                                {new Date(answer.timestamp).toLocaleString()}
+                                {new Date(answer.created_at).toLocaleString()}
                               </span>
                             </div>
-                            <p className="text-gray-700">{answer.answer}</p>
+                            <p className="text-gray-700">{answer.content}</p>
                           </div>
                         ))}
                       </div>

@@ -44,10 +44,10 @@ interface User {
   id: string
   username: string
   email?: string
-  isAlumni: boolean
-  graduationYear?: string
-  isAdmin: boolean
-  joinDate: string
+  is_alumni: boolean
+  graduation_year?: string
+  is_admin: boolean
+  join_date: string
 }
 
 export default function AdminDashboardPage() {
@@ -289,14 +289,14 @@ export default function AdminDashboardPage() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email || '未提供'}</td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                              user.isAlumni ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                              user.is_alumni ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                             }`}>
-                              {user.isAlumni ? '是' : '否'}
+                              {user.is_alumni ? '是' : '否'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.graduationYear || '-'}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.graduation_year || '-'}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {new Date(user.joinDate).toLocaleDateString()}
+                            {new Date(user.join_date).toLocaleDateString()}
                           </td>
                         </tr>
                       ))}
