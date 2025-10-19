@@ -294,8 +294,8 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* 荣誉顾问委员会入口 */}
-          {user?.is_honor_advisor && (
+          {/* 荣誉顾问委员会入口 - 临时显示给所有校友 */}
+          {(user?.is_honor_advisor || user?.is_alumni) && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -311,7 +311,9 @@ export default function ProfilePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">荣誉顾问委员会</h3>
-                    <p className="text-gray-600">您已成为荣誉顾问委员会成员</p>
+                    <p className="text-gray-600">
+                      {user?.is_honor_advisor ? '您已成为荣誉顾问委员会成员' : '查看荣誉顾问委员会信息'}
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-3">
@@ -324,15 +326,17 @@ export default function ProfilePage() {
                     </svg>
                     进入委员会
                   </Link>
-                  <button
-                    onClick={() => setShowResignModal(true)}
-                    className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
-                    退出委员会
-                  </button>
+                  {user?.is_honor_advisor && (
+                    <button
+                      onClick={() => setShowResignModal(true)}
+                      className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                      退出委员会
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>
