@@ -87,7 +87,16 @@ export default function Navbar() {
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
                   {user.username.charAt(0).toUpperCase()}
                 </div>
-                {user.username}
+                <span>{user.username}</span>
+                {user.is_alumni && (
+                  <Image
+                    src="/favicon.ico"
+                    alt="深中模联成员"
+                    width={16}
+                    height={16}
+                    className="w-4 h-4"
+                  />
+                )}
               </button>
               
               {userMenuOpen && (
@@ -98,6 +107,13 @@ export default function Navbar() {
                       {user.is_admin ? '管理员' : user.is_alumni ? '深中模联校友' : '访客用户'}
                     </p>
                   </div>
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                    onClick={() => setUserMenuOpen(false)}
+                  >
+                    我的
+                  </Link>
                   {user.is_admin && (
                     <Link
                       href="/admin/dashboard"

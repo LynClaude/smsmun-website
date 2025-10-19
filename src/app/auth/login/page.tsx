@@ -18,9 +18,43 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [showVerification, setShowVerification] = useState(false)
+  const [studentId, setStudentId] = useState('')
+  const [verificationStatus, setVerificationStatus] = useState<'pending' | 'verified' | 'failed'>('pending')
 
   const { login, register } = useAuth()
   const router = useRouter()
+
+  // 验证邮箱是否为smsmun开头
+  const isSMSMUNEmail = (email: string) => {
+    return email.toLowerCase().startsWith('smsmun')
+  }
+
+  // 验证学号格式（假设为6-8位数字）
+  const isValidStudentId = (id: string) => {
+    return /^\d{6,8}$/.test(id)
+  }
+
+  // 处理成员验证
+  const handleMemberVerification = () => {
+    if (isSMSMUNEmail(email)) {
+      setVerificationStatus('verified')
+      setShowVerification(true)
+    } else {
+      setShowVerification(true)
+      setVerificationStatus('pending')
+    }
+  }
+
+  // 验证学号
+  const handleStudentIdVerification = () => {
+    if (isValidStudentId(studentId)) {
+      setVerificationStatus('verified')
+    } else {
+      setVerificationStatus('failed')
+      setError('学号格式不正确，请输入6-8位数字')
+    }
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,6 +80,13 @@ export default function LoginPage() {
 
     if (password !== confirmPassword) {
       setError('两次输入的密码不一致')
+      setIsLoading(false)
+      return
+    }
+
+    // 如果是成员但验证未通过，不允许注册
+    if (isAlumni && verificationStatus !== 'verified') {
+      setError('请完成身份验证后再注册')
       setIsLoading(false)
       return
     }
@@ -215,35 +256,63 @@ export default function LoginPage() {
                       id="isAlumni"
                       type="checkbox"
                       checked={isAlumni}
-                      onChange={(e) => setIsAlumni(e.target.checked)}
+                      onChange={(e) => {
+                        setIsAlumni(e.target.checked)
+                        if (e.target.checked) {
+                          handleMemberVerification()
+                        } else {
+                          setShowVerification(false)
+                          setVerificationStatus('pending')
+                        }
+                      }}
                       className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                     />
-                      <label htmlFor="isAlumni" className="ml-2 block text-sm text-gray-700">
-                        我是（曾是）深中模联成员
-                      </label>
+                    <label htmlFor="isAlumni" className="ml-2 block text-sm text-gray-700">
+                      我是（曾是）深中模联成员
+                    </label>
                   </div>
 
-                  {isAlumni && (
-                    <div>
-                      <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700 mb-1">
-                        毕业年份
-                      </label>
-                      <select
-                        id="graduationYear"
-                        value={graduationYear}
-                        onChange={(e) => setGraduationYear(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                      >
-                        <option value="">请选择您所在的届别</option>
-                        {[
-                          '2024-2025', '2023-2024', '2022-2023', '2021-2022', '2020-2021',
-                          '2019-2020', '2018-2019', '2017-2018', '2016-2017', '2015-2016',
-                          '2014-2015', '2013-2014', '2012-2013', '2011-2012', '2010-2011',
-                          '2009-2010', '2008-2009', '2007-2008', '2006-2007', '2005-2006'
-                        ].map((year) => (
-                          <option key={year} value={year}>{year}</option>
-                        ))}
-                      </select>
+                  {/* 成员验证区域 */}
+                  {isAlumni && showVerification && (
+                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <p className="text-sm text-blue-800 mb-3">
+                        {verificationStatus === 'verified' 
+                          ? '✅ 验证通过！您可以使用深中模联成员身份注册。'
+                          : verificationStatus === 'failed'
+                          ? '❌ 验证失败，请检查学号格式。'
+                          : isSMSMUNEmail(email)
+                          ? '✅ 检测到smsmun邮箱，验证通过！'
+                          : '请提供以下信息进行身份验证：'
+                        }
+                      </p>
+                      
+                      {!isSMSMUNEmail(email) && verificationStatus !== 'verified' && (
+                        <div className="space-y-3">
+                          <div>
+                            <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">
+                              深圳中学学号
+                            </label>
+                            <input
+                              id="studentId"
+                              type="text"
+                              value={studentId}
+                              onChange={(e) => setStudentId(e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                              placeholder="请输入6-8位学号"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                              请输入您的深圳中学学号进行身份验证
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={handleStudentIdVerification}
+                            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors text-sm"
+                          >
+                            验证学号
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
