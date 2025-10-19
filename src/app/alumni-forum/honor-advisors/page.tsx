@@ -42,15 +42,7 @@ export default function HonorAdvisorsPage() {
     try {
       console.log('开始加载荣誉顾问数据...')
       
-      // 首先检查所有数据
-      const { data: allData, error: allError } = await supabase
-        .from('honor_advisors')
-        .select('*')
-      
-      console.log('所有荣誉顾问申请:', allData)
-      console.log('所有申请错误:', allError)
-      
-      // 然后查询已批准的数据
+      // 查询已批准的数据
       const { data, error } = await supabase
         .from('honor_advisors')
         .select('*')
@@ -60,9 +52,7 @@ export default function HonorAdvisorsPage() {
       console.log('已批准的荣誉顾问:', data)
       console.log('查询错误:', error)
 
-      if (error) {
-        console.error('Error loading honor advisors:', error)
-        // 如果数据库连接失败，使用测试数据
+      if (error || !data || data.length === 0) {
         console.log('使用测试数据...')
         const testData = [
           {
@@ -84,24 +74,8 @@ export default function HonorAdvisorsPage() {
         ]
         setHonorAdvisors(testData)
       } else {
-        console.log('设置荣誉顾问数据:', data || [])
-        // 临时：如果没有数据，也显示测试数据
-        if (!data || data.length === 0) {
-          console.log('数据库中没有数据，显示测试数据...')
-          const testData = [
-            {
-              id: 'db-test-1',
-              name: 'Claude',
-              email: 'claude@example.com',
-              graduation_year: '2023',
-              position: '技术顾问',
-              created_at: new Date().toISOString()
-            }
-          ]
-          setHonorAdvisors(testData)
-        } else {
-          setHonorAdvisors(data)
-        }
+        console.log('设置荣誉顾问数据:', data)
+        setHonorAdvisors(data)
       }
     } catch (error) {
       console.error('Error loading honor advisors:', error)
