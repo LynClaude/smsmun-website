@@ -62,6 +62,7 @@ export default function AlumniForumPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
+  const [userNames, setUserNames] = useState<{[key: string]: string}>({})
 
   useEffect(() => {
     // 检查用户权限
@@ -90,6 +91,23 @@ export default function AlumniForumPage() {
         console.error('Error loading messages:', messagesError.message)
       } else {
         setMessages(messagesData || [])
+        
+        // 获取所有留言的用户名
+        if (messagesData && messagesData.length > 0) {
+          const userIds = [...new Set(messagesData.map(msg => msg.user_id))]
+          const { data: usersData } = await supabase
+            .from('users')
+            .select('id, username')
+            .in('id', userIds)
+          
+          if (usersData) {
+            const nameMap: {[key: string]: string} = {}
+            usersData.forEach(u => {
+              nameMap[u.id] = u.username
+            })
+            setUserNames(nameMap)
+          }
+        }
       }
 
       // 从 Supabase 加载问题
@@ -369,7 +387,9 @@ export default function AlumniForumPage() {
                   {messages.map((message) => (
                     <div key={message.id} className="border-l-4 border-primary pl-4 py-2">
                       <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium text-gray-900">用户 {message.user_id}</span>
+                        <span className="font-medium text-gray-900">
+                          {userNames[message.user_id] || `用户 ${message.user_id.substring(0, 8)}`}
+                        </span>
                         <span className="text-sm text-gray-500">
                           {new Date(message.created_at).toLocaleString()}
                         </span>
@@ -413,14 +433,18 @@ export default function AlumniForumPage() {
                           {new Date(question.created_at).toLocaleString()}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">提问者：用户 {question.user_id}</p>
+                      <p className="text-sm text-gray-600 mb-3">
+                        提问者：{userNames[question.user_id] || `用户 ${question.user_id.substring(0, 8)}`}
+                      </p>
                       
                       {/* 回答列表 */}
                       <div className="space-y-3 mb-4">
                         {question.answers.map((answer) => (
                           <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
                             <div className="flex justify-between items-start mb-2">
-                              <span className="font-medium text-gray-900">用户 {answer.user_id}</span>
+                              <span className="font-medium text-gray-900">
+                                {userNames[answer.user_id] || `用户 ${answer.user_id.substring(0, 8)}`}
+                              </span>
                               <span className="text-sm text-gray-500">
                                 {new Date(answer.created_at).toLocaleString()}
                               </span>
