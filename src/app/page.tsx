@@ -81,7 +81,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl font-bold mb-2">活动与项目</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">丰富多样的模联活动与创新项目</p>
+                <p className="text-sm md:text-base text-gray-600 mb-4">领袖峰会、校内会、游园会等精彩活动</p>
                 <Link 
                   href="/activities/leadership-summit" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
@@ -91,7 +91,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 校友网络 */}
+            {/* 社团发展指导 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -101,19 +101,19 @@ export default function Home() {
               <div className="relative h-48">
                 <Image
                   src="/历届合照.jpg"
-                  alt="校友网络"
+                  alt="社团发展指导"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
-                    校友网络
+                    社团发展指导
                   </h3>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event5_title}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event5_desc}</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">社团发展指导</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">为模联社团提供专业的发展指导和经验分享</p>
                 <Link 
                   href="/alumni-leadership" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"

@@ -9,13 +9,9 @@ export default function Hero() {
   const { messages } = useI18n()
   const [currentImage, setCurrentImage] = useState(0)
   const [showArrow, setShowArrow] = useState(true)
-  const images = ['/123.jpg', '/456.jpg']
+  const images = ['/123.jpg']
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev === 0 ? 1 : 0))
-    }, 5000)
-
     const handleScroll = () => {
       const scrollPosition = window.scrollY
       setShowArrow(scrollPosition < 100)
@@ -23,7 +19,6 @@ export default function Hero() {
 
     window.addEventListener('scroll', handleScroll)
     return () => {
-      clearInterval(timer)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
