@@ -14,7 +14,12 @@ export default function PPRDMUN2021Page() {
   
   // 2021年的照片数组
   const images = [
-    '/深中模联活动照.pic(1).jpg'
+    '/PPRD2021/20211.jpeg',
+    '/PPRD2021/20212.jpeg',
+    '/PPRD2021/20213.jpeg',
+    '/PPRD2021/20214.png',
+    '/PPRD2021/20215.png',
+    '/PPRD2021/20216.png'
   ]
 
   // 自动轮播图片
