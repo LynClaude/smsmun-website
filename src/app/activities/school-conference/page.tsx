@@ -64,14 +64,13 @@ export default function SchoolConferencePage() {
     <PageTransition>
       <div>
         {/* 页面标题 */}
-        <div className="relative h-64 bg-gradient-to-r from-blue-600 to-indigo-700">
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="relative z-10 container mx-auto h-full flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="relative pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+          <div className="container mx-auto px-4">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
                 深圳中学校内会
               </h1>
-              <p className="text-lg md:text-xl opacity-90">
+              <p className="text-lg md:text-xl text-gray-600">
                 深中模联校内会议历年回顾
               </p>
             </div>
@@ -101,7 +100,7 @@ export default function SchoolConferencePage() {
                     className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                   >
                     {/* 年份标识 */}
-                    <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 text-center">
+                    <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-4 text-center">
                       <h3 className="text-2xl font-bold">{conference.year}年校内会</h3>
                       <p className="text-sm opacity-90 mt-1">
                         {conference.date} · {conference.venue} · {conference.format}
@@ -134,17 +133,6 @@ export default function SchoolConferencePage() {
           </div>
         </div>
 
-        {/* 返回按钮 */}
-        <div className="bg-white py-16">
-          <div className="container mx-auto px-4 text-center">
-            <Link 
-              href="/"
-              className="inline-flex items-center px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-lg font-semibold"
-            >
-              ← 返回首页
-            </Link>
-          </div>
-        </div>
       </div>
     </PageTransition>
   )
