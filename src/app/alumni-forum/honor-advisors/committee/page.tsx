@@ -54,21 +54,21 @@ export default function HonorAdvisorCommitteePage() {
       
       setMembers(testData)
       
-      // 尝试从数据库加载真实数据
-      try {
-        const { data: membersData, error: membersError } = await supabase
-          .from('honor_advisors')
-          .select('*')
-          .eq('status', 'approved')
-          .order('created_at', { ascending: false })
+      // 暂时注释掉数据库查询，确保显示测试数据
+      // try {
+      //   const { data: membersData, error: membersError } = await supabase
+      //     .from('honor_advisors')
+      //     .select('*')
+      //     .eq('status', 'approved')
+      //     .order('created_at', { ascending: false })
 
-        if (membersData && membersData.length > 0) {
-          console.log('使用数据库数据:', membersData)
-          setMembers(membersData)
-        }
-      } catch (dbError) {
-        console.log('数据库查询失败，保持测试数据:', dbError)
-      }
+      //   if (membersData && membersData.length > 0) {
+      //     console.log('使用数据库数据:', membersData)
+      //     setMembers(membersData)
+      //   }
+      // } catch (dbError) {
+      //   console.log('数据库查询失败，保持测试数据:', dbError)
+      // }
 
     } catch (error) {
       console.error('加载数据时出错:', error)
