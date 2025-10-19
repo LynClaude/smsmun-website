@@ -304,7 +304,7 @@ export default function AlumniForumPage() {
           >
             <div className="text-center mb-8">
               <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">校友交流</h1>
-              <p className="text-gray-600">深中模联校友专属交流平台</p>
+              <p className="text-gray-600">深中模联校友专属交流平台 - 荣誉顾问委员会系统已更新</p>
             </div>
 
             {/* 标签切换 */}
