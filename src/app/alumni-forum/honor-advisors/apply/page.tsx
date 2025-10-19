@@ -102,8 +102,8 @@ export default function HonorAdvisorApplyPage() {
         .select()
 
       if (insertError) {
-        console.error('Error submitting application:', insertError.message)
-        setError('提交申请失败，请重试')
+        console.error('Error submitting application:', insertError)
+        setError(`提交申请失败: ${insertError.message}。请检查数据库表结构是否正确。`)
       } else {
         setSuccess('申请提交成功！我们会尽快审核您的申请。')
         setSubmitted(true)
