@@ -52,29 +52,31 @@ export default function HonorAdvisorsPage() {
       console.log('已批准的荣誉顾问:', data)
       console.log('查询错误:', error)
 
-      if (error || !data || data.length === 0) {
-        console.log('使用测试数据...')
-        const testData = [
-          {
-            id: 'test-1',
-            name: 'Claude',
-            email: 'claude@example.com',
-            graduation_year: '2023',
-            position: '技术顾问',
-            created_at: new Date().toISOString()
-          },
-          {
-            id: 'test-2',
-            name: '张三',
-            email: 'zhangsan@example.com',
-            graduation_year: '2022',
-            position: '学术顾问',
-            created_at: new Date().toISOString()
-          }
-        ]
-        setHonorAdvisors(testData)
-      } else {
-        console.log('设置荣誉顾问数据:', data)
+      // 直接设置测试数据，确保页面有内容显示
+      console.log('设置测试数据...')
+      const testData = [
+        {
+          id: 'test-1',
+          name: 'Claude',
+          email: 'claude@example.com',
+          graduation_year: '2023',
+          position: '技术顾问',
+          created_at: new Date().toISOString()
+        },
+        {
+          id: 'test-2',
+          name: '张三',
+          email: 'zhangsan@example.com',
+          graduation_year: '2022',
+          position: '学术顾问',
+          created_at: new Date().toISOString()
+        }
+      ]
+      setHonorAdvisors(testData)
+
+      // 尝试从数据库加载真实数据
+      if (data && data.length > 0) {
+        console.log('使用数据库数据:', data)
         setHonorAdvisors(data)
       }
     } catch (error) {
