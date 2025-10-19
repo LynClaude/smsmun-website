@@ -297,12 +297,26 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* 荣誉顾问委员会入口 - 临时显示给所有校友 */}
-          {(() => {
-            const shouldShow = (user?.is_honor_advisor || user?.is_alumni)
-            console.log('Should show honor advisor card:', shouldShow, 'is_honor_advisor:', user?.is_honor_advisor, 'is_alumni:', user?.is_alumni)
-            return shouldShow
-          })() && (
+          {/* 调试信息 */}
+          {user && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6"
+            >
+              <h3 className="font-semibold text-yellow-800 mb-2">调试信息</h3>
+              <p className="text-sm text-yellow-700">
+                用户状态：is_alumni = {user.is_alumni ? 'true' : 'false'}, 
+                is_honor_advisor = {user.is_honor_advisor ? 'true' : 'false'}
+              </p>
+              <p className="text-xs text-yellow-600 mt-1">
+                如果看不到荣誉顾问委员会卡片，请检查浏览器控制台的详细日志
+              </p>
+            </motion.div>
+          )}
+
+          {/* 荣誉顾问委员会入口 - 临时显示给所有用户 */}
+          {user && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
