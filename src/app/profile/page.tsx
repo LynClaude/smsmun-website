@@ -37,6 +37,15 @@ interface HonorAdvisor {
   status: string
 }
 
+interface HonorAdvisorMember {
+  id: string
+  name: string
+  email: string
+  graduation_year: string
+  position: string
+  created_at: string
+}
+
 interface Feedback {
   id: string
   content: string
@@ -49,6 +58,7 @@ export default function ProfilePage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
+  const [honorAdvisorMembers, setHonorAdvisorMembers] = useState<HonorAdvisorMember[]>([])
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
   const [feedbackContent, setFeedbackContent] = useState('')
@@ -123,6 +133,21 @@ export default function ProfilePage() {
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
+
+      if (honorData) {
+        setHonorAdvisors(honorData)
+      }
+
+      // 加载荣誉顾问委员会成员（所有已批准的荣誉顾问）
+      const { data: membersData } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+
+      if (membersData) {
+        setHonorAdvisorMembers(membersData)
+      }
 
       // 加载反馈数据（访客和校友都可以提交反馈）
       const { data: feedbackData } = await supabase
@@ -342,32 +367,71 @@ export default function ProfilePage() {
               )}
 
               {activeTab === 'honor' && user?.is_alumni && (
-                <div className="space-y-4">
-                  {honorAdvisors.length === 0 ? (
-                    <p className="text-gray-500 text-center py-8">暂无荣誉顾问申请</p>
-                  ) : (
-                    honorAdvisors.map((advisor) => (
-                      <div key={advisor.id} className="border border-gray-200 rounded-lg p-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            advisor.status === 'approved' ? 'bg-green-100 text-green-800' :
-                            advisor.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                            'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {advisor.status === 'approved' ? '已通过' :
-                             advisor.status === 'rejected' ? '已拒绝' : '审核中'}
-                          </span>
-                          <span className="text-sm text-gray-500">
-                            {new Date(advisor.created_at).toLocaleString('zh-CN')}
-                          </span>
+                <div className="space-y-6">
+                  {/* 我的荣誉顾问申请 */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">我的荣誉顾问申请</h3>
+                    {honorAdvisors.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">暂无荣誉顾问申请</p>
+                    ) : (
+                      honorAdvisors.map((advisor) => (
+                        <div key={advisor.id} className="border border-gray-200 rounded-lg p-4 mb-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              advisor.status === 'approved' ? 'bg-green-100 text-green-800' :
+                              advisor.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                              'bg-yellow-100 text-yellow-800'
+                            }`}>
+                              {advisor.status === 'approved' ? '已通过' :
+                               advisor.status === 'rejected' ? '已拒绝' : '审核中'}
+                            </span>
+                            <span className="text-sm text-gray-500">
+                              {new Date(advisor.created_at).toLocaleString('zh-CN')}
+                            </span>
+                          </div>
+                          <h4 className="font-semibold text-gray-900 mb-2">申请动机</h4>
+                          <p className="text-gray-700 mb-3">{advisor.motivation}</p>
+                          <h4 className="font-semibold text-gray-900 mb-2">相关经验</h4>
+                          <p className="text-gray-700">{advisor.experience}</p>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-2">申请动机</h3>
-                        <p className="text-gray-700 mb-3">{advisor.motivation}</p>
-                        <h3 className="font-semibold text-gray-900 mb-2">相关经验</h3>
-                        <p className="text-gray-700">{advisor.experience}</p>
+                      ))
+                    )}
+                  </div>
+
+                  {/* 荣誉顾问委员会成员 */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">荣誉顾问委员会成员</h3>
+                    {honorAdvisorMembers.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">暂无委员会成员</p>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {honorAdvisorMembers.map((member) => (
+                          <div key={member.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                {member.name.charAt(0).toUpperCase()}
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-gray-900">{member.name}</h4>
+                                <p className="text-sm text-gray-600">{member.graduation_year}年毕业</p>
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <p className="text-sm text-gray-600">
+                                <span className="font-medium">邮箱：</span>{member.email}
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                <span className="font-medium">在协会职务：</span>{member.position}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                加入时间：{new Date(member.created_at).toLocaleDateString()}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))
-                  )}
+                    )}
+                  </div>
                 </div>
               )}
 
