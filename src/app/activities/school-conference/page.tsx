@@ -64,7 +64,7 @@ export default function SchoolConferencePage() {
     <PageTransition>
       <div>
         {/* 页面标题 */}
-        <div className="relative pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
           <div className="container mx-auto px-4">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
