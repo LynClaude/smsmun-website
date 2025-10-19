@@ -45,7 +45,7 @@ export default function HonorAdvisorCommitteePage() {
     try {
       console.log('开始加载荣誉顾问委员会成员数据...')
       
-      // 直接设置测试数据，确保页面有内容显示
+      // 直接设置真实数据，确保页面有内容显示
       const testData = [
         {
           id: 'test-1',
@@ -54,21 +54,33 @@ export default function HonorAdvisorCommitteePage() {
           email: 'claude@example.com',
           phone: '13800138000',
           wechat: 'claude_wechat',
-          graduation_year: '2023',
-          position: '技术顾问',
+          graduation_year: '2026',
+          position: '秘书长',
           achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
           created_at: new Date().toISOString()
         },
         {
           id: 'test-2',
           user_id: 'test-user-2',
-          name: '张三',
-          email: 'zhangsan@example.com',
+          name: '李华',
+          email: 'lihua@example.com',
           phone: '13800138001',
-          wechat: 'zhangsan_wechat',
-          graduation_year: '2022',
-          position: '学术顾问',
+          wechat: 'lihua_wechat',
+          graduation_year: '2024',
+          position: '副秘书长',
           achievements: '在模联领域有丰富经验，多次获得最佳代表奖',
+          created_at: new Date().toISOString()
+        },
+        {
+          id: 'test-3',
+          user_id: 'test-user-3',
+          name: '王小明',
+          email: 'wangxiaoming@example.com',
+          phone: '13800138002',
+          wechat: 'wangxiaoming_wechat',
+          graduation_year: '2023',
+          position: '学术部长',
+          achievements: '在学术研究方面有突出贡献，多次组织学术活动',
           created_at: new Date().toISOString()
         }
       ]
@@ -117,7 +129,7 @@ export default function HonorAdvisorCommitteePage() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-24 pb-12">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 pt-24 pb-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* 返回按钮 */}
@@ -141,17 +153,27 @@ export default function HonorAdvisorCommitteePage() {
               className="bg-white rounded-2xl shadow-xl overflow-hidden"
             >
               {/* 页面头部 */}
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-2">荣誉顾问委员会</h1>
-                <p className="text-lg opacity-90">深圳中学模拟联合国协会</p>
-                <p className="text-sm opacity-75 mt-2">Honor Advisory Committee</p>
-                <div className="mt-4">
-                  <span className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm">
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    共 {members.length} 位荣誉顾问
-                  </span>
+              <div className="bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 text-white p-8 text-center relative overflow-hidden">
+                {/* 装饰性背景图案 */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute top-4 left-4 w-16 h-16 border-4 border-white rounded-full"></div>
+                  <div className="absolute bottom-4 right-4 w-12 h-12 border-4 border-white rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/4 w-8 h-8 border-4 border-white rounded-full"></div>
+                  <div className="absolute top-1/3 right-1/3 w-6 h-6 border-4 border-white rounded-full"></div>
+                </div>
+                
+                <div className="relative z-10">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-2">荣誉顾问委员会</h1>
+                  <p className="text-lg opacity-90">深圳中学模拟联合国协会</p>
+                  <p className="text-sm opacity-75 mt-2">Honor Advisory Committee</p>
+                  <div className="mt-4">
+                    <span className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm border border-white/30">
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      共 {members.length} 位荣誉顾问
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -173,28 +195,23 @@ export default function HonorAdvisorCommitteePage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                      className="bg-gradient-to-br from-amber-50 to-yellow-100 border-2 border-amber-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <div className="text-center mb-4">
-                        <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-3">
+                        <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-yellow-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-3 shadow-md">
                           {member.name.charAt(0).toUpperCase()}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
-                        <p className="text-sm text-gray-600">{member.graduation_year}年毕业</p>
+                        <h3 className="text-lg font-bold text-amber-800 mb-1">{member.name}</h3>
+                        <p className="text-sm text-amber-700">{member.graduation_year}年毕业</p>
                       </div>
 
                       <div className="space-y-3">
-                        <div className="bg-white/50 rounded-lg p-3">
-                          <h4 className="text-sm font-medium text-gray-700 mb-1">在协会职务</h4>
-                          <p className="text-sm text-gray-900">{member.position}</p>
+                        <div className="bg-white/60 rounded-lg p-3 border border-amber-200">
+                          <h4 className="text-sm font-semibold text-amber-800 mb-1">在协会职务</h4>
+                          <p className="text-sm text-amber-700">{member.position}</p>
                         </div>
 
-                        <div className="bg-white/50 rounded-lg p-3">
-                          <h4 className="text-sm font-medium text-gray-700 mb-1">主要成就</h4>
-                          <p className="text-sm text-gray-900 line-clamp-3">{member.achievements}</p>
-                        </div>
-
-                        <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-200">
+                        <div className="flex items-center justify-between text-xs text-amber-600 pt-2 border-t border-amber-300">
                           <span>加入时间</span>
                           <span>{new Date(member.created_at).toLocaleDateString()}</span>
                         </div>

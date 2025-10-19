@@ -228,13 +228,13 @@ export default function ProfilePage() {
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
                 {user?.is_honor_advisor ? (
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-yellow-200 to-yellow-400 p-2">
                     <Image
-                      src="/顾问.png"
+                      src="/皇冠.png"
                       alt="荣誉顾问"
                       width={64}
                       height={64}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                 ) : (
@@ -265,23 +265,36 @@ export default function ProfilePage() {
                 </div>
               </div>
               
-              {/* 荣誉顾问身份标识 - 长条扁平设计 */}
+              {/* 荣誉顾问身份标识 - 至尊设计 */}
               {user?.is_honor_advisor && (
-                <div className="ml-8 p-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg shadow-lg border-2 border-yellow-300 min-w-96">
-                  <div className="flex items-center justify-between">
+                <div className="ml-8 p-6 bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-200 rounded-xl shadow-xl border-2 border-amber-300 min-w-96 relative overflow-hidden">
+                  {/* 装饰性背景图案 */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-2 right-2 w-8 h-8 border-2 border-amber-600 rounded-full"></div>
+                    <div className="absolute bottom-2 left-2 w-6 h-6 border-2 border-amber-600 rounded-full"></div>
+                    <div className="absolute top-1/2 left-1/4 w-4 h-4 border-2 border-amber-600 rounded-full"></div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between relative z-10">
                     <div className="flex items-center">
-                      <svg className="w-6 h-6 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
+                      <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center mr-4 shadow-md">
+                        <Image
+                          src="/皇冠.png"
+                          alt="皇冠"
+                          width={24}
+                          height={24}
+                          className="w-5 h-5 object-contain"
+                        />
+                      </div>
                       <div>
-                        <h3 className="text-lg font-bold text-white">荣誉顾问委员会成员</h3>
-                        <p className="text-white/90 text-sm">恭喜！您已成为深中模联荣誉顾问委员会正式成员</p>
+                        <h3 className="text-lg font-bold text-amber-800">荣誉顾问委员会成员</h3>
+                        <p className="text-amber-700 text-sm">恭喜！您已成为深中模联荣誉顾问委员会正式成员</p>
                       </div>
                     </div>
                     <div className="flex gap-2 ml-4">
                       <Link
                         href="/alumni-forum/honor-advisors/committee"
-                        className="inline-flex items-center px-4 py-2 bg-white text-yellow-600 rounded-lg hover:bg-gray-50 transition-colors font-semibold shadow-md text-sm"
+                        className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-600 to-yellow-700 text-white rounded-lg hover:from-amber-700 hover:to-yellow-800 transition-all font-semibold shadow-md text-sm"
                       >
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -294,7 +307,7 @@ export default function ProfilePage() {
                             alert('退出委员会功能正在开发中...')
                           }
                         }}
-                        className="inline-flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold shadow-md text-sm"
+                        className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 transition-all font-semibold shadow-md text-sm"
                       >
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
