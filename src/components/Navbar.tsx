@@ -84,9 +84,21 @@ export default function Navbar() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
               >
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
-                  {user.username.charAt(0).toUpperCase()}
-                </div>
+                {user.is_honor_advisor ? (
+                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src="/顾问.png"
+                      alt="荣誉顾问"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
                 <span>{user.username}</span>
                 {user.is_alumni && (
                   <Image

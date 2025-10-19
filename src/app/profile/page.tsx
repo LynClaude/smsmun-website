@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import PageTransition from '@/components/PageTransition'
 import { useAuth } from '@/lib/auth-context'
 import { supabase } from '@/lib/supabase'
@@ -199,9 +200,21 @@ export default function ProfilePage() {
             className="bg-white rounded-xl shadow-lg p-6 mb-8"
           >
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
-                {user?.username.charAt(0).toUpperCase()}
-              </div>
+              {user?.is_honor_advisor ? (
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <Image
+                    src="/顾问.png"
+                    alt="荣誉顾问"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  {user?.username.charAt(0).toUpperCase()}
+                </div>
+              )}
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                   {user?.username}

@@ -12,6 +12,8 @@ interface User {
   graduation_year?: string
   is_admin: boolean
   join_date: string
+  is_honor_advisor?: boolean
+  honor_advisor_approved_at?: string
 }
 
 // 认证上下文类型
