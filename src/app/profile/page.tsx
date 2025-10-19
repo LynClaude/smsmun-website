@@ -260,6 +260,19 @@ export default function ProfilePage() {
                    user?.is_alumni ? '深中模联校友' : 
                    '访客用户'}
                 </p>
+                {user?.is_honor_advisor && (
+                  <div className="mt-3">
+                    <Link
+                      href="/alumni-forum/honor-advisors/committee"
+                      className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      进入委员会
+                    </Link>
+                  </div>
+                )}
                 <p className="text-sm text-gray-500">{user?.email}</p>
               </div>
             </div>
@@ -400,53 +413,7 @@ export default function ProfilePage() {
 
                   {/* 荣誉顾问委员会成员 */}
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-semibold text-gray-900">荣誉顾问委员会成员</h3>
-                      <Link
-                        href="/alumni-forum/honor-advisors"
-                        className="text-primary hover:text-primary/80 text-sm font-medium"
-                      >
-                        查看完整列表 →
-                      </Link>
-                    </div>
-                    
-                    {/* 委员会成员状态 */}
-                    {user?.is_honor_advisor && (
-                      <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                              </svg>
-                            </div>
-                            <div>
-                              <p className="font-medium text-green-800">你已成为荣誉顾问委员会成员</p>
-                              <p className="text-sm text-green-600">恭喜！您已获得荣誉顾问身份</p>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <Link
-                              href="/alumni-forum/honor-advisors/committee"
-                              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
-                            >
-                              进入委员会
-                            </Link>
-                            <button
-                              onClick={() => {
-                                if (confirm('确定要退出荣誉顾问委员会吗？')) {
-                                  // TODO: 实现退出委员会功能
-                                  alert('退出委员会功能正在开发中...')
-                                }
-                              }}
-                              className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
-                            >
-                              退出委员会
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">荣誉顾问委员会成员</h3>
                     
                     {honorAdvisorMembers.length === 0 ? (
                       <div className="text-center py-8">
