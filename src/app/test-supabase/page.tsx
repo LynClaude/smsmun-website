@@ -15,6 +15,17 @@ export default function TestSupabasePage() {
     try {
       const results: any = {}
 
+      // 检查环境变量
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co'
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy-key'
+      
+      results.environmentCheck = {
+        supabaseUrl: supabaseUrl,
+        supabaseKey: supabaseKey.substring(0, 20) + '...',
+        isUsingDummy: supabaseUrl.includes('dummy') || supabaseKey.includes('dummy'),
+        hasEnvVars: !supabaseUrl.includes('dummy') && !supabaseKey.includes('dummy')
+      }
+
       // 测试1: 基本连接
       console.log('测试1: 基本连接...')
       const { data: usersData, error: usersError } = await supabase
@@ -103,6 +114,23 @@ export default function TestSupabasePage() {
                       {JSON.stringify(testResults, null, 2)}
                     </pre>
                   </div>
+
+                  {testResults.environmentCheck && (
+                    <div className={`p-4 rounded-lg border ${
+                      testResults.environmentCheck.hasEnvVars 
+                        ? 'bg-green-50 border-green-200' 
+                        : 'bg-red-50 border-red-200'
+                    }`}>
+                      <h4 className="font-medium mb-2">
+                        环境变量检查: {testResults.environmentCheck.hasEnvVars ? '✅ 已配置' : '❌ 未配置'}
+                      </h4>
+                      <p className="text-sm text-gray-600">URL: {testResults.environmentCheck.supabaseUrl}</p>
+                      <p className="text-sm text-gray-600">Key: {testResults.environmentCheck.supabaseKey}</p>
+                      {testResults.environmentCheck.isUsingDummy && (
+                        <p className="text-sm text-red-600">⚠️ 正在使用默认配置，需要设置环境变量</p>
+                      )}
+                    </div>
+                  )}
 
                   {testResults.usersTest && (
                     <div className={`p-4 rounded-lg border ${
