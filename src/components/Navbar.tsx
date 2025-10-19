@@ -21,7 +21,6 @@ export default function Navbar() {
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
     { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
     { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目链接
-    { name: '深中模联顾问委员会', href: '/alumni-forum/honor-advisors/committee' }, // 访客可访问
     { name: 'alumni-forum', href: '/alumni-forum', isAlumniOnly: true }, // 仅校友可访问
   ]
 
