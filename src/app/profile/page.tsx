@@ -225,82 +225,84 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white rounded-xl shadow-lg p-6 mb-8"
           >
-            <div className="flex items-center gap-4">
-              {user?.is_honor_advisor ? (
-                <div className="w-16 h-16 rounded-full overflow-hidden">
-                  <Image
-                    src="/顾问.png"
-                    alt="荣誉顾问"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
-                  {user?.username.charAt(0).toUpperCase()}
-                </div>
-              )}
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                  {user?.username}
-                  {user?.is_alumni && (
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                {user?.is_honor_advisor ? (
+                  <div className="w-16 h-16 rounded-full overflow-hidden">
                     <Image
-                      src="/favicon.ico"
-                      alt="深中模联成员"
-                      width={24}
-                      height={24}
-                      className="w-6 h-6"
+                      src="/顾问.png"
+                      alt="荣誉顾问"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
                     />
-                  )}
-                </h1>
-                <p className="text-gray-600">
-                  {user?.is_admin ? '管理员' : 
-                   user?.is_honor_advisor ? '深中模联荣誉顾问' :
-                   user?.is_alumni ? '深中模联校友' : 
-                   '访客用户'}
-                </p>
-                
-                {/* 荣誉顾问身份标识 */}
-                {user?.is_honor_advisor && (
-                  <div className="mt-6 p-6 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl shadow-lg border-2 border-yellow-300">
-                    <div className="text-center">
-                      <div className="flex items-center justify-center mb-3">
-                        <svg className="w-8 h-8 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                        </svg>
-                        <h3 className="text-xl font-bold text-white">荣誉顾问委员会成员</h3>
-                      </div>
-                      <p className="text-white/90 text-lg mb-4">恭喜！您已成为深中模联荣誉顾问委员会正式成员</p>
-                      <div className="flex justify-center gap-3">
-                        <Link
-                          href="/alumni-forum/honor-advisors/committee"
-                          className="inline-flex items-center px-6 py-3 bg-white text-yellow-600 rounded-lg hover:bg-gray-50 transition-colors font-semibold shadow-md"
-                        >
-                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                          </svg>
-                          进入委员会
-                        </Link>
-                        <button
-                          onClick={() => {
-                            if (confirm('确定要退出荣誉顾问委员会吗？')) {
-                              alert('退出委员会功能正在开发中...')
-                            }
-                          }}
-                          className="inline-flex items-center px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold shadow-md"
-                        >
-                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                          </svg>
-                          退出委员会
-                        </button>
-                      </div>
-                    </div>
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
+                    {user?.username.charAt(0).toUpperCase()}
                   </div>
                 )}
-                <p className="text-sm text-gray-500">{user?.email}</p>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    {user?.username}
+                    {user?.is_alumni && (
+                      <Image
+                        src="/favicon.ico"
+                        alt="深中模联成员"
+                        width={24}
+                        height={24}
+                        className="w-6 h-6"
+                      />
+                    )}
+                  </h1>
+                  <p className="text-gray-600">
+                    {user?.is_admin ? '管理员' : 
+                     user?.is_honor_advisor ? '深中模联荣誉顾问' :
+                     user?.is_alumni ? '深中模联校友' : 
+                     '访客用户'}
+                  </p>
+                  <p className="text-sm text-gray-500">{user?.email}</p>
+                </div>
               </div>
+              
+              {/* 荣誉顾问身份标识 - 放在右边 */}
+              {user?.is_honor_advisor && (
+                <div className="ml-8 p-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl shadow-lg border-2 border-yellow-300 max-w-sm">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <svg className="w-6 h-6 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                      <h3 className="text-lg font-bold text-white">荣誉顾问委员会成员</h3>
+                    </div>
+                    <p className="text-white/90 text-sm mb-3">恭喜！您已成为深中模联荣誉顾问委员会正式成员</p>
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href="/alumni-forum/honor-advisors/committee"
+                        className="inline-flex items-center justify-center px-4 py-2 bg-white text-yellow-600 rounded-lg hover:bg-gray-50 transition-colors font-semibold shadow-md text-sm"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        进入委员会
+                      </Link>
+                      <button
+                        onClick={() => {
+                          if (confirm('确定要退出荣誉顾问委员会吗？')) {
+                            alert('退出委员会功能正在开发中...')
+                          }
+                        }}
+                        className="inline-flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold shadow-md text-sm"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        退出委员会
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
 
