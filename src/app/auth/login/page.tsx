@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth-context'
@@ -24,6 +24,13 @@ export default function LoginPage() {
 
   const { login, register } = useAuth()
   const router = useRouter()
+
+  // 监听邮箱变化，自动验证
+  useEffect(() => {
+    if (isAlumni && email) {
+      handleMemberVerification()
+    }
+  }, [email, isAlumni])
 
   // 验证邮箱是否为smsmun开头
   const isSMSMUNEmail = (email: string) => {
