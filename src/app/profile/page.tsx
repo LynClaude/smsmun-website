@@ -409,6 +409,45 @@ export default function ProfilePage() {
                         查看完整列表 →
                       </Link>
                     </div>
+                    
+                    {/* 委员会成员状态 */}
+                    {user?.is_honor_advisor && (
+                      <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="font-medium text-green-800">你已成为荣誉顾问委员会成员</p>
+                              <p className="text-sm text-green-600">恭喜！您已获得荣誉顾问身份</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Link
+                              href="/alumni-forum/honor-advisors/committee"
+                              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                            >
+                              进入委员会
+                            </Link>
+                            <button
+                              onClick={() => {
+                                if (confirm('确定要退出荣誉顾问委员会吗？')) {
+                                  // TODO: 实现退出委员会功能
+                                  alert('退出委员会功能正在开发中...')
+                                }
+                              }}
+                              className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
+                            >
+                              退出委员会
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
                     {honorAdvisorMembers.length === 0 ? (
                       <div className="text-center py-8">
                         <p className="text-gray-500 mb-4">暂无委员会成员</p>
@@ -450,7 +489,7 @@ export default function ProfilePage() {
                         {honorAdvisorMembers.length > 4 && (
                           <div className="text-center">
                             <Link
-                              href="/alumni-forum/honor-advisors"
+                              href="/alumni-forum/honor-advisors/committee"
                               className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm"
                             >
                               查看更多成员 ({honorAdvisorMembers.length - 4} 位)
