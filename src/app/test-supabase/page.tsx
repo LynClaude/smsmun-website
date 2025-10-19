@@ -82,7 +82,7 @@ export default function TestSupabasePage() {
       setTestResults(results)
       console.log('所有测试结果:', results)
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('测试过程中出错:', error)
       setTestResults({ error: error.message })
     } finally {

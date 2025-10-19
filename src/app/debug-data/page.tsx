@@ -57,7 +57,7 @@ export default function DebugDataPage() {
 
     // 5. 测试所有状态
     try {
-      const { data, error } = await supabase.from('honor_advisors').select('status, count(*)').group('status')
+      const { data, error } = await supabase.from('honor_advisors').select('status')
       results.statusCounts = { 
         success: !error, 
         error: error?.message, 

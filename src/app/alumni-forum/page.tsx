@@ -94,7 +94,7 @@ export default function AlumniForumPage() {
         
         // 获取所有留言的用户名
         if (messagesData && messagesData.length > 0) {
-          const userIds = [...new Set(messagesData.map(msg => msg.user_id))]
+          const userIds = Array.from(new Set(messagesData.map(msg => msg.user_id)))
           const { data: usersData } = await supabase
             .from('users')
             .select('id, username')
