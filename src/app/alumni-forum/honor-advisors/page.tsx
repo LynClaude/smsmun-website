@@ -85,7 +85,23 @@ export default function HonorAdvisorsPage() {
         setHonorAdvisors(testData)
       } else {
         console.log('设置荣誉顾问数据:', data || [])
-        setHonorAdvisors(data || [])
+        // 临时：如果没有数据，也显示测试数据
+        if (!data || data.length === 0) {
+          console.log('数据库中没有数据，显示测试数据...')
+          const testData = [
+            {
+              id: 'db-test-1',
+              name: 'Claude',
+              email: 'claude@example.com',
+              graduation_year: '2023',
+              position: '技术顾问',
+              created_at: new Date().toISOString()
+            }
+          ]
+          setHonorAdvisors(testData)
+        } else {
+          setHonorAdvisors(data)
+        }
       }
     } catch (error) {
       console.error('Error loading honor advisors:', error)
