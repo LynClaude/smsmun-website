@@ -33,27 +33,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // 检查本地存储的用户数据（用于向后兼容）
+    // 检查本地存储的用户数据
     const checkLocalStorage = () => {
       try {
         const localUser = localStorage.getItem('smsmun_user')
         if (localUser) {
           const parsedUser = JSON.parse(localUser)
-          // 转换字段名以匹配新的类型定义
-          setUser({
+          console.log('Loading user from localStorage:', parsedUser)
+          
+          // 确保字段名正确匹配
+          const userData = {
             id: parsedUser.id || 'local',
             username: parsedUser.username,
             email: parsedUser.email,
-            is_alumni: parsedUser.isAlumni || false,
-            graduation_year: parsedUser.graduationYear,
-            is_admin: parsedUser.isAdmin || false,
-            join_date: parsedUser.joinDate || new Date().toISOString(),
-          })
+            is_alumni: parsedUser.is_alumni !== undefined ? parsedUser.is_alumni : (parsedUser.isAlumni || false),
+            graduation_year: parsedUser.graduation_year || parsedUser.graduationYear,
+            is_admin: parsedUser.is_admin !== undefined ? parsedUser.is_admin : (parsedUser.isAdmin || false),
+            join_date: parsedUser.join_date || parsedUser.joinDate || new Date().toISOString(),
+          }
+          
+          setUser(userData)
+          console.log('User state set:', userData)
+        } else {
+          console.log('No user found in localStorage')
         }
       } catch (error) {
         console.error('Error checking localStorage:', error)
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
 
     checkLocalStorage()
@@ -86,8 +94,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           join_date: data.join_date,
         }
 
+        console.log('Login successful, saving user data:', userData)
         setUser(userData)
         localStorage.setItem('smsmun_user', JSON.stringify(userData))
+        console.log('User data saved to localStorage')
         return true
       }
       return false
@@ -134,12 +144,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 登出函数
   const logout = async () => {
     try {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.error('Supabase logout error:', error.message)
-      }
+      console.log('Logging out user')
       setUser(null)
       localStorage.removeItem('smsmun_user')
+      console.log('User logged out and localStorage cleared')
     } catch (error) {
       console.error('Logout error:', error)
     }
