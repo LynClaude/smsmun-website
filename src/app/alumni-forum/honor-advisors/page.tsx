@@ -266,11 +266,6 @@ export default function HonorAdvisorsPage() {
                         <p className="text-xs text-yellow-600 mt-1">
                           请检查浏览器控制台的详细日志
                         </p>
-                        {honorAdvisors.length > 0 && honorAdvisors[0]?.id?.startsWith('test-') && (
-                          <p className="text-xs text-blue-600 mt-1">
-                            ℹ️ 当前显示的是测试数据，因为数据库连接有问题
-                          </p>
-                        )}
                         <p className="text-xs text-gray-600 mt-2">
                           💡 点击上方的"刷新数据"按钮重新加载数据
                         </p>
@@ -282,31 +277,40 @@ export default function HonorAdvisorsPage() {
                       <p className="text-gray-600">荣誉顾问委员会正在建设中...</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {honorAdvisors.map((advisor) => (
-                        <div key={advisor.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                              {advisor.name.charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                              <h3 className="font-semibold text-gray-900">{advisor.name}</h3>
-                              <p className="text-sm text-gray-600">{advisor.graduation_year}年毕业</p>
-                            </div>
-                          </div>
-                          <div className="space-y-2">
-                            <p className="text-sm text-gray-600">
-                              <span className="font-medium">邮箱：</span>{advisor.email}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              <span className="font-medium">在协会职务：</span>{advisor.position}
-                            </p>
-              <p className="text-xs text-gray-500">
-                加入时间：{new Date(advisor.created_at || '').toLocaleDateString()}
-              </p>
-                          </div>
+                    <div>
+                      {honorAdvisors.length > 0 && honorAdvisors[0]?.id?.startsWith('test-') && (
+                        <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
+                          <p className="text-sm text-blue-800">
+                            ℹ️ 当前显示的是测试数据，因为数据库连接有问题
+                          </p>
                         </div>
-                      ))}
+                      )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {honorAdvisors.map((advisor) => (
+                          <div key={advisor.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                {advisor.name.charAt(0).toUpperCase()}
+                              </div>
+                              <div>
+                                <h3 className="font-semibold text-gray-900">{advisor.name}</h3>
+                                <p className="text-sm text-gray-600">{advisor.graduation_year}年毕业</p>
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <p className="text-sm text-gray-600">
+                                <span className="font-medium">邮箱：</span>{advisor.email}
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                <span className="font-medium">在协会职务：</span>{advisor.position}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                加入时间：{new Date(advisor.created_at || '').toLocaleDateString()}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
