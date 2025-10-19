@@ -30,9 +30,9 @@ export default function LoginPage() {
     return email.toLowerCase().startsWith('smsmun')
   }
 
-  // 验证学号格式（深圳中学学号为11位数字）
+  // 验证学号格式（深圳中学学号为20XX年+7位数字，共11位）
   const isValidStudentId = (id: string) => {
-    return /^\d{11}$/.test(id)
+    return /^20\d{2}\d{7}$/.test(id)
   }
 
   // 处理成员验证
@@ -52,7 +52,7 @@ export default function LoginPage() {
       setVerificationStatus('verified')
     } else {
       setVerificationStatus('failed')
-      setError('学号格式不正确，请输入11位数字')
+      setError('学号格式不正确，请输入深圳中学学号（格式：20XX年+7位数字）')
     }
   }
 
@@ -220,7 +220,7 @@ export default function LoginPage() {
                   />
                   {isAlumni && (
                     <p className="text-xs text-gray-500 mt-1">
-                      如果是深中模联成员请使用smsmun开头的邮箱进行验证，如果没有这个邮箱请在后面填写11位深圳中学学号。
+                      深中模联成员身份验证：请使用smsmun开头邮箱进行验证，如无此邮箱，请提供深圳中学学号（格式：20XX年+7位数字）。
                     </p>
                   )}
                 </div>
@@ -291,7 +291,7 @@ export default function LoginPage() {
                         }
                       </p>
                       
-                      {!isSMSMUNEmail(email) && verificationStatus !== 'verified' && (
+                      {!isSMSMUNEmail(email) && verificationStatus !== 'verified' && verificationStatus !== 'failed' && (
                         <div className="space-y-3">
                           <div>
                             <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">
@@ -303,10 +303,10 @@ export default function LoginPage() {
                               value={studentId}
                               onChange={(e) => setStudentId(e.target.value)}
                               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                              placeholder="请输入11位深圳中学学号"
+                              placeholder="请输入深圳中学学号（20XX年+7位数字）"
                             />
                             <p className="text-xs text-gray-500 mt-1">
-                              请输入您的11位深圳中学学号进行身份验证
+                              请输入您的深圳中学学号进行身份验证（格式：20XX年+7位数字）
                             </p>
                           </div>
                           <button
