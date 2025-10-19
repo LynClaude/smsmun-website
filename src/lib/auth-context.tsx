@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // 检查本地存储的用户数据
-    const checkLocalStorage = () => {
+    const checkLocalStorage = async () => {
       try {
         const localUser = localStorage.getItem('smsmun_user')
         if (localUser) {
@@ -52,6 +52,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             graduation_year: parsedUser.graduation_year || parsedUser.graduationYear,
             is_admin: parsedUser.is_admin !== undefined ? parsedUser.is_admin : (parsedUser.isAdmin || false),
             join_date: parsedUser.join_date || parsedUser.joinDate || new Date().toISOString(),
+            is_honor_advisor: parsedUser.is_honor_advisor || false,
+            honor_advisor_approved_at: parsedUser.honor_advisor_approved_at,
+          }
+          
+          // 如果不是本地用户，尝试同步荣誉顾问状态
+          if (userData.id !== 'local') {
+            const statusUpdated = await syncHonorAdvisorStatus(userData.id)
+            if (statusUpdated) {
+              // 如果状态已更新，重新获取用户数据
+              const { data: updatedData, error: updateError } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', userData.id)
+                .single()
+
+              if (!updateError && updatedData) {
+                const updatedUserData = {
+                  ...userData,
+                  is_honor_advisor: updatedData.is_honor_advisor || false,
+                  honor_advisor_approved_at: updatedData.honor_advisor_approved_at,
+                }
+                setUser(updatedUserData)
+                localStorage.setItem('smsmun_user', JSON.stringify(updatedUserData))
+                console.log('User status updated:', updatedUserData)
+                return
+              }
+            }
           }
           
           setUser(userData)
@@ -68,6 +95,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     checkLocalStorage()
   }, [])
+
+  // 自动同步用户荣誉顾问状态
+  const syncHonorAdvisorStatus = async (userId: string) => {
+    try {
+      // 检查是否有批准的荣誉顾问申请
+      const { data: honorData, error: honorError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('status', 'approved')
+
+      if (honorError) {
+        console.error('检查荣誉顾问状态失败:', honorError)
+        return false
+      }
+
+      // 如果用户有批准的申请但状态不是荣誉顾问，则更新状态
+      if (honorData && honorData.length > 0) {
+        const { error: updateError } = await supabase
+          .from('users')
+          .update({ 
+            is_honor_advisor: true,
+            honor_advisor_approved_at: new Date().toISOString()
+          })
+          .eq('id', userId)
+
+        if (updateError) {
+          console.error('更新荣誉顾问状态失败:', updateError)
+          return false
+        }
+
+        console.log('荣誉顾问状态已同步')
+        return true
+      }
+
+      return false
+    } catch (error) {
+      console.error('同步荣誉顾问状态时出错:', error)
+      return false
+    }
+  }
 
   // 登录函数
   const login = async (email: string, password: string): Promise<boolean> => {
@@ -86,14 +154,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (data) {
+        // 自动同步荣誉顾问状态
+        await syncHonorAdvisorStatus(data.id)
+
+        // 重新获取用户数据以确保状态是最新的
+        const { data: updatedData, error: updateError } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', data.id)
+          .single()
+
+        const finalData = updateError ? data : updatedData
+
         const userData = {
-          id: data.id,
-          username: data.username,
-          email: data.email,
-          is_alumni: data.is_alumni,
-          graduation_year: data.graduation_year,
-          is_admin: data.is_admin,
-          join_date: data.join_date,
+          id: finalData.id,
+          username: finalData.username,
+          email: finalData.email,
+          is_alumni: finalData.is_alumni,
+          graduation_year: finalData.graduation_year,
+          is_admin: finalData.is_admin,
+          join_date: finalData.join_date,
+          is_honor_advisor: finalData.is_honor_advisor || false,
+          honor_advisor_approved_at: finalData.honor_advisor_approved_at,
         }
 
         console.log('Login successful, saving user data:', userData)
