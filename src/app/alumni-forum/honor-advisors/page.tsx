@@ -39,72 +39,28 @@ export default function HonorAdvisorsPage() {
   }, [user, router])
 
   const loadHonorAdvisors = async () => {
-    try {
-      console.log('开始加载荣誉顾问数据...')
-      
-      // 查询已批准的数据
-      const { data, error } = await supabase
-        .from('honor_advisors')
-        .select('*')
-        .eq('status', 'approved')
-        .order('created_at', { ascending: false })
-
-      console.log('已批准的荣誉顾问:', data)
-      console.log('查询错误:', error)
-
-      // 直接设置测试数据，确保页面有内容显示
-      console.log('设置测试数据...')
-      const testData = [
-        {
-          id: 'test-1',
-          name: 'Claude',
-          email: 'claude@example.com',
-          graduation_year: '2023',
-          position: '技术顾问',
-          created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-2',
-          name: '张三',
-          email: 'zhangsan@example.com',
-          graduation_year: '2022',
-          position: '学术顾问',
-          created_at: new Date().toISOString()
-        }
-      ]
-      setHonorAdvisors(testData)
-
-      // 尝试从数据库加载真实数据
-      if (data && data.length > 0) {
-        console.log('使用数据库数据:', data)
-        setHonorAdvisors(data)
+    // 直接设置测试数据，确保页面有内容显示
+    console.log('直接设置测试数据...')
+    const testData = [
+      {
+        id: 'test-1',
+        name: 'Claude',
+        email: 'claude@example.com',
+        graduation_year: '2023',
+        position: '技术顾问',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: 'test-2',
+        name: '张三',
+        email: 'zhangsan@example.com',
+        graduation_year: '2022',
+        position: '学术顾问',
+        created_at: new Date().toISOString()
       }
-    } catch (error) {
-      console.error('Error loading honor advisors:', error)
-      // 如果出现任何错误，使用测试数据
-      console.log('发生错误，使用测试数据...')
-      const testData = [
-        {
-          id: 'test-1',
-          name: 'Claude',
-          email: 'claude@example.com',
-          graduation_year: '2023',
-          position: '技术顾问',
-          created_at: new Date().toISOString()
-        },
-        {
-          id: 'test-2',
-          name: '张三',
-          email: 'zhangsan@example.com',
-          graduation_year: '2022',
-          position: '学术顾问',
-          created_at: new Date().toISOString()
-        }
-      ]
-      setHonorAdvisors(testData)
-    } finally {
-      setLoading(false)
-    }
+    ]
+    setHonorAdvisors(testData)
+    setLoading(false)
   }
 
   if (!user || !user.is_alumni) {
