@@ -120,11 +120,11 @@ export default function AdminDashboardPage() {
         setQuestions(questionsData || [])
       }
 
-      // 从 Supabase 加载荣誉指导申请数据
+      // 从 Supabase 加载荣誉顾问申请数据
       const { data: advisorsData, error: advisorsError } = await supabase
         .from('honor_advisors')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (advisorsError) {
         console.error('Error loading honor advisors:', advisorsError.message)
@@ -283,7 +283,7 @@ export default function AdminDashboardPage() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">荣誉指导申请</p>
+                    <p className="text-sm font-medium text-gray-600">荣誉顾问申请</p>
                     <p className="text-2xl font-bold text-gray-900">{honorAdvisors.length}</p>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ export default function AdminDashboardPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                荣誉指导申请
+                荣誉顾问申请
               </button>
             </div>
 
