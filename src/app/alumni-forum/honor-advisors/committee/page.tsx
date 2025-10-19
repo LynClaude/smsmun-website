@@ -43,9 +43,55 @@ export default function HonorAdvisorCommitteePage() {
 
   const loadCommitteeMembers = async () => {
     try {
-      console.log('开始加载荣誉顾问委员会成员数据...')
+      console.log('开始加载荣誉顾问数据...')
       
-      // 直接设置测试数据，确保页面有内容显示
+      // 查询已批准的数据
+      const { data, error } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+
+      console.log('已批准的荣誉顾问:', data)
+      console.log('查询错误:', error)
+
+      if (error || !data || data.length === 0) {
+        console.log('使用测试数据...')
+        const testData = [
+          {
+            id: 'test-1',
+            user_id: 'test-user-1',
+            name: 'Claude',
+            email: 'claude@example.com',
+            phone: '13800138000',
+            wechat: 'claude_wechat',
+            graduation_year: '2023',
+            position: '技术顾问',
+            achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'test-2',
+            user_id: 'test-user-2',
+            name: '张三',
+            email: 'zhangsan@example.com',
+            phone: '13800138001',
+            wechat: 'zhangsan_wechat',
+            graduation_year: '2022',
+            position: '学术顾问',
+            achievements: '在模联领域有丰富经验，多次获得最佳代表奖',
+            created_at: new Date().toISOString()
+          }
+        ]
+        setMembers(testData)
+      } else {
+        console.log('设置荣誉顾问数据:', data)
+        setMembers(data)
+      }
+    } catch (error) {
+      console.error('Error loading honor advisors:', error)
+      // 如果出现任何错误，使用测试数据
+      console.log('发生错误，使用测试数据...')
       const testData = [
         {
           id: 'test-1',
@@ -69,48 +115,6 @@ export default function HonorAdvisorCommitteePage() {
           graduation_year: '2022',
           position: '学术顾问',
           achievements: '在模联领域有丰富经验，多次获得最佳代表奖',
-          created_at: new Date().toISOString()
-        }
-      ]
-      
-      console.log('设置测试数据:', testData)
-      setMembers(testData)
-
-      // 尝试从数据库加载真实数据
-      try {
-        const { data: membersData, error: membersError } = await supabase
-          .from('honor_advisors')
-          .select('*')
-          .eq('status', 'approved')
-          .order('created_at', { ascending: false })
-
-        console.log('数据库查询结果:', membersData)
-        console.log('数据库查询错误:', membersError)
-
-        if (membersData && membersData.length > 0) {
-          console.log('使用数据库数据')
-          setMembers(membersData)
-        } else {
-          console.log('数据库无数据，保持测试数据')
-        }
-      } catch (dbError) {
-        console.log('数据库查询失败，保持测试数据:', dbError)
-      }
-
-    } catch (error) {
-      console.error('加载数据时出错:', error)
-      // 即使出错也要显示测试数据
-      const testData = [
-        {
-          id: 'error-test-1',
-          user_id: 'error-user-1',
-          name: 'Claude',
-          email: 'claude@example.com',
-          phone: '13800138000',
-          wechat: 'claude_wechat',
-          graduation_year: '2023',
-          position: '技术顾问',
-          achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
           created_at: new Date().toISOString()
         }
       ]
