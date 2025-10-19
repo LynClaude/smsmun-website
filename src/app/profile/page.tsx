@@ -400,35 +400,63 @@ export default function ProfilePage() {
 
                   {/* 荣誉顾问委员会成员 */}
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">荣誉顾问委员会成员</h3>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900">荣誉顾问委员会成员</h3>
+                      <Link
+                        href="/alumni-forum/honor-advisors"
+                        className="text-primary hover:text-primary/80 text-sm font-medium"
+                      >
+                        查看完整列表 →
+                      </Link>
+                    </div>
                     {honorAdvisorMembers.length === 0 ? (
-                      <p className="text-gray-500 text-center py-8">暂无委员会成员</p>
+                      <div className="text-center py-8">
+                        <p className="text-gray-500 mb-4">暂无委员会成员</p>
+                        <Link
+                          href="/alumni-forum/honor-advisors"
+                          className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm"
+                        >
+                          查看荣誉顾问委员会
+                        </Link>
+                      </div>
                     ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {honorAdvisorMembers.map((member) => (
-                          <div key={member.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                {member.name.charAt(0).toUpperCase()}
+                      <div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                          {honorAdvisorMembers.slice(0, 4).map((member) => (
+                            <div key={member.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                              <div className="flex items-center gap-3 mb-3">
+                                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                  {member.name.charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-gray-900">{member.name}</h4>
+                                  <p className="text-sm text-gray-600">{member.graduation_year}年毕业</p>
+                                </div>
                               </div>
-                              <div>
-                                <h4 className="font-semibold text-gray-900">{member.name}</h4>
-                                <p className="text-sm text-gray-600">{member.graduation_year}年毕业</p>
+                              <div className="space-y-2">
+                                <p className="text-sm text-gray-600">
+                                  <span className="font-medium">邮箱：</span>{member.email}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                  <span className="font-medium">在协会职务：</span>{member.position}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  加入时间：{new Date(member.created_at).toLocaleDateString()}
+                                </p>
                               </div>
                             </div>
-                            <div className="space-y-2">
-                              <p className="text-sm text-gray-600">
-                                <span className="font-medium">邮箱：</span>{member.email}
-                              </p>
-                              <p className="text-sm text-gray-600">
-                                <span className="font-medium">在协会职务：</span>{member.position}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                加入时间：{new Date(member.created_at).toLocaleDateString()}
-                              </p>
-                            </div>
+                          ))}
+                        </div>
+                        {honorAdvisorMembers.length > 4 && (
+                          <div className="text-center">
+                            <Link
+                              href="/alumni-forum/honor-advisors"
+                              className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm"
+                            >
+                              查看更多成员 ({honorAdvisorMembers.length - 4} 位)
+                            </Link>
                           </div>
-                        ))}
+                        )}
                       </div>
                     )}
                   </div>
