@@ -140,6 +140,56 @@ export default function AdminDashboardPage() {
     }
   }
 
+  // 解聘荣誉顾问功能
+  const handleDismissHonorAdvisor = async (advisorId: string, advisorName: string) => {
+    if (!confirm(`确定要解聘荣誉顾问 "${advisorName}" 吗？此操作不可撤销。`)) {
+      return
+    }
+
+    try {
+      // 更新荣誉顾问状态为已解聘
+      const { error: advisorError } = await supabase
+        .from('honor_advisors')
+        .update({ 
+          status: 'dismissed',
+          resignation_reason: '管理员解聘',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', advisorId)
+
+      if (advisorError) {
+        console.error('Error dismissing honor advisor:', advisorError.message)
+        alert('解聘荣誉顾问失败：' + advisorError.message)
+        return
+      }
+
+      // 更新用户表中的荣誉顾问状态
+      const { error: userError } = await supabase
+        .from('users')
+        .update({ 
+          is_honor_advisor: false,
+          honor_advisor_approved_at: null
+        })
+        .eq('id', advisorId)
+
+      if (userError) {
+        console.error('Error updating user status:', userError.message)
+        alert('更新用户状态失败：' + userError.message)
+        return
+      }
+
+      // 更新本地状态
+      setHonorAdvisors(honorAdvisors.filter(advisor => advisor.id !== advisorId))
+      alert('荣誉顾问已解聘')
+      
+      // 重新加载数据以确保同步
+      loadData()
+    } catch (error) {
+      console.error('Error dismissing honor advisor:', error)
+      alert('解聘荣誉顾问失败，请重试')
+    }
+  }
+
   const loadData = async () => {
     try {
       // 从 Supabase 加载用户数据
@@ -585,22 +635,39 @@ export default function AdminDashboardPage() {
                         )}
                       </div>
 
-                      {advisor.status === 'pending' && (
-                        <div className="flex gap-2 pt-3 border-t border-gray-200">
+                      <div className="flex gap-2 pt-3 border-t border-gray-200">
+                        {advisor.status === 'pending' && (
+                          <>
+                            <button
+                              onClick={() => handleApproveAdvisor(advisor.id, advisor.user_id)}
+                              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                            >
+                              批准申请
+                            </button>
+                            <button
+                              onClick={() => handleRejectAdvisor(advisor.id)}
+                              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
+                            >
+                              拒绝申请
+                            </button>
+                          </>
+                        )}
+                        
+                        {advisor.status === 'approved' && (
                           <button
-                            onClick={() => handleApproveAdvisor(advisor.id, advisor.user_id)}
-                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
-                          >
-                            批准申请
-                          </button>
-                          <button
-                            onClick={() => handleRejectAdvisor(advisor.id)}
+                            onClick={() => handleDismissHonorAdvisor(advisor.id, advisor.name)}
                             className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
                           >
-                            拒绝申请
+                            解聘荣誉顾问
                           </button>
-                        </div>
-                      )}
+                        )}
+                        
+                        {advisor.status === 'rejected' && (
+                          <div className="text-sm text-gray-500">
+                            申请已被拒绝
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
