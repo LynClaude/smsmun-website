@@ -1,91 +1,41 @@
 'use client'
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
 import PageTransition from '@/components/PageTransition'
+import PPRDInvitationLetter from '@/components/PPRDInvitationLetter'
 
 export default function PPRDMUN2025LetterPage() {
+  const content = `
+    <p class="mb-6">尊敬的友校模联组织及模联同仁：</p>
+    <p class="mb-6">展信佳！</p>
+    <p class="mb-6">
+      2025年泛珠三角高中生模拟联合国大会兹定于7月中旬在深圳中学泥岗校区线下召开。在此，我们诚挚地邀请您参加本次大会。
+    </p>
+    <p class="mb-6">
+      贰零贰伍是万象更新，满庭芳华的一年，作为泛珠三角高中生模拟联合国大会的承办方与泛珠地区率先成立的模联组织之一，深圳中学模拟联合国协会已走过廿载春华秋实。在一代代泛珠模联人的辛勤浇灌、不懈匠心独运之下，涓滴成河、百川汇海，学术之枝蔓已然欣欣向荣。十五载行远自迩，十五载踵事增华。身为模联人，我们长怀理想主义之热忱，负当代青年之使命，沐浴理性之光，为传泛珠模联之薪火而惟实励新，精进臻善。在过去的十五年中，我们乘时代的浪潮不断前行，奋斗不辍、培风图南，将于七月仲夏之时迎第十六届泛珠模联，与诸位模联同仁再聚风冠凰羽之下。
+    </p>
+    <p class="mb-6">
+      延续过往十五年的泛珠模联筹办理念，我们秉持剔粕取精之理念信奉精雕细琢之原则，审视自身、革旧立新。站在新的历史起点上，我们不仅要回顾过往的辉煌成就，更要展望未来的发展前景。在这个充满机遇与挑战的时代，泛珠模联将继续秉承学术至上的理念，为青年学子提供更加优质的国际事务学习和交流平台。
+    </p>
+    <p class="mb-6">
+      感谢一路上一直以来关注和支持泛珠三角高中生模拟联合国大会的各位同仁，您的赞许与支持是我们前进的信心，您的批评与建议是我们自我鞭策、奋勇前进的动力。十五载携手并肩，于百年之未有之大变局中，我们更应保持独立思考之可贵精神，为携明灯以御前路之黑暗而敢问苍天、上下求索。大会组委会将始终秉持高质量办会理念不辍稳步前进，无畏革故鼎新。在时代的交叉点上，我们期待与有胆识变革、有能力创新的各位同仁携手，再次奏响泛珠模联之又一壮美华章!
+    </p>
+    <p class="mb-6">
+      吾等联合国之子民，为更美好之世界而联合。
+    </p>
+    <div class="text-right mt-12">
+      <p class="text-lg font-semibold">
+        2025年泛珠三角高中生模拟联合国大会组委会
+      </p>
+    </div>
+  `
+
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* 返回按钮 */}
-            <div className="mb-8">
-              <Link 
-                href="/pprdmun"
-                className="inline-flex items-center px-6 py-3 bg-white text-primary rounded-lg hover:bg-gray-50 transition-colors shadow-md"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                返回 PPRDMUN 2025
-              </Link>
-            </div>
-
-            {/* 邀请函内容 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
-            >
-              {/* 信头 */}
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-2">PPRDMUN 2025</h1>
-                <p className="text-lg opacity-90">2025年泛珠三角高中生模拟联合国大会</p>
-                <p className="text-sm opacity-75 mt-2">Pan-Pearl River Delta Model United Nations Conference 2025</p>
-              </div>
-
-              {/* 信件内容 */}
-              <div className="p-8 md:p-12">
-                <div 
-                  className="prose prose-lg max-w-none leading-relaxed"
-                  style={{ 
-                    fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
-                    fontSize: '18px',
-                    lineHeight: '1.8'
-                  }}
-                >
-                  <p className="mb-6">
-                    尊敬的友校模联组织及模联同仁：
-                  </p>
-                  
-                  <p className="mb-6">
-                    展信佳！
-                  </p>
-                  
-                  <p className="mb-6">
-                    2025年泛珠三角高中生模拟联合国大会兹定于7月中旬在深圳中学泥岗校区线下召开。在此，我们诚挚地邀请您参加本次大会。
-                  </p>
-                  
-                  <p className="mb-6">
-                    贰零贰伍是万象更新，满庭芳华的一年，三年疫情终得烟消云散我们终迎得晨光憙微，朝暾初露。作为泛珠三角高中生模拟联合国大会的承办方与泛珠地区率先成立的模联组织之一，深圳中学模拟联合国协会已走过甘载春华秋实。在一代代泛珠模联人的辛勤浇灌、不懈匠心独运之下，涓滴成河、百川汇海，学术之枝蔓已然欣欣向荣。十五载行远自迩，十五载踵事增华。身为模联人，我们长怀理想主义之热忱，负当代青年之使命，沐浴理性之光，为传泛珠模联之薪火而惟实励新，精进臻善。在过去的十五年中，我们乘时代的浪潮不断前行，奋斗不辍、培风图南，将于七月仲夏之时迎第十六届泛珠模联，与诸位模联同仁再聚风冠凰羽之下。
-                  </p>
-                  
-                  <p className="mb-6">
-                    延续过往十五年的泛珠模联筹办理念，我们秉持剔粕取精之理念信奉精雕细琢之原则，审视自身、革旧立新。面对新的国际形势和挑战，我们将继续探索模联教育的新模式，为青年学子提供更加优质的学术体验和交流平台。在时代的洪流中，我们期待与各位同仁共同书写泛珠模联的新篇章。
-                  </p>
-                  
-                  <p className="mb-6">
-                    感谢一路上一直以来关注和支持泛珠三角高中生模拟联合国大会的各位同仁，您的赞许与支持是我们前进的信心，您的批评与建议是我们自我鞭策、奋勇前进的动力。十五载携手并肩，于百年之未有之大变局中，我们更应保持独立思考之可贵精神，为携明灯以御前路之黑暗而敢问苍天、上下求索。大会组委会将始终秉持高质量办会理念不辍稳步前进，无畏革故鼎新。在时代的交叉点上，我们期待与有胆识变革、有能力创新的各位同仁携手，共同奏响泛珠模联之又一壮美华章!
-                  </p>
-                  
-                  <p className="mb-6">
-                    吾等联合国之子民，为更美好之世界而联合。
-                  </p>
-                  
-                  <div className="text-right mt-12">
-                    <p className="text-lg font-semibold">
-                      2025年泛珠三角高中生模拟联合国大会组委会
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      <PPRDInvitationLetter 
+        year={2025}
+        content={content}
+        backHref="/pprdmun"
+      />
     </PageTransition>
   )
 }

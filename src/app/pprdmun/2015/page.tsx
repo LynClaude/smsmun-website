@@ -283,6 +283,22 @@ export default function PPRDMUN2015Page() {
             </div>
           </div>
         </div>
+
+        {/* 邀请函区域 */}
+        <div className="bg-gray-50 py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">邀请函</h2>
+              <p className="text-gray-600">点击信件查看完整邀请函内容</p>
+            </div>
+            <InvitationLetter
+              year={2015}
+              title="PPRDMUN 2015 邀请函"
+              description="第五届泛珠三角高中生模拟联合国大会"
+              href="/pprdmun/2015/letter"
+            />
+          </div>
+        </div>
       </div>
     </PageTransition>
   )

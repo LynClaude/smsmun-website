@@ -72,36 +72,6 @@ interface Messages {
     intro_title: string
     intro_content: string
   }
-  pprdmun: {
-    title: string
-    description: string
-    select_year: string
-    conference_info: string
-    time: string
-    location: string
-    language: string
-    organizer: string
-    committees: string
-    related_docs: string
-    welcome_title: string
-    welcome_greeting: string
-    welcome_opening: string
-    welcome_invitation: string
-    welcome_2025: string
-    welcome_15_years: string
-    welcome_concept: string
-    welcome_gratitude: string
-    welcome_ending: string
-    welcome_signature: string
-    academic_team_title: string
-    academic_team_desc: string
-    academic_team_priority: string
-    academic_team_wechat: string
-    academic_team_contact: string
-    academic_team_secretary: string
-    academic_team_vice_secretary: string
-    download_form: string
-  }
   alumni: {
     title: string
     secretariat: string
@@ -184,6 +154,47 @@ interface Messages {
     event6_year: string
     event6_title: string
     event6_desc: string
+  }
+  pprdmun: {
+    return_to: string
+    full_name: string
+    english_name: string
+    invitation_letter: string
+    greeting: string
+    opening: string
+    closing: string
+    signature: string
+    committee_settings: string
+    venue_settings: string
+    main_press_center: string
+    title: string
+    description: string
+    select_year: string
+    conference_info: string
+    time: string
+    location: string
+    language: string
+    organizer: string
+    committees: string
+    related_docs: string
+    welcome_title: string
+    welcome_greeting: string
+    welcome_opening: string
+    welcome_invitation: string
+    welcome_2025: string
+    welcome_15_years: string
+    welcome_concept: string
+    welcome_gratitude: string
+    welcome_ending: string
+    welcome_signature: string
+    academic_team_title: string
+    academic_team_desc: string
+    academic_team_priority: string
+    academic_team_wechat: string
+    academic_team_contact: string
+    academic_team_secretary: string
+    academic_team_vice_secretary: string
+    download_form: string
   }
   common: {
     dept_intro: string
