@@ -77,6 +77,69 @@ export default function AdminDashboardPage() {
     loadData()
   }, [user, router])
 
+  // 删除留言功能
+  const handleDeleteMessage = async (messageId: string) => {
+    if (!confirm('确定要删除这条留言吗？此操作不可撤销。')) {
+      return
+    }
+
+    try {
+      const { error } = await supabase
+        .from('messages')
+        .delete()
+        .eq('id', messageId)
+
+      if (error) {
+        console.error('Error deleting message:', error.message)
+        alert('删除留言失败：' + error.message)
+      } else {
+        // 更新本地状态
+        setMessages(messages.filter(msg => msg.id !== messageId))
+        alert('留言已删除')
+      }
+    } catch (error) {
+      console.error('Error deleting message:', error)
+      alert('删除留言失败，请重试')
+    }
+  }
+
+  // 删除问答功能
+  const handleDeleteQuestion = async (questionId: string) => {
+    if (!confirm('确定要删除这个问题吗？此操作不可撤销。')) {
+      return
+    }
+
+    try {
+      // 先删除相关的回答
+      const { error: answersError } = await supabase
+        .from('answers')
+        .delete()
+        .eq('question_id', questionId)
+
+      if (answersError) {
+        console.error('Error deleting answers:', answersError.message)
+      }
+
+      // 再删除问题
+      const { error: questionError } = await supabase
+        .from('questions')
+        .delete()
+        .eq('id', questionId)
+
+      if (questionError) {
+        console.error('Error deleting question:', questionError.message)
+        alert('删除问题失败：' + questionError.message)
+      } else {
+        // 更新本地状态
+        setQuestions(questions.filter(q => q.id !== questionId))
+        alert('问题已删除')
+      }
+    } catch (error) {
+      console.error('Error deleting question:', error)
+      alert('删除问题失败，请重试')
+    }
+  }
+
   const loadData = async () => {
     try {
       // 从 Supabase 加载用户数据
@@ -385,9 +448,17 @@ export default function AdminDashboardPage() {
                     <div key={message.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-2">
                         <span className="font-medium text-gray-900">{message.author}</span>
-                        <span className="text-sm text-gray-500">
-                          {new Date(message.timestamp).toLocaleString()}
-                        </span>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm text-gray-500">
+                            {new Date(message.timestamp).toLocaleString()}
+                          </span>
+                          <button
+                            onClick={() => handleDeleteMessage(message.id)}
+                            className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                          >
+                            删除
+                          </button>
+                        </div>
                       </div>
                       <p className="text-gray-700 mb-2">{message.content}</p>
                       <p className="text-sm text-gray-500">联系方式：{message.contact}</p>
@@ -406,9 +477,17 @@ export default function AdminDashboardPage() {
                     <div key={question.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
                         <h3 className="font-medium text-gray-900">{question.question}</h3>
-                        <span className="text-sm text-gray-500">
-                          {new Date(question.timestamp).toLocaleString()}
-                        </span>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm text-gray-500">
+                            {new Date(question.timestamp).toLocaleString()}
+                          </span>
+                          <button
+                            onClick={() => handleDeleteQuestion(question.id)}
+                            className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                          >
+                            删除
+                          </button>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">提问者：{question.author}</p>
                       
