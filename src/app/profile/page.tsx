@@ -44,7 +44,7 @@ interface Feedback {
 
 export default function ProfilePage() {
   const { user } = useAuth()
-  const [activeTab, setActiveTab] = useState<'messages' | 'questions' | 'honor' | 'feedback'>('messages')
+  const [activeTab, setActiveTab] = useState<'messages' | 'questions' | 'honor' | 'feedback'>('feedback')
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
@@ -56,6 +56,12 @@ export default function ProfilePage() {
   useEffect(() => {
     if (user) {
       loadUserData()
+      // 根据用户身份设置默认标签页
+      if (user.is_alumni) {
+        setActiveTab('messages')
+      } else {
+        setActiveTab('feedback')
+      }
     }
   }, [user])
 
@@ -88,16 +94,14 @@ export default function ProfilePage() {
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 
-      // 如果是访客，加载反馈
-      if (!user.is_alumni) {
-        const { data: feedbackData } = await supabase
-          .from('feedbacks')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false })
+      // 加载反馈数据（访客和校友都可以提交反馈）
+      const { data: feedbackData } = await supabase
+        .from('feedbacks')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
-        setFeedbacks(feedbackData || [])
-      }
+      setFeedbacks(feedbackData || [])
 
       setMessages(messagesData || [])
       setQuestions(questionsData || [])
@@ -193,54 +197,59 @@ export default function ProfilePage() {
           {/* 标签切换 */}
           <div className="bg-white rounded-xl shadow-lg mb-8">
             <div className="flex border-b border-gray-200">
-              <button
-                onClick={() => setActiveTab('messages')}
-                className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
-                  activeTab === 'messages'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                我的留言 ({messages.length})
-              </button>
-              <button
-                onClick={() => setActiveTab('questions')}
-                className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
-                  activeTab === 'questions'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                我的问答 ({questions.length})
-              </button>
-              {user?.is_alumni && (
-                <button
-                  onClick={() => setActiveTab('honor')}
-                  className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
-                    activeTab === 'honor'
-                      ? 'text-primary border-b-2 border-primary'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  荣誉指导 ({honorAdvisors.length})
-                </button>
-              )}
-              {!user?.is_alumni && (
-                <button
-                  onClick={() => setActiveTab('feedback')}
-                  className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
-                    activeTab === 'feedback'
-                      ? 'text-primary border-b-2 border-primary'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  我的反馈 ({feedbacks.length})
-                </button>
+              {user?.is_alumni ? (
+                // 校友的标签页
+                <>
+                  <button
+                    onClick={() => setActiveTab('messages')}
+                    className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
+                      activeTab === 'messages'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    我的留言 ({messages.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('questions')}
+                    className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
+                      activeTab === 'questions'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    我的问答 ({questions.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('honor')}
+                    className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
+                      activeTab === 'honor'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    荣誉指导 ({honorAdvisors.length})
+                  </button>
+                </>
+              ) : (
+                // 访客的标签页
+                <>
+                  <button
+                    onClick={() => setActiveTab('feedback')}
+                    className={`flex-1 py-4 px-6 text-sm font-medium transition-colors ${
+                      activeTab === 'feedback'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    意见反馈 ({feedbacks.length})
+                  </button>
+                </>
               )}
             </div>
 
             <div className="p-6">
-              {activeTab === 'messages' && (
+              {user?.is_alumni && activeTab === 'messages' && (
                 <div className="space-y-4">
                   {messages.length === 0 ? (
                     <p className="text-gray-500 text-center py-8">暂无留言</p>
@@ -257,7 +266,7 @@ export default function ProfilePage() {
                 </div>
               )}
 
-              {activeTab === 'questions' && (
+              {user?.is_alumni && activeTab === 'questions' && (
                 <div className="space-y-4">
                   {questions.length === 0 ? (
                     <p className="text-gray-500 text-center py-8">暂无问答</p>
@@ -315,15 +324,17 @@ export default function ProfilePage() {
                 </div>
               )}
 
-              {activeTab === 'feedback' && !user?.is_alumni && (
+              {activeTab === 'feedback' && (
                 <div className="space-y-6">
                   {/* 提交反馈表单 */}
                   <div className="border border-gray-200 rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">提交反馈</h3>
+                    <h3 className="font-semibold text-gray-900 mb-3">
+                      {user?.is_alumni ? '提交意见反馈' : '提交反馈'}
+                    </h3>
                     <textarea
                       value={feedbackContent}
                       onChange={(e) => setFeedbackContent(e.target.value)}
-                      placeholder="请告诉我们您的建议或意见..."
+                      placeholder={user?.is_alumni ? "请告诉我们您的建议或意见..." : "请告诉我们您对网站的建议或意见..."}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary h-24 resize-none"
                     />
                     <button
