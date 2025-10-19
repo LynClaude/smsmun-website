@@ -59,6 +59,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (user) {
+      console.log('Profile page - User data:', user)
+      console.log('Profile page - is_alumni:', user.is_alumni)
+      console.log('Profile page - is_honor_advisor:', user.is_honor_advisor)
       loadUserData()
       // 根据用户身份设置默认标签页
       if (user.is_alumni) {
@@ -295,7 +298,11 @@ export default function ProfilePage() {
           </motion.div>
 
           {/* 荣誉顾问委员会入口 - 临时显示给所有校友 */}
-          {(user?.is_honor_advisor || user?.is_alumni) && (
+          {(() => {
+            const shouldShow = (user?.is_honor_advisor || user?.is_alumni)
+            console.log('Should show honor advisor card:', shouldShow, 'is_honor_advisor:', user?.is_honor_advisor, 'is_alumni:', user?.is_alumni)
+            return shouldShow
+          })() && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
