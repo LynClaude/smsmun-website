@@ -53,15 +53,9 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true)
   const [feedbackContent, setFeedbackContent] = useState('')
   const [submittingFeedback, setSubmittingFeedback] = useState(false)
-  const [showResignModal, setShowResignModal] = useState(false)
-  const [resignReason, setResignReason] = useState('')
-  const [submittingResign, setSubmittingResign] = useState(false)
 
   useEffect(() => {
     if (user) {
-      console.log('Profile page - User data:', user)
-      console.log('Profile page - is_alumni:', user.is_alumni)
-      console.log('Profile page - is_honor_advisor:', user.is_honor_advisor)
       loadUserData()
       // 根据用户身份设置默认标签页
       if (user.is_alumni) {
@@ -180,57 +174,6 @@ export default function ProfilePage() {
     }
   }
 
-  const handleResignFromCommittee = async () => {
-    if (!user) return
-
-    setSubmittingResign(true)
-    try {
-      // 更新用户表中的荣誉顾问状态
-      const { error: userError } = await supabase
-        .from('users')
-        .update({ 
-          is_honor_advisor: false,
-          honor_advisor_approved_at: null
-        })
-        .eq('id', user.id)
-
-      if (userError) {
-        console.error('退出委员会失败:', userError)
-        alert('退出委员会失败，请重试')
-        return
-      }
-
-      // 记录退出申请到荣誉顾问表
-      const { error: recordError } = await supabase
-        .from('honor_advisors')
-        .insert([
-          {
-            user_id: user.id,
-            name: user.username,
-            email: user.email,
-            status: 'resigned',
-            resignation_reason: resignReason,
-            created_at: new Date().toISOString()
-          }
-        ])
-
-      if (recordError) {
-        console.error('记录退出申请失败:', recordError)
-      }
-
-      alert('已成功退出荣誉顾问委员会！')
-      setShowResignModal(false)
-      setResignReason('')
-      
-      // 刷新页面以更新用户状态
-      window.location.reload()
-    } catch (error) {
-      console.error('退出委员会失败:', error)
-      alert('退出委员会失败，请重试')
-    } finally {
-      setSubmittingResign(false)
-    }
-  }
 
   if (loading) {
     return (
@@ -297,71 +240,6 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* 调试信息 */}
-          {user && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6"
-            >
-              <h3 className="font-semibold text-yellow-800 mb-2">调试信息</h3>
-              <p className="text-sm text-yellow-700">
-                用户状态：is_alumni = {user.is_alumni ? 'true' : 'false'}, 
-                is_honor_advisor = {user.is_honor_advisor ? 'true' : 'false'}
-              </p>
-              <p className="text-xs text-yellow-600 mt-1">
-                如果看不到荣誉顾问委员会卡片，请检查浏览器控制台的详细日志
-              </p>
-            </motion.div>
-          )}
-
-          {/* 荣誉顾问委员会入口 - 临时显示给所有用户 */}
-          {user && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-xl shadow-lg mb-8 p-6"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-lg">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">荣誉顾问委员会</h3>
-                    <p className="text-gray-600">
-                      {user?.is_honor_advisor ? '您已成为荣誉顾问委员会成员' : '查看荣誉顾问委员会信息'}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Link
-                    href="/alumni-forum/honor-advisors/committee"
-                    className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                    进入委员会
-                  </Link>
-                  {user?.is_honor_advisor && (
-                    <button
-                      onClick={() => setShowResignModal(true)}
-                      className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                      </svg>
-                      退出委员会
-                    </button>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          )}
 
           {/* 标签切换 */}
           <div className="bg-white rounded-xl shadow-lg mb-8">
@@ -538,45 +416,6 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* 退出委员会模态框 */}
-      {showResignModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">退出荣誉顾问委员会</h3>
-            <p className="text-gray-600 mb-4">
-              您确定要退出荣誉顾问委员会吗？退出后您将失去荣誉顾问身份和相关权限。
-            </p>
-            <div className="mb-4">
-              <label htmlFor="resignReason" className="block text-sm font-medium text-gray-700 mb-2">
-                退出原因（可选）
-              </label>
-              <textarea
-                id="resignReason"
-                value={resignReason}
-                onChange={(e) => setResignReason(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                rows={3}
-                placeholder="请说明您退出委员会的原因..."
-              />
-            </div>
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={() => setShowResignModal(false)}
-                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              >
-                取消
-              </button>
-              <button
-                onClick={handleResignFromCommittee}
-                disabled={submittingResign}
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                {submittingResign ? '处理中...' : '确认退出'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </PageTransition>
   )
 }
