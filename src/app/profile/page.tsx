@@ -216,12 +216,48 @@ export default function ProfilePage() {
                   )}
                 </h1>
                 <p className="text-gray-600">
-                  {user?.is_admin ? '管理员' : user?.is_alumni ? '深中模联校友' : '访客用户'}
+                  {user?.is_admin ? '管理员' : 
+                   user?.is_alumni ? 
+                     (user?.is_honor_advisor ? '深中模联校友 · 荣誉顾问' : '深中模联校友') : 
+                   '访客用户'}
                 </p>
                 <p className="text-sm text-gray-500">{user?.email}</p>
               </div>
             </div>
           </motion.div>
+
+          {/* 荣誉顾问委员会入口 */}
+          {user?.is_honor_advisor && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-xl shadow-lg mb-8 p-6"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-lg">
+                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">荣誉顾问委员会</h3>
+                    <p className="text-gray-600">您已成为荣誉顾问委员会成员</p>
+                  </div>
+                </div>
+                <Link
+                  href="/alumni-forum/honor-advisors/committee"
+                  className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  进入委员会
+                </Link>
+              </div>
+            </motion.div>
+          )}
 
           {/* 标签切换 */}
           <div className="bg-white rounded-xl shadow-lg mb-8">

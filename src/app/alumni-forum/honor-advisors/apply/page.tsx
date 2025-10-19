@@ -36,6 +36,7 @@ export default function HonorAdvisorApplyPage() {
     name: '',
     email: '',
     phone: '',
+    wechat: '',
     graduation_year: '',
     position: '',
     achievements: '',
@@ -89,6 +90,7 @@ export default function HonorAdvisorApplyPage() {
             name: formData.name,
             email: formData.email,
             phone: formData.phone || '',
+            wechat: formData.wechat || '',
             graduation_year: formData.graduation_year,
             position: formData.position,
             achievements: formData.achievements,
@@ -110,6 +112,7 @@ export default function HonorAdvisorApplyPage() {
           name: '',
           email: '',
           phone: '',
+          wechat: '',
           graduation_year: '',
           position: '',
           achievements: '',
@@ -156,7 +159,7 @@ export default function HonorAdvisorApplyPage() {
               className="bg-white rounded-2xl shadow-xl overflow-hidden"
             >
               {/* 页面头部 */}
-              <div className="bg-gradient-to-r from-green-600 to-emerald-700 text-white p-8 text-center">
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">荣誉顾问申请</h1>
                 <p className="text-lg opacity-90">深圳中学模拟联合国协会</p>
                 <p className="text-sm opacity-75 mt-2">Honor Advisor Application</p>
@@ -223,6 +226,21 @@ export default function HonorAdvisorApplyPage() {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="请输入您的联系电话"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="wechat" className="block text-sm font-medium text-gray-700 mb-2">
+                        微信号
+                      </label>
+                      <input
+                        type="text"
+                        id="wechat"
+                        name="wechat"
+                        value={formData.wechat}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="请输入您的微信号"
                       />
                     </div>
 
@@ -339,7 +357,7 @@ export default function HonorAdvisorApplyPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
+                      className="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
                     >
                       {loading ? (
                         <>

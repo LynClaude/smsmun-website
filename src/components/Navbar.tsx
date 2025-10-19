@@ -71,7 +71,7 @@ export default function Navbar() {
                 href={item.href}
                 className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
               >
-                {item.name === 'alumni-forum' ? '校友交流' : item.name}
+                {item.name === 'alumni-forum' ? '校友交流/荣誉顾问' : item.name}
               </Link>
             )
           ))}

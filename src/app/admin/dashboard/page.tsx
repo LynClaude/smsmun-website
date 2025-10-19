@@ -32,12 +32,19 @@ interface Answer {
 
 interface HonorAdvisor {
   id: string
+  user_id: string
   name: string
   email: string
   phone: string
-  graduationYear: string
-  message: string
-  timestamp: string
+  wechat: string
+  graduation_year: string
+  position: string
+  achievements: string
+  motivation: string
+  availability: string
+  additional_info: string
+  status: string
+  created_at: string
 }
 
 interface User {
@@ -126,6 +133,66 @@ export default function AdminDashboardPage() {
       }
     } catch (error) {
       console.error('Error loading data:', error)
+    }
+  }
+
+  const handleApproveAdvisor = async (advisorId: string, userId: string) => {
+    try {
+      // 更新申请状态为已批准
+      const { error: updateError } = await supabase
+        .from('honor_advisors')
+        .update({ status: 'approved' })
+        .eq('id', advisorId)
+
+      if (updateError) {
+        console.error('Error approving advisor:', updateError.message)
+        alert('批准申请失败，请重试')
+        return
+      }
+
+      // 更新用户表中的荣誉顾问状态
+      const { error: userError } = await supabase
+        .from('users')
+        .update({ 
+          is_honor_advisor: true,
+          honor_advisor_approved_at: new Date().toISOString()
+        })
+        .eq('id', userId)
+
+      if (userError) {
+        console.error('Error updating user status:', userError.message)
+        alert('更新用户状态失败，请重试')
+        return
+      }
+
+      // 重新加载数据
+      loadData()
+      alert('申请已批准！')
+    } catch (error) {
+      console.error('Error approving advisor:', error)
+      alert('批准申请失败，请重试')
+    }
+  }
+
+  const handleRejectAdvisor = async (advisorId: string) => {
+    try {
+      const { error } = await supabase
+        .from('honor_advisors')
+        .update({ status: 'rejected' })
+        .eq('id', advisorId)
+
+      if (error) {
+        console.error('Error rejecting advisor:', error.message)
+        alert('拒绝申请失败，请重试')
+        return
+      }
+
+      // 重新加载数据
+      loadData()
+      alert('申请已拒绝！')
+    } catch (error) {
+      console.error('Error rejecting advisor:', error)
+      alert('拒绝申请失败，请重试')
     }
   }
 
@@ -361,32 +428,84 @@ export default function AdminDashboardPage() {
               </div>
             )}
 
-            {/* 荣誉指导申请管理 */}
+            {/* 荣誉顾问申请管理 */}
             {activeTab === 'advisors' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">荣誉指导申请管理</h2>
+                <h2 className="text-xl font-bold mb-4">荣誉顾问申请管理</h2>
                 <div className="space-y-4">
                   {honorAdvisors.map((advisor) => (
                     <div key={advisor.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{advisor.name}</h3>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{advisor.name}</h3>
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            advisor.status === 'approved' ? 'bg-green-100 text-green-800' :
+                            advisor.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                            'bg-yellow-100 text-yellow-800'
+                          }`}>
+                            {advisor.status === 'approved' ? '已批准' :
+                             advisor.status === 'rejected' ? '已拒绝' : '待审核'}
+                          </span>
+                        </div>
                         <span className="text-sm text-gray-500">
-                          {new Date(advisor.timestamp).toLocaleString()}
+                          {new Date(advisor.created_at).toLocaleString()}
                         </span>
                       </div>
+                      
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                          <p className="text-sm text-gray-600">邮箱：{advisor.email}</p>
-                          <p className="text-sm text-gray-600">电话：{advisor.phone}</p>
+                          <p className="text-sm text-gray-600"><strong>邮箱：</strong>{advisor.email}</p>
+                          <p className="text-sm text-gray-600"><strong>电话：</strong>{advisor.phone}</p>
+                          <p className="text-sm text-gray-600"><strong>微信：</strong>{advisor.wechat || '未提供'}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">毕业年份：{advisor.graduationYear}</p>
+                          <p className="text-sm text-gray-600"><strong>毕业年份：</strong>{advisor.graduation_year}</p>
+                          <p className="text-sm text-gray-600"><strong>在协会职务：</strong>{advisor.position}</p>
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-3 rounded-md">
-                        <p className="text-sm font-medium text-gray-700 mb-1">申请理由：</p>
-                        <p className="text-gray-700">{advisor.message}</p>
+
+                      <div className="space-y-3 mb-4">
+                        <div className="bg-gray-50 p-3 rounded-md">
+                          <p className="text-sm font-medium text-gray-700 mb-1">主要成就：</p>
+                          <p className="text-gray-700">{advisor.achievements}</p>
+                        </div>
+                        
+                        <div className="bg-gray-50 p-3 rounded-md">
+                          <p className="text-sm font-medium text-gray-700 mb-1">申请动机：</p>
+                          <p className="text-gray-700">{advisor.motivation}</p>
+                        </div>
+
+                        {advisor.availability && (
+                          <div className="bg-gray-50 p-3 rounded-md">
+                            <p className="text-sm font-medium text-gray-700 mb-1">可参与时间：</p>
+                            <p className="text-gray-700">{advisor.availability}</p>
+                          </div>
+                        )}
+
+                        {advisor.additional_info && (
+                          <div className="bg-gray-50 p-3 rounded-md">
+                            <p className="text-sm font-medium text-gray-700 mb-1">其他信息：</p>
+                            <p className="text-gray-700">{advisor.additional_info}</p>
+                          </div>
+                        )}
                       </div>
+
+                      {advisor.status === 'pending' && (
+                        <div className="flex gap-2 pt-3 border-t border-gray-200">
+                          <button
+                            onClick={() => handleApproveAdvisor(advisor.id, advisor.user_id)}
+                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                          >
+                            批准申请
+                          </button>
+                          <button
+                            onClick={() => handleRejectAdvisor(advisor.id)}
+                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
+                          >
+                            拒绝申请
+                          </button>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
