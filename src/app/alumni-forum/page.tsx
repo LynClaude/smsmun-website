@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
+import Link from 'next/link'
 
 interface Message {
   id: string
