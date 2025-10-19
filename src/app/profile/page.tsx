@@ -68,24 +68,53 @@ export default function ProfilePage() {
   const loadUserData = async () => {
     if (!user) return
     
+    console.log('Loading data for user:', user.id, user.email)
     setLoading(true)
     try {
       // 加载用户消息
-      const { data: messagesData } = await supabase
+      const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 
+      if (messagesError) {
+        console.error('Error loading messages:', messagesError.message)
+      } else {
+        console.log('Loaded messages:', messagesData)
+      }
+
       // 加载用户问题
-      const { data: questionsData } = await supabase
+      const { data: questionsData, error: questionsError } = await supabase
         .from('questions')
-        .select(`
-          *,
-          answers (*)
-        `)
+        .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
+
+      if (questionsError) {
+        console.error('Error loading questions:', questionsError.message)
+      }
+
+      // 为每个问题加载对应的回答
+      let questionsWithAnswers = []
+      if (questionsData) {
+        questionsWithAnswers = await Promise.all(
+          questionsData.map(async (question) => {
+            const { data: answersData, error: answersError } = await supabase
+              .from('answers')
+              .select('*')
+              .eq('question_id', question.id)
+              .order('created_at', { ascending: true })
+
+            if (answersError) {
+              console.error('Error loading answers:', answersError.message)
+              return { ...question, answers: [] }
+            }
+
+            return { ...question, answers: answersData || [] }
+          })
+        )
+      }
 
       // 加载荣誉指导申请
       const { data: honorData } = await supabase
@@ -104,7 +133,7 @@ export default function ProfilePage() {
       setFeedbacks(feedbackData || [])
 
       setMessages(messagesData || [])
-      setQuestions(questionsData || [])
+      setQuestions(questionsWithAnswers || [])
       setHonorAdvisors(honorData || [])
     } catch (error) {
       console.error('加载用户数据失败:', error)
