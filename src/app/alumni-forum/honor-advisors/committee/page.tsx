@@ -56,9 +56,8 @@ export default function HonorAdvisorCommitteePage() {
       console.log('荣誉顾问委员会成员数据:', membersData)
       console.log('查询错误:', membersError)
 
-      if (membersError) {
-        console.error('Error loading committee members:', membersError.message)
-        // 如果数据库连接失败，使用测试数据
+      // 如果没有数据或出错，使用测试数据
+      if (membersError || !membersData || membersData.length === 0) {
         console.log('使用测试数据...')
         const testData = [
           {
@@ -82,25 +81,8 @@ export default function HonorAdvisorCommitteePage() {
         ]
         setMembers(testData)
       } else {
-        console.log('设置荣誉顾问委员会成员数据:', membersData || [])
-        // 临时：如果没有数据，也显示测试数据
-        if (!membersData || membersData.length === 0) {
-          console.log('数据库中没有数据，显示测试数据...')
-          const testData = [
-            {
-              id: 'db-test-1',
-              name: 'Claude',
-              email: 'claude@example.com',
-              graduation_year: '2023',
-              position: '技术顾问',
-              achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
-              created_at: new Date().toISOString()
-            }
-          ]
-          setMembers(testData)
-        } else {
-          setMembers(membersData)
-        }
+        console.log('设置荣誉顾问委员会成员数据:', membersData)
+        setMembers(membersData)
       }
     } catch (error) {
       console.error('Error loading committee members:', error)
@@ -191,7 +173,15 @@ export default function HonorAdvisorCommitteePage() {
                     <p className="text-gray-600">荣誉顾问委员会正在建设中...</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div>
+                    {members.length > 0 && members[0]?.id?.startsWith('test-') && (
+                      <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+                        <p className="text-sm text-blue-800">
+                          ℹ️ 当前显示的是测试数据，因为数据库连接有问题
+                        </p>
+                      </div>
+                    )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {members.map((member) => (
                       <motion.div
                         key={member.id}
@@ -226,6 +216,7 @@ export default function HonorAdvisorCommitteePage() {
                         </div>
                       </motion.div>
                     ))}
+                    </div>
                   </div>
                 )}
               </div>
