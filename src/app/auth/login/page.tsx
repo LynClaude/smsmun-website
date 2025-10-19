@@ -47,6 +47,7 @@ export default function LoginPage() {
     if (isSMSMUNEmail(email)) {
       setVerificationStatus('verified')
       setShowVerification(true)
+      setIsAlumni(true) // 检测到smsmun邮箱时，自动设置为校友
     } else {
       setShowVerification(true)
       setVerificationStatus('pending')
