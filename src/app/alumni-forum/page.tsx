@@ -150,6 +150,43 @@ export default function AlumniForumPage() {
           })
         )
         setQuestions(questionsWithAnswers)
+
+        // 获取所有问题和回答的用户名
+        if (questionsWithAnswers && questionsWithAnswers.length > 0) {
+          const allUserIds = new Set<string>()
+          
+          // 收集问题的用户ID
+          questionsWithAnswers.forEach(question => {
+            if (question.user_id) {
+              allUserIds.add(question.user_id)
+            }
+            // 收集回答的用户ID
+            question.answers?.forEach(answer => {
+              if (answer.user_id) {
+                allUserIds.add(answer.user_id)
+              }
+            })
+          })
+
+          if (allUserIds.size > 0) {
+            const { data: usersData, error: usersError } = await supabase
+              .from('users')
+              .select('id, username')
+              .in('id', Array.from(allUserIds))
+            
+            if (usersError) {
+              console.error('Error loading usernames for questions:', usersError.message)
+            } else if (usersData) {
+              const nameMap: {[key: string]: string} = {}
+              usersData.forEach(u => {
+                if (u.id && u.username) {
+                  nameMap[u.id] = u.username
+                }
+              })
+              setUserNames(prev => ({ ...prev, ...nameMap }))
+            }
+          }
+        }
       }
 
       // 从 Supabase 加载荣誉指导申请
@@ -446,7 +483,7 @@ export default function AlumniForumPage() {
                   {questions.map((question) => (
                     <div key={question.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.title}</h3>
+                        <h3 className="font-medium text-gray-900">{question.question}</h3>
                         <span className="text-sm text-gray-500">
                           {new Date(question.created_at).toLocaleString()}
                         </span>
@@ -467,7 +504,7 @@ export default function AlumniForumPage() {
                                 {new Date(answer.created_at).toLocaleString()}
                               </span>
                             </div>
-                            <p className="text-gray-700">{answer.content}</p>
+                            <p className="text-gray-700">{answer.answer}</p>
                           </div>
                         ))}
                       </div>
