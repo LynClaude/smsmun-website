@@ -176,6 +176,7 @@ export default function AlumniForumPage() {
         .from('messages')
         .insert([
           {
+            user_id: user.id,
             author: user.username,
             content: newMessage,
             contact: user.email || '未提供',
@@ -208,6 +209,7 @@ export default function AlumniForumPage() {
         .from('questions')
         .insert([
           {
+            user_id: user.id,
             question: newQuestion,
             author: user.username,
             created_at: new Date().toISOString(),
@@ -241,6 +243,7 @@ export default function AlumniForumPage() {
         .insert([
           {
             question_id: questionId,
+            user_id: user.id,
             answer: newAnswer,
             author: user.username,
             created_at: new Date().toISOString(),
