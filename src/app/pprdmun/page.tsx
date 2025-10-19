@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import PageTransition from '@/components/PageTransition'
+import InvitationLetter from '@/components/InvitationLetter'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function PPRDMUNPage() {
@@ -384,8 +385,24 @@ export default function PPRDMUNPage() {
           </div>
         </div>
 
-        {/* 相关文件区域 */}
+        {/* 邀请函区域 */}
         <div className="bg-gray-50 py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">邀请函</h2>
+              <p className="text-gray-600">点击信件查看完整邀请函内容</p>
+            </div>
+            <InvitationLetter
+              year={2025}
+              title="PPRDMUN 2025 邀请函"
+              description="万象更新，满庭芳华，十五载泛珠模联再聚风冠凰羽之下"
+              href="/pprdmun/2025/letter"
+            />
+          </div>
+        </div>
+
+        {/* 相关文件区域 */}
+        <div className="bg-white py-24">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold text-center mb-16 text-primary">相关文件</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
