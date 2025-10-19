@@ -177,6 +177,58 @@ export default function ProfilePage() {
     }
   }
 
+  const handleResignFromCommittee = async () => {
+    if (!user) return
+
+    setSubmittingResign(true)
+    try {
+      // 更新用户表中的荣誉顾问状态
+      const { error: userError } = await supabase
+        .from('users')
+        .update({ 
+          is_honor_advisor: false,
+          honor_advisor_approved_at: null
+        })
+        .eq('id', user.id)
+
+      if (userError) {
+        console.error('退出委员会失败:', userError)
+        alert('退出委员会失败，请重试')
+        return
+      }
+
+      // 记录退出申请到荣誉顾问表
+      const { error: recordError } = await supabase
+        .from('honor_advisors')
+        .insert([
+          {
+            user_id: user.id,
+            name: user.username,
+            email: user.email,
+            status: 'resigned',
+            resignation_reason: resignReason,
+            created_at: new Date().toISOString()
+          }
+        ])
+
+      if (recordError) {
+        console.error('记录退出申请失败:', recordError)
+      }
+
+      alert('已成功退出荣誉顾问委员会！')
+      setShowResignModal(false)
+      setResignReason('')
+      
+      // 刷新页面以更新用户状态
+      window.location.reload()
+    } catch (error) {
+      console.error('退出委员会失败:', error)
+      alert('退出委员会失败，请重试')
+    } finally {
+      setSubmittingResign(false)
+    }
+  }
+
   if (loading) {
     return (
       <PageTransition>
@@ -460,6 +512,46 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+
+      {/* 退出委员会模态框 */}
+      {showResignModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">退出荣誉顾问委员会</h3>
+            <p className="text-gray-600 mb-4">
+              您确定要退出荣誉顾问委员会吗？退出后您将失去荣誉顾问身份和相关权限。
+            </p>
+            <div className="mb-4">
+              <label htmlFor="resignReason" className="block text-sm font-medium text-gray-700 mb-2">
+                退出原因（可选）
+              </label>
+              <textarea
+                id="resignReason"
+                value={resignReason}
+                onChange={(e) => setResignReason(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                rows={3}
+                placeholder="请说明您退出委员会的原因..."
+              />
+            </div>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowResignModal(false)}
+                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+              >
+                取消
+              </button>
+              <button
+                onClick={handleResignFromCommittee}
+                disabled={submittingResign}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {submittingResign ? '处理中...' : '确认退出'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </PageTransition>
   )
 }

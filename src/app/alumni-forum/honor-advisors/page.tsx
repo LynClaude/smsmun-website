@@ -14,7 +14,7 @@ interface HonorAdvisorMember {
   email: string
   graduation_year: string
   position: string
-  approved_at: string
+  created_at: string
 }
 
 export default function HonorAdvisorsPage() {
@@ -44,7 +44,7 @@ export default function HonorAdvisorsPage() {
         .from('honor_advisors')
         .select('*')
         .eq('status', 'approved')
-        .order('approved_at', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (error) {
         console.error('Error loading honor advisors:', error)
@@ -166,7 +166,7 @@ export default function HonorAdvisorsPage() {
 
                 {/* 现有荣誉顾问 */}
                 <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-primary mb-6">现有荣誉顾问</h2>
+                  <h2 className="text-2xl font-bold text-primary mb-6">荣誉顾问委员会成员</h2>
                   {loading ? (
                     <div className="text-center py-8">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
@@ -177,7 +177,7 @@ export default function HonorAdvisorsPage() {
                       <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">暂无荣誉顾问</h3>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">暂无委员会成员</h3>
                       <p className="text-gray-600">荣誉顾问委员会正在建设中...</p>
                     </div>
                   ) : (
@@ -200,9 +200,9 @@ export default function HonorAdvisorsPage() {
                             <p className="text-sm text-gray-600">
                               <span className="font-medium">在协会职务：</span>{advisor.position}
                             </p>
-                            <p className="text-xs text-gray-500">
-                              批准时间：{new Date(advisor.approved_at || '').toLocaleDateString()}
-                            </p>
+              <p className="text-xs text-gray-500">
+                加入时间：{new Date(advisor.created_at || '').toLocaleDateString()}
+              </p>
                           </div>
                         </div>
                       ))}
