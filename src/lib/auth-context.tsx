@@ -105,14 +105,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .from('users')
         .insert([
           {
-            id: Date.now().toString(), // 使用时间戳作为 ID
             username,
             email,
             password: password, // 注意：在生产环境中不应该存储明文密码
             is_alumni: isAlumni,
             graduation_year: graduationYear,
             is_admin: false,
-            join_date: new Date().toISOString(),
           }
         ])
         .select()
