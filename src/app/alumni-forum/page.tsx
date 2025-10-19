@@ -337,7 +337,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                荣誉指导
+                荣誉顾问
               </button>
             </div>
 
@@ -471,70 +471,47 @@ export default function AlumniForumPage() {
               </div>
             )}
 
-            {/* 荣誉指导申请 */}
+            {/* 荣誉顾问 */}
             {activeTab === 'advisor' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">荣誉指导申请</h2>
+                <h2 className="text-xl font-bold mb-4">荣誉顾问委员会</h2>
                 <p className="text-gray-600 mb-6">
-                  成为今年的荣誉指导，参与指导成就PPRDMUN等会议的工作。成为荣誉指导可获得年度周边一份。
+                  为加强深圳中学模拟联合国协会与往届优秀成员之间的联系，充分发挥毕业成员的经验优势，提升协会活动质量，特设立顾问委员会。
                 </p>
 
-                <form onSubmit={(e) => { e.preventDefault(); handleSubmitAdvisorApplication(); }} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">姓名</label>
-                    <input
-                      type="text"
-                      value={advisorForm.name}
-                      onChange={(e) => setAdvisorForm({...advisorForm, name: e.target.value})}
-                      required
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="请输入您的姓名"
-                    />
-                  </div>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-lg font-semibold text-primary mb-3">顾问委员会核心特点</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-primary font-bold mr-2">•</span>
+                      <span>咨询指导：在协会筹办重要活动时提供宝贵经验和建议</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary font-bold mr-2">•</span>
+                      <span>经验分享：通过线上指导会议传承模联精神与技能</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary font-bold mr-2">•</span>
+                      <span>优先参与：优先受邀参加协会重大活动</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary font-bold mr-2">•</span>
+                      <span>荣誉身份：在官方文件中标注身份，获得年度纪念周边</span>
+                    </li>
+                  </ul>
+                </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
-                    <input
-                      type="email"
-                      value={advisorForm.email}
-                      onChange={(e) => setAdvisorForm({...advisorForm, email: e.target.value})}
-                      required
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="请输入您的邮箱"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">电话</label>
-                    <input
-                      type="tel"
-                      value={advisorForm.phone}
-                      onChange={(e) => setAdvisorForm({...advisorForm, phone: e.target.value})}
-                      required
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="请输入您的电话"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">申请理由</label>
-                    <textarea
-                      value={advisorForm.message}
-                      onChange={(e) => setAdvisorForm({...advisorForm, message: e.target.value})}
-                      required
-                      rows={4}
-                      className="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="请简述您希望成为荣誉指导的原因和能够提供的帮助..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-primary text-white py-3 px-4 rounded-md hover:bg-primary/90 transition-colors"
+                <div className="text-center">
+                  <Link
+                    href="/alumni-forum/honor-advisors"
+                    className="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
                   >
-                    提交申请
-                  </button>
-                </form>
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    了解详情并申请
+                  </Link>
+                </div>
               </div>
             )}
           </motion.div>
