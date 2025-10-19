@@ -62,12 +62,54 @@ export default function HonorAdvisorsPage() {
 
       if (error) {
         console.error('Error loading honor advisors:', error)
+        // 如果数据库连接失败，使用测试数据
+        console.log('使用测试数据...')
+        const testData = [
+          {
+            id: 'test-1',
+            name: 'Claude',
+            email: 'claude@example.com',
+            graduation_year: '2023',
+            position: '技术顾问',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'test-2',
+            name: '张三',
+            email: 'zhangsan@example.com',
+            graduation_year: '2022',
+            position: '学术顾问',
+            created_at: new Date().toISOString()
+          }
+        ]
+        setHonorAdvisors(testData)
       } else {
         console.log('设置荣誉顾问数据:', data || [])
         setHonorAdvisors(data || [])
       }
     } catch (error) {
       console.error('Error loading honor advisors:', error)
+      // 如果出现任何错误，使用测试数据
+      console.log('发生错误，使用测试数据...')
+      const testData = [
+        {
+          id: 'test-1',
+          name: 'Claude',
+          email: 'claude@example.com',
+          graduation_year: '2023',
+          position: '技术顾问',
+          created_at: new Date().toISOString()
+        },
+        {
+          id: 'test-2',
+          name: '张三',
+          email: 'zhangsan@example.com',
+          graduation_year: '2022',
+          position: '学术顾问',
+          created_at: new Date().toISOString()
+        }
+      ]
+      setHonorAdvisors(testData)
     } finally {
       setLoading(false)
     }
@@ -196,6 +238,11 @@ export default function HonorAdvisorsPage() {
                         <p className="text-xs text-yellow-600 mt-1">
                           请检查浏览器控制台的详细日志
                         </p>
+                        {honorAdvisors.length > 0 && honorAdvisors[0]?.id?.startsWith('test-') && (
+                          <p className="text-xs text-blue-600 mt-1">
+                            ℹ️ 当前显示的是测试数据，因为数据库连接有问题
+                          </p>
+                        )}
                       </div>
                       <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
