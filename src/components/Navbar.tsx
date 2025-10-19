@@ -85,13 +85,13 @@ export default function Navbar() {
                 className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
               >
                 {user.is_honor_advisor ? (
-                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                  <div className="w-8 h-8">
                     <Image
-                      src="/顾问.png"
+                      src="/皇冠.png"
                       alt="荣誉顾问"
                       width={32}
                       height={32}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                 ) : (

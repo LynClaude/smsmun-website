@@ -228,13 +228,13 @@ export default function ProfilePage() {
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
                 {user?.is_honor_advisor ? (
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 p-1 border-2 border-yellow-700 shadow-lg">
+                  <div className="w-16 h-16">
                     <Image
                       src="/皇冠.png"
                       alt="荣誉顾问"
-                      width={56}
-                      height={56}
-                      className="w-full h-full object-contain"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                 ) : (
@@ -277,13 +277,13 @@ export default function ProfilePage() {
                   
                   <div className="flex items-center justify-between relative z-10">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center mr-4 shadow-lg border-2 border-amber-700 p-1">
+                      <div className="w-8 h-8 mr-4">
                         <Image
                           src="/皇冠.png"
                           alt="皇冠"
                           width={32}
                           height={32}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover rounded-full"
                         />
                       </div>
                       <div>
