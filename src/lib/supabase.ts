@@ -1,11 +1,23 @@
 import { createClient } from '@supabase/supabase-js'
 
-// 使用正确的Supabase项目URL
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xjeqpsicutiwkxjoqvls.supabase.co'
-// 注意：这里需要真实的API密钥，请从Supabase Dashboard获取
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'YOUR_REAL_API_KEY_HERE'
+// 从环境变量获取Supabase配置
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-console.log('Supabase配置:', { supabaseUrl, hasKey: !!supabaseKey })
+// 验证环境变量
+if (!supabaseUrl || !supabaseKey) {
+  console.error('Supabase环境变量未设置:', { 
+    hasUrl: !!supabaseUrl, 
+    hasKey: !!supabaseKey 
+  })
+  throw new Error('Supabase环境变量未正确设置')
+}
+
+console.log('Supabase配置已加载:', { 
+  url: supabaseUrl, 
+  hasKey: !!supabaseKey,
+  keyPrefix: supabaseKey?.substring(0, 20) + '...'
+})
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
 

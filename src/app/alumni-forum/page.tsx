@@ -83,16 +83,7 @@ export default function AlumniForumPage() {
 
   const loadData = async () => {
     try {
-      console.log('开始加载真实数据库数据...')
-      console.log('Supabase URL:', supabase.supabaseUrl)
-      
-      // 测试数据库连接
-      const { data: testData, error: testError } = await supabase
-        .from('users')
-        .select('id, username')
-        .limit(1)
-      
-      console.log('数据库连接测试:', { testData, testError })
+      console.log('开始加载数据库数据...')
       
       // 从 Supabase 加载留言
       const { data: messagesData, error: messagesError } = await supabase
@@ -110,9 +101,8 @@ export default function AlumniForumPage() {
         
         // 获取所有留言的用户信息
         if (messagesData && messagesData.length > 0) {
-          console.log('留言数据:', messagesData)
           const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
-          console.log('用户ID列表:', userIds)
+          console.log('留言用户ID列表:', userIds)
           
           if (userIds.length > 0) {
             const { data: usersData, error: usersError } = await supabase
@@ -120,7 +110,7 @@ export default function AlumniForumPage() {
               .select('id, username, is_honor_advisor, is_alumni')
               .in('id', userIds)
             
-            console.log('用户查询结果:', { usersData, usersError })
+            console.log('留言用户查询结果:', { usersData, usersError })
             
             if (usersError) {
               console.error('Error loading usernames:', usersError.message)
@@ -128,7 +118,6 @@ export default function AlumniForumPage() {
               const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
-                console.log('处理用户数据:', u)
                 if (u.id && u.username) {
                   nameMap[u.id] = u.username
                   avatarMap[u.id] = {
@@ -138,17 +127,11 @@ export default function AlumniForumPage() {
                   }
                 }
               })
-              console.log('最终用户名映射:', nameMap)
+              console.log('留言用户名映射:', nameMap)
               setUserNames(nameMap)
               setUserAvatars(avatarMap)
-            } else {
-              console.log('没有找到用户数据，usersData为空')
             }
-          } else {
-            console.log('没有找到用户ID，userIds为空')
           }
-        } else {
-          console.log('没有留言数据')
         }
       }
 
