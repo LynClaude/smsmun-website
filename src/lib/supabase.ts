@@ -1,17 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
-// 从环境变量获取Supabase配置
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-// 验证环境变量
-if (!supabaseUrl || !supabaseKey) {
-  console.error('Supabase环境变量未设置:', { 
-    hasUrl: !!supabaseUrl, 
-    hasKey: !!supabaseKey 
-  })
-  throw new Error('Supabase环境变量未正确设置')
-}
+// Supabase配置 - 直接使用项目配置
+const supabaseUrl = 'https://xjeqpsicutiwkxjoqvls.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqZXFwc2ljdXRpd2t4am9xdmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3MjIzNjAsImV4cCI6MjA3NjI5ODM2MH0.h1qlkDGz9twJjKxR8ov8v5Hknm_kASyIhsph-aAIAY4'
 
 console.log('Supabase配置已加载:', { 
   url: supabaseUrl, 
