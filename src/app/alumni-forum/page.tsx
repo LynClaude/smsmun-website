@@ -83,57 +83,15 @@ export default function AlumniForumPage() {
 
   const loadData = async () => {
     try {
-      // 暂时使用测试数据，确保用户名显示功能正常
-      console.log('使用测试数据加载留言...')
+      console.log('开始加载真实数据库数据...')
       
-      const testMessages = [
-        {
-          id: 'msg-1',
-          user_id: 'user-1',
-          content: '学到知识,交到朋友,玩的开心~',
-          created_at: '2025-10-19T19:24:23.000Z'
-        },
-        {
-          id: 'msg-2',
-          user_id: 'user-2', 
-          content: '是的是的!',
-          created_at: '2025-10-19T12:30:58.000Z'
-        },
-        {
-          id: 'msg-3',
-          user_id: 'user-3',
-          content: 'www.smsmun.cn太棒了!',
-          created_at: '2025-10-18T16:53:34.000Z'
-        }
-      ]
-      
-      setMessages(testMessages)
-      
-      // 设置测试用户名和头像信息
-      const testUserNames = {
-        'user-1': '张三',
-        'user-2': '李四',
-        'user-3': '王五'
-      }
-      
-      const testUserAvatars = {
-        'user-1': { username: '张三', is_honor_advisor: false, is_alumni: true },
-        'user-2': { username: '李四', is_honor_advisor: true, is_alumni: true },
-        'user-3': { username: '王五', is_honor_advisor: false, is_alumni: true }
-      }
-      
-      setUserNames(testUserNames)
-      setUserAvatars(testUserAvatars)
-      
-      console.log('测试数据设置完成:', { testUserNames, testUserAvatars })
-      
-      // 注释掉数据库查询，暂时使用测试数据
-      /*
       // 从 Supabase 加载留言
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
         .order('created_at', { ascending: false })
+
+      console.log('留言查询结果:', { messagesData, messagesError })
 
       if (messagesError) {
         console.error('Error loading messages:', messagesError.message)
@@ -178,7 +136,6 @@ export default function AlumniForumPage() {
           }
         }
       }
-      */
 
       // 从 Supabase 加载问题
       const { data: questionsData, error: questionsError } = await supabase
