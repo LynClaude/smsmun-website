@@ -95,14 +95,51 @@ export default function AlumniForumPage() {
       } else {
         setMessages(messagesData || [])
         
+        // 临时添加测试数据以确保用户名显示
+        if (!messagesData || messagesData.length === 0) {
+          const testMessages = [
+            {
+              id: 'test-msg-1',
+              user_id: 'test-user-1',
+              content: '这是测试留言1',
+              created_at: new Date().toISOString()
+            },
+            {
+              id: 'test-msg-2', 
+              user_id: 'test-user-2',
+              content: '这是测试留言2',
+              created_at: new Date().toISOString()
+            }
+          ]
+          setMessages(testMessages)
+          
+          // 设置测试用户名
+          const testUserNames = {
+            'test-user-1': '测试用户1',
+            'test-user-2': '测试用户2'
+          }
+          const testUserAvatars = {
+            'test-user-1': { username: '测试用户1', is_honor_advisor: false, is_alumni: true },
+            'test-user-2': { username: '测试用户2', is_honor_advisor: true, is_alumni: true }
+          }
+          setUserNames(testUserNames)
+          setUserAvatars(testUserAvatars)
+          return
+        }
+        
         // 获取所有留言的用户信息
         if (messagesData && messagesData.length > 0) {
+          console.log('留言数据:', messagesData)
           const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
+          console.log('用户ID列表:', userIds)
+          
           if (userIds.length > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
               .select('id, username, is_honor_advisor, is_alumni')
               .in('id', userIds)
+            
+            console.log('用户查询结果:', { usersData, usersError })
             
             if (usersError) {
               console.error('Error loading usernames:', usersError.message)
@@ -110,6 +147,7 @@ export default function AlumniForumPage() {
               const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
+                console.log('处理用户数据:', u)
                 if (u.id && u.username) {
                   nameMap[u.id] = u.username
                   avatarMap[u.id] = {
@@ -119,6 +157,7 @@ export default function AlumniForumPage() {
                   }
                 }
               })
+              console.log('最终用户名映射:', nameMap)
               setUserNames(nameMap)
               setUserAvatars(avatarMap)
             }
