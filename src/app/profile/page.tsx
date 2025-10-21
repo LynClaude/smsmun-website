@@ -454,7 +454,8 @@ export default function ProfilePage() {
                     )}
                   </div>
 
-                  {/* 荣誉顾问委员会成员 */}
+                  {/* 荣誉顾问委员会成员 - 暂时隐藏 */}
+                  {/* 
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">荣誉顾问委员会成员</h3>
                     
@@ -509,6 +510,7 @@ export default function ProfilePage() {
                       </div>
                     )}
                   </div>
+                  */}
                 </div>
               )}
 
