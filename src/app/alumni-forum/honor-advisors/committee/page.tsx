@@ -52,7 +52,10 @@ export default function HonorAdvisorCommitteePage() {
         }
       ]
       
-      setMembers(testData)
+      // 过滤掉Claude条目，不在界面上显示
+      const filteredData = testData.filter(member => member.name !== 'Claude')
+      
+      setMembers(filteredData)
       
       // 暂时注释掉数据库查询，确保显示测试数据
       // try {
@@ -144,11 +147,11 @@ export default function HonorAdvisorCommitteePage() {
 
               {/* 成员列表 */}
               <div className="p-8 md:p-12">
-                {/* 测试数据提示 */}
-                {members.length > 0 && (
-                  <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
-                    <p className="text-sm text-blue-800">
-                      ℹ️ 当前显示的是测试数据，包含 {members.length} 位荣誉顾问委员会成员
+                {/* 数据状态提示 */}
+                {members.length === 0 && (
+                  <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-md">
+                    <p className="text-sm text-gray-600">
+                      ℹ️ 荣誉顾问委员会成员数据正在整理中，敬请期待
                     </p>
                   </div>
                 )}
