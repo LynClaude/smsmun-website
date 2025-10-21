@@ -83,26 +83,31 @@ export default function AlumniForumPage() {
 
   const loadData = async () => {
     try {
-      console.log('开始加载数据库数据...')
+      console.log('🔍 开始加载真实Supabase数据...')
       
-      // 从 Supabase 加载留言
+      // 从 Supabase 加载真实留言数据
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
         .order('created_at', { ascending: false })
 
-      console.log('留言查询结果:', { messagesData, messagesError })
+      console.log('📝 真实留言查询结果:', { 
+        success: !messagesError, 
+        error: messagesError?.message,
+        count: messagesData?.length || 0,
+        data: messagesData 
+      })
 
       if (messagesError) {
-        console.error('Error loading messages:', messagesError.message)
+        console.error('❌ 留言查询失败:', messagesError.message)
         setMessages([])
       } else {
         setMessages(messagesData || [])
         
-        // 获取所有留言的用户信息
+        // 获取所有留言的真实用户信息
         if (messagesData && messagesData.length > 0) {
           const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
-          console.log('留言用户ID列表:', userIds)
+          console.log('👤 提取的真实用户ID:', userIds)
           
           if (userIds.length > 0) {
             const { data: usersData, error: usersError } = await supabase
@@ -110,10 +115,15 @@ export default function AlumniForumPage() {
               .select('id, username, is_honor_advisor, is_alumni')
               .in('id', userIds)
             
-            console.log('留言用户查询结果:', { usersData, usersError })
+            console.log('👤 真实用户查询结果:', { 
+              success: !usersError,
+              error: usersError?.message,
+              count: usersData?.length || 0,
+              data: usersData 
+            })
             
             if (usersError) {
-              console.error('Error loading usernames:', usersError.message)
+              console.error('❌ 用户查询失败:', usersError.message)
             } else if (usersData) {
               const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
@@ -127,25 +137,38 @@ export default function AlumniForumPage() {
                   }
                 }
               })
-              console.log('留言用户名映射:', nameMap)
+              console.log('✅ 真实用户名映射:', nameMap)
               setUserNames(nameMap)
               setUserAvatars(avatarMap)
+            } else {
+              console.log('⚠️ 没有找到用户数据')
             }
+          } else {
+            console.log('⚠️ 没有找到用户ID')
           }
+        } else {
+          console.log('⚠️ 没有留言数据')
         }
       }
 
-      // 从 Supabase 加载问题
+      // 从 Supabase 加载真实问题数据
       const { data: questionsData, error: questionsError } = await supabase
         .from('questions')
         .select('*')
         .order('created_at', { ascending: false })
 
+      console.log('❓ 真实问题查询结果:', { 
+        success: !questionsError,
+        error: questionsError?.message,
+        count: questionsData?.length || 0,
+        data: questionsData 
+      })
+
       if (questionsError) {
-        console.error('Error loading questions:', questionsError.message)
+        console.error('❌ 问题查询失败:', questionsError.message)
         setQuestions([])
       } else {
-        // 为每个问题加载对应的回答
+        // 为每个问题加载对应的真实回答
         const questionsWithAnswers = await Promise.all(
           (questionsData || []).map(async (question) => {
             try {
@@ -156,20 +179,20 @@ export default function AlumniForumPage() {
                 .order('created_at', { ascending: true })
 
               if (answersError) {
-                console.error('Error loading answers:', answersError.message)
+                console.error('❌ 回答查询失败:', answersError.message)
                 return { ...question, answers: [] }
               }
 
               return { ...question, answers: answersData || [] }
             } catch (error) {
-              console.error('Error processing question:', error)
+              console.error('❌ 处理问题时出错:', error)
               return { ...question, answers: [] }
             }
           })
         )
         setQuestions(questionsWithAnswers)
 
-        // 获取所有问题和回答的用户名
+        // 获取所有问题和回答的真实用户名
         if (questionsWithAnswers && questionsWithAnswers.length > 0) {
           const allUserIds = new Set<string>()
           
@@ -186,16 +209,23 @@ export default function AlumniForumPage() {
             })
           })
 
+          console.log('👤 问答区用户ID列表:', Array.from(allUserIds))
+
           if (allUserIds.size > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
               .select('id, username, is_honor_advisor, is_alumni')
               .in('id', Array.from(allUserIds))
             
-            console.log('问答区用户查询结果:', { usersData, usersError })
+            console.log('👤 问答区用户查询结果:', { 
+              success: !usersError,
+              error: usersError?.message,
+              count: usersData?.length || 0,
+              data: usersData 
+            })
             
             if (usersError) {
-              console.error('Error loading usernames for questions:', usersError.message)
+              console.error('❌ 问答区用户查询失败:', usersError.message)
             } else if (usersData) {
               const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
@@ -209,6 +239,7 @@ export default function AlumniForumPage() {
                   }
                 }
               })
+              console.log('✅ 问答区用户名映射:', nameMap)
               setUserNames(prev => ({ ...prev, ...nameMap }))
               setUserAvatars(prev => ({ ...prev, ...avatarMap }))
             }
