@@ -1,13 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Supabase配置 - 直接使用项目配置
-const supabaseUrl = 'https://xjeqpsicutiwkxjoqvls.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqZXFwc2ljdXRpd2t4am9xdmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3MjIzNjAsImV4cCI6MjA3NjI5ODM2MH0.h1qlkDGz9twJjKxR8ov8v5Hknm_kASyIhsph-aAIAY4'
+// Supabase配置 - 使用环境变量
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xjeqpsicutiwkxjoqvls.supabase.co'
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqZXFwc2ljdXRpd2t4am9xdmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3MjIzNjAsImV4cCI6MjA3NjI5ODM2MH0.h1qlkDGz9twJjKxR8ov8v5Hknm_kASyIhsph-aAIAY4'
 
-console.log('Supabase配置已加载:', { 
+console.log('🔧 Supabase配置已加载:', { 
   url: supabaseUrl, 
   hasKey: !!supabaseKey,
-  keyPrefix: supabaseKey?.substring(0, 20) + '...'
+  keyPrefix: supabaseKey?.substring(0, 20) + '...',
+  envUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  envKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '已设置' : '未设置'
 })
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
