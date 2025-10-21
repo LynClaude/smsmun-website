@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Message {
   id: string
@@ -63,6 +64,7 @@ export default function AlumniForumPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
   const [userNames, setUserNames] = useState<{[key: string]: string}>({})
+  const [userAvatars, setUserAvatars] = useState<{[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}}>({})
 
   useEffect(() => {
     // 检查用户权限
@@ -93,25 +95,32 @@ export default function AlumniForumPage() {
       } else {
         setMessages(messagesData || [])
         
-        // 获取所有留言的用户名
+        // 获取所有留言的用户信息
         if (messagesData && messagesData.length > 0) {
           const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
           if (userIds.length > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('id, username')
+              .select('id, username, is_honor_advisor, is_alumni')
               .in('id', userIds)
             
             if (usersError) {
               console.error('Error loading usernames:', usersError.message)
             } else if (usersData) {
               const nameMap: {[key: string]: string} = {}
+              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
                 if (u.id && u.username) {
                   nameMap[u.id] = u.username
+                  avatarMap[u.id] = {
+                    username: u.username,
+                    is_honor_advisor: u.is_honor_advisor || false,
+                    is_alumni: u.is_alumni || false
+                  }
                 }
               })
               setUserNames(nameMap)
+              setUserAvatars(avatarMap)
             }
           }
         }
@@ -439,19 +448,62 @@ export default function AlumniForumPage() {
 
                 {/* 留言列表 */}
                 <div className="space-y-4">
-                  {messages.map((message) => (
-                    <div key={message.id} className="border-l-4 border-primary pl-4 py-2">
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium text-gray-900">
-                          {userNames[message.user_id] || `用户 ${message.user_id ? message.user_id.substring(0, 8) : '未知'}`}
-                        </span>
-                        <span className="text-sm text-gray-500">
-                          {new Date(message.created_at).toLocaleString()}
-                        </span>
+                  {messages.map((message) => {
+                    const userInfo = userAvatars[message.user_id]
+                    const displayName = userNames[message.user_id] || `用户 ${message.user_id ? message.user_id.substring(0, 8) : '未知'}`
+                    
+                    return (
+                      <div key={message.id} className="border-l-4 border-primary pl-4 py-3 bg-gray-50 rounded-r-lg">
+                        <div className="flex items-start gap-3 mb-2">
+                          {/* 用户头像 */}
+                          <div className="flex-shrink-0">
+                            {userInfo?.is_honor_advisor ? (
+                              <div className="w-10 h-10">
+                                <Image
+                                  src="/皇冠.png"
+                                  alt="荣誉顾问"
+                                  width={40}
+                                  height={40}
+                                  className="w-full h-full object-cover rounded-full"
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                {displayName.charAt(0).toUpperCase()}
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* 用户信息和留言内容 */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex justify-between items-start mb-1">
+                              <div className="flex items-center gap-2">
+                                <span className="font-medium text-gray-900">{displayName}</span>
+                                {userInfo?.is_alumni && (
+                                  <Image
+                                    src="/favicon.ico"
+                                    alt="深中模联成员"
+                                    width={16}
+                                    height={16}
+                                    className="w-4 h-4"
+                                  />
+                                )}
+                                {userInfo?.is_honor_advisor && (
+                                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                                    荣誉顾问
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-sm text-gray-500">
+                                {new Date(message.created_at).toLocaleString()}
+                              </span>
+                            </div>
+                            <p className="text-gray-700">{message.content}</p>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-gray-700">{message.content}</p>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )}
