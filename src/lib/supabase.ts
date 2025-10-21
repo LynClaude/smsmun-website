@@ -17,36 +17,37 @@ export interface User {
   id: string
   username: string
   email: string
+  password?: string
   is_alumni: boolean
   graduation_year?: string
   is_admin: boolean
+  is_honor_advisor?: boolean
+  honor_advisor_approved_at?: string
   join_date: string
   created_at: string
 }
 
 export interface Message {
   id: string
-  author: string
+  user_id: string
   content: string
-  contact: string
-  timestamp: string
   created_at: string
 }
 
 export interface Question {
   id: string
-  question: string
+  user_id: string
+  title: string
+  content: string
   answers: Answer[]
-  author: string
-  timestamp: string
   created_at: string
 }
 
 export interface Answer {
   id: string
-  answer: string
-  author: string
-  timestamp: string
+  question_id: string
+  user_id: string
+  content: string
   created_at: string
 }
 
