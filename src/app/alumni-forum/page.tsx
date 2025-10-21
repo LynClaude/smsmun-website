@@ -170,7 +170,7 @@ export default function AlumniForumPage() {
               allUserIds.add(question.user_id)
             }
             // 收集回答的用户ID
-            question.answers?.forEach(answer => {
+            question.answers?.forEach((answer: Answer) => {
               if (answer.user_id) {
                 allUserIds.add(answer.user_id)
               }
@@ -535,7 +535,7 @@ export default function AlumniForumPage() {
                   {questions.map((question) => (
                     <div key={question.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.question}</h3>
+                        <h3 className="font-medium text-gray-900">{question.title}</h3>
                         <span className="text-sm text-gray-500">
                           {new Date(question.created_at).toLocaleString()}
                         </span>
@@ -556,7 +556,7 @@ export default function AlumniForumPage() {
                                 {new Date(answer.created_at).toLocaleString()}
                               </span>
                             </div>
-                            <p className="text-gray-700">{answer.answer}</p>
+                            <p className="text-gray-700">{answer.content}</p>
                           </div>
                         ))}
                       </div>
