@@ -1,7 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
+// 使用正确的Supabase项目URL
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xjeqpsicutiwkxjoqvls.supabase.co'
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqZXFwc2ljdXRpd2t4am9xdmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxMjM0MDAsImV4cCI6MjA0NzY5OTQwMH0.example'
+// 注意：这里需要真实的API密钥，请从Supabase Dashboard获取
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'YOUR_REAL_API_KEY_HERE'
+
+console.log('Supabase配置:', { supabaseUrl, hasKey: !!supabaseKey })
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
 

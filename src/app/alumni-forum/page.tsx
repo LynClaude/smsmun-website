@@ -84,6 +84,15 @@ export default function AlumniForumPage() {
   const loadData = async () => {
     try {
       console.log('开始加载真实数据库数据...')
+      console.log('Supabase URL:', supabase.supabaseUrl)
+      
+      // 测试数据库连接
+      const { data: testData, error: testError } = await supabase
+        .from('users')
+        .select('id, username')
+        .limit(1)
+      
+      console.log('数据库连接测试:', { testData, testError })
       
       // 从 Supabase 加载留言
       const { data: messagesData, error: messagesError } = await supabase
@@ -132,8 +141,14 @@ export default function AlumniForumPage() {
               console.log('最终用户名映射:', nameMap)
               setUserNames(nameMap)
               setUserAvatars(avatarMap)
+            } else {
+              console.log('没有找到用户数据，usersData为空')
             }
+          } else {
+            console.log('没有找到用户ID，userIds为空')
           }
+        } else {
+          console.log('没有留言数据')
         }
       }
 
@@ -191,19 +206,28 @@ export default function AlumniForumPage() {
           if (allUserIds.size > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('id, username')
+              .select('id, username, is_honor_advisor, is_alumni')
               .in('id', Array.from(allUserIds))
+            
+            console.log('问答区用户查询结果:', { usersData, usersError })
             
             if (usersError) {
               console.error('Error loading usernames for questions:', usersError.message)
             } else if (usersData) {
               const nameMap: {[key: string]: string} = {}
+              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
                 if (u.id && u.username) {
                   nameMap[u.id] = u.username
+                  avatarMap[u.id] = {
+                    username: u.username,
+                    is_honor_advisor: u.is_honor_advisor || false,
+                    is_alumni: u.is_alumni || false
+                  }
                 }
               })
               setUserNames(prev => ({ ...prev, ...nameMap }))
+              setUserAvatars(prev => ({ ...prev, ...avatarMap }))
             }
           }
         }
