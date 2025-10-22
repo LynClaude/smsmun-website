@@ -278,5 +278,108 @@
       },
       "learn_more": "Learn More and Apply"
     }
+  },
+  "profile": {
+    "title": "Profile",
+    "loading": "Loading...",
+    "user_info": {
+      "admin": "Administrator",
+      "honor_advisor": "SMSMUN Honor Advisor",
+      "alumni": "SMSMUN Alumni",
+      "visitor": "Visitor"
+    },
+    "honor_advisor_badge": {
+      "title": "Honor Advisory Committee Member",
+      "subtitle": "Congratulations! You have become an official member of the SMSMUN Honor Advisory Committee",
+      "enter_committee": "Enter Committee",
+      "exit_committee": "Exit Committee",
+      "exit_confirm": "Are you sure you want to exit the Honor Advisory Committee?",
+      "exit_developing": "Exit committee function is under development..."
+    },
+    "tabs": {
+      "my_messages": "My Messages ({count})",
+      "my_qa": "My Q&A ({count})",
+      "honor": "Honor Advisor ({count})",
+      "feedback": "Feedback ({count})"
+    },
+    "messages": {
+      "no_messages": "No messages"
+    },
+    "questions": {
+      "no_questions": "No questions"
+    },
+    "honor_advisors": {
+      "my_applications": "My Honor Advisor Applications",
+      "no_applications": "No honor advisor applications",
+      "status": {
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "pending": "Under Review"
+      },
+      "motivation": "Application Motivation",
+      "experience": "Related Experience"
+    },
+    "feedback": {
+      "title_alumni": "Submit Feedback",
+      "title_visitor": "Submit Feedback",
+      "placeholder_alumni": "Please tell us your suggestions or opinions...",
+      "placeholder_visitor": "Please tell us your suggestions or opinions about the website...",
+      "submit": "Submit Feedback",
+      "submitting": "Submitting...",
+      "submit_success": "Feedback submitted successfully! Thank you for your suggestions.",
+      "submit_failed": "Failed to submit feedback, please try again",
+      "history": "Feedback History",
+      "no_feedback": "No feedback records"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "SMSMUN Website Management System",
+      "username": "Admin Username",
+      "username_placeholder": "Please enter admin username",
+      "password": "Password",
+      "password_placeholder": "Please enter password",
+      "login": "Login",
+      "logging": "Logging in...",
+      "error": "Invalid admin username or password",
+      "return_home": "← Return to Home"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "tabs": {
+        "users": "User Management",
+        "messages": "Message Management",
+        "qa": "Q&A Management",
+        "advisors": "Honor Advisors"
+      },
+      "delete_confirm": "Are you sure you want to delete this message? This action cannot be undone.",
+      "delete_success": "Message deleted",
+      "delete_failed": "Failed to delete message: {error}",
+      "delete_question_confirm": "Are you sure you want to delete this question? This action cannot be undone.",
+      "delete_question_success": "Question deleted",
+      "delete_question_failed": "Failed to delete question: {error}"
+    }
+  },
+  "activities": {
+    "school_conference": {
+      "title": "Shenzhen Middle School Conference",
+      "subtitle": "SMSMUN School Conference History",
+      "yearly_conferences": "Yearly Conferences",
+      "conference_info": "{year} School Conference",
+      "view_wechat": "View WeChat Article"
+    },
+    "leadership_summit": {
+      "title": "Shenzhen Model United Nations Leadership Summit 2024",
+      "subtitle": "Shenzhen Summit for Chief Leaders in Model United Nations",
+      "select_year": "Select Year",
+      "overview": "Conference Overview",
+      "overview_content": "The Shenzhen Model United Nations Leadership Summit is organized by the SMSMUN Secretariat, targeting leaders and management members of MUN organizations from high schools across the city, aiming to promote cooperation and development of SBhenzhen high school MUN activities. Through in-depth and friendly exchanges, the summit strengthens unity among regional MUN associations, builds cooperation and mutual assistance platforms, discusses the development and prospects of Shenzhen MUN, and explores strategies for independent, professional, and innovative development of Shenzhen high school MUN activities.",
+      "details": {
+        "time": "Conference Time: December 7, 2024 (Saturday) 14:30-17:00",
+        "location": "Conference Location: Shenzhen Middle School (Nigang Campus)",
+        "theme": "Conference Theme: Revitalization and Development of Offline MUN Activities in Shenzhen Region & Innovation and Heritage of MUN Organizations"
+      }
+    }
   }
 }

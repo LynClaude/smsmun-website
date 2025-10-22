@@ -47,7 +47,7 @@ interface HonorAdvisor {
 export default function AlumniForumPage() {
   const { user } = useAuth()
   const router = useRouter()
-  const { messages } = useI18n()
+  const { messages: t } = useI18n()
   const [activeTab, setActiveTab] = useState<'messages' | 'qa' | 'advisor'>('messages')
   const [newMessage, setNewMessage] = useState('')
   const [newQuestion, setNewQuestion] = useState('')
@@ -410,13 +410,13 @@ export default function AlumniForumPage() {
       <PageTransition>
         <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">{messages.alumni_forum.access_restricted}</h1>
-            <p className="text-gray-600 mb-6">{messages.alumni_forum.access_message}</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.alumni_forum.access_restricted}</h1>
+            <p className="text-gray-600 mb-6">{t.alumni_forum.access_message}</p>
             <button
               onClick={() => router.push('/')}
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
-              {messages.alumni_forum.return_home}
+              {t.alumni_forum.return_home}
             </button>
           </div>
         </div>
@@ -435,7 +435,7 @@ export default function AlumniForumPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.alumni_forum.title}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{t.alumni_forum.title}</h1>
               <p className="text-gray-600">
                 {user?.is_honor_advisor ? '深中模联荣誉顾问专属交流平台 - 荣誉顾问委员会系统已更新' : '深中模联校友专属交流平台 - 荣誉顾问委员会系统已更新'}
               </p>
@@ -451,7 +451,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                {messages.alumni_forum.tabs.messages}
+                {t.alumni_forum.tabs.messages}
               </button>
               <button
                 onClick={() => setActiveTab('qa')}
@@ -461,7 +461,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                {messages.alumni_forum.tabs.qa}
+                {t.alumni_forum.tabs.qa}
               </button>
               <button
                 onClick={() => setActiveTab('advisor')}
@@ -471,21 +471,21 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                {messages.alumni_forum.tabs.advisor}
+                {t.alumni_forum.tabs.advisor}
               </button>
             </div>
 
             {/* 留言板 */}
             {activeTab === 'messages' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.messages.title}</h2>
+                <h2 className="text-xl font-bold mb-4">{t.alumni_forum.messages.title}</h2>
                 
                 {/* 发送留言 */}
                 <div className="mb-6">
                   <textarea
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder={messages.alumni_forum.messages.placeholder}
+                    placeholder={t.alumni_forum.messages.placeholder}
                     className="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                     rows={3}
                   />
@@ -493,7 +493,7 @@ export default function AlumniForumPage() {
                     onClick={handleSendMessage}
                     className="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
                   >
-                    {messages.alumni_forum.messages.send}
+                    {t.alumni_forum.messages.send}
                   </button>
                 </div>
 
@@ -562,14 +562,14 @@ export default function AlumniForumPage() {
             {/* 问答区 */}
             {activeTab === 'qa' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.qa.title}</h2>
+                <h2 className="text-xl font-bold mb-4">{t.alumni_forum.qa.title}</h2>
                 
                 {/* 提问 */}
                 <div className="mb-6">
                   <textarea
                     value={newQuestion}
                     onChange={(e) => setNewQuestion(e.target.value)}
-                    placeholder={messages.alumni_forum.qa.placeholder}
+                    placeholder={t.alumni_forum.qa.placeholder}
                     className="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                     rows={3}
                   />
@@ -577,7 +577,7 @@ export default function AlumniForumPage() {
                     onClick={handleAskQuestion}
                     className="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
                   >
-                    {messages.alumni_forum.qa.ask}
+                    {t.alumni_forum.qa.ask}
                   </button>
                 </div>
 
@@ -618,7 +618,7 @@ export default function AlumniForumPage() {
                           <textarea
                             value={newAnswer}
                             onChange={(e) => setNewAnswer(e.target.value)}
-                            placeholder={messages.alumni_forum.qa.answer_placeholder}
+                            placeholder={t.alumni_forum.qa.answer_placeholder}
                             className="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                             rows={2}
                           />
@@ -627,7 +627,7 @@ export default function AlumniForumPage() {
                               onClick={() => handleAnswerQuestion(question.id)}
                               className="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90"
                             >
-                              {messages.alumni_forum.qa.submit_answer}
+                              {t.alumni_forum.qa.submit_answer}
                             </button>
                             <button
                               onClick={() => {
@@ -636,7 +636,7 @@ export default function AlumniForumPage() {
                               }}
                               className="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600"
                             >
-                              {messages.alumni_forum.qa.cancel}
+                              {t.alumni_forum.qa.cancel}
                             </button>
                           </div>
                         </div>
@@ -645,7 +645,7 @@ export default function AlumniForumPage() {
                           onClick={() => setAnsweringQuestion(question.id)}
                           className="text-primary hover:text-primary/80 text-sm"
                         >
-                          {messages.alumni_forum.qa.answer}
+                          {t.alumni_forum.qa.answer}
                         </button>
                       )}
                     </div>
@@ -657,29 +657,29 @@ export default function AlumniForumPage() {
             {/* 荣誉顾问 */}
             {activeTab === 'advisor' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.honor_advisors.title}</h2>
+                <h2 className="text-xl font-bold mb-4">{t.alumni_forum.honor_advisors.title}</h2>
                 <p className="text-gray-600 mb-6">
-                  {messages.alumni_forum.honor_advisors.subtitle}
+                  {t.alumni_forum.honor_advisors.subtitle}
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-lg font-semibold text-primary mb-3">{messages.alumni_forum.honor_advisors.features.title}</h3>
+                  <h3 className="text-lg font-semibold text-primary mb-3">{t.alumni_forum.honor_advisors.features.title}</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>{messages.alumni_forum.honor_advisors.features.consultation}</span>
+                      <span>{t.alumni_forum.honor_advisors.features.consultation}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>{messages.alumni_forum.honor_advisors.features.sharing}</span>
+                      <span>{t.alumni_forum.honor_advisors.features.sharing}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>{messages.alumni_forum.honor_advisors.features.priority}</span>
+                      <span>{t.alumni_forum.honor_advisors.features.priority}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>{messages.alumni_forum.honor_advisors.features.honor}</span>
+                      <span>{t.alumni_forum.honor_advisors.features.honor}</span>
                     </li>
                   </ul>
                 </div>
@@ -692,7 +692,7 @@ export default function AlumniForumPage() {
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {messages.alumni_forum.honor_advisors.learn_more}
+                    {t.alumni_forum.honor_advisors.learn_more}
                   </Link>
                 </div>
               </div>

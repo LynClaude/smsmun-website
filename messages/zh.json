@@ -293,5 +293,108 @@
       },
       "learn_more": "了解详情并申请"
     }
+  },
+  "profile": {
+    "title": "个人中心",
+    "loading": "加载中...",
+    "user_info": {
+      "admin": "管理员",
+      "honor_advisor": "深中模联荣誉顾问",
+      "alumni": "深中模联校友",
+      "visitor": "访客用户"
+    },
+    "honor_advisor_badge": {
+      "title": "荣誉顾问委员会成员",
+      "subtitle": "恭喜！您已成为深中模联荣誉顾问委员会正式成员",
+      "enter_committee": "进入委员会",
+      "exit_committee": "退出委员会",
+      "exit_confirm": "确定要退出荣誉顾问委员会吗？",
+      "exit_developing": "退出委员会功能正在开发中..."
+    },
+    "tabs": {
+      "my_messages": "我的留言 ({count})",
+      "my_qa": "我的问答 ({count})",
+      "honor": "荣誉顾问 ({count})",
+      "feedback": "意见反馈 ({count})"
+    },
+    "messages": {
+      "no_messages": "暂无留言"
+    },
+    "questions": {
+      "no_questions": "暂无问答"
+    },
+    "honor_advisors": {
+      "my_applications": "我的荣誉顾问申请",
+      "no_applications": "暂无荣誉顾问申请",
+      "status": {
+        "approved": "已通过",
+        "rejected": "已拒绝",
+        "pending": "审核中"
+      },
+      "motivation": "申请动机",
+      "experience": "相关经验"
+    },
+    "feedback": {
+      "title_alumni": "提交意见反馈",
+      "title_visitor": "提交反馈",
+      "placeholder_alumni": "请告诉我们您的建议或意见...",
+      "placeholder_visitor": "请告诉我们您对网站的建议或意见...",
+      "submit": "提交反馈",
+      "submitting": "提交中...",
+      "submit_success": "反馈提交成功！感谢您的建议。",
+      "submit_failed": "提交反馈失败，请重试",
+      "history": "历史反馈",
+      "no_feedback": "暂无反馈记录"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "管理员登录",
+      "subtitle": "深中模联网站管理系统",
+      "username": "管理员账号",
+      "username_placeholder": "请输入管理员账号",
+      "password": "密码",
+      "password_placeholder": "请输入密码",
+      "login": "登录",
+      "logging": "登录中...",
+      "error": "管理员账号或密码错误",
+      "return_home": "← 返回首页"
+    },
+    "dashboard": {
+      "title": "管理员面板",
+      "tabs": {
+        "users": "用户管理",
+        "messages": "留言管理",
+        "qa": "问答管理",
+        "advisors": "荣誉顾问"
+      },
+      "delete_confirm": "确定要删除这条留言吗？此操作不可撤销。",
+      "delete_success": "留言已删除",
+      "delete_failed": "删除留言失败：{error}",
+      "delete_question_confirm": "确定要删除这个问题吗？此操作不可撤销。",
+      "delete_question_success": "问题已删除",
+      "delete_question_failed": "删除问题失败：{error}"
+    }
+  },
+  "activities": {
+    "school_conference": {
+      "title": "深圳中学校内会",
+      "subtitle": "深中模联校内会议历年回顾",
+      "yearly_conferences": "历年校内会",
+      "conference_info": "{year}年校内会",
+      "view_wechat": "查看微信公众号文章"
+    },
+    "leadership_summit": {
+      "title": "深圳市模拟联合国领袖峰会 2024",
+      "subtitle": "Shenzhen Summit for Chief Leaders in Model United Nations",
+      "select_year": "选择年份",
+      "overview": "会议简介",
+      "overview_content": "深圳市模拟联合国领袖峰会是由深圳中学模拟联合国协会秘书处主办，面向全市各高中模联组织负责人及管理层成员的大会，旨在推动深圳市高中生模联活动的合作与发展。峰会通过深入友好的交流，加强区域内各模联协会的团结，建立合作互助平台，讨论深圳模联的发展和前景，为深圳市高中生模联活动的独立、专业、创新型发展探索良策。",
+      "details": {
+        "time": "会议时间：2024年12月7日（周六）14：30 -17：00",
+        "location": "会议地点：深圳中学（泥岗校区）",
+        "theme": "会议主题：深圳地区线下模联活动的重振与发展&模联社团创新与传承"
+      }
+    }
   }
 } 

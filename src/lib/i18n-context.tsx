@@ -195,6 +195,15 @@ interface Messages {
     academic_team_secretary: string
     academic_team_vice_secretary: string
     download_form: string
+    press_center: string
+    chinese_press: string
+    english_press: string
+    chinese_press_desc: string
+    english_press_desc: string
+    invitation_title: string
+    invitation_desc: string
+    invitation_letter_2025: string
+    invitation_letter_desc: string
   }
   common: {
     dept_intro: string
