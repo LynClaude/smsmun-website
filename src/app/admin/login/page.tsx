@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
 import PageTransition from '@/components/PageTransition'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState('')
@@ -14,6 +15,7 @@ export default function AdminLoginPage() {
 
   const { adminLogin } = useAuth()
   const router = useRouter()
+  const { messages } = useI18n()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,7 +26,7 @@ export default function AdminLoginPage() {
     if (success) {
       router.push('/admin/dashboard')
     } else {
-      setError('管理员账号或密码错误')
+      setError(messages.admin.login.error)
     }
     setIsLoading(false)
   }
@@ -45,14 +47,14 @@ export default function AdminLoginPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-red-600 mb-2">管理员登录</h1>
-              <p className="text-gray-600">深中模联网站管理系统</p>
+              <h1 className="text-3xl font-bold text-red-600 mb-2">{messages.admin.login.title}</h1>
+              <p className="text-gray-600">{messages.admin.login.subtitle}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-                  管理员账号
+                  {messages.admin.login.username}
                 </label>
                 <input
                   id="username"
@@ -61,13 +63,13 @@ export default function AdminLoginPage() {
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
-                  placeholder="请输入管理员账号"
+                  placeholder={messages.admin.login.username_placeholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                  密码
+                  {messages.admin.login.password}
                 </label>
                 <input
                   id="password"
@@ -76,7 +78,7 @@ export default function AdminLoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
-                  placeholder="请输入密码"
+                  placeholder={messages.admin.login.password_placeholder}
                 />
               </div>
 
@@ -85,7 +87,7 @@ export default function AdminLoginPage() {
                 disabled={isLoading}
                 className="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors disabled:opacity-50"
               >
-                {isLoading ? '登录中...' : '登录'}
+                {isLoading ? messages.admin.login.logging : messages.admin.login.login}
               </button>
             </form>
 
@@ -100,7 +102,7 @@ export default function AdminLoginPage() {
                 onClick={() => router.push('/')}
                 className="text-gray-600 hover:text-gray-800 text-sm"
               >
-                ← 返回首页
+                {messages.admin.login.return_home}
               </button>
             </div>
           </motion.div>

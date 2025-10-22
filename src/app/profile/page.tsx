@@ -7,6 +7,7 @@ import Link from 'next/link'
 import PageTransition from '@/components/PageTransition'
 import { useAuth } from '@/lib/auth-context'
 import { supabase } from '@/lib/supabase'
+import { useI18n } from '@/lib/i18n-context'
 
 interface Message {
   id: string
@@ -54,6 +55,7 @@ interface Feedback {
 
 export default function ProfilePage() {
   const { user } = useAuth()
+  const { messages: t } = useI18n()
   const [activeTab, setActiveTab] = useState<'messages' | 'questions' | 'honor' | 'feedback'>('feedback')
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
@@ -207,7 +209,7 @@ export default function ProfilePage() {
           <div className="container mx-auto px-4">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-4 text-gray-600">加载中...</p>
+              <p className="mt-4 text-gray-600">{t.profile.loading}</p>
             </div>
           </div>
         </div>
@@ -256,10 +258,10 @@ export default function ProfilePage() {
                     )}
                   </h1>
                   <p className="text-gray-600">
-                    {user?.is_admin ? '管理员' : 
-                     user?.is_honor_advisor ? '深中模联荣誉顾问' :
-                     user?.is_alumni ? '深中模联校友' : 
-                     '访客用户'}
+                    {user?.is_admin ? t.profile.user_info.admin : 
+                     user?.is_honor_advisor ? t.profile.user_info.honor_advisor :
+                     user?.is_alumni ? t.profile.user_info.alumni : 
+                     t.profile.user_info.visitor}
                   </p>
                   <p className="text-sm text-gray-500">{user?.email}</p>
                 </div>
@@ -287,8 +289,8 @@ export default function ProfilePage() {
                         />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-amber-800">荣誉顾问委员会成员</h3>
-                        <p className="text-amber-700 text-sm">恭喜！您已成为深中模联荣誉顾问委员会正式成员</p>
+                        <h3 className="text-lg font-bold text-amber-800">{t.profile.honor_advisor_badge.title}</h3>
+                        <p className="text-amber-700 text-sm">{t.profile.honor_advisor_badge.subtitle}</p>
                       </div>
                     </div>
                     <div className="flex gap-2 ml-4">
@@ -299,12 +301,12 @@ export default function ProfilePage() {
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        进入委员会
+                        {t.profile.honor_advisor_badge.enter_committee}
                       </Link>
                       <button
                         onClick={() => {
-                          if (confirm('确定要退出荣誉顾问委员会吗？')) {
-                            alert('退出委员会功能正在开发中...')
+                          if (confirm(t.profile.honor_advisor_badge.exit_confirm)) {
+                            alert(t.profile.honor_advisor_badge.exit_developing)
                           }
                         }}
                         className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 transition-all font-semibold shadow-md text-sm"
@@ -312,7 +314,7 @@ export default function ProfilePage() {
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
-                        退出委员会
+                        {t.profile.honor_advisor_badge.exit_committee}
                       </button>
                     </div>
                   </div>
@@ -336,7 +338,7 @@ export default function ProfilePage() {
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
-                    我的留言 ({messages.length})
+                    {t.profile.tabs.my_messages.replace('{count}', messages.length.toString())}
                   </button>
                   <button
                     onClick={() => setActiveTab('questions')}

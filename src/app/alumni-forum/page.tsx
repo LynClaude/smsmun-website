@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useI18n } from '@/lib/i18n-context'
 
 interface Message {
   id: string
@@ -46,6 +47,7 @@ interface HonorAdvisor {
 export default function AlumniForumPage() {
   const { user } = useAuth()
   const router = useRouter()
+  const { messages } = useI18n()
   const [activeTab, setActiveTab] = useState<'messages' | 'qa' | 'advisor'>('messages')
   const [newMessage, setNewMessage] = useState('')
   const [newQuestion, setNewQuestion] = useState('')
@@ -408,13 +410,13 @@ export default function AlumniForumPage() {
       <PageTransition>
         <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">访问受限</h1>
-            <p className="text-gray-600 mb-6">此页面仅限深中模联成员（包括在校生和校友）访问，请先登录您的深中模联账号</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{messages.alumni_forum.access_restricted}</h1>
+            <p className="text-gray-600 mb-6">{messages.alumni_forum.access_message}</p>
             <button
               onClick={() => router.push('/')}
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
-              返回首页
+              {messages.alumni_forum.return_home}
             </button>
           </div>
         </div>
@@ -433,7 +435,7 @@ export default function AlumniForumPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">校友交流</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.alumni_forum.title}</h1>
               <p className="text-gray-600">
                 {user?.is_honor_advisor ? '深中模联荣誉顾问专属交流平台 - 荣誉顾问委员会系统已更新' : '深中模联校友专属交流平台 - 荣誉顾问委员会系统已更新'}
               </p>
@@ -449,7 +451,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                留言板
+                {messages.alumni_forum.tabs.messages}
               </button>
               <button
                 onClick={() => setActiveTab('qa')}
@@ -459,7 +461,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                问答区
+                {messages.alumni_forum.tabs.qa}
               </button>
               <button
                 onClick={() => setActiveTab('advisor')}
@@ -469,21 +471,21 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                荣誉顾问
+                {messages.alumni_forum.tabs.advisor}
               </button>
             </div>
 
             {/* 留言板 */}
             {activeTab === 'messages' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">留言板</h2>
+                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.messages.title}</h2>
                 
                 {/* 发送留言 */}
                 <div className="mb-6">
                   <textarea
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="分享您的想法、回忆或祝福..."
+                    placeholder={messages.alumni_forum.messages.placeholder}
                     className="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                     rows={3}
                   />
@@ -491,7 +493,7 @@ export default function AlumniForumPage() {
                     onClick={handleSendMessage}
                     className="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
                   >
-                    发送留言
+                    {messages.alumni_forum.messages.send}
                   </button>
                 </div>
 
@@ -560,14 +562,14 @@ export default function AlumniForumPage() {
             {/* 问答区 */}
             {activeTab === 'qa' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">问答区</h2>
+                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.qa.title}</h2>
                 
                 {/* 提问 */}
                 <div className="mb-6">
                   <textarea
                     value={newQuestion}
                     onChange={(e) => setNewQuestion(e.target.value)}
-                    placeholder="有什么问题想请教其他校友？"
+                    placeholder={messages.alumni_forum.qa.placeholder}
                     className="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                     rows={3}
                   />
@@ -575,7 +577,7 @@ export default function AlumniForumPage() {
                     onClick={handleAskQuestion}
                     className="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
                   >
-                    提出问题
+                    {messages.alumni_forum.qa.ask}
                   </button>
                 </div>
 
@@ -616,7 +618,7 @@ export default function AlumniForumPage() {
                           <textarea
                             value={newAnswer}
                             onChange={(e) => setNewAnswer(e.target.value)}
-                            placeholder="输入您的回答..."
+                            placeholder={messages.alumni_forum.qa.answer_placeholder}
                             className="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-primary focus:border-primary"
                             rows={2}
                           />
@@ -625,7 +627,7 @@ export default function AlumniForumPage() {
                               onClick={() => handleAnswerQuestion(question.id)}
                               className="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90"
                             >
-                              提交回答
+                              {messages.alumni_forum.qa.submit_answer}
                             </button>
                             <button
                               onClick={() => {
@@ -634,7 +636,7 @@ export default function AlumniForumPage() {
                               }}
                               className="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600"
                             >
-                              取消
+                              {messages.alumni_forum.qa.cancel}
                             </button>
                           </div>
                         </div>
@@ -643,7 +645,7 @@ export default function AlumniForumPage() {
                           onClick={() => setAnsweringQuestion(question.id)}
                           className="text-primary hover:text-primary/80 text-sm"
                         >
-                          回答这个问题
+                          {messages.alumni_forum.qa.answer}
                         </button>
                       )}
                     </div>
@@ -655,29 +657,29 @@ export default function AlumniForumPage() {
             {/* 荣誉顾问 */}
             {activeTab === 'advisor' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">荣誉顾问委员会</h2>
+                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.honor_advisors.title}</h2>
                 <p className="text-gray-600 mb-6">
-                  为加强深圳中学模拟联合国协会与往届优秀成员之间的联系，充分发挥毕业成员的经验优势，提升协会活动质量，特设立顾问委员会。
+                  {messages.alumni_forum.honor_advisors.subtitle}
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-lg font-semibold text-primary mb-3">顾问委员会核心特点</h3>
+                  <h3 className="text-lg font-semibold text-primary mb-3">{messages.alumni_forum.honor_advisors.features.title}</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>咨询指导：在协会筹办重要活动时提供宝贵经验和建议</span>
+                      <span>{messages.alumni_forum.honor_advisors.features.consultation}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>经验分享：通过线上指导会议传承模联精神与技能</span>
+                      <span>{messages.alumni_forum.honor_advisors.features.sharing}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>优先参与：优先受邀参加协会重大活动</span>
+                      <span>{messages.alumni_forum.honor_advisors.features.priority}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary font-bold mr-2">•</span>
-                      <span>荣誉身份：在官方文件中标注身份，获得年度纪念周边</span>
+                      <span>{messages.alumni_forum.honor_advisors.features.honor}</span>
                     </li>
                   </ul>
                 </div>
@@ -690,7 +692,7 @@ export default function AlumniForumPage() {
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    了解详情并申请
+                    {messages.alumni_forum.honor_advisors.learn_more}
                   </Link>
                 </div>
               </div>

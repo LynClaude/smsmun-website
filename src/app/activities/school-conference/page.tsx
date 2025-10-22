@@ -68,10 +68,10 @@ export default function SchoolConferencePage() {
           <div className="container mx-auto px-4">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
-                深圳中学校内会
+                {messages.activities.school_conference.title}
               </h1>
               <p className="text-lg md:text-xl text-gray-600">
-                深中模联校内会议历年回顾
+                {messages.activities.school_conference.subtitle}
               </p>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function SchoolConferencePage() {
                 transition={{ duration: 0.5 }}
                 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800"
               >
-                历年校内会
+                {messages.activities.school_conference.yearly_conferences}
               </motion.h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -101,7 +101,7 @@ export default function SchoolConferencePage() {
                   >
                     {/* 年份标识 */}
                     <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-4 text-center">
-                      <h3 className="text-2xl font-bold">{conference.year}年校内会</h3>
+                      <h3 className="text-2xl font-bold">{messages.activities.school_conference.conference_info.replace('{year}', conference.year.toString())}</h3>
                       <p className="text-sm opacity-90 mt-1">
                         {conference.date} · {conference.venue} · {conference.format}
                       </p>
@@ -123,7 +123,7 @@ export default function SchoolConferencePage() {
                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.162 4.203 2.969 5.543-.396-.847-.729-1.804-.729-2.812 0-3.312 2.688-6 6-6s6 2.688 6 6c0 1.008-.333 1.965-.729 2.812 1.807-1.34 2.969-3.331 2.969-5.543 0-4.054-3.891-7.342-8.691-7.342zM12 15.53c-3.312 0-6-2.688-6-6s2.688-6 6-6 6 2.688 6 6-2.688 6-6 6z"/>
                         </svg>
-                        查看微信公众号文章
+                        {messages.activities.school_conference.view_wechat}
                       </a>
                     </div>
                   </motion.div>

@@ -185,48 +185,181 @@
     "name": "Name",
     "contact": "Contact"
   },
-  "pprdmun": {
-    "return_to": "Return to",
-    "full_name": "{year} Pan-Pearl River Delta High School Model United Nations Conference",
-    "english_name": "Pan-Pearl River Delta Model United Nations Conference {year}",
-    "invitation_letter": "Invitation Letter",
-    "greeting": "Dear Fellow MUN Organizations and Colleagues:",
-    "opening": "Greetings!",
-    "closing": "We, the peoples of the United Nations, unite for a better world.",
-    "signature": "{year} Pan-Pearl River Delta High School Model United Nations Conference Organizing Committee",
-    "committee_settings": "Committee Settings",
-    "venue_settings": "Venue Settings",
-    "main_press_center": "Main Press Center",
-    "title": "Pan-Pearl River Delta High School Model United Nations Conference",
-    "description": "The most influential MUN conference in South China",
-    "select_year": "Select Year",
-    "conference_info": "Conference Information",
-    "time": "Time",
-    "location": "Location",
-    "language": "Language",
-    "organizer": "Organizer",
-    "committees": "Committees",
-    "related_docs": "Related Documents",
-    "welcome_title": "Welcome Message",
-    "welcome_greeting": "Welcome",
-    "welcome_opening": "Opening",
-    "welcome_invitation": "Invitation",
-    "welcome_2025": "2025",
-    "welcome_15_years": "15 Years",
-    "welcome_concept": "Concept",
-    "welcome_gratitude": "Gratitude",
-    "welcome_ending": "Ending",
-    "welcome_signature": "Signature",
-    "academic_team_title": "Academic Team",
-    "academic_team_desc": "Academic Team Introduction",
-    "academic_team_priority": "Priority",
-    "academic_team_wechat": "WeChat",
-    "academic_team_contact": "Contact",
-    "academic_team_secretary": "Secretary-General",
-    "academic_team_vice_secretary": "Deputy Secretary-General",
-    "download_form": "Download Form"
-  },
   "common": {
     "dept_intro": "Department Introduction"
+  },
+  "alumni_forum": {
+    "title": "Alumni Forum",
+    "subtitle": "SMSMUN Alumni Exclusive Communication Platform",
+    "access_restricted": "Access Restricted",
+    "access_message": "This page is only accessible to SMSMUN members (including current students and alumni). Please log in with your SMSMUN account first.",
+    "return_home": "Return to Home",
+    "tabs": {
+      "messages": "Message Board",
+      "qa": "Q&A",
+      "advisor": "Honor Advisors"
+    },
+    "messages": {
+      "title": "Message Board",
+      "placeholder": "Share your thoughts, memories, or blessings...",
+      "send": "Send Message",
+      "send_failed": "Failed to send message, please try again"
+    },
+    "qa": {
+      "title": "Q&A",
+      "placeholder": "Have any questions for other alumni?",
+      "ask": "Ask Question",
+      "ask_failed": "Failed to submit question, please try again",
+      "answer": "Answer this question",
+      "answer_placeholder": "Enter your answer...",
+      "submit_answer": "Submit Answer",
+      "cancel": "Cancel",
+      "answer_failed": "Failed to submit answer, please try again"
+    },
+    "honor_advisors": {
+      "title": "Honor Advisory Committee",
+      "subtitle": "To strengthen the connection between SMSMUN and outstanding former members, give full play to the experience advantages of graduated members, and improve the quality of association activities, we have established an advisory committee.",
+      "features": {
+        "title": "Core Features of the Advisory Committee",
+        "consultation": "Consultation Guidance: Provide valuable experience and advice when organizing important activities",
+        "sharing": "Experience Sharing: Pass on MUN spirit and skills through online guidance meetings",
+        "priority": "Priority Participation: Priority invitation to major association activities",
+        "honor": "Honor Status: Identity marked in official documents, receive annual commemorative merchandise"
+      },
+      "learn_more": "Learn More and Apply",
+      "members_count": "{count} Honor Advisors",
+      "overview": "Overview",
+      "overview_content": "To strengthen the connection between SMSMUN and outstanding former members, give full play to the experience advantages of graduated members, improve the quality of association activities, and establish a long-term development support system, we have established an advisory committee.",
+      "overview_content2": "The advisory committee is a consultative, non-executive body under the association. Its members have advisory qualifications but do not directly participate in daily administrative management and specific affairs execution.",
+      "overview_content3": "As an honor advisor, you will have the right to be consulted when the association organizes important activities, participate in online guidance meetings, experience sharing or training activities, and have the right to be preferentially invited to major activities held by the association.",
+      "core_features": "Core Features",
+      "consultation_guide": "Consultation Guidance",
+      "consultation_desc": "Provide valuable experience and advice for current members when organizing important activities or major conferences.",
+      "experience_sharing": "Experience Sharing",
+      "experience_desc": "Pass on MUN spirit and skills through online guidance meetings, experience sharing or training activities.",
+      "priority_participation": "Priority Participation",
+      "priority_desc": "Have the right to be preferentially invited to major activities held by the association, such as annual meetings, opening ceremonies, achievement exhibitions, etc.",
+      "honor_status": "Honor Status",
+      "honor_desc": "Name and \"Honor Advisor\" status can be marked in official association documents and receive annual commemorative merchandise.",
+      "requirements": "Requirements",
+      "requirement1": "Be a former member of this association with outstanding contributions or excellent performance during tenure",
+      "requirement2": "Have experience accumulation in Model United Nations or related fields, able to provide constructive suggestions to the association",
+      "requirement3": "Have good character and agree with association values",
+      "members": "Honor Advisory Committee Members",
+      "refresh": "Refresh Data",
+      "refreshing": "Refreshing...",
+      "loading": "Loading...",
+      "no_members": "No Committee Members",
+      "building": "Honor Advisory Committee is under construction...",
+      "read_charter": "Read Detailed Charter",
+      "apply": "Apply to Become Honor Advisor",
+      "email": "Email",
+      "position": "Position in Association",
+      "join_time": "Join Time",
+      "graduation_year": "Graduated"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "loading": "Loading...",
+    "user_info": {
+      "admin": "Administrator",
+      "honor_advisor": "SMSMUN Honor Advisor",
+      "alumni": "SMSMUN Alumni",
+      "visitor": "Visitor"
+    },
+    "honor_advisor_badge": {
+      "title": "Honor Advisory Committee Member",
+      "subtitle": "Congratulations! You have become an official member of the SMSMUN Honor Advisory Committee",
+      "enter_committee": "Enter Committee",
+      "exit_committee": "Exit Committee",
+      "exit_confirm": "Are you sure you want to exit the Honor Advisory Committee?",
+      "exit_developing": "Exit committee function is under development..."
+    },
+    "tabs": {
+      "my_messages": "My Messages ({count})",
+      "my_qa": "My Q&A ({count})",
+      "honor": "Honor Advisor ({count})",
+      "feedback": "Feedback ({count})"
+    },
+    "messages": {
+      "no_messages": "No messages"
+    },
+    "questions": {
+      "no_questions": "No questions"
+    },
+    "honor_advisors": {
+      "my_applications": "My Honor Advisor Applications",
+      "no_applications": "No honor advisor applications",
+      "status": {
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "pending": "Under Review"
+      },
+      "motivation": "Application Motivation",
+      "experience": "Related Experience"
+    },
+    "feedback": {
+      "title_alumni": "Submit Feedback",
+      "title_visitor": "Submit Feedback",
+      "placeholder_alumni": "Please tell us your suggestions or opinions...",
+      "placeholder_visitor": "Please tell us your suggestions or opinions about the website...",
+      "submit": "Submit Feedback",
+      "submitting": "Submitting...",
+      "submit_success": "Feedback submitted successfully! Thank you for your suggestions.",
+      "submit_failed": "Failed to submit feedback, please try again",
+      "history": "Feedback History",
+      "no_feedback": "No feedback records"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "SMSMUN Website Management System",
+      "username": "Admin Username",
+      "username_placeholder": "Please enter admin username",
+      "password": "Password",
+      "password_placeholder": "Please enter password",
+      "login": "Login",
+      "logging": "Logging in...",
+      "error": "Invalid admin username or password",
+      "return_home": "← Return to Home"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "tabs": {
+        "users": "User Management",
+        "messages": "Message Management",
+        "qa": "Q&A Management",
+        "advisors": "Honor Advisors"
+      },
+      "delete_confirm": "Are you sure you want to delete this message? This action cannot be undone.",
+      "delete_success": "Message deleted",
+      "delete_failed": "Failed to delete message: {error}",
+      "delete_question_confirm": "Are you sure you want to delete this question? This action cannot be undone.",
+      "delete_question_success": "Question deleted",
+      "delete_question_failed": "Failed to delete question: {error}"
+    }
+  },
+  "activities": {
+    "school_conference": {
+      "title": "Shenzhen Middle School Conference",
+      "subtitle": "SMSMUN School Conference History",
+      "yearly_conferences": "Yearly Conferences",
+      "conference_info": "{year} School Conference",
+      "view_wechat": "View WeChat Article"
+    },
+    "leadership_summit": {
+      "title": "Shenzhen Model United Nations Leadership Summit 2024",
+      "subtitle": "Shenzhen Summit for Chief Leaders in Model United Nations",
+      "select_year": "Select Year",
+      "overview": "Conference Overview",
+      "overview_content": "The Shenzhen Model United Nations Leadership Summit is organized by the SMSMUN Secretariat, targeting leaders and management members of MUN organizations from high schools across the city, aiming to promote cooperation and development of Shenzhen high school MUN activities. Through in-depth and friendly exchanges, the summit strengthens unity among regional MUN associations, builds cooperation and mutual assistance platforms, discusses the development and prospects of Shenzhen MUN, and explores strategies for independent, professional, and innovative development of Shenzhen high school MUN activities.",
+      "details": {
+        "time": "Conference Time: December 7, 2024 (Saturday) 14:30-17:00",
+        "location": "Conference Location: Shenzhen Middle School (Nigang Campus)",
+        "theme": "Conference Theme: Revitalization and Development of Offline MUN Activities in Shenzhen Region & Innovation and Heritage of MUN Organizations"
+      }
+    }
   }
 }
