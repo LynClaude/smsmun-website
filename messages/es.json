@@ -65,5 +65,46 @@
     "secretariat": "Secretaría",
     "advisors": "Asesores",
     "leadership_members": "Miembros"
+  },
+  "alumni_forum": {
+    "title": "Foro de Exalumnos",
+    "subtitle": "Plataforma de Comunicación Exclusiva de Exalumnos SMSMUN",
+    "access_restricted": "Acceso Restringido",
+    "access_message": "Esta página solo es accesible para miembros de SMSMUN (incluyendo estudiantes actuales y exalumnos). Por favor, inicie sesión con su cuenta SMSMUN primero.",
+    "return_home": "Volver al Inicio",
+    "tabs": {
+      "messages": "Tablero de Mensajes",
+      "qa": "Preguntas y Respuestas",
+      "advisor": "Asesores Honorarios"
+    },
+    "messages": {
+      "title": "Tablero de Mensajes",
+      "placeholder": "Comparte tus pensamientos, recuerdos o bendiciones...",
+      "send": "Enviar Mensaje",
+      "send_failed": "Error al enviar mensaje, por favor inténtalo de nuevo"
+    },
+    "qa": {
+      "title": "Preguntas y Respuestas",
+      "placeholder": "¿Tienes alguna pregunta para otros exalumnos?",
+      "ask": "Hacer una Pregunta",
+      "ask_failed": "Error al enviar pregunta, por favor inténtalo de nuevo",
+      "answer": "Responder esta pregunta",
+      "answer_placeholder": "Ingresa tu respuesta...",
+      "submit_answer": "Enviar Respuesta",
+      "cancel": "Cancelar",
+      "answer_failed": "Error al enviar respuesta, por favor inténtalo de nuevo"
+    },
+    "honor_advisors": {
+      "title": "Comité Asesor Honorario",
+      "subtitle": "Para fortalecer la conexión entre SMSMUN y los ex miembros destacados, aprovechar al máximo las ventajas de la experiencia de los miembros graduados, y mejorar la calidad de las actividades de la asociación, hemos establecido un comité asesor.",
+      "features": {
+        "title": "Características Principales del Comité Asesor",
+        "consultation": "Orientación Consultiva: Proporcionar experiencia y consejos valiosos al organizar actividades importantes",
+        "sharing": "Intercambio de Experiencias: Transmitir el espíritu y habilidades MUN a través de reuniones de orientación en línea",
+        "priority": "Participación Prioritaria: Invitación prioritaria a las principales actividades de la asociación",
+        "honor": "Estado Honorario: Identidad marcada en documentos oficiales, recibir artículos conmemorativos anuales"
+      },
+      "learn_more": "Saber Más y Aplicar"
+    }
   }
 } 

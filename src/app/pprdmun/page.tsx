@@ -365,18 +365,18 @@ export default function PPRDMUNPage() {
 
               {/* 主新闻中心 */}
               <div className="bg-gray-50 p-8 rounded-xl shadow-lg space-y-6">
-                <h3 className="text-3xl font-bold text-primary">主新闻中心</h3>
+                <h3 className="text-3xl font-bold text-primary">{messages.pprdmun.press_center}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <h4 className="text-xl font-semibold">中文新闻中心</h4>
+                    <h4 className="text-xl font-semibold">{messages.pprdmun.chinese_press}</h4>
                     <p className="text-gray-600">
-                      负责报道加泰罗尼亚公投进程中的重要事件，深入分析各方立场，为代表提供及时、准确的中文新闻报道，助力委员会讨论的深入开展。
+                      {messages.pprdmun.chinese_press_desc}
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-xl font-semibold">英文新闻中心</h4>
+                    <h4 className="text-xl font-semibold">{messages.pprdmun.english_press}</h4>
                     <p className="text-gray-600">
-                      专注于美国宪法第十九修正案相关的历史事件报道，通过英文媒体视角，还原20世纪初美国女性争取选举权的重要时刻。
+                      {messages.pprdmun.english_press_desc}
                     </p>
                   </div>
                 </div>
@@ -389,13 +389,13 @@ export default function PPRDMUNPage() {
         <div className="bg-gray-50 py-24">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">邀请函</h2>
-              <p className="text-gray-600">点击信件查看完整邀请函内容</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.pprdmun.invitation_title}</h2>
+              <p className="text-gray-600">{messages.pprdmun.invitation_desc}</p>
             </div>
             <InvitationLetter
               year={2025}
-              title="PPRDMUN 2025 邀请函"
-              description="万象更新，满庭芳华，十五载泛珠模联再聚风冠凰羽之下"
+              title={messages.pprdmun.invitation_letter_2025}
+              description={messages.pprdmun.invitation_letter_desc}
               href="/pprdmun/2025/letter"
             />
           </div>

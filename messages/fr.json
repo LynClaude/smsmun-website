@@ -65,5 +65,46 @@
     "secretariat": "Secrétariat",
     "advisors": "Conseillers",
     "leadership_members": "Membres"
+  },
+  "alumni_forum": {
+    "title": "Forum des Anciens",
+    "subtitle": "Plateforme de Communication Exclusive des Anciens SMSMUN",
+    "access_restricted": "Accès Restreint",
+    "access_message": "Cette page n'est accessible qu'aux membres SMSMUN (y compris les étudiants actuels et les anciens). Veuillez d'abord vous connecter avec votre compte SMSMUN.",
+    "return_home": "Retour à l'Accueil",
+    "tabs": {
+      "messages": "Tableau de Messages",
+      "qa": "Q&R",
+      "advisor": "Conseillers d'Honneur"
+    },
+    "messages": {
+      "title": "Tableau de Messages",
+      "placeholder": "Partagez vos pensées, souvenirs ou bénédictions...",
+      "send": "Envoyer le Message",
+      "send_failed": "Échec de l'envoi du message, veuillez réessayer"
+    },
+    "qa": {
+      "title": "Questions et Réponses",
+      "placeholder": "Avez-vous des questions pour d'autres anciens ?",
+      "ask": "Poser une Question",
+      "ask_failed": "Échec de la soumission de la question, veuillez réessayer",
+      "answer": "Répondre à cette question",
+      "answer_placeholder": "Entrez votre réponse...",
+      "submit_answer": "Soumettre la Réponse",
+      "cancel": "Annuler",
+      "answer_failed": "Échec de la soumission de la réponse, veuillez réessayer"
+    },
+    "honor_advisors": {
+      "title": "Comité Consultatif d'Honneur",
+      "subtitle": "Pour renforcer les liens entre SMSMUN et les anciens membres exceptionnels, tirer pleinement parti des avantages de l'expérience des membres diplômés, et améliorer la qualité des activités de l'association, nous avons créé un comité consultatif.",
+      "features": {
+        "title": "Caractéristiques Principales du Comité Consultatif",
+        "consultation": "Orientation Consultative : Fournir une expérience et des conseils précieux lors de l'organisation d'activités importantes",
+        "sharing": "Partage d'Expérience : Transmettre l'esprit et les compétences MUN par des réunions de guidance en ligne",
+        "priority": "Participation Prioritaire : Invitation prioritaire aux principales activités de l'association",
+        "honor": "Statut d'Honneur : Identité marquée dans les documents officiels, recevoir des articles commémoratifs annuels"
+      },
+      "learn_more": "En Savoir Plus et Postuler"
+    }
   }
 } 

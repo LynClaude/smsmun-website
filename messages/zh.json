@@ -187,7 +187,16 @@
     "academic_team_contact": "如有任何问题或者意见，欢迎与我们联系:",
     "academic_team_secretary": "大会秘书长: 甘楚涵 136-3156-3505",
     "academic_team_vice_secretary": "大会常务秘书长: 伍宣静 138-2990-0066",
-    "download_form": "下载学术团队预申请表"
+    "download_form": "下载学术团队预申请表",
+    "press_center": "主新闻中心",
+    "chinese_press": "中文新闻中心",
+    "english_press": "英文新闻中心",
+    "chinese_press_desc": "负责报道加泰罗尼亚公投进程中的重要事件，深入分析各方立场，为代表提供及时、准确的中文新闻报道，助力委员会讨论的深入开展。",
+    "english_press_desc": "专注于美国宪法第十九修正案相关的历史事件报道，通过英文媒体视角，还原20世纪初美国女性争取选举权的重要时刻。",
+    "invitation_title": "邀请函",
+    "invitation_desc": "点击信件查看完整邀请函内容",
+    "invitation_letter_2025": "PPRDMUN 2025 邀请函",
+    "invitation_letter_desc": "万象更新，满庭芳华，十五载泛珠模联再聚风冠凰羽之下"
   },
   "alumni": {
     "title": "历届高层",

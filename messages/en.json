@@ -224,7 +224,16 @@
     "academic_team_contact": "Contact",
     "academic_team_secretary": "Secretary-General",
     "academic_team_vice_secretary": "Deputy Secretary-General",
-    "download_form": "Download Form"
+    "download_form": "Download Form",
+    "press_center": "Main Press Center",
+    "chinese_press": "Chinese Press Center",
+    "english_press": "English Press Center",
+    "chinese_press_desc": "Responsible for reporting important events in the Catalonia referendum process, analyzing various positions in depth, and providing timely and accurate Chinese news coverage for delegates to facilitate in-depth committee discussions.",
+    "english_press_desc": "Focus on historical event coverage related to the 19th Amendment to the US Constitution, restoring the important moments when American women fought for suffrage in the early 20th century through English media perspective.",
+    "invitation_title": "Invitation Letter",
+    "invitation_desc": "Click the letter to view the complete invitation letter content",
+    "invitation_letter_2025": "PPRDMUN 2025 Invitation Letter",
+    "invitation_letter_desc": "Everything is renewed, full of splendor, fifteen years of PPRDMUN gathering again under the phoenix crown and feathers"
   },
   "common": {
     "dept_intro": "Department Introduction"
