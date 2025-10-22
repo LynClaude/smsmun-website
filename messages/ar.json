@@ -147,7 +147,37 @@
         "priority": "المشاركة ذات الأولوية: دعوة ذات أولوية للأنشطة الرئيسية للجمعية",
         "honor": "الحالة الشرفية: تمييز الهوية في الوثائق الرسمية، والحصول على تذكارات سنوية"
       },
-      "learn_more": "تعلم المزيد والتقديم"
+      "learn_more": "تعلم المزيد والتقديم",
+      "members_count": "عدد الأعضاء",
+      "overview": "نظرة عامة",
+      "overview_content": "محتوى النظرة العامة",
+      "overview_content2": "محتوى النظرة العامة 2",
+      "overview_content3": "محتوى النظرة العامة 3",
+      "core_features": "الميزات الأساسية",
+      "consultation_guide": "دليل الاستشارة",
+      "consultation_desc": "وصف الاستشارة",
+      "experience_sharing": "مشاركة الخبرة",
+      "experience_desc": "وصف الخبرة",
+      "priority_participation": "المشاركة ذات الأولوية",
+      "priority_desc": "وصف الأولوية",
+      "honor_status": "الحالة الشرفية",
+      "honor_desc": "وصف الشرف",
+      "requirements": "المتطلبات",
+      "requirement1": "المتطلب 1",
+      "requirement2": "المتطلب 2",
+      "requirement3": "المتطلب 3",
+      "members": "الأعضاء",
+      "refresh": "تحديث",
+      "refreshing": "جاري التحديث",
+      "loading": "جاري التحميل",
+      "no_members": "لا يوجد أعضاء",
+      "building": "قيد الإنشاء",
+      "read_charter": "قراءة الميثاق",
+      "apply": "تقدم",
+      "email": "البريد الإلكتروني",
+      "position": "المنصب",
+      "join_time": "وقت الانضمام",
+      "graduation_year": "سنة التخرج"
     }
   }
 } 

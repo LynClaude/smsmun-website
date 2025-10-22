@@ -147,7 +147,37 @@
         "priority": "Participation Prioritaire : Invitation prioritaire aux principales activités de l'association",
         "honor": "Statut d'Honneur : Identité marquée dans les documents officiels, recevoir des articles commémoratifs annuels"
       },
-      "learn_more": "En Savoir Plus et Postuler"
+      "learn_more": "En Savoir Plus et Postuler",
+      "members_count": "Nombre de Membres",
+      "overview": "Aperçu",
+      "overview_content": "Contenu de l'Aperçu",
+      "overview_content2": "Contenu de l'Aperçu 2",
+      "overview_content3": "Contenu de l'Aperçu 3",
+      "core_features": "Caractéristiques Principales",
+      "consultation_guide": "Guide de Consultation",
+      "consultation_desc": "Description de la Consultation",
+      "experience_sharing": "Partage d'Expérience",
+      "experience_desc": "Description de l'Expérience",
+      "priority_participation": "Participation Prioritaire",
+      "priority_desc": "Description de la Priorité",
+      "honor_status": "Statut d'Honneur",
+      "honor_desc": "Description de l'Honneur",
+      "requirements": "Exigences",
+      "requirement1": "Exigence 1",
+      "requirement2": "Exigence 2",
+      "requirement3": "Exigence 3",
+      "members": "Membres",
+      "refresh": "Actualiser",
+      "refreshing": "Actualisation",
+      "loading": "Chargement",
+      "no_members": "Aucun Membre",
+      "building": "Construction",
+      "read_charter": "Lire la Charte",
+      "apply": "Postuler",
+      "email": "Email",
+      "position": "Position",
+      "join_time": "Heure d'Adhésion",
+      "graduation_year": "Année de Diplôme"
     }
   }
 } 

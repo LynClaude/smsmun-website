@@ -147,7 +147,37 @@
         "priority": "Participación Prioritaria: Invitación prioritaria a las principales actividades de la asociación",
         "honor": "Estado Honorario: Identidad marcada en documentos oficiales, recibir artículos conmemorativos anuales"
       },
-      "learn_more": "Saber Más y Aplicar"
+      "learn_more": "Saber Más y Aplicar",
+      "members_count": "Número de Miembros",
+      "overview": "Resumen",
+      "overview_content": "Contenido del Resumen",
+      "overview_content2": "Contenido del Resumen 2",
+      "overview_content3": "Contenido del Resumen 3",
+      "core_features": "Características Principales",
+      "consultation_guide": "Guía de Consulta",
+      "consultation_desc": "Descripción de la Consulta",
+      "experience_sharing": "Intercambio de Experiencias",
+      "experience_desc": "Descripción de la Experiencia",
+      "priority_participation": "Participación Prioritaria",
+      "priority_desc": "Descripción de la Prioridad",
+      "honor_status": "Estado Honorario",
+      "honor_desc": "Descripción del Honor",
+      "requirements": "Requisitos",
+      "requirement1": "Requisito 1",
+      "requirement2": "Requisito 2",
+      "requirement3": "Requisito 3",
+      "members": "Miembros",
+      "refresh": "Actualizar",
+      "refreshing": "Actualizando",
+      "loading": "Cargando",
+      "no_members": "Sin Miembros",
+      "building": "Construyendo",
+      "read_charter": "Leer Carta",
+      "apply": "Aplicar",
+      "email": "Correo Electrónico",
+      "position": "Posición",
+      "join_time": "Hora de Unión",
+      "graduation_year": "Año de Graduación"
     }
   }
 } 
