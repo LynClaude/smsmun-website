@@ -39,20 +39,30 @@ export default function HonorAdvisorsPage() {
   }, [user, router])
 
   const loadHonorAdvisors = async () => {
-      // 直接设置真实数据，确保页面有内容显示
-      console.log('直接设置真实数据...')
-      const testData = [
-        {
-          id: 'test-1',
-          name: 'Claude',
-          email: 'claude@example.com',
-          graduation_year: '2026',
-          position: '秘书长',
-          created_at: new Date().toISOString()
-        }
-      ]
-    setHonorAdvisors(testData)
-    setLoading(false)
+    try {
+      console.log('开始加载荣誉顾问数据...')
+      
+      // 从Supabase加载荣誉顾问数据
+      const { data: advisorsData, error: advisorsError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
+
+      console.log('荣誉顾问查询结果:', { advisorsData, advisorsError })
+
+      if (advisorsError) {
+        console.error('Error loading honor advisors:', advisorsError.message)
+        setHonorAdvisors([])
+      } else {
+        setHonorAdvisors(advisorsData || [])
+      }
+    } catch (error) {
+      console.error('加载荣誉顾问数据时出错:', error)
+      setHonorAdvisors([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (!user || !user.is_alumni) {

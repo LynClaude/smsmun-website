@@ -42,7 +42,7 @@ export default function LeadershipSummitPage() {
           {/* 悬浮年份选择栏 */}
           <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
             <div className="bg-white rounded-lg shadow-lg p-4 space-y-2 min-w-[120px]">
-              <h3 className="text-sm font-semibold text-gray-700 mb-2 text-center">选择年份</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2 text-center">{messages.activities.leadership_summit.select_year}</h3>
               {years.map((year) => (
                 <button
                   key={year}
@@ -83,7 +83,7 @@ export default function LeadershipSummitPage() {
                   transition={{ duration: 0.8 }}
                   className="text-4xl md:text-6xl font-extrabold mb-4"
                 >
-                  深圳市模拟联合国领袖峰会 2024
+                  {messages.activities.leadership_summit.title}
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ export default function LeadershipSummitPage() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-lg md:text-xl max-w-3xl"
                 >
-                  Shenzhen Summit for Chief Leaders in Model United Nations
+                  {messages.activities.leadership_summit.subtitle}
                 </motion.p>
               </div>
             </div>
@@ -101,14 +101,14 @@ export default function LeadershipSummitPage() {
               <div className="flex flex-col lg:flex-row">
                 {/* 左侧会议简介 */}
                 <div className="lg:w-1/2 p-8">
-                  <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">会议简介</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{messages.activities.leadership_summit.overview}</h2>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    深圳市模拟联合国领袖峰会是由深圳中学模拟联合国协会秘书处主办，面向全市各高中模联组织负责人及管理层成员的大会，旨在推动深圳市高中生模联活动的合作与发展。峰会通过深入友好的交流，加强区域内各模联协会的团结，建立合作互助平台，讨论深圳模联的发展和前景，为深圳市高中生模联活动的独立、专业、创新型发展探索良策。
+                    {messages.activities.leadership_summit.overview_content}
                   </p>
                   <ul className="text-gray-700 space-y-3">
-                    <li><span className="font-semibold">会议时间：</span>2024年12月7日（周六）14：30 -17：00</li>
-                    <li><span className="font-semibold">会议地点：</span>深圳中学（泥岗校区）</li>
-                    <li><span className="font-semibold">会议主题：</span>深圳地区线下模联活动的重振与发展&模联社团创新与传承</li>
+                    <li><span className="font-semibold">{messages.activities.leadership_summit.details.time}</span></li>
+                    <li><span className="font-semibold">{messages.activities.leadership_summit.details.location}</span></li>
+                    <li><span className="font-semibold">{messages.activities.leadership_summit.details.theme}</span></li>
                   </ul>
                 </div>
 

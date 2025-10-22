@@ -36,45 +36,25 @@ export default function HonorAdvisorCommitteePage() {
     try {
       console.log('开始加载荣誉顾问委员会成员数据...')
       
-      // 直接设置真实数据，确保页面有内容显示
-      const testData = [
-        {
-          id: 'test-1',
-          user_id: 'test-user-1',
-          name: 'Claude',
-          email: 'claude@example.com',
-          phone: '13800138000',
-          wechat: 'claude_wechat',
-          graduation_year: '2026',
-          position: '秘书长',
-          achievements: '在深中模联期间担任技术部长，负责网站开发和维护',
-          created_at: new Date().toISOString()
-        }
-      ]
-      
-      // 过滤掉Claude条目，不在界面上显示
-      const filteredData = testData.filter(member => member.name !== 'Claude')
-      
-      setMembers(filteredData)
-      
-      // 暂时注释掉数据库查询，确保显示测试数据
-      // try {
-      //   const { data: membersData, error: membersError } = await supabase
-      //     .from('honor_advisors')
-      //     .select('*')
-      //     .eq('status', 'approved')
-      //     .order('created_at', { ascending: false })
+      // 从Supabase加载荣誉顾问委员会成员数据
+      const { data: membersData, error: membersError } = await supabase
+        .from('honor_advisors')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false })
 
-      //   if (membersData && membersData.length > 0) {
-      //     console.log('使用数据库数据:', membersData)
-      //     setMembers(membersData)
-      //   }
-      // } catch (dbError) {
-      //   console.log('数据库查询失败，保持测试数据:', dbError)
-      // }
+      console.log('荣誉顾问委员会查询结果:', { membersData, membersError })
+
+      if (membersError) {
+        console.error('Error loading committee members:', membersError.message)
+        setMembers([])
+      } else {
+        setMembers(membersData || [])
+      }
 
     } catch (error) {
       console.error('加载数据时出错:', error)
+      setMembers([])
     } finally {
       setLoading(false)
     }
