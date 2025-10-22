@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import PageTransition from '@/components/PageTransition'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useI18n } from '@/lib/i18n-context'
 
 interface Message {
   id: string
@@ -46,6 +47,7 @@ interface HonorAdvisor {
 export default function AlumniForumPage() {
   const { user } = useAuth()
   const router = useRouter()
+  const { messages } = useI18n()
   const [activeTab, setActiveTab] = useState<'messages' | 'qa' | 'advisor'>('messages')
   const [newMessage, setNewMessage] = useState('')
   const [newQuestion, setNewQuestion] = useState('')
@@ -408,13 +410,13 @@ export default function AlumniForumPage() {
       <PageTransition>
         <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">访问受限</h1>
-            <p className="text-gray-600 mb-6">此页面仅限深中模联成员（包括在校生和校友）访问，请先登录您的深中模联账号</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{messages.alumni_forum.access_restricted}</h1>
+            <p className="text-gray-600 mb-6">{messages.alumni_forum.access_message}</p>
             <button
               onClick={() => router.push('/')}
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
-              返回首页
+              {messages.alumni_forum.return_home}
             </button>
           </div>
         </div>
@@ -433,7 +435,7 @@ export default function AlumniForumPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">校友交流</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.alumni_forum.title}</h1>
               <p className="text-gray-600">
                 {user?.is_honor_advisor ? '深中模联荣誉顾问专属交流平台 - 荣誉顾问委员会系统已更新' : '深中模联校友专属交流平台 - 荣誉顾问委员会系统已更新'}
               </p>
@@ -449,7 +451,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                留言板
+                {messages.alumni_forum.tabs.messages}
               </button>
               <button
                 onClick={() => setActiveTab('qa')}
@@ -459,7 +461,7 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                问答区
+                {messages.alumni_forum.tabs.qa}
               </button>
               <button
                 onClick={() => setActiveTab('advisor')}
@@ -469,14 +471,14 @@ export default function AlumniForumPage() {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                荣誉顾问
+                {messages.alumni_forum.tabs.advisor}
               </button>
             </div>
 
             {/* 留言板 */}
             {activeTab === 'messages' && (
               <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-bold mb-4">留言板</h2>
+                <h2 className="text-xl font-bold mb-4">{messages.alumni_forum.messages.title}</h2>
                 
                 {/* 发送留言 */}
                 <div className="mb-6">

@@ -228,5 +228,46 @@
   },
   "common": {
     "dept_intro": "Department Introduction"
+  },
+  "alumni_forum": {
+    "title": "Alumni Forum",
+    "subtitle": "SMSMUN Alumni Exclusive Communication Platform",
+    "access_restricted": "Access Restricted",
+    "access_message": "This page is only accessible to SMSMUN members (including current students and alumni). Please log in with your SMSMUN account first.",
+    "return_home": "Return to Home",
+    "tabs": {
+      "messages": "Message Board",
+      "qa": "Q&A",
+      "advisor": "Honor Advisors"
+    },
+    "messages": {
+      "title": "Message Board",
+      "placeholder": "Share your thoughts, memories, or blessings...",
+      "send": "Send Message",
+      "send_failed": "Failed to send message, please try again"
+    },
+    "qa": {
+      "title": "Q&A",
+      "placeholder": "Have any questions for other alumni?",
+      "ask": "Ask Question",
+      "ask_failed": "Failed to submit question, please try again",
+      "answer": "Answer this question",
+      "answer_placeholder": "Enter your answer...",
+      "submit_answer": "Submit Answer",
+      "cancel": "Cancel",
+      "answer_failed": "Failed to submit answer, please try again"
+    },
+    "honor_advisors": {
+      "title": "Honor Advisory Committee",
+      "subtitle": "To strengthen the connection between SMSMUN and outstanding former members, give full play to the experience advantages of graduated members, and improve the quality of association activities, we have established an advisory committee.",
+      "features": {
+        "title": "Core Features of the Advisory Committee",
+        "consultation": "Consultation Guidance: Provide valuable experience and advice when organizing important activities",
+        "sharing": "Experience Sharing: Pass on MUN spirit and skills through online guidance meetings",
+        "priority": "Priority Participation: Priority invitation to major association activities",
+        "honor": "Honor Status: Identity marked in official documents, receive annual commemorative merchandise"
+      },
+      "learn_more": "Learn More and Apply"
+    }
   }
 }

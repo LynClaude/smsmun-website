@@ -243,5 +243,46 @@
   },
   "common": {
     "dept_intro": "部门简介"
+  },
+  "alumni_forum": {
+    "title": "校友交流",
+    "subtitle": "深中模联校友专属交流平台",
+    "access_restricted": "访问受限",
+    "access_message": "此页面仅限深中模联成员（包括在校生和校友）访问，请先登录您的深中模联账号",
+    "return_home": "返回首页",
+    "tabs": {
+      "messages": "留言板",
+      "qa": "问答区",
+      "advisor": "荣誉顾问"
+    },
+    "messages": {
+      "title": "留言板",
+      "placeholder": "分享您的想法、回忆或祝福...",
+      "send": "发送留言",
+      "send_failed": "发送留言失败，请重试"
+    },
+    "qa": {
+      "title": "问答区",
+      "placeholder": "有什么问题想请教其他校友？",
+      "ask": "提出问题",
+      "ask_failed": "提交问题失败，请重试",
+      "answer": "回答这个问题",
+      "answer_placeholder": "输入您的回答...",
+      "submit_answer": "提交回答",
+      "cancel": "取消",
+      "answer_failed": "提交回答失败，请重试"
+    },
+    "honor_advisors": {
+      "title": "荣誉顾问委员会",
+      "subtitle": "为加强深圳中学模拟联合国协会与往届优秀成员之间的联系，充分发挥毕业成员的经验优势，提升协会活动质量，特设立顾问委员会。",
+      "features": {
+        "title": "顾问委员会核心特点",
+        "consultation": "咨询指导：在协会筹办重要活动时提供宝贵经验和建议",
+        "sharing": "经验分享：通过线上指导会议传承模联精神与技能",
+        "priority": "优先参与：优先受邀参加协会重大活动",
+        "honor": "荣誉身份：在官方文件中标注身份，获得年度纪念周边"
+      },
+      "learn_more": "了解详情并申请"
+    }
   }
 } 
