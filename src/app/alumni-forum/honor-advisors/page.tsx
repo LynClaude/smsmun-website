@@ -24,17 +24,7 @@ export default function HonorAdvisorsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // 检查用户权限
-    if (!user) {
-      router.push('/auth/login')
-      return
-    }
-    if (!user.is_alumni) {
-      router.push('/')
-      return
-    }
-
-    // 加载荣誉顾问列表
+    // 加载荣誉顾问列表（现在访客也可以访问）
     loadHonorAdvisors()
   }, [user, router])
 
@@ -63,10 +53,6 @@ export default function HonorAdvisorsPage() {
     } finally {
       setLoading(false)
     }
-  }
-
-  if (!user || !user.is_alumni) {
-    return null
   }
 
   return (
@@ -281,15 +267,28 @@ export default function HonorAdvisorsPage() {
                     阅读详细章程
                   </Link>
                   
-                  <Link
-                    href="/alumni-forum/honor-advisors/apply"
-                    className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-md"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    申请成为荣誉顾问
-                  </Link>
+                  {/* 只有登录的校友才能申请 */}
+                  {user && user.is_alumni && (
+                    <Link
+                      href="/alumni-forum/honor-advisors/apply"
+                      className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-md"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                      申请成为荣誉顾问
+                    </Link>
+                  )}
+                  
+                  {/* 访客提示 */}
+                  {(!user || !user.is_alumni) && (
+                    <div className="inline-flex items-center justify-center px-8 py-3 bg-gray-200 text-gray-600 rounded-lg cursor-not-allowed shadow-md">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      登录后可申请成为荣誉顾问
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
