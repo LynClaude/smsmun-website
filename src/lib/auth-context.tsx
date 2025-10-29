@@ -142,32 +142,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       console.log('🔐 开始登录，邮箱:', email)
       
-      // 先尝试仅通过邮箱查找用户
+      // 先仅通过邮箱查找用户（不匹配密码，避免.single()找不到时错误）
       const { data: users, error: findError } = await supabase
         .from('users')
         .select('*')
         .eq('email', email)
 
       console.log('📊 找到的邮箱匹配用户数:', users?.length || 0)
+      
       if (findError) {
         console.error('❌ 查找用户错误:', findError.message)
-      }
-
-      // 从 users 表中查找用户
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('email', email)
-        .eq('password', password)
-        .single()
-
-      console.log('🔍 查询结果:', { data, error })
-      
-      if (error) {
-        console.error('❌ 登录错误:', error.message)
-        console.error('🔴 完整错误对象:', error)
         return false
       }
+
+      // 检查是否找到用户
+      if (!users || users.length === 0) {
+        console.error('❌ 用户不存在')
+        return false
+      }
+
+      // 获取第一个匹配的用户
+      const user = users[0]
+      
+      // 验证密码（在代码中验证，而不是在SQL查询中）
+      if (user.password !== password) {
+        console.error('❌ 密码错误')
+        console.log('数据库中的密码:', user.password)
+        console.log('您输入的密码:', password)
+        return false
+      }
+
+      console.log('✅ 密码验证通过')
+      const data = user
 
       if (data) {
         // 自动同步荣誉顾问状态
