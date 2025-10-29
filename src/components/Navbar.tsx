@@ -21,11 +21,7 @@ export default function Navbar() {
     { name: messages.nav.alumni_leadership, href: '/alumni-leadership' },
     { name: 'pprdmun', href: '/pprdmun', isDropdown: true }, // 特殊标记为下拉菜单
     { name: 'activities', href: '/activities', isActivitiesDropdown: true }, // 活动与项目链接
-    // { name: 'alumni-forum', href: '/alumni-forum', isAlumniOnly: true }, // 暂时隐藏校友交流链接
   ]
-  
-  // 独立的荣誉顾问链接，访客也可以访问
-  const honorAdvisorsLink = { name: '荣誉顾问', href: '/alumni-forum/honor-advisors' }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md">
@@ -68,23 +64,25 @@ export default function Navbar() {
               <PPRDYearSelector key={item.name} />
             ) : item.isActivitiesDropdown ? (
               <ActivitiesSelector key={item.name} />
-            ) : item.isAlumniOnly && (!user || !user.is_alumni) ? null : (
+            ) : (
               <Link
                 key={item.name}
                 href={item.href}
                 className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
               >
-                {item.name === 'alumni-forum' ? '校友交流' : item.name}
+                {item.name}
               </Link>
             )
           ))}
-          {/* 独立的荣誉顾问链接 */}
-          <Link
-            href={honorAdvisorsLink.href}
-            className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
-          >
-            {honorAdvisorsLink.name}
-          </Link>
+          {/* 校友可以看到校友交流/荣誉顾问链接 */}
+          {user && user.is_alumni && (
+            <Link
+              href="/alumni-forum"
+              className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
+            >
+              校友交流/荣誉顾问
+            </Link>
+          )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
@@ -250,14 +248,16 @@ export default function Navbar() {
                       </Link>
                     )
                   ))}
-                  {/* 独立的荣誉顾问链接 */}
-                  <Link
-                    href={honorAdvisorsLink.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {honorAdvisorsLink.name}
-                  </Link>
+                  {/* 校友可以看到校友交流/荣誉顾问链接 */}
+                  {user && user.is_alumni && (
+                    <Link
+                      href="/alumni-forum"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      校友交流/荣誉顾问
+                    </Link>
+                  )}
                 </div>
                 <div className="py-6 space-y-2">
                   <div className="px-3">
