@@ -140,6 +140,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 登录函数
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      console.log('🔐 开始登录，邮箱:', email)
+      
+      // 先尝试仅通过邮箱查找用户
+      const { data: users, error: findError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email)
+
+      console.log('📊 找到的邮箱匹配用户数:', users?.length || 0)
+      if (findError) {
+        console.error('❌ 查找用户错误:', findError.message)
+      }
+
       // 从 users 表中查找用户
       const { data, error } = await supabase
         .from('users')
@@ -148,8 +161,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .eq('password', password)
         .single()
 
+      console.log('🔍 查询结果:', { data, error })
+      
       if (error) {
-        console.error('Login error:', error.message)
+        console.error('❌ 登录错误:', error.message)
+        console.error('🔴 完整错误对象:', error)
         return false
       }
 
