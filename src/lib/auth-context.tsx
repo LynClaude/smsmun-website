@@ -175,38 +175,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('✅ 密码验证通过')
       const data = user
 
-      if (data) {
-        // 自动同步荣誉顾问状态
-        await syncHonorAdvisorStatus(data.id)
+      // 自动同步荣誉顾问状态
+      await syncHonorAdvisorStatus(data.id)
 
-        // 重新获取用户数据以确保状态是最新的
-        const { data: updatedData, error: updateError } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', data.id)
-          .single()
+      // 重新获取用户数据以确保状态是最新的
+      const { data: updatedData, error: updateError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', data.id)
+        .single()
 
-        const finalData = updateError ? data : updatedData
+      const finalData = updateError ? data : updatedData
 
-        const userData = {
-          id: finalData.id,
-          username: finalData.username,
-          email: finalData.email,
-          is_alumni: finalData.is_alumni,
-          graduation_year: finalData.graduation_year,
-          is_admin: finalData.is_admin,
-          join_date: finalData.join_date,
-          is_honor_advisor: finalData.is_honor_advisor || false,
-          honor_advisor_approved_at: finalData.honor_advisor_approved_at,
-        }
-
-        console.log('Login successful, saving user data:', userData)
-        setUser(userData)
-        localStorage.setItem('smsmun_user', JSON.stringify(userData))
-        console.log('User data saved to localStorage')
-        return true
+      const userData = {
+        id: finalData.id,
+        username: finalData.username,
+        email: finalData.email,
+        is_alumni: finalData.is_alumni,
+        graduation_year: finalData.graduation_year,
+        is_admin: finalData.is_admin,
+        join_date: finalData.join_date,
+        is_honor_advisor: finalData.is_honor_advisor || false,
+        honor_advisor_approved_at: finalData.honor_advisor_approved_at,
       }
-      return false
+
+      console.log('Login successful, saving user data:', userData)
+      setUser(userData)
+      localStorage.setItem('smsmun_user', JSON.stringify(userData))
+      console.log('User data saved to localStorage')
+      return true
     } catch (error) {
       console.error('Login error:', error)
       return false
