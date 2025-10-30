@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function ActivitiesSelector() {
   const [isOpen, setIsOpen] = useState(false)
+  const { messages } = useI18n()
 
   return (
     <div className="relative">
@@ -12,7 +14,7 @@ export default function ActivitiesSelector() {
         onClick={() => setIsOpen(!isOpen)}
         className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap flex items-center gap-1"
       >
-        活动与项目
+        {messages.nav.events}
         <svg 
           className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none" 
