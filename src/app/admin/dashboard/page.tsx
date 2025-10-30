@@ -209,6 +209,14 @@ export default function AdminDashboardPage() {
         setUsers(usersWithoutPassword)
       }
 
+      // 创建用户ID到用户名的映射
+      const userMap = new Map<string, string>()
+      if (usersData) {
+        usersData.forEach((user: any) => {
+          userMap.set(user.id, user.username)
+        })
+      }
+
       // 从 Supabase 加载留言数据
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
@@ -218,7 +226,12 @@ export default function AdminDashboardPage() {
       if (messagesError) {
         console.error('Error loading messages:', messagesError.message)
       } else {
-        setMessages(messagesData || [])
+        // 为留言添加用户名
+        const messagesWithNames = (messagesData || []).map((message: any) => ({
+          ...message,
+          author: userMap.get(message.user_id) || '未知用户'
+        }))
+        setMessages(messagesWithNames)
       }
 
       // 从 Supabase 加载问题数据
@@ -230,7 +243,54 @@ export default function AdminDashboardPage() {
       if (questionsError) {
         console.error('Error loading questions:', questionsError.message)
       } else {
-        setQuestions(questionsData || [])
+        // 为每个问题加载对应的真实回答
+        const questionsWithAnswers = await Promise.all(
+          (questionsData || []).map(async (question: any) => {
+            try {
+              const { data: answersData, error: answersError } = await supabase
+                .from('answers')
+                .select('*')
+                .eq('question_id', question.id)
+                .order('created_at', { ascending: true })
+
+              if (answersError) {
+                console.error('❌ 回答查询失败:', answersError.message)
+                return { 
+                  ...question, 
+                  answers: [],
+                  author: userMap.get(question.user_id) || '未知用户',
+                  timestamp: question.created_at || question.timestamp
+                }
+              }
+
+              // 为回答添加用户名
+              const answersWithNames = (answersData || []).map((answer: any) => ({
+                ...answer,
+                author: userMap.get(answer.user_id) || '未知用户',
+                answer: answer.content || answer.answer,
+                timestamp: answer.created_at || answer.timestamp
+              }))
+
+              return { 
+                ...question, 
+                answers: answersWithNames,
+                author: userMap.get(question.user_id) || '未知用户',
+                question: question.content || question.question,
+                timestamp: question.created_at || question.timestamp
+              }
+            } catch (error) {
+              console.error('❌ 处理问题时出错:', error)
+              return { 
+                ...question, 
+                answers: [],
+                author: userMap.get(question.user_id) || '未知用户',
+                question: question.content || question.question,
+                timestamp: question.created_at || question.timestamp
+              }
+            }
+          })
+        )
+        setQuestions(questionsWithAnswers)
       }
 
       // 从 Supabase 加载荣誉顾问申请数据
