@@ -259,7 +259,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 管理员登录函数
   const adminLogin = async (username: string, password: string): Promise<boolean> => {
     try {
+      console.log('🔐 开始管理员登录，用户名:', username)
+      
+      // 先支持旧的硬编码管理员登录（作为后备）
       if (username === 'admin' && password === 'smsmun2025') {
+        console.log('✅ 使用硬编码管理员登录')
         const adminUser: User = {
           id: 'admin',
           username: '管理员',
@@ -272,7 +276,56 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('smsmun_user', JSON.stringify(adminUser))
         return true
       }
-      return false
+      
+      // 尝试从数据库查找管理员账户
+      console.log('🔍 尝试从数据库查找管理员账户')
+      const { data: users, error: findError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username', username)
+        .eq('is_admin', true)
+
+      console.log('📊 找到的管理员账户数:', users?.length || 0)
+
+      if (findError) {
+        console.error('❌ 查找管理员错误:', findError.message)
+        return false
+      }
+
+      // 检查是否找到管理员
+      if (!users || users.length === 0) {
+        console.error('❌ 管理员账户不存在')
+        return false
+      }
+
+      // 获取第一个匹配的管理员
+      const admin = users[0]
+      
+      // 验证密码（在代码中验证，而不是在SQL查询中）
+      if (admin.password !== password) {
+        console.error('❌ 管理员密码错误')
+        return false
+      }
+
+      console.log('✅ 管理员密码验证通过')
+      
+      const adminUser: User = {
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+        is_alumni: admin.is_alumni,
+        graduation_year: admin.graduation_year,
+        is_admin: true,
+        join_date: admin.join_date,
+        is_honor_advisor: admin.is_honor_advisor || false,
+        honor_advisor_approved_at: admin.honor_advisor_approved_at,
+      }
+
+      console.log('Login successful, saving admin user data:', adminUser)
+      setUser(adminUser)
+      localStorage.setItem('smsmun_user', JSON.stringify(adminUser))
+      console.log('Admin user data saved to localStorage')
+      return true
     } catch (error) {
       console.error('Admin login error:', error)
       return false
