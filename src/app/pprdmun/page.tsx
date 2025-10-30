@@ -290,29 +290,6 @@ export default function PPRDMUNPage() {
               </div>
             </section>
 
-        {/* 欢迎信区域 */}
-        <div className="bg-gray-50 py-24">
-          <div className="container mx-auto px-4">
-            <Link href="/pprdmun/welcome">
-              <div className="relative w-full max-w-2xl mx-auto cursor-pointer bg-white rounded-lg shadow-xl p-8 hover:shadow-2xl transition-shadow">
-                {/* 信封样式 */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-lg" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 mx-auto mb-4">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-full h-full text-primary">
-                      <path d="M22 8L12 2L2 8V16L12 22L22 16V8Z" stroke="currentColor" strokeWidth="2" />
-                      <path d="M2 8L12 14L22 8" stroke="currentColor" strokeWidth="2" />
-                      <path d="M12 14V22" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  </div>
-                  <h2 className="text-3xl font-bold text-center mb-4">欢迎信</h2>
-                  <div className="text-center text-gray-600">点击打开欢迎信</div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-
         {/* 委员会设置 */}
         <div className="bg-white py-24">
           <div className="container mx-auto px-4">
