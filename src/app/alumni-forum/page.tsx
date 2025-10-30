@@ -754,7 +754,8 @@ export default function AlumniForumPage() {
                         </button>
                       )}
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )}
