@@ -222,15 +222,16 @@ export default function AdminDashboardPage() {
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (messagesError) {
         console.error('Error loading messages:', messagesError.message)
       } else {
-        // 为留言添加用户名
+        // author 字段已经直接存储在数据库中
         const messagesWithNames = (messagesData || []).map((message: any) => ({
           ...message,
-          author: userMap.get(message.user_id) || '未知用户'
+          author: message.author || '未知用户',
+          timestamp: message.created_at || message.timestamp
         }))
         setMessages(messagesWithNames)
       }
@@ -239,7 +240,7 @@ export default function AdminDashboardPage() {
       const { data: questionsData, error: questionsError } = await supabase
         .from('questions')
         .select('*')
-        .order('timestamp', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (questionsError) {
         console.error('Error loading questions:', questionsError.message)
