@@ -513,20 +513,28 @@ export default function AlumniForumPage() {
                     const displayName = message.author || '未知用户'
                     const firstChar = displayName.charAt(0).toUpperCase()
                     const userInfo = message.user_id ? userAvatars[message.user_id] : null
+                    const isHonorAdvisor = userInfo?.is_honor_advisor || false
                     
                     return (
-                      <div key={message.id} className="border-l-4 border-primary pl-4 py-3 bg-gray-50 rounded-r-lg">
+                      <div 
+                        key={message.id} 
+                        className={`pl-4 py-3 rounded-r-lg ${
+                          isHonorAdvisor 
+                            ? 'border-l-4 border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50' 
+                            : 'border-l-4 border-primary bg-gray-50'
+                        }`}
+                      >
                         <div className="flex items-start gap-3 mb-2">
                           {/* 用户头像 */}
                           <div className="flex-shrink-0">
-                            {userInfo?.is_honor_advisor ? (
-                              <div className="w-10 h-10">
+                            {isHonorAdvisor ? (
+                              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center shadow-md">
                                 <Image
                                   src="/皇冠.png"
                                   alt="荣誉顾问"
-                                  width={40}
-                                  height={40}
-                                  className="w-full h-full object-cover rounded-full"
+                                  width={24}
+                                  height={24}
+                                  className="object-contain"
                                 />
                               </div>
                             ) : (
@@ -540,7 +548,9 @@ export default function AlumniForumPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex justify-between items-start mb-1">
                               <div className="flex items-center gap-2">
-                                <span className="font-medium text-gray-900">{displayName}</span>
+                                <span className={`font-medium ${isHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                                  {displayName}
+                                </span>
                                 {userInfo?.is_alumni && (
                                   <Image
                                     src="/favicon.ico"
@@ -550,8 +560,8 @@ export default function AlumniForumPage() {
                                     className="w-4 h-4"
                                   />
                                 )}
-                                {userInfo?.is_honor_advisor && (
-                                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                                {isHonorAdvisor && (
+                                  <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
                                     荣誉顾问
                                   </span>
                                 )}
@@ -560,7 +570,9 @@ export default function AlumniForumPage() {
                                 {new Date(message.created_at || message.timestamp || '').toLocaleString()}
                               </span>
                             </div>
-                            <p className="text-gray-700">{message.content}</p>
+                            <p className={`${isHonorAdvisor ? 'text-amber-900' : 'text-gray-700'}`}>
+                              {message.content}
+                            </p>
                           </div>
                         </div>
                       </div>
