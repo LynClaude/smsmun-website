@@ -21,7 +21,7 @@ interface LeadershipData {
 }
 
 export default function AlumniLeadershipPage() {
-  const { messages } = useI18n()
+  const { messages, locale } = useI18n()
   const [selectedYear, setSelectedYear] = useState('2024-2025')
   
   // 职位翻译映射函数
@@ -44,6 +44,59 @@ export default function AlumniLeadershipPage() {
     }
     
     return posMap[position] || position
+  }
+
+  // 姓名拼音映射（用于非中文语言显示）
+  const pinyinNames: { [key: string]: string } = {
+    '甘楚涵': 'Gan Chuhan', '伍宣静': 'Wu Xuanjing', '张亦驰': 'Zhang Yichi', '周张晗': 'Zhou Zhanghan',
+    '黎启诚': 'Li Qicheng', '庞棕雨': 'Pang Zongyu', '汤峤': 'Tang Qiao', '李艺涵': 'Li Yihan',
+    '王钰淇': 'Wang Yuqi', '柳知好': 'Liu Zhihao', '林梓烨': 'Lin Ziye', '刘楷姸': 'Liu Kaiyan',
+    '乔秋宸': 'Qiao Qiuchen', '林卓烨': 'Lin Zhuoyue', '姚羽宸': 'Yao Yuchen', '汪熙宸': 'Wang Xichen',
+    '徐欣姸': 'Xu Xinyan', '欧阳蓝豆': 'Ouyang Landou', '聂卓远': 'Nie Zhuoyuan', '朱楚嫣': 'Zhu Chuyan',
+    '官宸': 'Guan Chen', '罗雨杰': 'Luo Yujie', '曾雅淇': 'Zeng Yaqi', '郭法诺': 'Guo Fano',
+    '陆丽雅': 'Lu Liya', '熊邦凯': 'Xiong Bangkai', '金溪言': 'Jin Xiyan', '陈熠轩': 'Chen Yixuan',
+    '唐子奕': 'Tang Ziyi', '邓筌心': 'Deng Quanxin', '李轶辰': 'Li Yichen', '陈烁宇': 'Chen Shuoyu',
+    '钟文畅': 'Zhong Wenchang', '吕偌涵': 'Lv Ruohan', '魏琪臻': 'Wei Qizhen', '刘羽琪': 'Liu Yuqi',
+    '赵宇轩': 'Zhao Yuxuan', '张语倢': 'Zhang Yujie', '许骞月': 'Xu Qianyue', '何俊睿': 'He Junrui',
+    '卫一凡': 'Wei Yifan', '王海琳': 'Wang Hailin', '陈宇浩': 'Chen Yuhao', '陈诗漫': 'Chen Shiman',
+    '卓裕凯': 'Zhuo Yukai', '余锦萱': 'Yu Jinxuan', '陈晓晴': 'Chen Xiaoqing', '李安之': 'Li Anzhi',
+    '许可臻': 'Xu Kezhen', '张赫楠': 'Zhang Henan', '陈星润': 'Chen Xingrun', '郑卓雅': 'Zheng Zhuoya',
+    '陈钟毓': 'Chen Zhongyu', '郑家豪': 'Zheng Jiahao', '符慧子': 'Fu Huizi', '王玺': 'Wang Xi',
+    '谢蕊希': 'Xie Ruixi', '刘欣怡': 'Liu Xinyi', '叶文骏': 'Ye Wenjun', '尹嘉妮': 'Yin Jiani',
+    '花蓉': 'Hua Rong', '黄俊然': 'Huang Junran', '熊绍邵': 'Xiong Shaoshao', '马静怡': 'Ma Jingyi',
+    '于诗暄': 'Yu Shixuan', '张俊莹': 'Zhang Junying', '吴钰杰': 'Wu Yujie', '叶馨': 'Ye Xin',
+    '彭咏梅': 'Peng Yongmei', '陈子意': 'Chen Ziyi', '丁琳真': 'Ding Linzhen', '肖继涵': 'Xiao Jihan',
+    '江坤彤': 'Jiang Kuntong', '魏雨熹': 'Wei Yuxi', '汪科': 'Wang Ke', '阙俊洁': 'Que Junjie',
+    '周可欣': 'Zhou Kexin', '何思哲': 'He Sizhe', '熊小语': 'Xiong Xiaoyu', '马骏祺': 'Ma Junqi',
+    '邹励涵': 'Zou Lihan', '伍奕峰': 'Wu Yifeng', '廖宸婕': 'Liao Chenjie', '胡熙祥': 'Hu Xixiang',
+    '王袁雨婷': 'Wang Yuanyuting', '刘羽丰': 'Liu Yufeng', '刘子沛': 'Liu Zipei', '秦玥': 'Qin Yue',
+    '程方舟': 'Cheng Fangzhou', '胡天瑞': 'Hu Tianrui', '贺博': 'He Bo', '高睿': 'Gao Rui',
+    '黄熙熹': 'Huang Xixi', '陈晖瑶': 'Chen Huiyao', '邵卓涵': 'Shao Zhuohan', '闭钰': 'Bi Yu',
+    '廖泽威': 'Liao Zewei', '刘贞均': 'Liu Zhenjun', '蔡欣妮': 'Cai Xinni', '张续': 'Zhang Xu',
+    '乔小洋': 'Qiao Xiaoyang', '史琮琪': 'Shi Congqi', '姚天希': 'Yao Tianxi', '李泽远': 'Li Zeyuan',
+    '杨环': 'Yang Huan', '黄海依': 'Huang Haiyi', '周艺': 'Zhou Yi', '丁明语': 'Ding Mingyu',
+    '赵斯妤': 'Zhao Siyu', '李俊辰': 'Li Junchen', '周雨萱': 'Zhou Yuxuan', '许雅': 'Xu Ya',
+    '潘星合': 'Pan Xinghe', '吕宇澄': 'Lv Yucheng', '吴泳瑱': 'Wu Yongzhen', '汤浩明': 'Tang Haoming',
+    '王逸宁': 'Wang Yining', '陈悦琳': 'Chen Yuelin', '罗予希': 'Luo Yuxi', '林可欢': 'Lin Kehuan',
+    '谢凌': 'Xie Ling', '胡宇鹏': 'Hu Yupeng', '夏侯佐瀚': 'Xiahou Zuohan', '冯昱善': 'Feng Yushan',
+    '林伟长': 'Lin Weichang', '张一令': 'Zhang Yiling', '徐伊钒': 'Xu Yifan', '胡明玥': 'Hu Mingyue',
+    '周苡宁': 'Zhou Yining', '罗善文': 'Luo Shanwen', '陈亮': 'Chen Liang', '廖锦怡': 'Liao Jinyi',
+    '郑欣': 'Zheng Xin', '杨沛琦': 'Yang Peiqi', '周静月': 'Zhou Jingyue', '刘俣豪': 'Liu Yuhao',
+    '孔天柔': 'Kong Tianrou', '刘怿文': 'Liu Yiwen', '刘新': 'Liu Xin', '盛任之': 'Sheng Renzhi',
+    '古威鹏': 'Gu Weipeng', '吴海成': 'Wu Haicheng', '张炜昊': 'Zhang Weihao', '陈恺丹': 'Chen Kaidan',
+    '任其然': 'Ren Qiran', '高文卿': 'Gao Wenqing', '莫一夫': 'Mo Yifu', '孔薇': 'Kong Wei',
+    '张演善': 'Zhang Yanshan', '马斯晓': 'Ma Sixiao', '杨泽华': 'Yang Zehua', '顾正澄': 'Gu Zhengcheng',
+    '陈奕霖': 'Chen Yilin', '潘芳迪': 'Pan Fangdi', '赵学思': 'Zhao Xuesi'
+  }
+  
+  // 获取翻译后的姓名
+  const getTranslatedName = (name: string): string => {
+    // 如果是中文环境，直接返回中文姓名
+    if (locale === 'zh') {
+      return name
+    }
+    // 否则返回拼音
+    return pinyinNames[name] || name
   }
 
   const years = [
@@ -409,7 +462,7 @@ export default function AlumniLeadershipPage() {
                           <LeadershipCard
                             key={index}
                             position={translatePosition(member.position)}
-                            name={member.name}
+                            name={getTranslatedName(member.name)}
                             contact={member.contact}
                           />
                         ))}
@@ -424,7 +477,7 @@ export default function AlumniLeadershipPage() {
                           <LeadershipCard
                             key={index}
                             position={translatePosition(member.position)}
-                            name={member.name}
+                            name={getTranslatedName(member.name)}
                             contact={member.contact}
                           />
                         ))}
