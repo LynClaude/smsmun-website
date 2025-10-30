@@ -599,33 +599,122 @@ export default function AlumniForumPage() {
 
                 {/* 问题列表 */}
                 <div className="space-y-6">
-                  {questions.map((question) => (
-                    <div key={question.id} className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.question || question.title || question.content}</h3>
-                        <span className="text-sm text-gray-500">
-                          {new Date(question.created_at || question.timestamp || '').toLocaleString()}
-                        </span>
+                  {questions.map((question) => {
+                    const questionUserInfo = userAvatars[question.author] || null
+                    const isQuestionHonorAdvisor = questionUserInfo?.is_honor_advisor || false
+                    const questionFirstChar = (question.author || '未知用户').charAt(0).toUpperCase()
+                    
+                    return (
+                    <div 
+                      key={question.id} 
+                      className={`border rounded-lg p-4 ${
+                        isQuestionHonorAdvisor
+                          ? 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50'
+                          : 'border-gray-200'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3 mb-3">
+                        {/* 提问者头像 */}
+                        <div className="flex-shrink-0">
+                          {isQuestionHonorAdvisor ? (
+                            <div 
+                              className="w-10 h-10 bg-yellow-400 rounded-full shadow-md"
+                              style={{
+                                backgroundImage: 'url(/皇冠.png)',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                              }}
+                            />
+                          ) : (
+                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                              {questionFirstChar}
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* 问题内容 */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <span className={`font-medium ${isQuestionHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                                {question.author || '未知用户'}
+                              </span>
+                              {questionUserInfo?.is_honor_advisor && (
+                                <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
+                                  荣誉顾问
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-sm text-gray-500">
+                              {new Date(question.created_at || question.timestamp || '').toLocaleString()}
+                            </span>
+                          </div>
+                          <h3 className={`font-medium ${isQuestionHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                            {question.question || question.title || question.content}
+                          </h3>
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">
-                        提问者：{question.author || '未知用户'}
-                      </p>
                       
                       {/* 回答列表 */}
                       <div className="space-y-3 mb-4">
-                        {question.answers.map((answer) => (
-                          <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
-                            <div className="flex justify-between items-start mb-2">
-                              <span className="font-medium text-gray-900">
-                                {answer.author || '未知用户'}
-                              </span>
-                              <span className="text-sm text-gray-500">
-                                {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
-                              </span>
+                        {question.answers.map((answer) => {
+                          const answerUserInfo = userAvatars[answer.author] || null
+                          const isAnswerHonorAdvisor = answerUserInfo?.is_honor_advisor || false
+                          const answerFirstChar = (answer.author || '未知用户').charAt(0).toUpperCase()
+                          
+                          return (
+                          <div 
+                            key={answer.id} 
+                            className={`p-3 rounded-md ${
+                              isAnswerHonorAdvisor
+                                ? 'bg-gradient-to-r from-yellow-100 to-amber-100 border-l-4 border-yellow-500'
+                                : 'bg-gray-50'
+                            }`}
+                          >
+                            <div className="flex items-start gap-3 mb-2">
+                              {/* 回答者头像 */}
+                              <div className="flex-shrink-0">
+                                {isAnswerHonorAdvisor ? (
+                                  <div 
+                                    className="w-8 h-8 bg-yellow-400 rounded-full shadow-md"
+                                    style={{
+                                      backgroundImage: 'url(/皇冠.png)',
+                                      backgroundSize: 'cover',
+                                      backgroundPosition: 'center'
+                                    }}
+                                  />
+                                ) : (
+                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                    {answerFirstChar}
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* 回答内容 */}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex justify-between items-start mb-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className={`font-medium ${isAnswerHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                                      {answer.author || '未知用户'}
+                                    </span>
+                                    {isAnswerHonorAdvisor && (
+                                      <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
+                                        荣誉顾问
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className="text-sm text-gray-500">
+                                    {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
+                                  </span>
+                                </div>
+                                <p className={isAnswerHonorAdvisor ? 'text-amber-900' : 'text-gray-700'}>
+                                  {answer.answer || answer.content}
+                                </p>
+                              </div>
                             </div>
-                            <p className="text-gray-700">{answer.answer || answer.content}</p>
                           </div>
-                        ))}
+                          )
+                        })}
                       </div>
 
                       {/* 回答输入 */}
