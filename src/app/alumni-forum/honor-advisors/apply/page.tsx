@@ -257,8 +257,8 @@ export default function HonorAdvisorApplyPage() {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
                         <option value="">请选择毕业年份</option>
-                        {Array.from({ length: 20 }, (_, i) => {
-                          const year = 2024 - i
+                        {Array.from({ length: 30 }, (_, i) => {
+                          const year = 2030 - i
                           return (
                             <option key={year} value={year.toString()}>
                               {year}年
