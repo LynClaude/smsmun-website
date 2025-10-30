@@ -389,6 +389,11 @@ interface Messages {
     }
   }
   activities: {
+    menu: {
+      leadership_summit: string
+      school_conference: string
+      carnival: string
+    }
     school_conference: {
       title: string
       subtitle: string
@@ -398,6 +403,7 @@ interface Messages {
     }
     leadership_summit: {
       title: string
+      title_short: string
       subtitle: string
       select_year: string
       overview: string
@@ -407,6 +413,11 @@ interface Messages {
         location: string
         theme: string
       }
+    }
+    carnival: {
+      title: string
+      subtitle: string
+      description: string
     }
   }
 }

@@ -397,6 +397,11 @@
     }
   },
   "activities": {
+    "menu": {
+      "leadership_summit": "领袖峰会",
+      "school_conference": "深圳中学校内会",
+      "carnival": "游园会"
+    },
     "school_conference": {
       "title": "深圳中学校内会",
       "subtitle": "深中模联校内会议历年回顾",
@@ -406,6 +411,7 @@
     },
     "leadership_summit": {
       "title": "深圳市模拟联合国领袖峰会 2024",
+      "title_short": "领袖峰会 2024",
       "subtitle": "Shenzhen Summit for Chief Leaders in Model United Nations",
       "select_year": "选择年份",
       "overview": "会议简介",
@@ -415,6 +421,11 @@
         "location": "会议地点：深圳中学（泥岗校区）",
         "theme": "会议主题：深圳地区线下模联活动的重振与发展&模联社团创新与传承"
       }
+    },
+    "carnival": {
+      "title": "游园会",
+      "subtitle": "深中模联游园会活动回顾",
+      "description": "游园会是深圳中学模拟联合国协会的传统活动之一，每年在校园内举办。活动中，协会成员设置各种互动摊位和游戏，吸引全校师生参与，展示模联文化的魅力。"
     }
   }
 } 

@@ -133,6 +133,38 @@
     "advisors": "Conseillers",
     "leadership_members": "Membres"
   },
+  "activities": {
+    "menu": {
+      "leadership_summit": "Sommet du Leadership",
+      "school_conference": "Conférence du Collège de Shenzhen",
+      "carnival": "Carnaval"
+    },
+    "school_conference": {
+      "title": "Conférence du Collège de Shenzhen",
+      "subtitle": "Histoire de la Conférence Scolaire SMSMUN",
+      "yearly_conferences": "Conférences Annuelles",
+      "conference_info": "Conférence Scolaire de {year}",
+      "view_wechat": "Voir Article WeChat"
+    },
+    "leadership_summit": {
+      "title": "Sommet de Leadership du Modèle des Nations Unies de Shenzhen 2024",
+      "title_short": "Sommet du Leadership 2024",
+      "subtitle": "Sommet de Shenzhen pour les Leaders Principaux du Modèle des Nations Unies",
+      "select_year": "Sélectionner l'Année",
+      "overview": "Aperçu de la Conférence",
+      "overview_content": "Le Sommet de Leadership du Modèle des Nations Unies de Shenzhen est organisé par le Secrétariat de SMSMUN, ciblant les dirigeants et membres de gestion des organisations MUN des lycées de toute la ville, visant à promouvoir la coopération et le développement des activités MUN des étudiants du secondaire de Shenzhen.",
+      "details": {
+        "time": "Heure de la Conférence: 7 décembre 2024 (Samedi) 14:30-17:00",
+        "location": "Lieu de la Conférence: Collège de Shenzhen (Campus Nigang)",
+        "theme": "Thème de la Conférence: Revitalisation et Développement des Activités MUN Hors Ligne dans la Région de Shenzhen et Innovation et Héritage des Organisations MUN"
+      }
+    },
+    "carnival": {
+      "title": "Carnaval",
+      "subtitle": "Avis de l'Activité du Carnaval SMSMUN",
+      "description": "Le Carnaval est l'une des activités traditionnelles de l'Association du Modèle des Nations Unies du Collège de Shenzhen, organisée annuellement sur le campus. Pendant l'événement, les membres de l'association installent divers stands et jeux interactifs, attirant la participation de tous les enseignants et étudiants de l'école, montrant le charme de la culture MUN."
+    }
+  },
   "alumni_forum": {
     "title": "Forum des Anciens",
     "subtitle": "Plateforme de Communication Exclusive des Anciens SMSMUN",

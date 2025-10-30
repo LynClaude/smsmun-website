@@ -61,7 +61,7 @@ export default function LeadershipSummit2024Page() {
                       textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
                     }}
                   >
-                    领袖峰会 2024
+                    {messages.activities.leadership_summit.title_short}
                   </h1>
                   <p 
                     className="text-lg md:text-xl leading-relaxed opacity-90"
@@ -69,15 +69,15 @@ export default function LeadershipSummit2024Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    深圳市模拟联合国领袖峰会是由深圳中学模拟联合国协会秘书处主办，面向全市各高中模联组织负责人及管理层成员的大会，旨在推动深圳市高中生模联活动的合作与发展。
+                    {messages.activities.leadership_summit.overview_content}
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">会议信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>会议时间：2024年12月7日（周六）14:30-17:00</li>
-                      <li>会议地点：深圳中学（泥岗校区）</li>
-                      <li>会议主题：深圳地区线下模联活动的重振与发展&模联社团创新与传承</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
+                      <li>{messages.activities.leadership_summit.details.time}</li>
+                      <li>{messages.activities.leadership_summit.details.location}</li>
+                      <li>{messages.activities.leadership_summit.details.theme}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>

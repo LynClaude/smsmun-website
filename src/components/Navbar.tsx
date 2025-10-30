@@ -234,14 +234,28 @@ export default function Navbar() {
                       </div>
                     ) : item.isActivitiesDropdown ? (
             <div key={item.name} className="-mx-3 px-3 py-2">
-              <div className="text-base font-semibold text-gray-900 mb-2">活动与项目</div>
+              <div className="text-base font-semibold text-gray-900 mb-2">{messages.nav.events}</div>
               <div className="ml-4 space-y-1">
                 <Link
                   href="/activities/leadership-summit"
                   className="block text-sm text-gray-600 hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  领袖峰会
+                  {messages.activities.menu.leadership_summit}
+                </Link>
+                <Link
+                  href="/activities/school-conference"
+                  className="block text-sm text-gray-600 hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {messages.activities.menu.school_conference}
+                </Link>
+                <Link
+                  href="/activities/carnival"
+                  className="block text-sm text-gray-600 hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {messages.activities.menu.carnival}
                 </Link>
               </div>
             </div>

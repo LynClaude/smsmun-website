@@ -133,6 +133,38 @@
     "advisors": "Asesores",
     "leadership_members": "Miembros"
   },
+  "activities": {
+    "menu": {
+      "leadership_summit": "Cumbre de Liderazgo",
+      "school_conference": "Conferencia de la Escuela Secundaria de Shenzhen",
+      "carnival": "Carnaval"
+    },
+    "school_conference": {
+      "title": "Conferencia de la Escuela Secundaria de Shenzhen",
+      "subtitle": "Historia de la Conferencia Escolar SMSMUN",
+      "yearly_conferences": "Conferencias Anuales",
+      "conference_info": "Conferencia Escolar de {year}",
+      "view_wechat": "Ver Artículo de WeChat"
+    },
+    "leadership_summit": {
+      "title": "Cumbre de Liderazgo del Modelo de Naciones Unidas de Shenzhen 2024",
+      "title_short": "Cumbre de Liderazgo 2024",
+      "subtitle": "Cumbre de Shenzhen para Líderes Principales en Modelo de Naciones Unidas",
+      "select_year": "Seleccionar Año",
+      "overview": "Resumen de la Conferencia",
+      "overview_content": "La Cumbre de Liderazgo del Modelo de Naciones Unidas de Shenzhen está organizada por la Secretaría de SMSMUN, dirigida a líderes y miembros de gestión de organizaciones MUN de escuelas secundarias de toda la ciudad, con el objetivo de promover la cooperación y el desarrollo de las actividades MUN de estudiantes de secundaria de Shenzhen.",
+      "details": {
+        "time": "Tiempo de la Conferencia: 7 de diciembre de 2024 (Sábado) 14:30-17:00",
+        "location": "Ubicación de la Conferencia: Escuela Secundaria de Shenzhen (Campus Nigang)",
+        "theme": "Tema de la Conferencia: Revitalización y Desarrollo de Actividades MUN Fuera de Línea en la Región de Shenzhen e Innovación y Herencia de Organizaciones MUN"
+      }
+    },
+    "carnival": {
+      "title": "Carnaval",
+      "subtitle": "Revisión de la Actividad del Carnaval SMSMUN",
+      "description": "El Carnaval es una de las actividades tradicionales de la Asociación del Modelo de Naciones Unidas de la Escuela Secundaria de Shenzhen, se celebra anualmente en el campus. Durante el evento, los miembros de la asociación establecen varios puestos y juegos interactivos, atrayendo la participación de todos los maestros y estudiantes de la escuela, mostrando el encanto de la cultura MUN."
+    }
+  },
   "alumni_forum": {
     "title": "Foro de Exalumnos",
     "subtitle": "Plataforma de Comunicación Exclusiva de Exalumnos SMSMUN",

@@ -32,21 +32,21 @@ export default function ActivitiesSelector() {
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
             onClick={() => setIsOpen(false)}
           >
-            领袖峰会
+            {messages.activities.menu.leadership_summit}
           </Link>
           <Link
             href="/activities/school-conference"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
             onClick={() => setIsOpen(false)}
           >
-            深圳中学校内会
+            {messages.activities.menu.school_conference}
           </Link>
           <Link
             href="/activities/carnival"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
             onClick={() => setIsOpen(false)}
           >
-            游园会
+            {messages.activities.menu.carnival}
           </Link>
         </div>
       )}

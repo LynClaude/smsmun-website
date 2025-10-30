@@ -384,6 +384,11 @@
     }
   },
   "activities": {
+    "menu": {
+      "leadership_summit": "Leadership Summit",
+      "school_conference": "Shenzhen Middle School Conference",
+      "carnival": "Carnival"
+    },
     "school_conference": {
       "title": "Shenzhen Middle School Conference",
       "subtitle": "SMSMUN School Conference History",
@@ -393,6 +398,7 @@
     },
     "leadership_summit": {
       "title": "Shenzhen Model United Nations Leadership Summit 2024",
+      "title_short": "Leadership Summit 2024",
       "subtitle": "Shenzhen Summit for Chief Leaders in Model United Nations",
       "select_year": "Select Year",
       "overview": "Conference Overview",
@@ -402,6 +408,11 @@
         "location": "Conference Location: Shenzhen Middle School (Nigang Campus)",
         "theme": "Conference Theme: Revitalization and Development of Offline MUN Activities in Shenzhen Region & Innovation and Heritage of MUN Organizations"
       }
+    },
+    "carnival": {
+      "title": "Carnival",
+      "subtitle": "SMSMUN Carnival Activity Review",
+      "description": "The Carnival is one of the traditional activities of Shenzhen Middle School Model United Nations Association, held annually on campus. During the event, association members set up various interactive booths and games, attracting participation from the entire school's teachers and students, showcasing the charm of MUN culture."
     }
   }
 }
