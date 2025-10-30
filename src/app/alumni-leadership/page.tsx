@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import PageTransition from '@/components/PageTransition'
 import { LeadershipCard } from '@/components/LeadershipCard'
+import { useI18n } from '@/lib/i18n-context'
 
 interface Member {
   position: string
@@ -20,7 +21,30 @@ interface LeadershipData {
 }
 
 export default function AlumniLeadershipPage() {
+  const { messages } = useI18n()
   const [selectedYear, setSelectedYear] = useState('2024-2025')
+  
+  // 职位翻译映射函数
+  const translatePosition = (position: string): string => {
+    if (!messages.alumni.positions) return position
+    
+    const posMap: { [key: string]: string } = {
+      '协会秘书长': messages.alumni.positions.association_secretary_general,
+      '常务秘书长': messages.alumni.positions.executive_secretary_general,
+      '学术事务部副秘书长': messages.alumni.positions.academic_affairs_deputy,
+      '公共关系事务部副秘书长': messages.alumni.positions.public_relations_deputy,
+      '行政关系事务部副秘书长': messages.alumni.positions.administrative_affairs_deputy,
+      '技术关系事务部副秘书长': messages.alumni.positions.technical_affairs_deputy,
+      '行政管理事务部副秘书长': messages.alumni.positions.administrative_affairs_deputy,
+      '技术宣传事务部副秘书长': messages.alumni.positions.technical_affairs_deputy,
+      '学术事务部高级顾问': messages.alumni.positions.academic_affairs_advisor,
+      '公共关系事务部高级顾问': messages.alumni.positions.public_relations_advisor,
+      '行政关系事务部高级顾问': messages.alumni.positions.administrative_affairs_advisor,
+      '行政事务部高级顾问': messages.alumni.positions.administrative_affairs_advisor,
+    }
+    
+    return posMap[position] || position
+  }
 
   const years = [
     '2024-2025',
@@ -352,7 +376,7 @@ export default function AlumniLeadershipPage() {
           <div className="flex flex-col md:flex-row gap-8">
             {/* 左侧年份导航 */}
             <div className="md:w-64 space-y-2">
-              <h2 className="text-xl font-bold mb-4">历届高层</h2>
+              <h2 className="text-xl font-bold mb-4">{messages.alumni.title}</h2>
               <div className="bg-white rounded-lg shadow-md p-4 space-y-2">
                 {years.map((year) => (
                   <button
@@ -373,18 +397,18 @@ export default function AlumniLeadershipPage() {
             {/* 右侧内容区域 */}
             <div className="flex-1">
               <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold mb-8">{selectedYear} 高层成员</h2>
+                <h2 className="text-2xl font-bold mb-8">{selectedYear} {messages.alumni.leadership_members}</h2>
                 
                 {leadershipData[selectedYear] ? (
                   <>
                     {/* 秘书处 */}
                     <div className="mb-12">
-                      <h3 className="text-xl font-semibold mb-6">秘书处</h3>
+                      <h3 className="text-xl font-semibold mb-6">{messages.alumni.secretariat}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {leadershipData[selectedYear].secretariat.map((member, index) => (
                           <LeadershipCard
                             key={index}
-                            position={member.position}
+                            position={translatePosition(member.position)}
                             name={member.name}
                             contact={member.contact}
                           />
@@ -394,12 +418,12 @@ export default function AlumniLeadershipPage() {
 
                     {/* 高级顾问 */}
                     <div>
-                      <h3 className="text-xl font-semibold mb-6">高级顾问</h3>
+                      <h3 className="text-xl font-semibold mb-6">{messages.alumni.advisors}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {leadershipData[selectedYear].advisors.map((member, index) => (
                           <LeadershipCard
                             key={index}
-                            position={member.position}
+                            position={translatePosition(member.position)}
                             name={member.name}
                             contact={member.contact}
                           />
@@ -409,7 +433,7 @@ export default function AlumniLeadershipPage() {
                   </>
                 ) : (
                   <div className="text-center text-gray-500">
-                    该年份的数据暂未收录
+                    {messages.alumni.no_data}
                   </div>
                 )}
               </div>

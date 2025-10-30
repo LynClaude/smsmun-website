@@ -82,6 +82,21 @@ interface Messages {
     secretariat: string
     advisors: string
     leadership_members: string
+    no_data: string
+    position: string
+    name: string
+    contact: string
+    positions: {
+      association_secretary_general: string
+      executive_secretary_general: string
+      academic_affairs_deputy: string
+      public_relations_deputy: string
+      administrative_affairs_deputy: string
+      technical_affairs_deputy: string
+      academic_affairs_advisor: string
+      public_relations_advisor: string
+      administrative_affairs_advisor: string
+    }
   }
   departments: {
     title: string
