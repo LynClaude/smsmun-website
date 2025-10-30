@@ -77,12 +77,12 @@ export default function PPRDMUN2020Page() {
                     贰零贰零是不平凡的一年，深中模联已走过十六载光阴。在泛珠模联人不懈的坚守中、在泛珠模联人崇高的追求中，信念的微光积累成岁月的光束，映出往日斑驳的波澜。
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">大会信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>举办时间：2020年7月24日-27日</li>
-                      <li>举办形式：线上会议</li>
-                      <li>会议语言：中文/英文</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
+                      <li>{messages.pprdmun.time.replace('2025', '2020').replace('7月中旬', '7月24日-27日')}</li>
+                      <li>{messages.pprdmun.location.replace('深圳中学泥岗校区', '线上会议')}</li>
+                      <li>{messages.pprdmun.language}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>

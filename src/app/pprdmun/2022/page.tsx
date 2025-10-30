@@ -69,12 +69,12 @@ export default function PPRDMUN2022Page() {
                     贰零贰贰是燦然一新的一年，十二载笃行不辍，十二载踵事增华。身为模联人，我们长怀理想主义之热忱，奋逐独立自由之远方。
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">大会信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>举办时间：2022年7月下旬</li>
-                      <li>举办地点：深圳中学新校区</li>
-                      <li>会议语言：中文/英文</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
+                      <li>{messages.pprdmun.time.replace('2025', '2022').replace('中旬', '下旬')}</li>
+                      <li>{messages.pprdmun.location}</li>
+                      <li>{messages.pprdmun.language}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>

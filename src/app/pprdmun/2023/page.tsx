@@ -69,12 +69,12 @@ export default function PPRDMUN2023Page() {
                     贰零贰叁是生机盎然的一年，疫情的阴霾正逐渐消散，希望的曙光重又扬洒于世界。十三载砥砺深耕，十三载履践致远。
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">大会信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>举办时间：2023年7月中旬</li>
-                      <li>举办地点：深圳中学泥岗校区</li>
-                      <li>会议语言：中文/英文</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
+                      <li>{messages.pprdmun.time.replace('2025', '2023')}</li>
+                      <li>{messages.pprdmun.location}</li>
+                      <li>{messages.pprdmun.language}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>

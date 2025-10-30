@@ -74,12 +74,12 @@ export default function PPRDMUN2021Page() {
                     贰零贰壹是时盛岁新的一年，十二载休戚与共，十二载初心不改。身为模联人，为天地立心，为生民立命，为往圣继绝学，为万世开太平。
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">大会信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>举办时间：2021年7月中旬</li>
-                      <li>举办地点：深圳中学新校区</li>
-                      <li>会议语言：中文/英文</li>
-                      <li>主办方：深圳中学模拟联合国协会</li>
+                      <li>{messages.pprdmun.time.replace('2025', '2021')}</li>
+                      <li>{messages.pprdmun.location}</li>
+                      <li>{messages.pprdmun.language}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>

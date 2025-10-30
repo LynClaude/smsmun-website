@@ -87,12 +87,12 @@ export default function PPRDMUN2024Page() {
                     2024年泛珠三角高中生模拟联合国大会
                   </p>
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold">会议信息</h2>
+                    <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>
                     <ul className="list-disc list-inside space-y-2 opacity-90">
-                      <li>时间：2024年7月中旬</li>
-                      <li>地点：深圳中学泥岗校区</li>
-                      <li>语言：中文/英文</li>
-                      <li>主办：深圳中学模拟联合国协会</li>
+                      <li>{messages.pprdmun.time.replace('2025', '2024')}</li>
+                      <li>{messages.pprdmun.location}</li>
+                      <li>{messages.pprdmun.language}</li>
+                      <li>{messages.pprdmun.organizer}</li>
                     </ul>
                   </div>
                 </div>
