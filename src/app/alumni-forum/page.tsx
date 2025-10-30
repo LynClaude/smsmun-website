@@ -12,26 +12,35 @@ import { useI18n } from '@/lib/i18n-context'
 
 interface Message {
   id: string
-  user_id: string
+  user_id?: string
+  author: string
   content: string
   created_at: string
+  timestamp?: string
+  contact?: string
 }
 
 interface Question {
   id: string
-  user_id: string
-  title: string
-  content: string
+  user_id?: string
+  author: string
+  question: string
+  title?: string
+  content?: string
   answers: Answer[]
   created_at: string
+  timestamp?: string
 }
 
 interface Answer {
   id: string
   question_id: string
-  user_id: string
-  content: string
+  user_id?: string
+  author: string
+  answer: string
+  content?: string
   created_at: string
+  timestamp?: string
 }
 
 interface HonorAdvisor {
@@ -106,7 +115,7 @@ export default function AlumniForumPage() {
       } else {
         setMessages(messagesData || [])
         
-        // 获取所有留言的真实用户信息
+        // 获取所有留言的真实用户信息（仅用于头像和标签显示）
         if (messagesData && messagesData.length > 0) {
           const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
           console.log('👤 提取的真实用户ID:', userIds)
@@ -140,8 +149,8 @@ export default function AlumniForumPage() {
                 }
               })
               console.log('✅ 真实用户名映射:', nameMap)
-              setUserNames(nameMap)
-              setUserAvatars(avatarMap)
+              setUserNames(prev => ({ ...prev, ...nameMap }))
+              setUserAvatars(prev => ({ ...prev, ...avatarMap }))
             } else {
               console.log('⚠️ 没有找到用户数据')
             }
@@ -500,8 +509,10 @@ export default function AlumniForumPage() {
                 {/* 留言列表 */}
                 <div className="space-y-4">
                   {messages.map((message) => {
-                    const userInfo = userAvatars[message.user_id]
-                    const displayName = userNames[message.user_id] || `用户 ${message.user_id ? message.user_id.substring(0, 8) : '未知'}`
+                    // 使用 author 字段直接显示用户名
+                    const displayName = message.author || '未知用户'
+                    const firstChar = displayName.charAt(0).toUpperCase()
+                    const userInfo = message.user_id ? userAvatars[message.user_id] : null
                     
                     return (
                       <div key={message.id} className="border-l-4 border-primary pl-4 py-3 bg-gray-50 rounded-r-lg">
@@ -520,7 +531,7 @@ export default function AlumniForumPage() {
                               </div>
                             ) : (
                               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                {displayName.charAt(0).toUpperCase()}
+                                {firstChar}
                               </div>
                             )}
                           </div>
@@ -546,7 +557,7 @@ export default function AlumniForumPage() {
                                 )}
                               </div>
                               <span className="text-sm text-gray-500">
-                                {new Date(message.created_at).toLocaleString()}
+                                {new Date(message.created_at || message.timestamp || '').toLocaleString()}
                               </span>
                             </div>
                             <p className="text-gray-700">{message.content}</p>
@@ -586,13 +597,13 @@ export default function AlumniForumPage() {
                   {questions.map((question) => (
                     <div key={question.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.title}</h3>
+                        <h3 className="font-medium text-gray-900">{question.question || question.title || question.content}</h3>
                         <span className="text-sm text-gray-500">
-                          {new Date(question.created_at).toLocaleString()}
+                          {new Date(question.created_at || question.timestamp || '').toLocaleString()}
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        提问者：{userNames[question.user_id] || `用户 ${question.user_id ? question.user_id.substring(0, 8) : '未知'}`}
+                        提问者：{question.author || (userNames[question.user_id || ''] || '未知用户')}
                       </p>
                       
                       {/* 回答列表 */}
@@ -601,13 +612,13 @@ export default function AlumniForumPage() {
                           <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
                             <div className="flex justify-between items-start mb-2">
                               <span className="font-medium text-gray-900">
-                                {userNames[answer.user_id] || `用户 ${answer.user_id ? answer.user_id.substring(0, 8) : '未知'}`}
+                                {answer.author || (userNames[answer.user_id || ''] || '未知用户')}
                               </span>
                               <span className="text-sm text-gray-500">
-                                {new Date(answer.created_at).toLocaleString()}
+                                {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
                               </span>
                             </div>
-                            <p className="text-gray-700">{answer.content}</p>
+                            <p className="text-gray-700">{answer.answer || answer.content}</p>
                           </div>
                         ))}
                       </div>
