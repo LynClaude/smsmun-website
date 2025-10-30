@@ -66,7 +66,7 @@ export default function PPRDMUN2023Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    贰零贰叁是生机盎然的一年，疫情的阴霾正逐渐消散，希望的曙光重又扬洒于世界。十三载砥砺深耕，十三载履践致远。
+                    {messages.pprdmun.year_descriptions['2023']}
                   </p>
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>

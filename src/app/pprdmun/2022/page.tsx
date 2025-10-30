@@ -66,7 +66,7 @@ export default function PPRDMUN2022Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    贰零贰贰是燦然一新的一年，十二载笃行不辍，十二载踵事增华。身为模联人，我们长怀理想主义之热忱，奋逐独立自由之远方。
+                    {messages.pprdmun.year_descriptions['2022']}
                   </p>
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>

@@ -84,7 +84,7 @@ export default function PPRDMUN2024Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    2024年泛珠三角高中生模拟联合国大会
+                    {messages.pprdmun.year_descriptions['2024']}
                   </p>
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>

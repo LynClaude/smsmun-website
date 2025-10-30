@@ -71,7 +71,7 @@ export default function PPRDMUN2021Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    贰零贰壹是时盛岁新的一年，十二载休戚与共，十二载初心不改。身为模联人，为天地立心，为生民立命，为往圣继绝学，为万世开太平。
+                    {messages.pprdmun.year_descriptions['2021']}
                   </p>
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>

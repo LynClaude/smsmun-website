@@ -224,6 +224,13 @@ interface Messages {
     invitation_desc: string
     invitation_letter_2025: string
     invitation_letter_desc: string
+    year_descriptions: {
+      '2024': string
+      '2023': string
+      '2022': string
+      '2021': string
+      '2020': string
+    }
   }
   common: {
     dept_intro: string

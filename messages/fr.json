@@ -118,7 +118,14 @@
     "invitation_title": "Lettre d'Invitation",
     "invitation_desc": "Cliquez sur la lettre pour voir le contenu complet de la lettre d'invitation",
     "invitation_letter_2025": "Lettre d'Invitation PPRDMUN 2025",
-    "invitation_letter_desc": "Tout se renouvelle, plein de splendeur, quinze ans de PPRDMUN se rassemblant à nouveau sous la couronne de plumes du phénix"
+    "invitation_letter_desc": "Tout se renouvelle, plein de splendeur, quinze ans de PPRDMUN se rassemblant à nouveau sous la couronne de plumes du phénix",
+    "year_descriptions": {
+      "2024": "La Conférence du Modèle des Nations Unies pour les Lycéens du Delta de la Rivière des Perles 2024",
+      "2023": "2023 est une année de vitalité. Les ombres de la pandémie se dissipent progressivement, et l'aube de l'espoir illumine à nouveau le monde. Treize ans de dévouement inlassable, treize ans d'avancement.",
+      "2022": "2022 est une brillante nouvelle année. Douze ans d'engagement inébranlable, douze ans de progrès continu. En tant que MUNers, nous maintenons l'enthousiasme idéaliste, luttant vers l'indépendance et la liberté.",
+      "2021": "2021 est une nouvelle année prospère. Douze ans de solidarité, douze ans de dévouement inébranlable. En tant que MUNers, nous établissons nos cœurs pour le ciel et la terre, assumons la responsabilité pour le peuple, héritons de la sagesse des sages et créons la paix pour les générations.",
+      "2020": "2020 est une année extraordinaire. SMSMUN a traversé seize ans. Dans le dévouement persistant des membres de Pan-Pearl MUN, l'éclat de la croyance s'accumule en faisceaux de temps, reflétant les vagues du passé."
+    }
   },
   "alumni": {
     "title": "Direction",

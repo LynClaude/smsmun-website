@@ -74,7 +74,7 @@ export default function PPRDMUN2020Page() {
                       fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif"
                     }}
                   >
-                    贰零贰零是不平凡的一年，深中模联已走过十六载光阴。在泛珠模联人不懈的坚守中、在泛珠模联人崇高的追求中，信念的微光积累成岁月的光束，映出往日斑驳的波澜。
+                    {messages.pprdmun.year_descriptions['2020']}
                   </p>
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">{messages.pprdmun.conference_info}</h2>

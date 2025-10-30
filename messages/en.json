@@ -218,7 +218,14 @@
     "invitation_title": "Invitation Letter",
     "invitation_desc": "Click the letter to view the complete invitation letter content",
     "invitation_letter_2025": "PPRDMUN 2025 Invitation Letter",
-    "invitation_letter_desc": "Everything is renewed, full of splendor, fifteen years of PPRDMUN gathering again under the phoenix crown and feathers"
+    "invitation_letter_desc": "Everything is renewed, full of splendor, fifteen years of PPRDMUN gathering again under the phoenix crown and feathers",
+    "year_descriptions": {
+      "2024": "The 2024 Pan-Pearl River Delta High School Model United Nations Conference",
+      "2023": "2023 is a year of vitality. The shadow of the pandemic is gradually dissipating, and the dawn of hope once again illuminates the world. Thirteen years of relentless dedication, thirteen years of forging ahead.",
+      "2022": "2022 is a brilliant new year. Twelve years of unwavering commitment, twelve years of continuous progress. As MUNers, we maintain idealistic enthusiasm, striving towards independence and freedom.",
+      "2021": "2021 is a prosperous new year. Twelve years of solidarity, twelve years of unwavering dedication. As MUNers, we set our hearts for heaven and earth, shoulder responsibility for the people, inherit the wisdom of sages, and create peace for generations.",
+      "2020": "2020 is an extraordinary year. SMSMUN has traversed sixteen years. In the persistent dedication of Pan-Pearl MUN members, the belief's shimmer accumulates into beams of time, reflecting the ripples of the past."
+    }
   },
   "common": {
     "dept_intro": "Department Introduction"
