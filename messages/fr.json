@@ -198,6 +198,14 @@
       "subtitle": "Association du Modèle des Nations Unies du Collège de Shenzhen",
       "members_count": "{count} Conseillers d'Honneur",
       "return_to_forum": "Retour au Forum des Anciens",
+      "features": {
+        "title": "Caractéristiques Principales du Comité Consultatif",
+        "consultation": "Orientation Consultative : Fournir une expérience et des conseils précieux lors de l'organisation d'activités importantes",
+        "sharing": "Partage d'Expérience : Transmettre l'esprit et les compétences MUN par des réunions de guidance en ligne",
+        "priority": "Participation Prioritaire : Invitation prioritaire aux principales activités de l'association",
+        "honor": "Statut d'Honneur : Identité marquée dans les documents officiels, recevoir des articles commémoratifs annuels"
+      },
+      "learn_more": "En Savoir Plus et Postuler",
       "overview_title": "Aperçu",
       "overview_content1": "Pour renforcer les liens entre SMSMUN et d'anciens membres exceptionnels, nous créons un Comité Consultatif.",
       "overview_content2": "Le Comité Consultatif est un organe consultatif dont les membres fournissent des conseils sans administration quotidienne.",

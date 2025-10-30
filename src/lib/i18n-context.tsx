@@ -266,6 +266,8 @@ interface Messages {
     honor_advisors: {
       title: string
       subtitle: string
+      members_count: string
+      return_to_forum: string
       features: {
         title: string
         consultation: string
@@ -274,36 +276,36 @@ interface Messages {
         honor: string
       }
       learn_more: string
-      members_count: string
-      overview: string
-      overview_content: string
+      overview_title: string
+      overview_content1: string
       overview_content2: string
       overview_content3: string
-      core_features: string
-      consultation_guide: string
+      core_features_title: string
+      consultation_title: string
       consultation_desc: string
-      experience_sharing: string
-      experience_desc: string
-      priority_participation: string
+      sharing_title: string
+      sharing_desc: string
+      priority_title: string
       priority_desc: string
-      honor_status: string
+      honor_title: string
       honor_desc: string
-      requirements: string
+      requirements_title: string
       requirement1: string
       requirement2: string
       requirement3: string
-      members: string
+      members_title: string
       refresh: string
       refreshing: string
       loading: string
-      no_members: string
-      building: string
+      no_members_title: string
+      no_members_desc: string
       read_charter: string
       apply: string
-      email: string
-      position: string
-      join_time: string
-      graduation_year: string
+      login_to_apply: string
+      in_association_position: string
+      graduates: string
+      email_label: string
+      join_time_label: string
     }
   }
   profile: {
