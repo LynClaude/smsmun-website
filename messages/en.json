@@ -188,7 +188,18 @@
     "no_data": "No data available for this year",
     "position": "Position",
     "name": "Name",
-    "contact": "Contact"
+    "contact": "Contact",
+    "positions": {
+      "association_secretary_general": "Secretary-General",
+      "executive_secretary_general": "Executive Secretary-General",
+      "academic_affairs_deputy": "Deputy Secretary-General for Academic Affairs",
+      "public_relations_deputy": "Deputy Secretary-General for Public Relations",
+      "administrative_affairs_deputy": "Deputy Secretary-General for Administrative Affairs",
+      "technical_affairs_deputy": "Deputy Secretary-General for Technical Affairs",
+      "academic_affairs_advisor": "Senior Advisor for Academic Affairs",
+      "public_relations_advisor": "Senior Advisor for Public Relations",
+      "administrative_affairs_advisor": "Senior Advisor for Administrative Affairs"
+    }
   },
   "pprdmun": {
     "return_to": "Return to",

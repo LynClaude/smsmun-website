@@ -223,7 +223,18 @@
     "no_data": "该年份的数据暂未收录",
     "position": "职位",
     "name": "姓名",
-    "contact": "联系方式"
+    "contact": "联系方式",
+    "positions": {
+      "association_secretary_general": "协会秘书长",
+      "executive_secretary_general": "常务秘书长",
+      "academic_affairs_deputy": "学术事务部副秘书长",
+      "public_relations_deputy": "公共关系事务部副秘书长",
+      "administrative_affairs_deputy": "行政关系事务部副秘书长",
+      "technical_affairs_deputy": "技术关系事务部副秘书长",
+      "academic_affairs_advisor": "学术事务部高级顾问",
+      "public_relations_advisor": "公共关系事务部高级顾问",
+      "administrative_affairs_advisor": "行政关系事务部高级顾问"
+    }
   },
   "common": {
     "dept_intro": "部门简介"
