@@ -290,6 +290,22 @@ export default function PPRDMUNPage() {
               </div>
             </section>
 
+        {/* 邀请函区域 */}
+        <div className="bg-gray-50 py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.pprdmun.invitation_title}</h2>
+              <p className="text-gray-600">{messages.pprdmun.invitation_desc}</p>
+            </div>
+            <InvitationLetter
+              year={2025}
+              title={messages.pprdmun.invitation_letter_2025}
+              description={messages.pprdmun.invitation_letter_desc}
+              href="/pprdmun/2025/letter"
+            />
+          </div>
+        </div>
+
         {/* 委员会设置 */}
         <div className="bg-white py-24">
           <div className="container mx-auto px-4">
@@ -359,22 +375,6 @@ export default function PPRDMUNPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* 邀请函区域 */}
-        <div className="bg-gray-50 py-24">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{messages.pprdmun.invitation_title}</h2>
-              <p className="text-gray-600">{messages.pprdmun.invitation_desc}</p>
-            </div>
-            <InvitationLetter
-              year={2025}
-              title={messages.pprdmun.invitation_letter_2025}
-              description={messages.pprdmun.invitation_letter_desc}
-              href="/pprdmun/2025/letter"
-            />
           </div>
         </div>
 
