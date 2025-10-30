@@ -74,7 +74,6 @@ export default function AlumniForumPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
-  const [userNames, setUserNames] = useState<{[key: string]: string}>({})
   const [userAvatars, setUserAvatars] = useState<{[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}}>({})
 
   useEffect(() => {
@@ -117,14 +116,15 @@ export default function AlumniForumPage() {
         
         // 获取所有留言的真实用户信息（仅用于头像和标签显示）
         if (messagesData && messagesData.length > 0) {
-          const userIds = Array.from(new Set(messagesData.filter(msg => msg.user_id).map(msg => msg.user_id)))
-          console.log('👤 提取的真实用户ID:', userIds)
+          // 获取所有唯一的用户名
+          const usernames = Array.from(new Set(messagesData.map(msg => msg.author).filter(Boolean)))
+          console.log('👤 提取的真实用户名:', usernames)
           
-          if (userIds.length > 0) {
+          if (usernames.length > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('id, username, is_honor_advisor, is_alumni')
-              .in('id', userIds)
+              .select('username, is_honor_advisor, is_alumni')
+              .in('username', usernames)
             
             console.log('👤 真实用户查询结果:', { 
               success: !usersError,
@@ -136,26 +136,23 @@ export default function AlumniForumPage() {
             if (usersError) {
               console.error('❌ 用户查询失败:', usersError.message)
             } else if (usersData) {
-              const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
-                if (u.id && u.username) {
-                  nameMap[u.id] = u.username
-                  avatarMap[u.id] = {
+                if (u.username) {
+                  avatarMap[u.username] = {
                     username: u.username,
                     is_honor_advisor: u.is_honor_advisor || false,
                     is_alumni: u.is_alumni || false
                   }
                 }
               })
-              console.log('✅ 真实用户名映射:', nameMap)
-              setUserNames(prev => ({ ...prev, ...nameMap }))
+              console.log('✅ 真实用户名映射:', avatarMap)
               setUserAvatars(prev => ({ ...prev, ...avatarMap }))
             } else {
               console.log('⚠️ 没有找到用户数据')
             }
           } else {
-            console.log('⚠️ 没有找到用户ID')
+            console.log('⚠️ 没有找到用户名')
           }
         } else {
           console.log('⚠️ 没有留言数据')
@@ -205,28 +202,28 @@ export default function AlumniForumPage() {
 
         // 获取所有问题和回答的真实用户名
         if (questionsWithAnswers && questionsWithAnswers.length > 0) {
-          const allUserIds = new Set<string>()
+          const allUsernames = new Set<string>()
           
-          // 收集问题的用户ID
+          // 收集问题的用户名
           questionsWithAnswers.forEach(question => {
-            if (question.user_id) {
-              allUserIds.add(question.user_id)
+            if (question.author) {
+              allUsernames.add(question.author)
             }
-            // 收集回答的用户ID
+            // 收集回答的用户名
             question.answers?.forEach((answer: Answer) => {
-              if (answer.user_id) {
-                allUserIds.add(answer.user_id)
+              if (answer.author) {
+                allUsernames.add(answer.author)
               }
             })
           })
 
-          console.log('👤 问答区用户ID列表:', Array.from(allUserIds))
+          console.log('👤 问答区用户名列表:', Array.from(allUsernames))
 
-          if (allUserIds.size > 0) {
+          if (allUsernames.size > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('id, username, is_honor_advisor, is_alumni')
-              .in('id', Array.from(allUserIds))
+              .select('username, is_honor_advisor, is_alumni')
+              .in('username', Array.from(allUsernames))
             
             console.log('👤 问答区用户查询结果:', { 
               success: !usersError,
@@ -238,20 +235,17 @@ export default function AlumniForumPage() {
             if (usersError) {
               console.error('❌ 问答区用户查询失败:', usersError.message)
             } else if (usersData) {
-              const nameMap: {[key: string]: string} = {}
               const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
               usersData.forEach(u => {
-                if (u.id && u.username) {
-                  nameMap[u.id] = u.username
-                  avatarMap[u.id] = {
+                if (u.username) {
+                  avatarMap[u.username] = {
                     username: u.username,
                     is_honor_advisor: u.is_honor_advisor || false,
                     is_alumni: u.is_alumni || false
                   }
                 }
               })
-              console.log('✅ 问答区用户名映射:', nameMap)
-              setUserNames(prev => ({ ...prev, ...nameMap }))
+              console.log('✅ 问答区用户名映射:', avatarMap)
               setUserAvatars(prev => ({ ...prev, ...avatarMap }))
             }
           }
@@ -512,7 +506,7 @@ export default function AlumniForumPage() {
                     // 使用 author 字段直接显示用户名
                     const displayName = message.author || '未知用户'
                     const firstChar = displayName.charAt(0).toUpperCase()
-                    const userInfo = message.user_id ? userAvatars[message.user_id] : null
+                    const userInfo = userAvatars[message.author] || null
                     const isHonorAdvisor = userInfo?.is_honor_advisor || false
                     
                     return (
@@ -615,7 +609,7 @@ export default function AlumniForumPage() {
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">
-                        提问者：{question.author || (userNames[question.user_id || ''] || '未知用户')}
+                        提问者：{question.author || '未知用户'}
                       </p>
                       
                       {/* 回答列表 */}
@@ -624,7 +618,7 @@ export default function AlumniForumPage() {
                           <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
                             <div className="flex justify-between items-start mb-2">
                               <span className="font-medium text-gray-900">
-                                {answer.author || (userNames[answer.user_id || ''] || '未知用户')}
+                                {answer.author || '未知用户'}
                               </span>
                               <span className="text-sm text-gray-500">
                                 {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
