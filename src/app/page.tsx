@@ -139,7 +139,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
-                    历史传承
+                    {messages.home.event6_title}
                   </h3>
                 </div>
               </div>
