@@ -147,7 +147,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event6_title}</h3>
                 <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event6_desc}</p>
                 <Link 
-                  href="/about/history" 
+                  href="/alumni-forum/honor-advisors" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
                 >
                   {messages.home.learn_more} →

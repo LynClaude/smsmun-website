@@ -12,6 +12,7 @@ interface Messages {
     pprdmun: string
     events: string
     alumni_network: string
+    honor_advisor: string
     resources: string
     login: string
     open_menu: string

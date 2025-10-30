@@ -79,7 +79,7 @@ export default function Navbar() {
             href="/alumni-forum/honor-advisors"
             className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
           >
-            荣誉顾问
+            {messages.nav.honor_advisor}
           </Link>
           {/* 校友还可以看到校友交流链接 */}
           {user && user.is_alumni && (
@@ -87,7 +87,7 @@ export default function Navbar() {
               href="/alumni-forum"
               className="text-xs xl:text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors whitespace-nowrap"
             >
-              校友交流
+              {messages.nav.alumni_network}
             </Link>
           )}
         </div>
@@ -261,7 +261,7 @@ export default function Navbar() {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    荣誉顾问
+                    {messages.nav.honor_advisor}
                   </Link>
                   {/* 校友还可以看到校友交流链接 */}
                   {user && user.is_alumni && (
@@ -270,7 +270,7 @@ export default function Navbar() {
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      校友交流
+                      {messages.nav.alumni_network}
                     </Link>
                   )}
                 </div>
