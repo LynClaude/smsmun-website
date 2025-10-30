@@ -522,15 +522,14 @@ export default function AlumniForumPage() {
                           {/* 用户头像 */}
                           <div className="flex-shrink-0">
                             {isHonorAdvisor ? (
-                              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center shadow-md">
-                                <Image
-                                  src="/皇冠.png"
-                                  alt="荣誉顾问"
-                                  width={24}
-                                  height={24}
-                                  className="object-contain"
-                                />
-                              </div>
+                              <div 
+                                className="w-10 h-10 bg-yellow-400 rounded-full shadow-md"
+                                style={{
+                                  backgroundImage: 'url(/皇冠.png)',
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center'
+                                }}
+                              />
                             ) : (
                               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
                                 {firstChar}
