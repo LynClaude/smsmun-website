@@ -54,6 +54,10 @@ interface Messages {
     event5_desc: string
     event6_title: string
     event6_desc: string
+    activities_title: string
+    activities_desc: string
+    guidance_title: string
+    guidance_desc: string
   }
   footer: {
     social_media: string
