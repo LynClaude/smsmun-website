@@ -75,13 +75,13 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
-                    活动与项目
+                    {messages.home.activities_title}
                   </h3>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">活动与项目</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">领袖峰会、校内会、游园会等精彩活动</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.activities_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.activities_desc}</p>
                 <Link 
                   href="/activities/leadership-summit" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
@@ -107,13 +107,13 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
-                    社团发展指导
+                    {messages.home.guidance_title}
                   </h3>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">社团发展指导</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">为模联社团提供专业的发展指导和经验分享</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.guidance_title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.guidance_desc}</p>
                 <Link 
                   href="/alumni-leadership" 
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"

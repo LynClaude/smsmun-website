@@ -47,7 +47,11 @@
     "event5_title": "校友网络",
     "event5_desc": "建立强大的校友网络，为成员提供持续的支持和职业发展指导。",
     "event6_title": "历史传承",
-    "event6_desc": "传承深中模联的优秀传统，培养具有国际视野的青年领袖。"
+    "event6_desc": "传承深中模联的优秀传统，培养具有国际视野的青年领袖。",
+    "activities_title": "活动与项目",
+    "activities_desc": "领袖峰会、校内会、游园会等精彩活动",
+    "guidance_title": "社团发展指导",
+    "guidance_desc": "为模联社团提供专业的发展指导和经验分享"
   },
   "footer": {
     "social_media": "社交媒体",

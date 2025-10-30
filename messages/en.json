@@ -47,7 +47,11 @@
     "event5_title": "Alumni Network",
     "event5_desc": "Building a strong alumni network to provide continuous support and career development guidance for members.",
     "event6_title": "Historical Heritage",
-    "event6_desc": "Inheriting the excellent traditions of SMSMUN and cultivating young leaders with international vision."
+    "event6_desc": "Inheriting the excellent traditions of SMSMUN and cultivating young leaders with international vision.",
+    "activities_title": "Activities & Projects",
+    "activities_desc": "Leadership Summit, school conference, carnival and other exciting activities",
+    "guidance_title": "Club Development Guidance",
+    "guidance_desc": "Providing professional development guidance and experience sharing for MUN clubs"
   },
   "footer": {
     "social_media": "Social Media",
