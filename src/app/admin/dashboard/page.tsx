@@ -198,10 +198,11 @@ export default function AdminDashboardPage() {
         .select('*')
         .order('join_date', { ascending: false })
 
+      // 移除密码字段
       if (usersError) {
         console.error('Error loading users:', usersError.message)
+        setUsers([])
       } else {
-        // 移除密码字段
         const usersWithoutPassword = (usersData || []).map((u: any) => {
           const { password, ...userWithoutPassword } = u
           return userWithoutPassword
