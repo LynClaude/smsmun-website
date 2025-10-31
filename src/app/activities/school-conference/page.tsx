@@ -179,17 +179,10 @@ export default function SchoolConferencePage() {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-16 -mt-16"></div>
                         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full -ml-12 -mb-12"></div>
                         <div className="relative">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-3xl font-bold">
-                              {conference.year}
-                            </h3>
-                            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                              <span className="text-xs font-semibold uppercase tracking-wide">
-                                {messages.activities.school_conference.title.replace('深圳中学', '').replace('校内会', '').trim()}
-                              </span>
-                            </div>
-                          </div>
-                          <p className="text-sm opacity-90">
+                          <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                            {conference.year}年深圳中学校内会
+                          </h3>
+                          <p className="text-base opacity-90">
                             {conference.date}
                           </p>
                         </div>
