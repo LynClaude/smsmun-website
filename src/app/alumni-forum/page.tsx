@@ -515,13 +515,13 @@ export default function AlumniForumPage() {
                     return (
                       <div 
                         key={message.id} 
-                        className={`pl-4 py-3 rounded-r-lg border-l-4 ${
-                          isAdmin
-                            ? 'border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
-                            : isHonorAdvisor 
-                            ? 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50' 
-                            : 'border-blue-400 bg-gray-50'
-                        }`}
+                        className="pl-4 py-3 rounded-r-lg"
+                        style={{
+                          borderLeftWidth: '4px',
+                          borderLeftStyle: 'solid',
+                          borderLeftColor: isAdmin ? '#2563eb' : isHonorAdvisor ? '#eab308' : '#60a5fa',
+                          background: isAdmin ? 'linear-gradient(to right, #eff6ff, #e0e7ff)' : isHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#f9fafb'
+                        }}
                       >
                         <div className="flex items-start gap-3 mb-2">
                           {/* 用户头像 */}
@@ -636,13 +636,16 @@ export default function AlumniForumPage() {
                     return (
                     <div 
                       key={question.id} 
-                      className={`border rounded-lg p-4 ${
-                        isQuestionAdmin
-                          ? 'border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
-                          : isQuestionHonorAdvisor
-                          ? 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50'
-                          : 'border-gray-200'
-                      }`}
+                      className="rounded-lg p-4"
+                      style={{
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        borderLeftWidth: '4px',
+                        borderLeftStyle: 'solid',
+                        borderColor: isQuestionAdmin ? '#2563eb' : isQuestionHonorAdvisor ? '#eab308' : '#e5e7eb',
+                        borderLeftColor: isQuestionAdmin ? '#2563eb' : isQuestionHonorAdvisor ? '#eab308' : '#93c5fd',
+                        background: isQuestionAdmin ? 'linear-gradient(to right, #eff6ff, #e0e7ff)' : isQuestionHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#ffffff'
+                      }}
                     >
                       <div className="flex items-start gap-3 mb-3">
                         {/* 提问者头像 */}
@@ -720,13 +723,13 @@ export default function AlumniForumPage() {
                           return (
                           <div 
                             key={answer.id} 
-                            className={`p-3 rounded-md ${
-                              isAnswerAdmin
-                                ? 'bg-gradient-to-r from-blue-100 to-indigo-100 border-l-4 border-blue-600'
-                                : isAnswerHonorAdvisor
-                                ? 'bg-gradient-to-r from-yellow-100 to-amber-100 border-l-4 border-yellow-500'
-                                : 'bg-gray-50'
-                            }`}
+                            className="p-3 rounded-md"
+                            style={{
+                              borderLeftWidth: '4px',
+                              borderLeftStyle: 'solid',
+                              borderLeftColor: isAnswerAdmin ? '#2563eb' : isAnswerHonorAdvisor ? '#eab308' : '#93c5fd',
+                              background: isAnswerAdmin ? 'linear-gradient(to right, #dbeafe, #e0e7ff)' : isAnswerHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#f9fafb'
+                            }}
                           >
                             <div className="flex items-start gap-3 mb-2">
                               {/* 回答者头像 */}
