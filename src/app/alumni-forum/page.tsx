@@ -519,7 +519,7 @@ export default function AlumniForumPage() {
                         style={{
                           borderLeftWidth: '4px',
                           borderLeftStyle: 'solid',
-                          borderLeftColor: isAdmin ? '#2563eb' : isHonorAdvisor ? '#eab308' : '#60a5fa',
+                          borderLeftColor: isAdmin ? '#2563eb' : isHonorAdvisor ? '#eab308' : '#3b82f6',
                           background: isAdmin ? 'linear-gradient(to right, #eff6ff, #e0e7ff)' : isHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#f9fafb'
                         }}
                       >
@@ -643,7 +643,7 @@ export default function AlumniForumPage() {
                         borderLeftWidth: '4px',
                         borderLeftStyle: 'solid',
                         borderColor: isQuestionAdmin ? '#2563eb' : isQuestionHonorAdvisor ? '#eab308' : '#e5e7eb',
-                        borderLeftColor: isQuestionAdmin ? '#2563eb' : isQuestionHonorAdvisor ? '#eab308' : '#93c5fd',
+                        borderLeftColor: isQuestionAdmin ? '#2563eb' : isQuestionHonorAdvisor ? '#eab308' : '#3b82f6',
                         background: isQuestionAdmin ? 'linear-gradient(to right, #eff6ff, #e0e7ff)' : isQuestionHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#ffffff'
                       }}
                     >
@@ -727,7 +727,7 @@ export default function AlumniForumPage() {
                             style={{
                               borderLeftWidth: '4px',
                               borderLeftStyle: 'solid',
-                              borderLeftColor: isAnswerAdmin ? '#2563eb' : isAnswerHonorAdvisor ? '#eab308' : '#93c5fd',
+                              borderLeftColor: isAnswerAdmin ? '#2563eb' : isAnswerHonorAdvisor ? '#eab308' : '#3b82f6',
                               background: isAnswerAdmin ? 'linear-gradient(to right, #dbeafe, #e0e7ff)' : isAnswerHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#f9fafb'
                             }}
                           >
