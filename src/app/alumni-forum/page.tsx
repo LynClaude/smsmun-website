@@ -510,7 +510,7 @@ export default function AlumniForumPage() {
                     const firstChar = displayName.charAt(0).toUpperCase()
                     const userInfo = userAvatars[message.author] || null
                     const isHonorAdvisor = userInfo?.is_honor_advisor || false
-                    const isAdmin = userInfo?.is_admin || false
+                    const isAdmin = userInfo?.is_admin || displayName === '管理员' || displayName.includes('admin')
                     
                     return (
                       <div 
@@ -629,8 +629,9 @@ export default function AlumniForumPage() {
                   {questions.map((question) => {
                     const questionUserInfo = userAvatars[question.author] || null
                     const isQuestionHonorAdvisor = questionUserInfo?.is_honor_advisor || false
-                    const isQuestionAdmin = questionUserInfo?.is_admin || false
-                    const questionFirstChar = (question.author || '未知用户').charAt(0).toUpperCase()
+                    const questionDisplayName = question.author || '未知用户'
+                    const isQuestionAdmin = questionUserInfo?.is_admin || questionDisplayName === '管理员' || questionDisplayName.includes('admin')
+                    const questionFirstChar = questionDisplayName.charAt(0).toUpperCase()
                     
                     return (
                     <div 
@@ -712,8 +713,9 @@ export default function AlumniForumPage() {
                         {question.answers.map((answer) => {
                           const answerUserInfo = userAvatars[answer.author] || null
                           const isAnswerHonorAdvisor = answerUserInfo?.is_honor_advisor || false
-                          const isAnswerAdmin = answerUserInfo?.is_admin || false
-                          const answerFirstChar = (answer.author || '未知用户').charAt(0).toUpperCase()
+                          const answerDisplayName = answer.author || '未知用户'
+                          const isAnswerAdmin = answerUserInfo?.is_admin || answerDisplayName === '管理员' || answerDisplayName.includes('admin')
+                          const answerFirstChar = answerDisplayName.charAt(0).toUpperCase()
                           
                           return (
                           <div 
