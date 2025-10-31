@@ -13,21 +13,26 @@ interface Message {
   id: string
   content: string
   created_at: string
+  author?: string
+  contact?: string
 }
 
 interface Question {
   id: string
-  title: string
-  content: string
+  question: string
+  title?: string
+  content?: string
   created_at: string
   answers: Answer[]
 }
 
 interface Answer {
   id: string
-  content: string
+  answer: string
+  content?: string
   created_at: string
-  user_id: string
+  user_id?: string
+  author?: string
 }
 
 interface HonorAdvisor {
@@ -88,7 +93,7 @@ export default function ProfilePage() {
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('author', user.username)
         .order('created_at', { ascending: false })
 
       if (messagesError) {
@@ -101,7 +106,7 @@ export default function ProfilePage() {
       const { data: questionsData, error: questionsError } = await supabase
         .from('questions')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('author', user.username)
         .order('created_at', { ascending: false })
 
       if (questionsError) {
@@ -413,12 +418,12 @@ export default function ProfilePage() {
                   ) : (
                     questions.map((question) => (
                       <div key={question.id} className="border border-gray-200 rounded-lg p-4">
-                        <h3 className="font-semibold text-gray-900 mb-2">{question.title}</h3>
-                        <p className="text-gray-700 mb-3">{question.content}</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">{question.question || question.title || question.content}</h3>
+                        {question.content && <p className="text-gray-700 mb-3">{question.content}</p>}
                         <div className="space-y-2">
                           {question.answers.map((answer) => (
                             <div key={answer.id} className="bg-gray-50 rounded-lg p-3 ml-4">
-                              <p className="text-gray-800">{answer.content}</p>
+                              <p className="text-gray-800">{answer.answer || answer.content}</p>
                               <p className="text-sm text-gray-500 mt-1">
                                 {new Date(answer.created_at).toLocaleString('zh-CN')}
                               </p>
