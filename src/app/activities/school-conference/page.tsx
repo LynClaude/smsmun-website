@@ -63,16 +63,37 @@ export default function SchoolConferencePage() {
   return (
     <PageTransition>
       <div>
-        {/* 页面标题 */}
-        <div className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
-          <div className="container mx-auto px-4">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+        {/* 页面标题 - 与领袖峰会风格一致 */}
+        <div className="relative pt-32 pb-20 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          <div className="container mx-auto px-4 relative">
+            <div className="text-center space-y-6">
+              <h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+                style={{ 
+                  fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
+                  fontWeight: '700',
+                  textShadow: '3px 3px 6px rgba(0,0,0,0.4)',
+                  letterSpacing: '0.02em'
+                }}
+              >
                 {messages.activities.school_conference.title}
               </h1>
-              <p className="text-lg md:text-xl text-gray-600">
+              <p 
+                className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto"
+                style={{
+                  fontFamily: "'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc', '宋体', serif",
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                }}
+              >
                 {messages.activities.school_conference.subtitle}
               </p>
+              {/* 装饰性分割线 */}
+              <div className="flex items-center justify-center gap-4 pt-6">
+                <div className="h-px w-24 bg-white/40" />
+                <div className="w-2 h-2 bg-white rounded-full" />
+                <div className="h-px w-24 bg-white/40" />
+              </div>
             </div>
           </div>
         </div>
