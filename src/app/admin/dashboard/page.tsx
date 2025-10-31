@@ -556,26 +556,62 @@ export default function AdminDashboardPage() {
               <div className="bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-bold mb-4">留言管理</h2>
                 <div className="space-y-4">
-                  {messages.map((message) => (
-                    <div key={message.id} className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium text-gray-900">{message.author}</span>
-                        <div className="flex items-center gap-3">
-                          <span className="text-sm text-gray-500">
-                            {new Date(message.timestamp).toLocaleString()}
-                          </span>
-                          <button
-                            onClick={() => handleDeleteMessage(message.id)}
-                            className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
-                          >
-                            删除
-                          </button>
+                  {messages.map((message) => {
+                    const isAdmin = message.author === 'admin_user' || message.author.includes('admin')
+                    
+                    return (
+                      <div 
+                        key={message.id} 
+                        className={`pl-4 py-3 rounded-r-lg ${
+                          isAdmin 
+                            ? 'border-l-4 border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50' 
+                            : 'border border-gray-200 rounded-lg p-4'
+                        }`}
+                      >
+                        <div className={`flex justify-between items-start ${isAdmin ? '' : 'mb-2'}`}>
+                          <div className="flex items-center gap-3">
+                            {isAdmin ? (
+                              <div 
+                                className="w-10 h-10 bg-blue-600 rounded-full flex-shrink-0 shadow-md"
+                                style={{
+                                  backgroundImage: 'url(/顾问.png)',
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center'
+                                }}
+                              />
+                            ) : null}
+                            <div>
+                              <span className={`font-medium ${isAdmin ? 'text-blue-900' : 'text-gray-900'}`}>
+                                {message.author}
+                              </span>
+                              {isAdmin && (
+                                <span className="ml-2 text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold">
+                                  管理员
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className={`text-sm ${isAdmin ? 'text-blue-700' : 'text-gray-500'}`}>
+                              {new Date(message.timestamp).toLocaleString()}
+                            </span>
+                            <button
+                              onClick={() => handleDeleteMessage(message.id)}
+                              className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                            >
+                              删除
+                            </button>
+                          </div>
                         </div>
+                        <p className={`${isAdmin ? 'text-blue-900 mt-2' : 'text-gray-700 mb-2'}`}>
+                          {message.content}
+                        </p>
+                        <p className={`text-sm ${isAdmin ? 'text-blue-600' : 'text-gray-500'}`}>
+                          联系方式：{message.contact}
+                        </p>
                       </div>
-                      <p className="text-gray-700 mb-2">{message.content}</p>
-                      <p className="text-sm text-gray-500">联系方式：{message.contact}</p>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )}
@@ -585,39 +621,94 @@ export default function AdminDashboardPage() {
               <div className="bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-bold mb-4">问答管理</h2>
                 <div className="space-y-6">
-                  {questions.map((question) => (
-                    <div key={question.id} className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="font-medium text-gray-900">{question.question}</h3>
-                        <div className="flex items-center gap-3">
-                          <span className="text-sm text-gray-500">
-                            {new Date(question.timestamp).toLocaleString()}
+                  {questions.map((question) => {
+                    const isAdminQuestion = question.author === 'admin_user' || question.author.includes('admin')
+                    
+                    return (
+                      <div key={question.id} className={`${isAdminQuestion ? 'pl-4 py-3 rounded-r-lg border-l-4 border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50' : 'border border-gray-200 rounded-lg p-4'}`}>
+                        <div className={`flex justify-between items-start ${isAdminQuestion ? '' : 'mb-3'}`}>
+                          <div className="flex items-center gap-3">
+                            {isAdminQuestion ? (
+                              <div 
+                                className="w-10 h-10 bg-blue-600 rounded-full flex-shrink-0 shadow-md"
+                                style={{
+                                  backgroundImage: 'url(/顾问.png)',
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center'
+                                }}
+                              />
+                            ) : null}
+                            <div>
+                              <h3 className={`font-medium ${isAdminQuestion ? 'text-blue-900' : 'text-gray-900'}`}>
+                                {question.question}
+                              </h3>
+                              {isAdminQuestion && (
+                                <p className="text-xs text-blue-700 mt-1">提问者：{question.author}</p>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className={`text-sm ${isAdminQuestion ? 'text-blue-700' : 'text-gray-500'}`}>
+                              {new Date(question.timestamp).toLocaleString()}
+                            </span>
+                            <button
+                              onClick={() => handleDeleteQuestion(question.id)}
+                              className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                            >
+                              删除
+                            </button>
+                          </div>
+                        </div>
+                        {!isAdminQuestion && (
+                          <p className="text-sm text-gray-600 mb-3">提问者：{question.author}</p>
+                        )}
+                        {isAdminQuestion && (
+                          <span className="inline-block text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold mb-2">
+                            管理员
                           </span>
-                          <button
-                            onClick={() => handleDeleteQuestion(question.id)}
-                            className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors"
-                          >
-                            删除
-                          </button>
+                        )}
+                        
+                        <div className="space-y-3">
+                          {question.answers.map((answer) => {
+                            const isAdminAnswer = answer.author === 'admin_user' || answer.author.includes('admin')
+                            
+                            return (
+                              <div key={answer.id} className={`p-3 rounded-md ${isAdminAnswer ? 'border-l-4 border-blue-500 bg-gradient-to-r from-blue-100 to-indigo-100' : 'bg-gray-50'}`}>
+                                <div className="flex items-start gap-3 mb-2">
+                                  {isAdminAnswer ? (
+                                    <div 
+                                      className="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 shadow-md"
+                                      style={{
+                                        backgroundImage: 'url(/顾问.png)',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center'
+                                      }}
+                                    />
+                                  ) : null}
+                                  <div className="flex-1">
+                                    <div className="flex justify-between items-start mb-1">
+                                      <span className={`font-medium ${isAdminAnswer ? 'text-blue-900' : 'text-gray-900'}`}>
+                                        {answer.author}
+                                      </span>
+                                      <span className={`text-sm ${isAdminAnswer ? 'text-blue-700' : 'text-gray-500'}`}>
+                                        {new Date(answer.timestamp).toLocaleString()}
+                                      </span>
+                                    </div>
+                                    {isAdminAnswer && (
+                                      <span className="inline-block text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold mb-1">
+                                        管理员
+                                      </span>
+                                    )}
+                                    <p className={isAdminAnswer ? 'text-blue-900' : 'text-gray-700'}>{answer.answer}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">提问者：{question.author}</p>
-                      
-                      <div className="space-y-3">
-                        {question.answers.map((answer) => (
-                          <div key={answer.id} className="bg-gray-50 p-3 rounded-md">
-                            <div className="flex justify-between items-start mb-2">
-                              <span className="font-medium text-gray-900">{answer.author}</span>
-                              <span className="text-sm text-gray-500">
-                                {new Date(answer.timestamp).toLocaleString()}
-                              </span>
-                            </div>
-                            <p className="text-gray-700">{answer.answer}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )}
