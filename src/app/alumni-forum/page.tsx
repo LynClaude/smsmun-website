@@ -74,7 +74,7 @@ export default function AlumniForumPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [honorAdvisors, setHonorAdvisors] = useState<HonorAdvisor[]>([])
-  const [userAvatars, setUserAvatars] = useState<{[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}}>({})
+  const [userAvatars, setUserAvatars] = useState<{[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean, is_admin: boolean}}>({})
 
   useEffect(() => {
     // 检查用户权限
@@ -123,7 +123,7 @@ export default function AlumniForumPage() {
           if (usernames.length > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('username, is_honor_advisor, is_alumni')
+              .select('username, is_honor_advisor, is_alumni, is_admin')
               .in('username', usernames)
             
             console.log('👤 真实用户查询结果:', { 
@@ -136,13 +136,14 @@ export default function AlumniForumPage() {
             if (usersError) {
               console.error('❌ 用户查询失败:', usersError.message)
             } else if (usersData) {
-              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
+              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean, is_admin: boolean}} = {}
               usersData.forEach(u => {
                 if (u.username) {
                   avatarMap[u.username] = {
                     username: u.username,
                     is_honor_advisor: u.is_honor_advisor || false,
-                    is_alumni: u.is_alumni || false
+                    is_alumni: u.is_alumni || false,
+                    is_admin: u.is_admin || false
                   }
                 }
               })
@@ -222,7 +223,7 @@ export default function AlumniForumPage() {
           if (allUsernames.size > 0) {
             const { data: usersData, error: usersError } = await supabase
               .from('users')
-              .select('username, is_honor_advisor, is_alumni')
+              .select('username, is_honor_advisor, is_alumni, is_admin')
               .in('username', Array.from(allUsernames))
             
             console.log('👤 问答区用户查询结果:', { 
@@ -235,13 +236,14 @@ export default function AlumniForumPage() {
             if (usersError) {
               console.error('❌ 问答区用户查询失败:', usersError.message)
             } else if (usersData) {
-              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean}} = {}
+              const avatarMap: {[key: string]: {username: string, is_honor_advisor: boolean, is_alumni: boolean, is_admin: boolean}} = {}
               usersData.forEach(u => {
                 if (u.username) {
                   avatarMap[u.username] = {
                     username: u.username,
                     is_honor_advisor: u.is_honor_advisor || false,
-                    is_alumni: u.is_alumni || false
+                    is_alumni: u.is_alumni || false,
+                    is_admin: u.is_admin || false
                   }
                 }
               })
@@ -508,12 +510,15 @@ export default function AlumniForumPage() {
                     const firstChar = displayName.charAt(0).toUpperCase()
                     const userInfo = userAvatars[message.author] || null
                     const isHonorAdvisor = userInfo?.is_honor_advisor || false
+                    const isAdmin = userInfo?.is_admin || false
                     
                     return (
                       <div 
                         key={message.id} 
                         className={`pl-4 py-3 rounded-r-lg ${
-                          isHonorAdvisor 
+                          isAdmin
+                            ? 'border-l-4 border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
+                            : isHonorAdvisor 
                             ? 'border-l-4 border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50' 
                             : 'border-l-4 border-primary bg-gray-50'
                         }`}
@@ -521,7 +526,16 @@ export default function AlumniForumPage() {
                         <div className="flex items-start gap-3 mb-2">
                           {/* 用户头像 */}
                           <div className="flex-shrink-0">
-                            {isHonorAdvisor ? (
+                            {isAdmin ? (
+                              <div 
+                                className="w-10 h-10 bg-blue-600 rounded-full shadow-md"
+                                style={{
+                                  backgroundImage: 'url(/顾问.png)',
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center'
+                                }}
+                              />
+                            ) : isHonorAdvisor ? (
                               <div 
                                 className="w-10 h-10 bg-yellow-400 rounded-full shadow-md"
                                 style={{
@@ -541,7 +555,11 @@ export default function AlumniForumPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex justify-between items-start mb-1">
                               <div className="flex items-center gap-2">
-                                <span className={`font-medium ${isHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                                <span className={`font-medium ${
+                                  isAdmin ? 'text-blue-900' : 
+                                  isHonorAdvisor ? 'text-amber-900' : 
+                                  'text-gray-900'
+                                }`}>
                                   {displayName}
                                 </span>
                                 {userInfo?.is_alumni && (
@@ -553,6 +571,11 @@ export default function AlumniForumPage() {
                                     className="w-4 h-4"
                                   />
                                 )}
+                                {isAdmin && (
+                                  <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold">
+                                    管理员
+                                  </span>
+                                )}
                                 {isHonorAdvisor && (
                                   <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
                                     荣誉顾问
@@ -563,7 +586,11 @@ export default function AlumniForumPage() {
                                 {new Date(message.created_at || message.timestamp || '').toLocaleString()}
                               </span>
                             </div>
-                            <p className={`${isHonorAdvisor ? 'text-amber-900' : 'text-gray-700'}`}>
+                            <p className={`${
+                              isAdmin ? 'text-blue-900' : 
+                              isHonorAdvisor ? 'text-amber-900' : 
+                              'text-gray-700'
+                            }`}>
                               {message.content}
                             </p>
                           </div>
@@ -602,13 +629,16 @@ export default function AlumniForumPage() {
                   {questions.map((question) => {
                     const questionUserInfo = userAvatars[question.author] || null
                     const isQuestionHonorAdvisor = questionUserInfo?.is_honor_advisor || false
+                    const isQuestionAdmin = questionUserInfo?.is_admin || false
                     const questionFirstChar = (question.author || '未知用户').charAt(0).toUpperCase()
                     
                     return (
                     <div 
                       key={question.id} 
                       className={`border rounded-lg p-4 ${
-                        isQuestionHonorAdvisor
+                        isQuestionAdmin
+                          ? 'border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
+                          : isQuestionHonorAdvisor
                           ? 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50'
                           : 'border-gray-200'
                       }`}
@@ -616,7 +646,16 @@ export default function AlumniForumPage() {
                       <div className="flex items-start gap-3 mb-3">
                         {/* 提问者头像 */}
                         <div className="flex-shrink-0">
-                          {isQuestionHonorAdvisor ? (
+                          {isQuestionAdmin ? (
+                            <div 
+                              className="w-10 h-10 bg-blue-600 rounded-full shadow-md"
+                              style={{
+                                backgroundImage: 'url(/顾问.png)',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                              }}
+                            />
+                          ) : isQuestionHonorAdvisor ? (
                             <div 
                               className="w-10 h-10 bg-yellow-400 rounded-full shadow-md"
                               style={{
@@ -636,9 +675,18 @@ export default function AlumniForumPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex justify-between items-start mb-2">
                             <div className="flex items-center gap-2">
-                              <span className={`font-medium ${isQuestionHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                              <span className={`font-medium ${
+                                isQuestionAdmin ? 'text-blue-900' : 
+                                isQuestionHonorAdvisor ? 'text-amber-900' : 
+                                'text-gray-900'
+                              }`}>
                                 {question.author || '未知用户'}
                               </span>
+                              {isQuestionAdmin && (
+                                <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold">
+                                  管理员
+                                </span>
+                              )}
                               {questionUserInfo?.is_honor_advisor && (
                                 <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
                                   荣誉顾问
@@ -649,7 +697,11 @@ export default function AlumniForumPage() {
                               {new Date(question.created_at || question.timestamp || '').toLocaleString()}
                             </span>
                           </div>
-                          <h3 className={`font-medium ${isQuestionHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                          <h3 className={`font-medium ${
+                            isQuestionAdmin ? 'text-blue-900' : 
+                            isQuestionHonorAdvisor ? 'text-amber-900' : 
+                            'text-gray-900'
+                          }`}>
                             {question.question || question.title || question.content}
                           </h3>
                         </div>
@@ -660,13 +712,16 @@ export default function AlumniForumPage() {
                         {question.answers.map((answer) => {
                           const answerUserInfo = userAvatars[answer.author] || null
                           const isAnswerHonorAdvisor = answerUserInfo?.is_honor_advisor || false
+                          const isAnswerAdmin = answerUserInfo?.is_admin || false
                           const answerFirstChar = (answer.author || '未知用户').charAt(0).toUpperCase()
                           
                           return (
                           <div 
                             key={answer.id} 
                             className={`p-3 rounded-md ${
-                              isAnswerHonorAdvisor
+                              isAnswerAdmin
+                                ? 'bg-gradient-to-r from-blue-100 to-indigo-100 border-l-4 border-blue-600'
+                                : isAnswerHonorAdvisor
                                 ? 'bg-gradient-to-r from-yellow-100 to-amber-100 border-l-4 border-yellow-500'
                                 : 'bg-gray-50'
                             }`}
@@ -674,7 +729,16 @@ export default function AlumniForumPage() {
                             <div className="flex items-start gap-3 mb-2">
                               {/* 回答者头像 */}
                               <div className="flex-shrink-0">
-                                {isAnswerHonorAdvisor ? (
+                                {isAnswerAdmin ? (
+                                  <div 
+                                    className="w-8 h-8 bg-blue-600 rounded-full shadow-md"
+                                    style={{
+                                      backgroundImage: 'url(/顾问.png)',
+                                      backgroundSize: 'cover',
+                                      backgroundPosition: 'center'
+                                    }}
+                                  />
+                                ) : isAnswerHonorAdvisor ? (
                                   <div 
                                     className="w-8 h-8 bg-yellow-400 rounded-full shadow-md"
                                     style={{
@@ -694,9 +758,18 @@ export default function AlumniForumPage() {
                               <div className="flex-1 min-w-0">
                                 <div className="flex justify-between items-start mb-2">
                                   <div className="flex items-center gap-2">
-                                    <span className={`font-medium ${isAnswerHonorAdvisor ? 'text-amber-900' : 'text-gray-900'}`}>
+                                    <span className={`font-medium ${
+                                      isAnswerAdmin ? 'text-blue-900' : 
+                                      isAnswerHonorAdvisor ? 'text-amber-900' : 
+                                      'text-gray-900'
+                                    }`}>
                                       {answer.author || '未知用户'}
                                     </span>
+                                    {isAnswerAdmin && (
+                                      <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-semibold">
+                                        管理员
+                                      </span>
+                                    )}
                                     {isAnswerHonorAdvisor && (
                                       <span className="text-xs bg-yellow-500 text-white px-2 py-1 rounded-full font-semibold">
                                         荣誉顾问
@@ -707,7 +780,11 @@ export default function AlumniForumPage() {
                                     {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
                                   </span>
                                 </div>
-                                <p className={isAnswerHonorAdvisor ? 'text-amber-900' : 'text-gray-700'}>
+                                <p className={
+                                  isAnswerAdmin ? 'text-blue-900' : 
+                                  isAnswerHonorAdvisor ? 'text-amber-900' : 
+                                  'text-gray-700'
+                                }>
                                   {answer.answer || answer.content}
                                 </p>
                               </div>
