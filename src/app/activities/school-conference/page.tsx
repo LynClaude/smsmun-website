@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import PageTransition from '@/components/PageTransition'
@@ -91,53 +91,83 @@ export default function SchoolConferencePage() {
         </div>
 
         {/* 会议列表 */}
-        <div className="bg-gray-50 py-20">
+        <div className="bg-gradient-to-b from-gray-50 to-white py-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <motion.h2
+            <div className="max-w-7xl mx-auto">
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800"
+                transition={{ duration: 0.6 }}
+                className="text-center mb-20"
               >
-                {messages.activities.school_conference.yearly_conferences}
-              </motion.h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+                  {messages.activities.school_conference.yearly_conferences}
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+              </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {conferences.map((conference, index) => (
                   <motion.div
                     key={conference.year}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: [0.4, 0.0, 0.2, 1] }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className="relative group"
                   >
-                    {/* 年份标识 */}
-                    <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-4 text-center">
-                      <h3 className="text-2xl font-bold">{messages.activities.school_conference.conference_info.replace('{year}', conference.year.toString())}</h3>
-                      <p className="text-sm opacity-90 mt-1">
-                        {conference.date} · {conference.venue} · {conference.format}
-                      </p>
-                    </div>
+                    {/* 装饰性背景元素 */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
+                    
+                    <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden h-full">
+                      {/* 年份标识 - 渐变色设计 */}
+                      <div className="relative bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 text-white p-6">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-16 -mt-16"></div>
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full -ml-12 -mb-12"></div>
+                        <div className="relative">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="text-3xl font-bold">
+                              {conference.year}
+                            </h3>
+                            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                              <span className="text-xs font-semibold uppercase tracking-wide">
+                                {messages.activities.school_conference.title.replace('深圳中学', '').replace('校内会', '').trim()}
+                              </span>
+                            </div>
+                          </div>
+                          <p className="text-sm opacity-90 space-y-1">
+                            <span className="inline-block">{conference.date}</span>
+                            <span className="inline-block mx-2">·</span>
+                            <span className="inline-block">{conference.venue}</span>
+                            <span className="inline-block mx-2">·</span>
+                            <span className="inline-block">{conference.format}</span>
+                          </p>
+                        </div>
+                      </div>
 
-                    {/* 会议描述 */}
-                    <div className="p-6">
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-6">
-                        {conference.description}
-                      </p>
+                      {/* 会议描述 */}
+                      <div className="p-6">
+                        <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-5">
+                          {conference.description}
+                        </p>
 
-                      {/* 微信公众号链接 */}
-                      <a
-                        href={conference.wechatUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-full px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold text-sm"
-                      >
-                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.162 4.203 2.969 5.543-.396-.847-.729-1.804-.729-2.812 0-3.312 2.688-6 6-6s6 2.688 6 6c0 1.008-.333 1.965-.729 2.812 1.807-1.34 2.969-3.331 2.969-5.543 0-4.054-3.891-7.342-8.691-7.342zM12 15.53c-3.312 0-6-2.688-6-6s2.688-6 6-6 6 2.688 6 6-2.688 6-6 6z"/>
-                        </svg>
-                        {messages.activities.school_conference.view_wechat}
-                      </a>
+                        {/* 微信公众号链接 - 优化按钮设计 */}
+                        <a
+                          href={conference.wechatUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 font-semibold text-sm shadow-md hover:shadow-lg overflow-hidden"
+                        >
+                          <span className="absolute inset-0 w-3 bg-white opacity-20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                          <svg className="w-5 h-5 mr-2 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.162 4.203 2.969 5.543-.396-.847-.729-1.804-.729-2.812 0-3.312 2.688-6 6-6s6 2.688 6 6c0 1.008-.333 1.965-.729 2.812 1.807-1.34 2.969-3.331 2.969-5.543 0-4.054-3.891-7.342-8.691-7.342zM12 15.53c-3.312 0-6-2.688-6-6s2.688-6 6-6 6 2.688 6 6-2.688 6-6 6z"/>
+                          </svg>
+                          <span className="relative z-10">{messages.activities.school_conference.view_wechat}</span>
+                        </a>
+                      </div>
+                      
+                      {/* 底部装饰条 */}
+                      <div className="h-1 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
                     </div>
                   </motion.div>
                 ))}

@@ -515,12 +515,12 @@ export default function AlumniForumPage() {
                     return (
                       <div 
                         key={message.id} 
-                        className={`pl-4 py-3 rounded-r-lg ${
+                        className={`pl-4 py-3 rounded-r-lg border-l-4 ${
                           isAdmin
-                            ? 'border-l-4 border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
+                            ? 'border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50'
                             : isHonorAdvisor 
-                            ? 'border-l-4 border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50' 
-                            : 'border-l-4 border-primary bg-gray-50'
+                            ? 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50' 
+                            : 'border-blue-400 bg-gray-50'
                         }`}
                       >
                         <div className="flex items-start gap-3 mb-2">
