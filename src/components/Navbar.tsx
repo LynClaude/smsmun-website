@@ -100,7 +100,17 @@ export default function Navbar() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
               >
-                {user.is_honor_advisor ? (
+                {user.is_admin ? (
+                  <div className="w-8 h-8">
+                    <Image
+                      src="/顾问.png"
+                      alt="管理员"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                ) : user.is_honor_advisor ? (
                   <div className="w-8 h-8">
                     <Image
                       src="/皇冠.png"

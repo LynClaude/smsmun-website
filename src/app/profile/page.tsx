@@ -229,7 +229,17 @@ export default function ProfilePage() {
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
-                {user?.is_honor_advisor ? (
+                {user?.is_admin ? (
+                  <div className="w-16 h-16">
+                    <Image
+                      src="/顾问.png"
+                      alt="管理员"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                ) : user?.is_honor_advisor ? (
                   <div className="w-16 h-16">
                     <Image
                       src="/皇冠.png"
