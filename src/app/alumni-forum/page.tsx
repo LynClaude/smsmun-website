@@ -519,7 +519,7 @@ export default function AlumniForumPage() {
                         style={{
                           borderLeftWidth: '4px',
                           borderLeftStyle: 'solid',
-                          borderLeftColor: isAdmin ? '#2563eb' : isHonorAdvisor ? '#eab308' : '#1e40af',
+                          borderLeftColor: isAdmin ? '#1e3a8a' : isHonorAdvisor ? '#ca8a04' : '#1e40af',
                           background: isAdmin ? 'linear-gradient(to right, #eff6ff, #e0e7ff)' : isHonorAdvisor ? 'linear-gradient(to right, #fefce8, #fef3c7)' : '#f9fafb'
                         }}
                       >
