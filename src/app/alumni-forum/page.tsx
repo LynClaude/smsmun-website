@@ -582,7 +582,7 @@ export default function AlumniForumPage() {
                                   </span>
                                 )}
                               </div>
-                              <span className="text-sm text-gray-500">
+                              <span className="text-sm text-gray-500 ml-4 whitespace-nowrap">
                                 {new Date(message.created_at || message.timestamp || '').toLocaleString()}
                               </span>
                             </div>
@@ -697,7 +697,7 @@ export default function AlumniForumPage() {
                                 </span>
                               )}
                             </div>
-                            <span className="text-sm text-gray-500">
+                            <span className="text-sm text-gray-500 ml-4 whitespace-nowrap">
                               {new Date(question.created_at || question.timestamp || '').toLocaleString()}
                             </span>
                           </div>
@@ -781,7 +781,7 @@ export default function AlumniForumPage() {
                                       </span>
                                     )}
                                   </div>
-                                  <span className="text-sm text-gray-500">
+                                  <span className="text-sm text-gray-500 ml-4 whitespace-nowrap">
                                     {new Date(answer.created_at || answer.timestamp || '').toLocaleString()}
                                   </span>
                                 </div>

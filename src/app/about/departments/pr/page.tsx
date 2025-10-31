@@ -23,8 +23,6 @@ export default function PRPage() {
           <h2 className="text-2xl font-semibold mb-4 text-primary">工作职责</h2>
           <ul className="list-disc list-inside space-y-3 text-gray-700">
             <li>管理和运营深中模联公众号</li>
-            <li>组织校内活动成员报名和面试</li>
-            <li>与赞助商进行协议谈判</li>
             <li>处理会场突发事件</li>
             <li>接待校外模联同仁</li>
             <li>收集和整理代表信息</li>
@@ -49,7 +47,6 @@ export default function PRPage() {
             <li>良好的沟通表达能力</li>
             <li>责任心强，工作细致</li>
             <li>具备基本的文案写作能力</li>
-            <li>能够承受一定的工作压力</li>
             <li>有团队协作精神</li>
           </ul>
         </section>
