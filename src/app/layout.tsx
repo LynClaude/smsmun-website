@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: '深圳中学模拟联合国协会',
   description: '深圳中学模拟联合国协会官方网站 - 用户认证系统已完善',
+  verification: {
+    google: 'yWRJ16PBx23x4cCp1eY5R85JtgDp-mP9seDtbUHBKfE',
+  },
 }
 
 export default function RootLayout({
