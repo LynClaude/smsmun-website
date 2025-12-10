@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'yWRJ16PBx23x4cCp1eY5R85JtgDp-mP9seDtbUHBKfE',
   },
+  other: {
+    'baidu-site-verification': 'codeva-dEZ6qyjTdt',
+  },
 }
 
 export default function RootLayout({
@@ -23,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh">
+      <head>
+        <meta name="baidu-site-verification" content="codeva-dEZ6qyjTdt" />
+      </head>
       <body className={inter.className}>
         <I18nProvider>
           <AuthProvider>
