@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { I18nProvider } from '@/lib/i18n-context'
 import { AuthProvider } from '@/lib/auth-context'
+import VerificationMeta from '@/components/VerificationMeta'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,10 +27,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh">
-      <head>
-        <meta name="baidu-site-verification" content="codeva-dEZ6qyjTdt" />
-      </head>
       <body className={inter.className}>
+        <VerificationMeta />
         <I18nProvider>
           <AuthProvider>
             <Navbar />
