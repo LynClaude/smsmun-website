@@ -9,6 +9,19 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Baidu-Site-Verification',
+            value: 'codeva-dEZ6qyjTdt',
+          },
+        ],
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
