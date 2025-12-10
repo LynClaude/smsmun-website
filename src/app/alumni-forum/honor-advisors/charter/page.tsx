@@ -115,9 +115,9 @@ export default function HonorAdvisorsCharterPage() {
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第五条【产生方式】</h3>
                       <p className="text-gray-700 mb-2">顾问产生采取"邀请制+申请制"并行方式：</p>
                       <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                        <li>邀请制：主席团可主动邀请符合条件的毕业成员担任顾问；受邀者有权接受或婉拒；</li>
+                        <li>邀请制：秘书处可主动邀请符合条件的毕业成员担任顾问；受邀者有权接受或婉拒；</li>
                         <li>申请制：符合条件之毕业成员可于规定时间内向秘书处提出申请；</li>
-                        <li>所有候选人须经主席团集体确认后方可正式成为顾问。</li>
+                        <li>所有候选人须经秘书处集体确认后方可正式成为顾问。</li>
                       </ol>
                     </div>
 
@@ -141,11 +141,11 @@ export default function HonorAdvisorsCharterPage() {
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第七条【顾问权利】</h3>
                       <p className="text-gray-700 mb-2">顾问享有以下权利：</p>
                       <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                        <li>在协会筹办重要活动或大型会议时，被主席团或秘书处咨询意见的权利；</li>
+                        <li>在协会筹办重要活动或大型会议时，被秘书处咨询意见的权利；</li>
                         <li>可在自愿基础上参与线上指导会议、经验分享或培训活动；</li>
                         <li>协会成员可通过指定渠道就活动筹划、技能提升或个人发展向顾问咨询；</li>
                         <li>有权优先受邀参加协会举办的重大活动（如年会、开幕式、成果展示等）；</li>
-                        <li>可向现任主席团就协会发展提出建议。</li>
+                        <li>可向现任秘书处就协会发展提出建议。</li>
                       </ol>
                     </div>
 
@@ -168,7 +168,7 @@ export default function HonorAdvisorsCharterPage() {
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第九条【顾问义务】</h3>
                       <ol className="list-decimal list-inside space-y-2 text-gray-700">
                         <li>秉持尊重与支持原则，协助协会发展；</li>
-                        <li>不干预协会主席团及现任部门的决策与日常事务执行；</li>
+                        <li>不干预协会秘书处及现任部门的决策与日常事务执行；</li>
                         <li>不代表协会对外开展活动或发表具有官方性质言论；</li>
                         <li>不得泄露协会内部未公开信息；</li>
                         <li>维护协会形象与声誉。</li>
@@ -183,14 +183,14 @@ export default function HonorAdvisorsCharterPage() {
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第十条【沟通方式】</h3>
                       <p className="text-gray-700">
-                        协会应建立顾问委员会线上联络渠道（如微信群、邮件列表或其他平台），供主席团与顾问联系与咨询之用。
+                        协会应建立顾问委员会线上联络渠道（如微信群、邮件列表或其他平台），供秘书处与顾问联系与咨询之用。
                       </p>
                     </div>
 
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第十一条【咨询机制】</h3>
                       <p className="text-gray-700">
-                        主席团可在会议筹备、发展规划、成员培养等事项中寻求顾问意见。顾问提出意见为建议性内容，不具约束力。
+                        秘书处可在会议筹备、发展规划、成员培养等事项中寻求顾问意见。顾问提出意见为建议性内容，不具约束力。
                       </p>
                     </div>
 
@@ -215,7 +215,7 @@ export default function HonorAdvisorsCharterPage() {
 
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第十四条【解聘情形】</h3>
-                      <p className="text-gray-700 mb-2">若顾问存在以下情形之一，经主席团决议可解除顾问身份：</p>
+                      <p className="text-gray-700 mb-2">若顾问存在以下情形之一，经秘书处决议可解除顾问身份：</p>
                       <ol className="list-decimal list-inside space-y-2 text-gray-700">
                         <li>长期无联系且未参与任何指导活动；</li>
                         <li>明确表明不希望继续履职；</li>
