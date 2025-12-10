@@ -124,8 +124,10 @@ export default function HonorAdvisorsCharterPage() {
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第六条【任期与续任】</h3>
                       <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                        <li>顾问任期为一学年，自确认之日起生效；</li>
-                        <li>顾问可于任期届满前申请续任，是否续聘由主席团评估其参与度与贡献后决定；</li>
+                        <li>顾问不设固定任期，可长期担任；</li>
+                        <li>是否继续担任由秘书处评估其参与度与贡献后决定；</li>
+                        <li>顾问可随时向秘书处申请退出；</li>
+                        <li>符合条件者可随时向秘书处申请加入；</li>
                         <li>顾问人数不设上限。</li>
                       </ol>
                     </div>
@@ -207,7 +209,7 @@ export default function HonorAdvisorsCharterPage() {
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">第十三条【主动退出】</h3>
                       <p className="text-gray-700">
-                        顾问可向秘书处提出退出申请，经主席团确认后终止其顾问身份。
+                        顾问可随时向秘书处提出退出申请，经秘书处确认后终止其顾问身份。
                       </p>
                     </div>
 
