@@ -29,15 +29,6 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={inter.className}>
-        <Script
-          id="baidu-verification"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(){if(document.head){var e=document.createElement("meta");e.name="baidu-site-verification",e.content="codeva-dEZ6qyjTdt",document.head.querySelector('meta[name="baidu-site-verification"]')||document.head.insertBefore(e,document.head.firstChild)}}();
-            `,
-          }}
-        />
         <I18nProvider>
           <AuthProvider>
             <Navbar />

@@ -11,10 +11,10 @@ interface PPRDInvitationLetterProps {
 export default function PPRDInvitationLetter({ year, content, backHref, }: PPRDInvitationLetterProps) {
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-24 pb-12">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {/* 返回按钮 */}
+          {/* 返回按钮 - 放在导航栏下方 */}
           <div className="mb-8">
             <motion.a
               href={backHref}
