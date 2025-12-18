@@ -31,7 +31,7 @@ export default function Hero() {
   }
 
   return (
-    <div className="relative h-screen">
+    <div className="relative h-screen min-h-[600px]">
       {/* 背景图片 */}
       <div className="absolute inset-0">
         <Image
@@ -46,13 +46,13 @@ export default function Hero() {
 
       {/* 内容区域 */}
       <div className="relative z-10 container mx-auto h-full flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center w-full px-4 sm:px-6">
           {/* 左侧图片展示 */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative w-full max-w-[500px] mx-auto aspect-[4/3] rounded-xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-[500px] mx-auto aspect-[4/3] rounded-xl overflow-hidden shadow-2xl order-2 md:order-1"
           >
             {images.map((image, index) => (
               <motion.div
@@ -78,10 +78,10 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white space-y-8"
+            className="text-white space-y-4 md:space-y-8 order-1 md:order-2 text-center md:text-left"
           >
             <h1 
-              className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight"
               style={{ 
                 fontFamily: "'Noto Serif SC', serif",
                 fontWeight: '700',
@@ -92,7 +92,7 @@ export default function Hero() {
               <span className="block">{messages.hero.title_line2}</span>
             </h1>
             <p 
-              className="text-sm md:text-base lg:text-lg leading-relaxed opacity-90"
+              className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed opacity-90 px-2 sm:px-0"
               style={{
                 fontFamily: "'Noto Serif SC', serif"
               }}

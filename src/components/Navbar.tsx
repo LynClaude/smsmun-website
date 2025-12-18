@@ -24,11 +24,11 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md">
-      <nav className="flex items-center justify-between p-4 lg:px-8" aria-label="Global">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+      <nav className="flex items-center justify-between p-3 sm:p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 items-center">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-3">
-            <div className="relative w-16 h-16">
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 sm:gap-3">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
               <Image
                 src="/logo.png"
                 alt="SZMUN Logo"
@@ -38,10 +38,10 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="text-lg font-bold text-primary hidden md:inline whitespace-nowrap">
+            <span className="text-base sm:text-lg font-bold text-primary hidden md:inline whitespace-nowrap">
               {messages.site.name_full}
             </span>
-            <span className="text-lg font-bold text-primary md:hidden">
+            <span className="text-base sm:text-lg font-bold text-primary md:hidden">
               {messages.site.name_short}
             </span>
           </Link>
@@ -196,9 +196,9 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden">
           <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 sm:px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="flex items-center justify-between mb-4">
+              <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                 <div className="relative w-10 h-10">
                   <Image
                     src="/logo.png"
@@ -209,7 +209,7 @@ export default function Navbar() {
                     priority
                   />
                 </div>
-                <span className="text-lg font-bold text-primary">{messages.site.name_short}</span>
+                <span className="text-base sm:text-lg font-bold text-primary">{messages.site.name_short}</span>
               </Link>
               <button
                 type="button"
@@ -222,9 +222,9 @@ export default function Navbar() {
                 </svg>
               </button>
             </div>
-            <div className="mt-6 flow-root">
+            <div className="mt-4 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
+                <div className="space-y-1 sm:space-y-2 py-4 sm:py-6">
                   {navigation.map((item) => (
                     item.isDropdown ? (
                       <div key={item.name} className="-mx-3 px-3 py-2">
@@ -273,7 +273,7 @@ export default function Navbar() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -284,7 +284,7 @@ export default function Navbar() {
                   {user && user.is_alumni ? (
                     <Link
                       href="/alumni-forum"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {messages.nav.alumni_network}
@@ -293,24 +293,98 @@ export default function Navbar() {
                     /* 非校友看到荣誉顾问链接 */
                     <Link
                       href="/alumni-forum/honor-advisors"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {messages.nav.honor_advisor}
                     </Link>
                   )}
                 </div>
-                <div className="py-6 space-y-2">
+                <div className="py-4 sm:py-6 space-y-2">
                   <div className="px-3">
                     <LanguageSwitcher />
                   </div>
-                  <Link
-                    href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {messages.nav.login}
-                  </Link>
+                  {user ? (
+                    <div className="px-3 space-y-2">
+                      <div className="flex items-center gap-2 sm:gap-3 px-3 py-2 rounded-lg bg-gray-50">
+                        {user.is_admin ? (
+                          <div className="w-8 h-8 flex-shrink-0">
+                            <Image
+                              src="/顾问.png"
+                              alt="管理员"
+                              width={32}
+                              height={32}
+                              className="w-full h-full object-cover rounded-full"
+                            />
+                          </div>
+                        ) : user.is_honor_advisor ? (
+                          <div className="w-8 h-8 flex-shrink-0">
+                            <Image
+                              src="/皇冠.png"
+                              alt="荣誉顾问"
+                              width={32}
+                              height={32}
+                              className="w-full h-full object-cover rounded-full"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-8 h-8 flex-shrink-0 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                            {user.username.charAt(0).toUpperCase()}
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-900 truncate">{user.username}</p>
+                          <p className="text-xs text-gray-500 truncate">
+                            {user.is_admin ? '管理员' : 
+                             user.is_honor_advisor ? '深中模联荣誉顾问' :
+                             user.is_alumni ? '深中模联校友' : '访客用户'}
+                          </p>
+                        </div>
+                      </div>
+                      <Link
+                        href="/profile"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        我的
+                      </Link>
+                      {user.is_admin && (
+                        <Link
+                          href="/admin/dashboard"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          管理员面板
+                        </Link>
+                      )}
+                      {user.is_alumni && (
+                        <Link
+                          href="/alumni-forum"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          校友交流
+                        </Link>
+                      )}
+                      <button
+                        onClick={() => {
+                          logout()
+                          setMobileMenuOpen(false)
+                        }}
+                        className="-mx-3 block w-full text-left rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        退出登录
+                      </button>
+                    </div>
+                  ) : (
+                    <Link
+                      href="/auth/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-sm sm:text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {messages.nav.login}
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

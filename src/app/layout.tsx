@@ -32,7 +32,7 @@ export default function RootLayout({
         <I18nProvider>
           <AuthProvider>
             <Navbar />
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen pt-16 sm:pt-20">{children}</main>
             <Footer />
           </AuthProvider>
         </I18nProvider>

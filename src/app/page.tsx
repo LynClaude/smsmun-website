@@ -14,19 +14,19 @@ export default function Home() {
       <Hero />
       
       {/* 重要事件部分 */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10 md:mb-12 text-center"
             style={{ fontFamily: "'Noto Serif SC', serif" }}
           >
             {messages.home.important_events}
           </motion.h2>
           
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* 泛珠模联大会 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-48">
+              <div className="relative h-40 sm:h-48">
                 <Image
                   src="/深中模联活动照.pic(1).jpg"
                   alt="PPRDMUN"
@@ -42,17 +42,17 @@ export default function Home() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold text-center">
                     PPRDMUN
                   </h3>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event1_title}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event1_desc}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">{messages.home.event1_title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4">{messages.home.event1_desc}</p>
                 <Link 
                   href="/pprdmun" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm md:text-base"
                 >
                   {messages.home.learn_more} →
                 </Link>
@@ -66,7 +66,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-48">
+              <div className="relative h-40 sm:h-48">
                 <Image
                   src="/领袖峰会/领袖峰会会中主席团照片.jpeg"
                   alt="活动与项目"
@@ -74,17 +74,17 @@ export default function Home() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold text-center">
                     {messages.home.activities_title}
                   </h3>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.activities_title}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.activities_desc}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">{messages.home.activities_title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4">{messages.home.activities_desc}</p>
                 <Link 
                   href="/activities/leadership-summit" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm md:text-base"
                 >
                   {messages.home.learn_more} →
                 </Link>
@@ -98,7 +98,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-48">
+              <div className="relative h-40 sm:h-48">
                 <Image
                   src="/历届合照.jpg"
                   alt="社团发展指导"
@@ -106,17 +106,17 @@ export default function Home() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold text-center">
                     {messages.home.guidance_title}
                   </h3>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.guidance_title}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.guidance_desc}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">{messages.home.guidance_title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4">{messages.home.guidance_desc}</p>
                 <Link 
                   href="/alumni-leadership" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm md:text-base"
                 >
                   {messages.home.learn_more} →
                 </Link>
@@ -130,7 +130,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-48">
+              <div className="relative h-40 sm:h-48">
                 <Image
                   src="/background.jpg"
                   alt="历史传承"
@@ -138,17 +138,17 @@ export default function Home() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold text-center">
                     {messages.home.event6_title}
                   </h3>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{messages.home.event6_title}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{messages.home.event6_desc}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">{messages.home.event6_title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-3 sm:mb-4">{messages.home.event6_desc}</p>
                 <Link 
                   href="/alumni-forum/honor-advisors" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm md:text-base"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm md:text-base"
                 >
                   {messages.home.learn_more} →
                 </Link>
