@@ -19,6 +19,32 @@ export const metadata: Metadata = {
     'baidu-site-verification': 'codeva-dEZ6qyjTdt',
   },
   metadataBase: new URL('https://www.smsmun.cn'),
+  openGraph: {
+    title: '深圳中学模拟联合国协会',
+    description: '深圳中学模拟联合国协会官方网站 - 用户认证系统已完善',
+    url: 'https://www.smsmun.cn',
+    siteName: '深圳中学模拟联合国协会',
+    images: [
+      {
+        url: '/logo.png',
+        width: 640,
+        height: 640,
+        alt: '深圳中学模拟联合国协会 Logo',
+      },
+    ],
+    locale: 'zh_CN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: '深圳中学模拟联合国协会',
+    description: '深圳中学模拟联合国协会官方网站 - 用户认证系统已完善',
+    images: ['/logo.png'],
+  },
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({
@@ -26,9 +52,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: '深圳中学模拟联合国协会',
+    url: 'https://www.smsmun.cn',
+    logo: 'https://www.smsmun.cn/logo.png',
+    description: '深圳中学模拟联合国协会官方网站',
+  }
+
   return (
     <html lang="zh">
       <body className={inter.className}>
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
         <I18nProvider>
           <AuthProvider>
             <Navbar />
